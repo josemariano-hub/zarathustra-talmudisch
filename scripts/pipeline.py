@@ -29,6 +29,8 @@ STEPS = [
         ["python3", "scripts/fix_segmentation.py"],                     False),
     ("normalize-typography","Normalize stray ASCII quotes in DE/EN paragraphs",
         ["python3", "scripts/normalize_typography.py"],                 False),
+    ("scrub-es-ocr",       "Strip ES OCR residue (mojibake, soft hyphens, ,,) + de-space",
+        ["python3", "scripts/scrub_es_ocr.py"],                         False),
     ("align-fr",          "LaBSE-DP align FR paragraphs to DE",
         ["python3", "scripts/align_fr_via_embeddings.py", "fr"],        False),
     ("align-en",          "LaBSE-DP align EN paragraphs to DE",
