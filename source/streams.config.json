@@ -18,7 +18,7 @@
     "crossref": {
       "side": "inner",
       "color": "#3b7a5a",
-      "label": {"en":"Cross-refs","fr":"Renvois","es":"Referencias"},
+      "label": {"en":"Cross-references","fr":"Renvois","es":"Referencias cruzadas"},
       "_origin": null,
       "bibliographic": "Cross-references to other works in the Nietzsche corpus."
     },
@@ -95,9 +95,9 @@
     "loeb": {
       "side": "bottom",
       "color": "#5a7a3b",
-      "label": {"en":"Loeb","fr":"Loeb","es":"Loeb"},
+      "label": {"en":"Loeb (P. S. Loeb)","fr":"Loeb (P. S. Loeb)","es":"Loeb (P. S. Loeb)"},
       "_origin": null,
-      "bibliographic": "Loeb-style citations of the classical sources Nietzsche invokes."
+      "bibliographic": "Paul S. Loeb, *The Death of Nietzsche's Zarathustra* (Cambridge UP, 2010). Not the Loeb Classical Library."
     }
   }
 }

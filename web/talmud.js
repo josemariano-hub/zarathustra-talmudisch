@@ -48,6 +48,13 @@ function shortVerseLabel(target) {
   if (!m) return target;
   return "v." + parseInt(m[1], 10);
 }
+// Pretty verse-mark for the centre column: "v01" → "v.1",
+// "v.7 · In die Tiefe steigen" left untouched (Vorrede titles).
+function prettyVerseTitle(title) {
+  if (!title) return "";
+  const m = title.match(/^v0*(\d+)$/);
+  return m ? "v." + m[1] : title;
+}
 
 // Strict text-only HTML emitter: keep <em>, escape everything else.
 // Prevents stored-XSS from any commentary text that ever embeds markup.
@@ -71,7 +78,21 @@ function enrichNote(html, lang) {
   // 1. drop page refs (Spanish "p.", English "p.", French "p.")
   html = html.replace(/,?\s*\bpp?\.?\s*\d{1,4}(?:[\-–—]\d{1,4})?(\s*y\s*ss?\.?)?/gi, "");
   html = html.replace(/\s+([\.,;])/g, "$1");           // collapse spaces before punctuation
-  // 2. link chapter title references (longest-first, case-insensitive,
+  // 2. Roman-numeral chapter references: I.22, III.12, IV.15, II.6 etc.
+  //    Only link if the target chapter exists in the nav.
+  const romanMap = { I: 1, II: 2, III: 3, IV: 4 };
+  html = html.replace(/\b(I{1,3}|IV)\.(\d{1,2})\b(?![<>])/g, (m, R, N) => {
+    const part = romanMap[R];
+    const nn   = String(parseInt(N, 10)).padStart(2, "0");
+    const target = `ch-p${part}-${nn}`;
+    const exists = state.nav?.some(e => e.xml_id === target);
+    if (!exists) return m;
+    return `<a class="xref" href="?lang=${lang}&ch=${target}">${m}</a>`;
+  });
+  // 2b. "Vorrede §N" → vorrede deep link (anchor only — single Vorrede file)
+  html = html.replace(/\bVorrede\s*§\s*\d+\b/g,
+    m => `<a class="xref" href="?lang=${lang}&ch=vorrede">${m}</a>`);
+  // 3. link chapter title references (longest-first, case-insensitive,
   //    word-boundary anchored). state.titleIndex is built once in main().
   const idx = state.titleIndex?.[lang];
   if (idx) {
@@ -109,6 +130,32 @@ function buildTitleIndex(nav) {
 
 const FLAGS = { fr: "🇫🇷", es: "🇪🇸", en: "🇬🇧", de: "🇩🇪" };
 
+// Render a small bibliographic line (visible) + a translation-provenance
+// line when the stream's origin language differs from the reading lang.
+// Returns an array of DOM nodes the caller appends to the stream label.
+function streamMetaLines(stream) {
+  const out = [];
+  if (stream.bibliographic) {
+    // Basic safety: bibliographic may contain *italic* markers from
+    // streams.config.json; convert *…* to <em>…</em>.
+    const html = String(stream.bibliographic)
+      .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+      .replace(/\*([^*]+)\*/g, "<em>$1</em>");
+    const line = document.createElement("div");
+    line.className = "stream-biblio";
+    line.innerHTML = html;
+    out.push(line);
+  }
+  if (stream._origin && stream._origin !== state.lang) {
+    const tr = document.createElement("div");
+    tr.className = "stream-provenance";
+    tr.textContent = "Auto-translated from " +
+      stream._origin.toUpperCase() + " via Gemini 2.5 Flash.";
+    out.push(tr);
+  }
+  return out;
+}
+
 // ---------- bootstrap ---------------------------------------------------
 fetch(NAV_URL).then(r => r.json()).then(nav => {
   state.nav = nav;
@@ -143,6 +190,7 @@ fetch(NAV_URL).then(r => r.json()).then(nav => {
   ["scroll","keydown","click"].forEach(ev =>
     window.addEventListener(ev, () => $("#zoom-hint")?.remove(), { once:true }));
   installChapterNav();
+  setupModals();
 }).catch(err => {
   document.body.innerHTML = `<pre style="padding:2rem;color:#a00">${err}\n${err.stack}</pre>`;
 });
@@ -331,7 +379,7 @@ function renderCenter() {
   const { verses } = state.chapter;
   for (const v of verses) {
     const node = el("article", { id: v.id, className: "verse", tabIndex: 0 },
-      el("span", { className: "verse-mark", textContent: v.title })
+      el("span", { className: "verse-mark", textContent: prettyVerseTitle(v.title) })
     );
     const de = v.byLang.de ?? "";
     const tr = v.byLang[state.lang] ?? v.byLang.en ?? "";
@@ -430,6 +478,7 @@ function renderStrata() {
       stratumLabel.append(badge);
     }
     div.append(stratumLabel);
+    streamMetaLines(stream).forEach(node => div.append(node));
     for (const n of stream.notes) {
       const bodyText = n[state.lang];
       if (!bodyText) continue;
@@ -471,6 +520,7 @@ function renderStream(key, stream) {
     label.append(badge);
   }
   wrap.append(label);
+  streamMetaLines(stream).forEach(node => wrap.append(node));
   for (const n of stream.notes) {
     const note = el("div", { className: "note" });
     note.dataset.target = n.target;
@@ -706,5 +756,157 @@ function drawThreads() {
     odot.setAttribute("fill", color);
     odot.setAttribute("class", "is-active");
     svg.appendChild(odot);
+  });
+}
+
+// ---------- modals (search, keyboard help) -----------------------------
+function setupModals() {
+  const sm = $("#search-modal"), hm = $("#help-modal");
+  const openModal  = (m) => { m.hidden = false; };
+  const closeModal = (m) => { m.hidden = true; };
+  const closeAll   = () => { sm && (sm.hidden = true); hm && (hm.hidden = true); };
+
+  $("#search-toggle")?.addEventListener("click", e => {
+    e.preventDefault(); openModal(sm); $("#search-input").focus();
+  });
+  $("#help-toggle")?.addEventListener("click", e => {
+    e.preventDefault(); openModal(hm);
+  });
+  $("#search-close")?.addEventListener("click", () => closeModal(sm));
+  $("#help-close")?.addEventListener("click",   () => closeModal(hm));
+  [sm, hm].forEach(m => m?.addEventListener("click", e => {
+    if (e.target === m) closeModal(m);
+  }));
+
+  window.addEventListener("keydown", e => {
+    const inField = /^(input|textarea)$/i.test(e.target.tagName);
+    if (e.key === "Escape") { closeAll(); return; }
+    if (inField) return;
+    if (e.key === "?")  { e.preventDefault(); openModal(hm); }
+    if (e.key === "/")  { e.preventDefault(); openModal(sm); $("#search-input").focus(); }
+    if (e.key === "t")  { e.preventDefault(); $("#toc-toggle")?.click(); }
+  });
+
+  // Search behaviour — index built lazily on first focus
+  let index = null;
+  let focusedIdx = -1;
+  const input = $("#search-input");
+  const out   = $("#search-results");
+
+  const buildIndex = async () => {
+    // Cheap: include current chapter verses + all note bodies. For full
+    // corpus, fetch alignment.json if present.
+    const items = [];
+    // Active chapter verses
+    state.chapter?.verses?.forEach(v => {
+      items.push({
+        kind: "verse",
+        ch:   state.chapterId,
+        chLabel: state.navEntry ? (state.navEntry[state.lang] || state.navEntry.de) : "",
+        id:   v.id,
+        title: v.title,
+        text: (v.byLang?.de || "") + " " + (v.byLang?.[state.lang] || ""),
+      });
+    });
+    // All notes
+    for (const [key, stream] of Object.entries(state.commentary?.streams || {})) {
+      if (key.startsWith("_")) continue;
+      for (const n of stream.notes || []) {
+        items.push({
+          kind: "note",
+          ch:   n.target,
+          chLabel: stream.label?.[state.lang] || key,
+          id:   n.target,
+          title: shortVerseLabel(n.target),
+          text: n[state.lang] || n.en || "",
+        });
+      }
+    }
+    // Best-effort: load full alignment from /source/alignment.json
+    try {
+      const r = await fetch(SRC_BASE + "alignment.json", { cache: "force-cache" });
+      if (r.ok) {
+        const all = await r.json();
+        for (const row of all) {
+          // skip current chapter's verses (already indexed above)
+          if (state.chapter?.verses?.some(v => v.id === row.id)) continue;
+          const ch = row.id.startsWith("v") ? "vorrede"
+                   : row.id.split("-").slice(0,3).join("-");
+          items.push({
+            kind: "verse",
+            ch,
+            chLabel: (state.nav?.find(e => (e.xml_id === ch) || (ch === "vorrede" && e.xml_id === "ch-p0-00"))
+                      ?.[state.lang]) || "",
+            id: row.id,
+            title: row.title || row.id,
+            text: (row.de || "") + " " + (row[state.lang] || row.en || ""),
+          });
+        }
+      }
+    } catch {}
+    return items;
+  };
+
+  const render = (results) => {
+    out.innerHTML = "";
+    if (!results.length) {
+      out.innerHTML = `<p class="search-hint" style="padding:.5rem;">No matches.</p>`;
+      return;
+    }
+    results.forEach((r, i) => {
+      const a = el("a", { className: "search-result" + (i === focusedIdx ? " is-focused" : ""),
+        href: `?lang=${state.lang}&ch=${r.ch === "vorrede" ? "vorrede" : r.ch}#${r.id}` });
+      a.append(
+        el("span", { className: "res-loc",
+          textContent: `${r.chLabel || r.ch} · ${r.title}` }),
+        el("span", { className: "res-snip" })
+      );
+      a.querySelector(".res-snip").innerHTML = r.snippet;
+      out.append(a);
+    });
+  };
+
+  const escape = s => s.replace(/[<>&]/g, c => ({"<":"&lt;",">":"&gt;","&":"&amp;"}[c]));
+  const highlight = (text, q) => {
+    const lo = text.toLowerCase();
+    const i = lo.indexOf(q.toLowerCase());
+    if (i < 0) return escape(text.slice(0, 180)) + "…";
+    const start = Math.max(0, i - 60);
+    const end   = Math.min(text.length, i + q.length + 100);
+    const pre = (start > 0 ? "…" : "") + escape(text.slice(start, i));
+    const hit = "<mark>" + escape(text.slice(i, i + q.length)) + "</mark>";
+    const post = escape(text.slice(i + q.length, end)) + (end < text.length ? "…" : "");
+    return pre + hit + post;
+  };
+
+  const search = async (q) => {
+    if (!index) index = await buildIndex();
+    q = q.trim();
+    if (q.length < 2) { out.innerHTML = ""; return []; }
+    const lo = q.toLowerCase();
+    const hits = [];
+    for (const it of index) {
+      const text = (it.text || "");
+      if (text.toLowerCase().includes(lo)) {
+        hits.push({ ...it, snippet: highlight(text, q) });
+        if (hits.length >= 80) break;
+      }
+    }
+    focusedIdx = -1;
+    render(hits);
+    return hits;
+  };
+
+  let lastHits = [];
+  input?.addEventListener("input", async () => {
+    lastHits = await search(input.value);
+  });
+  input?.addEventListener("keydown", e => {
+    if (e.key === "ArrowDown") { e.preventDefault(); focusedIdx = Math.min(lastHits.length - 1, focusedIdx + 1); render(lastHits); }
+    if (e.key === "ArrowUp")   { e.preventDefault(); focusedIdx = Math.max(0, focusedIdx - 1); render(lastHits); }
+    if (e.key === "Enter" && focusedIdx >= 0) {
+      const r = lastHits[focusedIdx];
+      if (r) location.href = `?lang=${state.lang}&ch=${r.ch === "vorrede" ? "vorrede" : r.ch}#${r.id}`;
+    }
   });
 }

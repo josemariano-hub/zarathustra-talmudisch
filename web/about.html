@@ -39,8 +39,12 @@
         translation is identified by <strong>LaBSE sentence embeddings + a
         dynamic-programming alignment</strong> that allows many-to-one
         (a translator merging two German paragraphs into one) and
-        one-to-two transitions. Post-audited similarity (DE↔target): EN 99.9%,
-        FR 97.9%, ES 94.5%.</p>
+        one-to-two transitions. Alignment quality is high in EN (Common, 1909,
+        is itself a paragraph-by-paragraph translation), good in FR
+        (Henri Albert kept the paragraphing close to Nietzsche's), and
+        moderate in ES (Sánchez Pascual reorganized paragraphs more freely;
+        semantic alignment is verified per verse by LaBSE cross-language
+        embeddings rather than by surface position).</p>
     </section>
 
     <section class="about-block">
@@ -81,6 +85,26 @@
           <code>?</code> mark and reduced opacity.</li>
         <li><strong>2–3</strong> — reasonable to strong. Rendered normally.</li>
       </ul>
+      <p><strong>Audit transparency.</strong> The prompt given to Gemini 2.5
+        Flash, verbatim:</p>
+      <blockquote class="audit-prompt">
+        “You are an editor checking the alignment of scholarly commentary to
+        verses of Nietzsche's <em>Also sprach Zarathustra</em>. For each pair
+        you decide: does the commentary plausibly illuminate <em>this</em>
+        verse (not just the chapter or general theme)? Be conservative — a
+        note that talks about the chapter's broader theme but does not engage
+        what this specific verse says is at best a 1. Reserve 3 for notes
+        that name a word/image/idea unique to this verse.”
+      </blockquote>
+      <p>Aggregate distribution across the 672 (verse, note) pairs initially
+        retrieved (before culling):</p>
+      <table class="audit-hist">
+        <tr><th>Score</th><th>Meaning</th><th>Count</th><th>Action</th></tr>
+        <tr><td>0</td><td>no plausible connection</td><td>124</td><td>dropped</td></tr>
+        <tr><td>1</td><td>weak / generic</td><td>167</td><td>kept with <code>?</code></td></tr>
+        <tr><td>2</td><td>reasonable</td><td>121</td><td>kept</td></tr>
+        <tr><td>3</td><td>strong, verse-specific</td><td>260</td><td>kept</td></tr>
+      </table>
       <p>A multi-language consensus pass then revisits each note's verse
         target by scoring the note against the verse in all four languages
         (DE / EN / FR / ES) and reassigning when the diagonal-weighted
@@ -133,6 +157,16 @@
           is the footnote number in Alianza 1972, not a verse index of
           this edition; the surrounding chapter is the actual verse target.</li>
       </ul>
+    </section>
+
+    <section class="about-block">
+      <h2>Data export</h2>
+      <p>The per-verse alignment table (3 520 rows, four languages) is
+        available as a single JSON file:
+        <a href="source/alignment.json"><code>/source/alignment.json</code></a>.
+        Use it to build derivative tools, concordances, or your own
+        reading interface. Released as-is, under the same fair-quotation
+        terms as the rest of the site.</p>
     </section>
 
     <section class="about-block">

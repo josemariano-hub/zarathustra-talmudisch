@@ -16,10 +16,46 @@
     <span class="spacer"></span>
     <a class="toc-toggle" id="toc-toggle" title="Inhalt · Contents · Table"
        role="button" tabindex="0" aria-label="Open table of contents">☰</a>
+    <a class="search-toggle" id="search-toggle" title="Search (/)" role="button"
+       tabindex="0" aria-label="Open search">🔍</a>
+    <a class="help-toggle" id="help-toggle" title="Keyboard shortcuts (?)"
+       role="button" tabindex="0" aria-label="Keyboard shortcuts">?</a>
     <span class="lang-toggle" id="lang-toggle" role="group" aria-label="Reading language"></span>
     <a class="about-link" href="about.html" title="About this edition" aria-label="About this edition">ⓘ</a>
     <a class="back" href="index.html" title="Back to language selection" aria-label="Back to language selection">↩</a>
   </header>
+
+  <!-- Search overlay -->
+  <div class="modal" id="search-modal" hidden role="dialog" aria-modal="true" aria-label="Search">
+    <div class="modal-card">
+      <header class="modal-head">
+        <h3>Search</h3>
+        <button class="modal-close" id="search-close" aria-label="Close">×</button>
+      </header>
+      <input class="search-input" id="search-input" type="search" autocomplete="off"
+             placeholder="Untergang, Adler, Tugend, eternal recurrence…" />
+      <div class="search-results" id="search-results"></div>
+      <p class="search-hint">Press <kbd>Esc</kbd> to close • <kbd>↑</kbd>/<kbd>↓</kbd> navigate • <kbd>Enter</kbd> open</p>
+    </div>
+  </div>
+
+  <!-- Keyboard help overlay -->
+  <div class="modal" id="help-modal" hidden role="dialog" aria-modal="true" aria-label="Keyboard shortcuts">
+    <div class="modal-card">
+      <header class="modal-head">
+        <h3>Keyboard shortcuts</h3>
+        <button class="modal-close" id="help-close" aria-label="Close">×</button>
+      </header>
+      <dl class="help-keys">
+        <dt><kbd>←</kbd> / <kbd>→</kbd></dt><dd>previous / next chapter</dd>
+        <dt><kbd>↑</kbd> / <kbd>↓</kbd> · <kbd>j</kbd> / <kbd>k</kbd></dt><dd>previous / next verse</dd>
+        <dt><kbd>t</kbd></dt><dd>open / close the chapter index</dd>
+        <dt><kbd>/</kbd></dt><dd>open the search overlay</dd>
+        <dt><kbd>?</kbd></dt><dd>show this shortcut list</dd>
+        <dt><kbd>Esc</kbd></dt><dd>close any overlay</dd>
+      </dl>
+    </div>
+  </div>
 
   <!-- Slide-in chapter index -->
   <nav class="toc" id="toc" hidden>

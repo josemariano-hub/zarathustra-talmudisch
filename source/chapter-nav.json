@@ -663,11 +663,11 @@
     "part": 4,
     "idx": 6,
     "de": "Ausser Dienst",
-    "en": "OUT OF SERVICE",
-    "fr": "Hors de service.",
+    "en": "OUT OF SERVICE (RETIRED)",
+    "fr": "Hors de service (Le retraité).",
     "xml_id": "ch-p4-06",
     "file": "chapters/ch_p4_06_ausser-dienst.ptx",
-    "es": "Jubilado"
+    "es": "Jubilado (Fuera de servicio)"
   },
   {
     "part": 4,

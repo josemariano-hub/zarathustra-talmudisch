@@ -20,6 +20,7 @@ cp -p source/commentary.json     deploy/source/
 cp -p source/chapter-nav.json    deploy/source/
 cp -p source/ch_vorrede.ptx      deploy/source/
 cp -p source/streams.config.json deploy/source/ 2>/dev/null || true
+cp -p source/alignment.json      deploy/source/ 2>/dev/null || true
 rsync -a --delete source/chapters/ deploy/source/chapters/
 
 # 3. push if netlify-cli is available and we have a site
