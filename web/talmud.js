@@ -374,17 +374,53 @@ function renderLangToggle() {
   }
 }
 
+// Compute, per language, a "span source" map: for each verse whose
+// translation paragraph is missing, point to the most recent preceding
+// verse that DOES have a translation in that language. This represents
+// translator merges — Sánchez Pascual / Henri Albert wrote one paragraph
+// where Nietzsche wrote several short ones — and lets us show that real
+// paragraph as a continuation on every verse it covers.
+function computeSpans(verses) {
+  const map = { en: {}, fr: {}, es: {} };
+  for (const lang of ["en", "fr", "es"]) {
+    let lastWithText = null;       // verse object
+    for (const v of verses) {
+      if (v.byLang[lang]) {
+        lastWithText = v;
+      } else if (lastWithText) {
+        map[lang][v.id] = lastWithText.id;
+      }
+    }
+  }
+  return map;
+}
+
 function renderCenter() {
   const center = $("#center");
   const { verses } = state.chapter;
+  const spans = computeSpans(verses);
+  state.spans = spans;
   for (const v of verses) {
     const node = el("article", { id: v.id, className: "verse", tabIndex: 0 },
       el("span", { className: "verse-mark", textContent: prettyVerseTitle(v.title) })
     );
     const de = v.byLang.de ?? "";
-    const tr = v.byLang[state.lang] ?? v.byLang.en ?? "";
+    const ownTr = v.byLang[state.lang];
+    const spanFrom = !ownTr ? spans[state.lang]?.[v.id] : null;
+    const trText = ownTr
+      ?? (spanFrom && verses.find(x => x.id === spanFrom)?.byLang[state.lang])
+      ?? v.byLang.en ?? "";
     const pDe = el("p", { className: "de" }); pDe.innerHTML = safeHTML(de);
-    const pTr = el("p", { className: "tr" }); pTr.innerHTML = safeHTML(tr);
+    const pTr = el("p", { className: "tr" }); pTr.innerHTML = safeHTML(trText);
+    if (spanFrom) {
+      pTr.classList.add("span-continuation");
+      const mark = el("span", { className: "span-mark",
+        textContent: `↑ continues from ${prettyVerseTitle(verses.find(x => x.id === spanFrom)?.title || spanFrom)}` });
+      mark.title = "This translator paragraph spans multiple verses of the German source. " +
+                   "Sánchez Pascual / Henri Albert / Common (1909) wrote one paragraph " +
+                   "where Nietzsche set several short verses.";
+      pTr.prepend(mark);
+    }
     node.append(pDe, pTr);
     // Mobile-only inline commentary: shown when viewport is too narrow
     // for the radial Talmudic margins. Hidden by CSS on desktop.

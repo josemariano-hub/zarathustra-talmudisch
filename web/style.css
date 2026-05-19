@@ -311,6 +311,19 @@ body.reader { background: var(--paper); overflow: hidden; height: 100vh; }
   border-left: 2px solid color-mix(in srgb, var(--accent) 35%, transparent);
 }
 .verse .tr em { font-style: normal; color: inherit; font-weight: 500; }
+.verse .tr.span-continuation {
+  color: color-mix(in srgb, var(--ink-soft) 70%, var(--paper) 30%);
+  border-left-color: color-mix(in srgb, var(--accent) 18%, transparent);
+}
+.span-mark {
+  display: block;
+  font-size: .65rem;
+  font-variant: small-caps;
+  letter-spacing: .12em;
+  color: var(--ink-faint);
+  margin-bottom: .3rem;
+  cursor: help;
+}
 
 /* ----- margins (commentary columns) ----- */
 .margin {
