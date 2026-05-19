@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>About — Also sprach Zarathustra · Talmudische Ausgabe</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="landing">
+  <main class="landing-card about">
+    <p class="kicker">About</p>
+    <h1>Editorial policy &amp; methodology</h1>
+
+    <section class="about-block">
+      <h2>Sources</h2>
+      <ul>
+        <li><strong>German (Urtext)</strong> — Leipzig 1883/1891 first edition,
+          retrieved from <em>Project Gutenberg</em> EBook #7205.</li>
+        <li><strong>English</strong> — Thomas Common (1909), Public Domain,
+          PG #1998. Other widely-cited translations (Kaufmann, Hollingdale,
+          Parkes, Del&nbsp;Caro) are referenced in the inner-margin
+          “Philology” gloss when they materially diverge on a key term,
+          but only Common is reproduced verbatim in the centre column.</li>
+        <li><strong>French</strong> — Henri Albert (1903), Public Domain,
+          PG #5258. The first full French translation; revised editions exist
+          (Goldschmidt, Reverdin) but are not in Public Domain.</li>
+        <li><strong>Spanish</strong> — Andrés Sánchez Pascual,
+          <em>Así habló Zaratustra</em> (Alianza Editorial, 1972), with
+          editorial adaptation for re-typesetting; the translator's footnotes
+          (numbered 1–579 in the source) are reproduced and re-targeted to
+          verses by semantic match.</li>
+      </ul>
+    </section>
+
+    <section class="about-block">
+      <h2>Paragraph alignment</h2>
+      <p>Each chapter is split into verses (numbered paragraphs) using the
+        German Urtext as the anchor. The corresponding paragraph in each
+        translation is identified by <strong>LaBSE sentence embeddings + a
+        dynamic-programming alignment</strong> that allows many-to-one
+        (a translator merging two German paragraphs into one) and
+        one-to-two transitions. Post-audited similarity (DE↔target): EN 99.9%,
+        FR 97.9%, ES 94.5%.</p>
+    </section>
+
+    <section class="about-block">
+      <h2>Commentary stack</h2>
+      <p>Three regions following Talmudic typography:</p>
+      <p><strong>Inner margin</strong> — close, word-level glosses:
+        a hand-curated philology stream (Untergang, Übermensch, Adler &amp;
+        Schlange…); Sánchez Pascual's footnotes (the translator's own
+        philological + biblical apparatus); short cross-references; and
+        Diego Sánchez Meca's Spanish-language scholarly commentary.</p>
+      <p><strong>Outer margin</strong> — chapter-level scholarly readings:
+        Pierre Klossowski (<em>Nietzsche et le cercle vicieux</em>),
+        Gilles Deleuze (<em>Nietzsche et la philosophie</em>),
+        Laurence Lampert (<em>Nietzsche's Teaching</em>),
+        Kathleen Higgins, Stanley Rosen, Robert Gooding-Williams,
+        retrieved by semantic similarity to the verse.</p>
+      <p><strong>Bottom band</strong> — context and background, the
+        <em>mesoreh</em> of the Talmud page: the <em>New Cambridge Companion
+        to Nietzsche's Zarathustra</em>; Sánchez Pascual's introductory essay;
+        Loeb-style citations of the classical sources Nietzsche invokes.</p>
+    </section>
+
+    <section class="about-block">
+      <h2>Retrieval &amp; quality control</h2>
+      <p>For each commentary corpus we embed every paragraph with LaBSE and
+        attach it to the verse whose German text best matches it (top-K=2 per
+        chapter, threshold cosine similarity ≥ 0.50). A diversity cap prevents
+        the same paragraph from being attached to more than three chapters.
+        Then a per-side guaranteed-coverage pass attempts to keep every
+        chapter equipped with at least one note inside, outside, and on the
+        bottom band.</p>
+      <p>Every (verse, note) pair is then run through an
+        <strong>editorial audit</strong> by Gemini 2.5 Flash, which scores
+        the connection 0–3:</p>
+      <ul>
+        <li><strong>0</strong> — no plausible connection. <em>Dropped.</em></li>
+        <li><strong>1</strong> — weak or generic. Kept but rendered with a
+          <code>?</code> mark and reduced opacity.</li>
+        <li><strong>2–3</strong> — reasonable to strong. Rendered normally.</li>
+      </ul>
+      <p>A multi-language consensus pass then revisits each note's verse
+        target by scoring the note against the verse in all four languages
+        (DE / EN / FR / ES) and reassigning when the diagonal-weighted
+        cross-lingual signal disagrees with the original DE-only retrieval.</p>
+    </section>
+
+    <section class="about-block">
+      <h2>Translation policy</h2>
+      <p>Each commentary excerpt is written in one language only (Klossowski
+        in French, Cambridge Companion in English, Sánchez Pascual in
+        Spanish, etc.). For readers whose mother tongue differs from the
+        excerpt's source language, the text is rendered in their mother
+        tongue via <strong>machine translation</strong> (Gemini 2.5 Flash),
+        with the excerpt's source language announced as a small flag badge
+        next to the stream label (e.g. <span class="flag-mini">🇫🇷 FR</span>).
+        The hand-curated philology stream is human-edited in all three
+        languages. Streams shown <em>without</em> a flag badge
+        (Lampert, Higgins, Rosen, Gooding-Williams, the New Cambridge
+        Companion, Loeb) are source-English: no machine translation
+        intervenes when reading <code>?lang=en</code>.</p>
+      <p>This is a scholarly compromise: machine translation is fast and
+        consistent but is not authoritative. When a wording is contested,
+        check the original via the badge.</p>
+    </section>
+
+    <section class="about-block">
+      <h2>Caveats</h2>
+      <ul>
+        <li>Coverage is uneven. Of the 81 chapters, 13 currently lack an
+          inner-margin (philology / cross-reference) entry, 6 lack an
+          outer-margin (scholarly-commentary) entry, and 22 lack a
+          bottom-band entry. These are gaps where no paragraph in the
+          available corpora scored above the audit threshold. We expect
+          coverage to grow as the corpora are expanded.</li>
+        <li>Public-Domain English (Common, 1909) is archaic and at times
+          stilted; the inner-margin philology stream flags places where
+          Kaufmann or Del&nbsp;Caro give a materially different reading.</li>
+        <li>The Spanish edition has been re-typeset from a PDF and retains
+          some OCR-era residues. The editorial pass strips footnote markers,
+          page references, bullet characters, and notes containing clear
+          scanner artefacts (spaced single letters, mangled apostrophes,
+          mid-sentence fragments). A small number of <code>?</code>-flagged
+          notes may still read awkwardly.</li>
+        <li>Notes flagged with <code>?</code> are kept because their corpus
+          is otherwise relevant to the chapter, but the LLM audit was unsure
+          they engage <em>this specific verse</em>. Treat them as starting
+          points, not authorities.</li>
+        <li>The Sánchez Pascual stream re-uses the translator's original
+          footnote numbers (1–579). When you see <em>note №206</em>, that
+          is the footnote number in Alianza 1972, not a verse index of
+          this edition; the surrounding chapter is the actual verse target.</li>
+      </ul>
+    </section>
+
+    <section class="about-block">
+      <h2>Acknowledgements</h2>
+      <p>Public Domain texts come from <a href="https://www.gutenberg.org/" rel="noopener">Project Gutenberg</a>.
+        Sánchez Pascual's translation is quoted in brief under the
+        academic-quotation exception (LPI art. 32 / Berne Convention
+        art. 10); the translator's full edition (Alianza, 1972) remains
+        in print and is the recommended source for sustained reading. The site itself is open source.</p>
+    </section>
+
+    <p style="text-align:center; margin-top: 2rem;">
+      <a class="back-home" href="index.html">← Back to language selection</a>
+    </p>
+  </main>
+</body>
+</html>

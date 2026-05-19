@@ -1,0 +1,303 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<!--
+  Zarathustras Vorrede §1 — talmudic edition.
+
+  Authoring conventions:
+   • Each verse of the original is wrapped in a <p> with a stable xml:id.
+   • Parallel translations live in sibling <p> elements with matching @xml:id
+     suffixes (e.g. v01-de, v01-en, v01-fr). The custom skin re-arranges them
+     into the central column at render time.
+   • Commentary lives in <commentary> elements (PreTeXt has <commentary> as
+     a first-class element). Each commentary has @component attribute
+     (custom) carrying the author key, used by the skin to colour the column.
+   • Philological notes use <fn> (footnote) so they validate as PreTeXt.
+-->
+
+<chapter xml:id="ch-vorrede" xml:lang="de">
+  <title>Zarathustras Vorrede</title>
+
+  <section xml:id="sec-vorrede-1">
+    <title>§ 1 — Der Untergang</title>
+
+    <introduction>
+      <p>The first section of the Vorrede establishes the dramatic frame:
+      Zarathustra, after ten years on the mountain, resolves to return to
+      humanity.  The passage is structured as a hymn to the sun ("Du
+      grosses Gestirn!") and closes with the announcement of his
+      <em>Untergang</em>—at once a sunset, a descent, and a willed
+      self-destruction.  Every translator must decide what to do with the
+      word.</p>
+    </introduction>
+
+    <!-- ============================================================== -->
+    <!-- VERSE 1 — opening narrative frame                              -->
+    <!-- ============================================================== -->
+    <paragraphs xml:id="v01">
+      <title>v.1 · Der Aufstieg</title>
+
+      <p xml:id="v01-de" xml:lang="de">Als Zarathustra dreissig Jahr alt war,
+      verliess er seine Heimat und den See seiner Heimat und ging in das
+      Gebirge.  Hier genoss er seines Geistes und seiner Einsamkeit und
+      wurde dessen zehn Jahr nicht müde.  Endlich aber verwandelte sich
+      sein Herz,—und eines Morgens stand er mit der Morgenröthe auf, trat
+      vor die Sonne hin und sprach zu ihr also:</p>
+
+      <p xml:id="v01-en" xml:lang="en">When Zarathustra was thirty years old,
+      he left his home and the lake of his home, and went into the
+      mountains.  There he enjoyed his spirit and solitude, and for ten
+      years did not weary of it.  But at last his heart changed,—and
+      rising one morning with the rosy dawn, he went before the sun, and
+      spake thus unto it:</p>
+
+      <p xml:id="v01-fr" xml:lang="fr">Lorsque Zarathoustra eut atteint sa
+      trentième année, il quitta sa patrie et le lac de sa patrie et
+      s'en alla dans la montagne.  Là il jouit de son esprit et de sa
+      solitude et ne s'en lassa point durant dix années.  Mais enfin son
+      cœur se transforma, — et un matin, se levant avec l'aurore, il
+      s'avança devant le soleil et lui parla ainsi:</p>
+
+      <p xml:id="v01-es" xml:lang="es">Cuando Zaratustra cumplió treinta años,
+      abandonó su patria y el lago de su patria y se fue a las montañas.
+      Allí gozó de su espíritu y de su soledad y durante diez años no
+      se cansó de ello.  Pero al fin su corazón se transformó, — y una
+      mañana, levantándose con la aurora, se adelantó ante el sol y le
+      habló así:</p>
+    </paragraphs>
+
+    <!-- ============================================================== -->
+    <!-- VERSE 2 — Address to the sun                                   -->
+    <!-- ============================================================== -->
+    <paragraphs xml:id="v02">
+      <title>v.2 · Du grosses Gestirn!</title>
+
+      <p xml:id="v02-de" xml:lang="de">„Du grosses Gestirn!  Was wäre dein
+      Glück, wenn du nicht Die hättest, welchen du leuchtest!"</p>
+
+      <p xml:id="v02-en" xml:lang="en">"Thou great star!  What would be thy
+      happiness if thou hadst not those for whom thou shinest!"</p>
+
+      <p xml:id="v02-fr" xml:lang="fr">«Ô grand astre!  Quel serait ton
+      bonheur, si tu n'avais pas ceux que tu éclaires?»</p>
+
+      <p xml:id="v02-es" xml:lang="es">«¡Tú gran astro!  ¿Qué sería de tu
+      felicidad si no tuvieras a aquellos a quienes iluminas?»</p>
+    </paragraphs>
+
+    <!-- ============================================================== -->
+    <!-- VERSE 3 — Ten years, eagle and serpent                         -->
+    <!-- ============================================================== -->
+    <paragraphs xml:id="v03">
+      <title>v.3 · Adler und Schlange</title>
+
+      <p xml:id="v03-de" xml:lang="de">Zehn Jahre kamst du hier herauf zu
+      meiner Höhle: du würdest deines Lichtes und dieses Weges satt
+      geworden sein, ohne mich, meinen Adler und meine Schlange.</p>
+
+      <p xml:id="v03-en" xml:lang="en">For ten years hast thou climbed hither
+      unto my cave: thou wouldst have wearied of thy light and of the
+      journey, had it not been for me, mine eagle, and my serpent.</p>
+
+      <p xml:id="v03-fr" xml:lang="fr">Depuis dix ans que tu viens vers ma
+      caverne: tu te serais lassé de ta lumière et de ce chemin, sans moi,
+      mon aigle et mon serpent.</p>
+
+      <p xml:id="v03-es" xml:lang="es">Diez años llevas subiendo aquí, hasta
+      mi caverna: te habrías cansado de tu luz y de este camino sin mí,
+      sin mi águila y sin mi serpiente.</p>
+    </paragraphs>
+
+    <!-- ============================================================== -->
+    <!-- VERSE 4 — Receiving the overflow                               -->
+    <!-- ============================================================== -->
+    <paragraphs xml:id="v04">
+      <title>v.4 · Überfluss</title>
+
+      <p xml:id="v04-de" xml:lang="de">Aber wir warteten deiner an jedem
+      Morgen, nahmen dir deinen Überfluss ab und segneten dich dafür.</p>
+
+      <p xml:id="v04-en" xml:lang="en">But we awaited thee every morning, took
+      from thee thine overflow and blessed thee for it.</p>
+
+      <p xml:id="v04-fr" xml:lang="fr">Mais nous t'attendions chaque matin,
+      nous te prenions ton superflu et nous t'en bénissions.</p>
+
+      <p xml:id="v04-es" xml:lang="es">Pero nosotros te esperábamos cada
+      mañana, tomábamos tu sobreabundancia y te bendecíamos por ello.</p>
+    </paragraphs>
+
+    <!-- ============================================================== -->
+    <!-- VERSE 5 — Weary of wisdom                                      -->
+    <!-- ============================================================== -->
+    <paragraphs xml:id="v05">
+      <title>v.5 · Weisheit überdrüssig</title>
+
+      <p xml:id="v05-de" xml:lang="de">Siehe!  Ich bin meiner Weisheit
+      überdrüssig, wie die Biene, die des Honigs zu viel gesammelt hat,
+      ich bedarf der Hände, die sich ausstrecken.</p>
+
+      <p xml:id="v05-en" xml:lang="en">Lo!  I am weary of my wisdom, like the
+      bee that hath gathered too much honey; I need hands outstretched to
+      take it.</p>
+
+      <p xml:id="v05-fr" xml:lang="fr">Voici!  Je suis dégoûté de ma sagesse,
+      comme l'abeille qui a amassé trop de miel.  J'ai besoin de mains qui
+      se tendent.</p>
+
+      <p xml:id="v05-es" xml:lang="es">¡Mira!  Estoy hastiado de mi sabiduría,
+      como la abeja que ha recolectado demasiada miel; necesito manos que
+      se extiendan.</p>
+    </paragraphs>
+
+    <!-- ============================================================== -->
+    <!-- VERSE 6 — Bestow and distribute                                -->
+    <!-- ============================================================== -->
+    <paragraphs xml:id="v06">
+      <title>v.6 · Verschenken</title>
+
+      <p xml:id="v06-de" xml:lang="de">Ich möchte verschenken und austheilen,
+      bis die Weisen unter den Menschen wieder einmal ihrer Thorheit und
+      die Armen einmal ihres Reichthums froh geworden sind.</p>
+
+      <p xml:id="v06-en" xml:lang="en">I would fain bestow and distribute,
+      until the wise have once more become joyous in their folly, and the
+      poor happy in their riches.</p>
+
+      <p xml:id="v06-fr" xml:lang="fr">Je voudrais donner et distribuer,
+      jusqu'à ce que les sages parmi les hommes soient redevenus joyeux de
+      leur folie, et les pauvres, heureux de leur richesse.</p>
+
+      <p xml:id="v06-es" xml:lang="es">Quisiera regalar y repartir, hasta que
+      los sabios entre los hombres vuelvan a alegrarse de su locura y los
+      pobres de su riqueza.</p>
+    </paragraphs>
+
+    <!-- ============================================================== -->
+    <!-- VERSE 7 — Descent into the deep                                -->
+    <!-- ============================================================== -->
+    <paragraphs xml:id="v07">
+      <title>v.7 · In die Tiefe steigen</title>
+
+      <p xml:id="v07-de" xml:lang="de">Dazu muss ich in die Tiefe steigen: wie
+      du des Abends thust, wenn du hinter das Meer gehst und noch der
+      Unterwelt Licht bringst, du überreiches Gestirn!</p>
+
+      <p xml:id="v07-en" xml:lang="en">Therefore must I descend into the
+      deep: as thou doest in the evening, when thou goest behind the sea,
+      and givest light also to the nether-world, thou exuberant star!</p>
+
+      <p xml:id="v07-fr" xml:lang="fr">Voilà pourquoi je dois descendre dans
+      les profondeurs, comme tu fais le soir quand tu vas derrière les
+      mers, apportant ta clarté au-dessous du monde, ô astre débordant de
+      richesse!</p>
+
+      <p xml:id="v07-es" xml:lang="es">Para ello debo descender a la
+      profundidad: como tú haces al atardecer, cuando vas tras el mar y
+      llevas luz aún al inframundo, ¡tú astro desbordante!</p>
+    </paragraphs>
+
+    <!-- ============================================================== -->
+    <!-- VERSE 8 — Untergang                                             -->
+    <!-- ============================================================== -->
+    <paragraphs xml:id="v08">
+      <title>v.8 · Untergang</title>
+
+      <p xml:id="v08-de" xml:lang="de">Ich muss, gleich dir,
+      <em>untergehen</em>, wie die Menschen es nennen, zu denen ich hinab
+      will.</p>
+
+      <p xml:id="v08-en" xml:lang="en">Like thee must I <em>go down</em>, as
+      men say, to whom I shall descend.</p>
+
+      <p xml:id="v08-fr" xml:lang="fr">Je dois disparaître ainsi que toi,
+      <em>me coucher</em>, comme disent les hommes vers qui je veux
+      descendre.</p>
+
+      <p xml:id="v08-es" xml:lang="es">Debo, igual que tú,
+      <em>hundirme</em>, como lo llaman los hombres a los que quiero
+      descender.</p>
+    </paragraphs>
+
+    <!-- ============================================================== -->
+    <!-- VERSE 9 — Bless the tranquil eye                               -->
+    <!-- ============================================================== -->
+    <paragraphs xml:id="v09">
+      <title>v.9 · Ruhiges Auge</title>
+
+      <p xml:id="v09-de" xml:lang="de">So segne mich denn, du ruhiges Auge,
+      das ohne Neid auch ein allzugrosses Glück sehen kann!</p>
+
+      <p xml:id="v09-en" xml:lang="en">Bless me, then, thou tranquil eye, that
+      canst behold even the greatest happiness without envy!</p>
+
+      <p xml:id="v09-fr" xml:lang="fr">Bénis-moi donc, œil tranquille, qui
+      peux voir sans envie un bonheur même sans mesure!</p>
+
+      <p xml:id="v09-es" xml:lang="es">¡Bendíceme, pues, ojo sereno, que
+      puedes contemplar sin envidia incluso una felicidad demasiado
+      grande!</p>
+    </paragraphs>
+
+    <!-- ============================================================== -->
+    <!-- VERSE 10 — Overflowing cup                                     -->
+    <!-- ============================================================== -->
+    <paragraphs xml:id="v10">
+      <title>v.10 · Becher</title>
+
+      <p xml:id="v10-de" xml:lang="de">Segne den Becher, welcher überfliessen
+      will, dass das Wasser golden aus ihm fliesse und überallhin den
+      Abglanz deiner Wonne trage!</p>
+
+      <p xml:id="v10-en" xml:lang="en">Bless the cup that is about to
+      overflow, that the water may flow golden out of it, and carry
+      everywhere the reflection of thy bliss!</p>
+
+      <p xml:id="v10-fr" xml:lang="fr">Bénis la coupe qui veut déborder, que
+      l'eau toute dorée en découle, apportant partout le reflet de ta
+      joie!</p>
+
+      <p xml:id="v10-es" xml:lang="es">¡Bendice la copa que quiere
+      desbordarse, para que el agua fluya de ella dorada y lleve a todas
+      partes el reflejo de tu dicha!</p>
+    </paragraphs>
+
+    <!-- ============================================================== -->
+    <!-- VERSE 11 — Coda                                                -->
+    <!-- ============================================================== -->
+    <paragraphs xml:id="v11">
+      <title>v.11 · Coda</title>
+
+      <p xml:id="v11-de" xml:lang="de">Siehe!  Dieser Becher will wieder leer
+      werden, und Zarathustra will wieder Mensch werden."</p>
+
+      <p xml:id="v11-en" xml:lang="en">Lo!  This cup is again going to empty
+      itself, and Zarathustra is again going to be a man."</p>
+
+      <p xml:id="v11-fr" xml:lang="fr">Vois! cette coupe veut se vider à
+      nouveau et Zarathoustra veut redevenir homme.»</p>
+
+      <p xml:id="v11-es" xml:lang="es">¡Mira!  Esta copa quiere vaciarse de
+      nuevo, y Zaratustra quiere volver a ser hombre."</p>
+    </paragraphs>
+
+    <!-- ============================================================== -->
+    <!-- VERSE 12 — Closing line                                        -->
+    <!-- ============================================================== -->
+    <paragraphs xml:id="v12">
+      <title>v.12 · Also begann…</title>
+
+      <p xml:id="v12-de" xml:lang="de">—Also begann Zarathustra's
+      <em>Untergang</em>.</p>
+
+      <p xml:id="v12-en" xml:lang="en">Thus began Zarathustra's
+      <em>down-going</em>.</p>
+
+      <p xml:id="v12-fr" xml:lang="fr">Ainsi commença le <em>déclin</em> de
+      Zarathoustra.</p>
+
+      <p xml:id="v12-es" xml:lang="es">Así comenzó el <em>ocaso</em> de
+      Zaratustra.</p>
+    </paragraphs>
+
+  </section>
+</chapter>

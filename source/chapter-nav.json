@@ -1,0 +1,812 @@
+[
+  {
+    "part": 0,
+    "idx": 0,
+    "de": "Zarathustra's Vorrede",
+    "en": "ZARATHUSTRA'S PROLOGUE",
+    "fr": "LE PROLOGUE DE ZARATHOUSTRA",
+    "xml_id": "ch-p0-00",
+    "file": "chapters/ch_p0_00_zarathustra-s-vorrede.ptx",
+    "es": "Prólogo de Zaratustra"
+  },
+  {
+    "part": 1,
+    "idx": 1,
+    "de": "Von den drei Verwandlungen",
+    "en": "THE THREE METAMORPHOSES",
+    "fr": "Les trois métamorphoses.",
+    "xml_id": "ch-p1-01",
+    "file": "chapters/ch_p1_01_von-den-drei-verwandlungen.ptx",
+    "es": "De las tres transformaciones"
+  },
+  {
+    "part": 1,
+    "idx": 2,
+    "de": "Von den Lehrstühlen der Tugend",
+    "en": "THE ACADEMIC CHAIRS OF VIRTUE",
+    "fr": "Des chaires de vertu.",
+    "xml_id": "ch-p1-02",
+    "file": "chapters/ch_p1_02_von-den-lehrstuhlen-der-tugend.ptx",
+    "es": "De las cátedras de la virtud"
+  },
+  {
+    "part": 1,
+    "idx": 3,
+    "de": "Von den Hinterweltlern",
+    "en": "BACKWORLDSMEN",
+    "fr": "Les hallucinés de l'arrière-monde.",
+    "xml_id": "ch-p1-03",
+    "file": "chapters/ch_p1_03_von-den-hinterweltlern.ptx",
+    "es": "De los trasmundanos"
+  },
+  {
+    "part": 1,
+    "idx": 4,
+    "de": "Von den Verächtern des Leibes",
+    "en": "THE DESPISERS OF THE BODY",
+    "fr": "Des contempteurs du corps.",
+    "xml_id": "ch-p1-04",
+    "file": "chapters/ch_p1_04_von-den-verachtern-des-leibes.ptx",
+    "es": "De los despreciadores del cuerpo"
+  },
+  {
+    "part": 1,
+    "idx": 5,
+    "de": "Von den Freuden- und Leidenschaften",
+    "en": "JOYS AND PASSIONS",
+    "fr": "Des joies et des passions.",
+    "xml_id": "ch-p1-05",
+    "file": "chapters/ch_p1_05_von-den-freuden-und-leidenschaften.ptx",
+    "es": "De las alegrías y de las pasiones"
+  },
+  {
+    "part": 1,
+    "idx": 6,
+    "de": "Vom bleichen Verbrecher",
+    "en": "THE PALE CRIMINAL",
+    "fr": "Du criminel blême.",
+    "xml_id": "ch-p1-06",
+    "file": "chapters/ch_p1_06_vom-bleichen-verbrecher.ptx",
+    "es": "Del pálido delincuente"
+  },
+  {
+    "part": 1,
+    "idx": 7,
+    "de": "Vom Lesen und Schreiben",
+    "en": "READING AND WRITING",
+    "fr": "Lire et écrire.",
+    "xml_id": "ch-p1-07",
+    "file": "chapters/ch_p1_07_vom-lesen-und-schreiben.ptx",
+    "es": "Del leer y el escribir"
+  },
+  {
+    "part": 1,
+    "idx": 8,
+    "de": "Vom Baum am Berge",
+    "en": "THE TREE ON THE HILL",
+    "fr": "De l'arbre sur la montagne.",
+    "xml_id": "ch-p1-08",
+    "file": "chapters/ch_p1_08_vom-baum-am-berge.ptx",
+    "es": "Del árbol de la montaña"
+  },
+  {
+    "part": 1,
+    "idx": 9,
+    "de": "Von den Predigern des Todes",
+    "en": "THE PREACHERS OF DEATH",
+    "fr": "Des prédicateurs de la mort.",
+    "xml_id": "ch-p1-09",
+    "file": "chapters/ch_p1_09_von-den-predigern-des-todes.ptx",
+    "es": "De los predicadores de la muerte"
+  },
+  {
+    "part": 1,
+    "idx": 10,
+    "de": "Vom Krieg und Kriegsvolke",
+    "en": "WAR AND WARRIORS",
+    "fr": "De la guerre et des guerriers.",
+    "xml_id": "ch-p1-10",
+    "file": "chapters/ch_p1_10_vom-krieg-und-kriegsvolke.ptx",
+    "es": "De la guerra y el pueblo guerrero"
+  },
+  {
+    "part": 1,
+    "idx": 11,
+    "de": "Vom neuen Götzen",
+    "en": "THE NEW IDOL",
+    "fr": "De la nouvelle idole.",
+    "xml_id": "ch-p1-11",
+    "file": "chapters/ch_p1_11_vom-neuen-gotzen.ptx",
+    "es": "Del nuevo ídolo"
+  },
+  {
+    "part": 1,
+    "idx": 12,
+    "de": "Von den Fliegen des Marktes",
+    "en": "THE FLIES IN THE MARKET-PLACE",
+    "fr": "Des mouches de la place publique.",
+    "xml_id": "ch-p1-12",
+    "file": "chapters/ch_p1_12_von-den-fliegen-des-marktes.ptx",
+    "es": "De las moscas del mercado"
+  },
+  {
+    "part": 1,
+    "idx": 13,
+    "de": "Von der Keuschheit",
+    "en": "CHASTITY",
+    "fr": "De la chasteté.",
+    "xml_id": "ch-p1-13",
+    "file": "chapters/ch_p1_13_von-der-keuschheit.ptx",
+    "es": "De la castidad"
+  },
+  {
+    "part": 1,
+    "idx": 14,
+    "de": "Vom Freunde",
+    "en": "THE FRIEND",
+    "fr": "De l'ami.",
+    "xml_id": "ch-p1-14",
+    "file": "chapters/ch_p1_14_vom-freunde.ptx",
+    "es": "Del amigo"
+  },
+  {
+    "part": 1,
+    "idx": 15,
+    "de": "Von tausend und Einem Ziele",
+    "en": "THE THOUSAND AND ONE GOALS",
+    "fr": "Des mille et un buts.",
+    "xml_id": "ch-p1-15",
+    "file": "chapters/ch_p1_15_von-tausend-und-einem-ziele.ptx",
+    "es": "De las mil metas y de la única meta"
+  },
+  {
+    "part": 1,
+    "idx": 16,
+    "de": "Von der Nächstenliebe",
+    "en": "NEIGHBOUR-LOVE",
+    "fr": "De l'amour du prochain.",
+    "xml_id": "ch-p1-16",
+    "file": "chapters/ch_p1_16_von-der-nachstenliebe.ptx",
+    "es": "Del amor al prójimo"
+  },
+  {
+    "part": 1,
+    "idx": 17,
+    "de": "Vom Wege des Schaffenden",
+    "en": "THE WAY OF THE CREATING ONE",
+    "fr": "Du chemin du créateur.",
+    "xml_id": "ch-p1-17",
+    "file": "chapters/ch_p1_17_vom-wege-des-schaffenden.ptx",
+    "es": "Del camino del creador"
+  },
+  {
+    "part": 1,
+    "idx": 18,
+    "de": "Von alten und jungen Weiblein",
+    "en": "OLD AND YOUNG WOMEN",
+    "fr": "Des vieilles et des jeunes femmelettes.",
+    "xml_id": "ch-p1-18",
+    "file": "chapters/ch_p1_18_von-alten-und-jungen-weiblein.ptx",
+    "es": "De viejecillas y de jovencillas"
+  },
+  {
+    "part": 1,
+    "idx": 19,
+    "de": "Vom Biss der Natter",
+    "en": "THE BITE OF THE ADDER",
+    "fr": "De la morsure de la vipère.",
+    "xml_id": "ch-p1-19",
+    "file": "chapters/ch_p1_19_vom-biss-der-natter.ptx",
+    "es": "De la picadura de la víbora"
+  },
+  {
+    "part": 1,
+    "idx": 20,
+    "de": "Von Kind und Ehe",
+    "en": "CHILD AND MARRIAGE",
+    "fr": "De l'enfant et du mariage.",
+    "xml_id": "ch-p1-20",
+    "file": "chapters/ch_p1_20_von-kind-und-ehe.ptx",
+    "es": "Del hijo y del matrimonio"
+  },
+  {
+    "part": 1,
+    "idx": 21,
+    "de": "Vom freien Tode",
+    "en": "VOLUNTARY DEATH",
+    "fr": "De la libre mort.",
+    "xml_id": "ch-p1-21",
+    "file": "chapters/ch_p1_21_vom-freien-tode.ptx",
+    "es": "De la muerte libre"
+  },
+  {
+    "part": 1,
+    "idx": 22,
+    "de": "Von der schenkenden Tugend",
+    "en": "THE BESTOWING VIRTUE",
+    "fr": "De la vertu qui donne.",
+    "xml_id": "ch-p1-22",
+    "file": "chapters/ch_p1_22_von-der-schenkenden-tugend.ptx",
+    "es": "De la virtud que hace regalos"
+  },
+  {
+    "part": 2,
+    "idx": 1,
+    "de": "Das Kind mit dem Spiegel",
+    "en": "THE CHILD WITH THE MIRROR",
+    "fr": "L'enfant au miroir.",
+    "xml_id": "ch-p2-01",
+    "file": "chapters/ch_p2_01_das-kind-mit-dem-spiegel.ptx",
+    "es": "El niño del espejo"
+  },
+  {
+    "part": 2,
+    "idx": 2,
+    "de": "Auf den glückseligen Inseln",
+    "en": "IN THE HAPPY ISLES",
+    "fr": "Sur les îles bienheureuses.",
+    "xml_id": "ch-p2-02",
+    "file": "chapters/ch_p2_02_auf-den-gluckseligen-inseln.ptx",
+    "es": "En las islas afortunadas"
+  },
+  {
+    "part": 2,
+    "idx": 3,
+    "de": "Von den Mitleidigen",
+    "en": "THE PITIFUL",
+    "fr": "Des miséricordieux.",
+    "xml_id": "ch-p2-03",
+    "file": "chapters/ch_p2_03_von-den-mitleidigen.ptx",
+    "es": "De los compasivos"
+  },
+  {
+    "part": 2,
+    "idx": 4,
+    "de": "Von den Priestern",
+    "en": "THE PRIESTS",
+    "fr": "Des prêtres.",
+    "xml_id": "ch-p2-04",
+    "file": "chapters/ch_p2_04_von-den-priestern.ptx",
+    "es": "De los sacerdotes"
+  },
+  {
+    "part": 2,
+    "idx": 5,
+    "de": "Von den Tugendhaften",
+    "en": "THE VIRTUOUS",
+    "fr": "Des vertueux.",
+    "xml_id": "ch-p2-05",
+    "file": "chapters/ch_p2_05_von-den-tugendhaften.ptx",
+    "es": "De los virtuosos"
+  },
+  {
+    "part": 2,
+    "idx": 6,
+    "de": "Vom Gesindel",
+    "en": "THE RABBLE",
+    "fr": "De la canaille.",
+    "xml_id": "ch-p2-06",
+    "file": "chapters/ch_p2_06_vom-gesindel.ptx",
+    "es": "De la chusma"
+  },
+  {
+    "part": 2,
+    "idx": 7,
+    "de": "Von den Taranteln",
+    "en": "THE TARANTULAS",
+    "fr": "Des tarentules.",
+    "xml_id": "ch-p2-07",
+    "file": "chapters/ch_p2_07_von-den-taranteln.ptx",
+    "es": "De las tarántulas"
+  },
+  {
+    "part": 2,
+    "idx": 8,
+    "de": "Von den berühmten Weisen",
+    "en": "THE FAMOUS WISE ONES",
+    "fr": "Des sages illustres.",
+    "xml_id": "ch-p2-08",
+    "file": "chapters/ch_p2_08_von-den-beruhmten-weisen.ptx",
+    "es": "De los sabios famosos"
+  },
+  {
+    "part": 2,
+    "idx": 9,
+    "de": "Das Nachtlied",
+    "en": "THE NIGHT-SONG",
+    "fr": "Le chant de la nuit.",
+    "xml_id": "ch-p2-09",
+    "file": "chapters/ch_p2_09_das-nachtlied.ptx",
+    "es": "La canción de la noche"
+  },
+  {
+    "part": 2,
+    "idx": 10,
+    "de": "Das Tanzlied",
+    "en": "THE DANCE-SONG",
+    "fr": "Le chant de la danse.",
+    "xml_id": "ch-p2-10",
+    "file": "chapters/ch_p2_10_das-tanzlied.ptx",
+    "es": "La canción del baile"
+  },
+  {
+    "part": 2,
+    "idx": 11,
+    "de": "Das Grablied",
+    "en": "THE GRAVE-SONG",
+    "fr": "Le chant du tombeau.",
+    "xml_id": "ch-p2-11",
+    "file": "chapters/ch_p2_11_das-grablied.ptx",
+    "es": "La canción de los sepulcros"
+  },
+  {
+    "part": 2,
+    "idx": 12,
+    "de": "Von der Selbst-Überwindung",
+    "en": "SELF-SURPASSING",
+    "fr": "De la victoire sur soi-même.",
+    "xml_id": "ch-p2-12",
+    "file": "chapters/ch_p2_12_von-der-selbst-uberwindung.ptx",
+    "es": "De la superación de sí mismo"
+  },
+  {
+    "part": 2,
+    "idx": 13,
+    "de": "Von den Erhabenen",
+    "en": "THE SUBLIME ONES",
+    "fr": "Des hommes sublimes.",
+    "xml_id": "ch-p2-13",
+    "file": "chapters/ch_p2_13_von-den-erhabenen.ptx",
+    "es": "De los sublimes"
+  },
+  {
+    "part": 2,
+    "idx": 14,
+    "de": "Vom Lande der Bildung",
+    "en": "THE LAND OF CULTURE",
+    "fr": "Du pays de la civilisation.",
+    "xml_id": "ch-p2-14",
+    "file": "chapters/ch_p2_14_vom-lande-der-bildung.ptx",
+    "es": "Del país de la cultura"
+  },
+  {
+    "part": 2,
+    "idx": 15,
+    "de": "Von der unbefleckten Erkenntniss",
+    "en": "IMMACULATE PERCEPTION",
+    "fr": "De l'immaculée connaissance.",
+    "xml_id": "ch-p2-15",
+    "file": "chapters/ch_p2_15_von-der-unbefleckten-erkenntniss.ptx",
+    "es": "Del inmaculado conocimiento"
+  },
+  {
+    "part": 2,
+    "idx": 16,
+    "de": "Von den Gelehrten",
+    "en": "SCHOLARS",
+    "fr": "Des savants.",
+    "xml_id": "ch-p2-16",
+    "file": "chapters/ch_p2_16_von-den-gelehrten.ptx",
+    "es": "De los doctos"
+  },
+  {
+    "part": 2,
+    "idx": 17,
+    "de": "Von den Dichtern",
+    "en": "POETS",
+    "fr": "Des poètes.",
+    "xml_id": "ch-p2-17",
+    "file": "chapters/ch_p2_17_von-den-dichtern.ptx",
+    "es": "De los poetas"
+  },
+  {
+    "part": 2,
+    "idx": 18,
+    "de": "Von grossen Ereignissen",
+    "en": "GREAT EVENTS",
+    "fr": "Des grands événements.",
+    "xml_id": "ch-p2-18",
+    "file": "chapters/ch_p2_18_von-grossen-ereignissen.ptx",
+    "es": "De grandes acontecimientos"
+  },
+  {
+    "part": 2,
+    "idx": 19,
+    "de": "Der Wahrsager",
+    "en": "THE SOOTHSAYER",
+    "fr": "Le devin.",
+    "xml_id": "ch-p2-19",
+    "file": "chapters/ch_p2_19_der-wahrsager.ptx",
+    "es": "El adivino"
+  },
+  {
+    "part": 2,
+    "idx": 20,
+    "de": "Von der Erlösung",
+    "en": "REDEMPTION",
+    "fr": "De la rédemption.",
+    "xml_id": "ch-p2-20",
+    "file": "chapters/ch_p2_20_von-der-erlosung.ptx",
+    "es": "De la redención"
+  },
+  {
+    "part": 2,
+    "idx": 21,
+    "de": "Von der Menschen-Klugheit",
+    "en": "MANLY PRUDENCE",
+    "fr": "De la prudence avec les hommes.",
+    "xml_id": "ch-p2-21",
+    "file": "chapters/ch_p2_21_von-der-menschen-klugheit.ptx",
+    "es": "De la cordura respecto a los hombres"
+  },
+  {
+    "part": 2,
+    "idx": 22,
+    "de": "Die stillste Stunde",
+    "en": "THE STILLEST HOUR",
+    "fr": "L'heure la plus silencieuse.",
+    "xml_id": "ch-p2-22",
+    "file": "chapters/ch_p2_22_die-stillste-stunde.ptx",
+    "es": "La más silenciosa de todas las horas"
+  },
+  {
+    "part": 3,
+    "idx": 1,
+    "de": "Der Wanderer",
+    "en": "THE WANDERER",
+    "fr": "Le voyageur.",
+    "xml_id": "ch-p3-01",
+    "file": "chapters/ch_p3_01_der-wanderer.ptx",
+    "es": "El caminante"
+  },
+  {
+    "part": 3,
+    "idx": 2,
+    "de": "Vom Gesicht und Räthsel",
+    "en": "THE VISION AND THE ENIGMA",
+    "fr": "De la vision et de l'énigme.",
+    "xml_id": "ch-p3-02",
+    "file": "chapters/ch_p3_02_vom-gesicht-und-rathsel.ptx",
+    "es": "De la visión y enigma"
+  },
+  {
+    "part": 3,
+    "idx": 3,
+    "de": "Von der Seligkeit wider Willen",
+    "en": "INVOLUNTARY BLISS",
+    "fr": "De la béatitude malgré soi.",
+    "xml_id": "ch-p3-03",
+    "file": "chapters/ch_p3_03_von-der-seligkeit-wider-willen.ptx",
+    "es": "De la bienaventuranza no querida"
+  },
+  {
+    "part": 3,
+    "idx": 4,
+    "de": "Vor Sonnen-Aufgang",
+    "en": "BEFORE SUNRISE",
+    "fr": "Avant le lever du soleil.",
+    "xml_id": "ch-p3-04",
+    "file": "chapters/ch_p3_04_vor-sonnen-aufgang.ptx",
+    "es": "Antes de la salida del sol"
+  },
+  {
+    "part": 3,
+    "idx": 5,
+    "de": "Von der verkleinernden Tugend",
+    "en": "THE BEDWARFING VIRTUE",
+    "fr": "De la vertu qui rapetisse.",
+    "xml_id": "ch-p3-05",
+    "file": "chapters/ch_p3_05_von-der-verkleinernden-tugend.ptx",
+    "es": "De la virtud empequeñecedora"
+  },
+  {
+    "part": 3,
+    "idx": 6,
+    "de": "Auf dem Ölberge",
+    "en": "ON THE OLIVE-MOUNT",
+    "fr": "Sur le mont des Oliviers.",
+    "xml_id": "ch-p3-06",
+    "file": "chapters/ch_p3_06_auf-dem-olberge.ptx",
+    "es": "En el monte de los olivos"
+  },
+  {
+    "part": 3,
+    "idx": 7,
+    "de": "Vom Vorübergehen",
+    "en": "PASSING-BY",
+    "fr": "En passant.",
+    "xml_id": "ch-p3-07",
+    "file": "chapters/ch_p3_07_vom-vorubergehen.ptx",
+    "es": "Del pasar de largo"
+  },
+  {
+    "part": 3,
+    "idx": 8,
+    "de": "Von den Abtrünnigen",
+    "en": "THE APOSTATES",
+    "fr": "Des transfuges.",
+    "xml_id": "ch-p3-08",
+    "file": "chapters/ch_p3_08_von-den-abtrunnigen.ptx",
+    "es": "De los apóstatas"
+  },
+  {
+    "part": 3,
+    "idx": 9,
+    "de": "Die Heimkehr",
+    "en": "THE RETURN HOME",
+    "fr": "Le retour.",
+    "xml_id": "ch-p3-09",
+    "file": "chapters/ch_p3_09_die-heimkehr.ptx",
+    "es": "El retorno a casa"
+  },
+  {
+    "part": 3,
+    "idx": 10,
+    "de": "Von den drei Bösen",
+    "en": "THE THREE EVIL THINGS",
+    "fr": "Des trois maux.",
+    "xml_id": "ch-p3-10",
+    "file": "chapters/ch_p3_10_von-den-drei-bosen.ptx",
+    "es": "De los tres males"
+  },
+  {
+    "part": 3,
+    "idx": 11,
+    "de": "Vom Geist der Schwere",
+    "en": "THE SPIRIT OF GRAVITY",
+    "fr": "De l'esprit de lourdeur.",
+    "xml_id": "ch-p3-11",
+    "file": "chapters/ch_p3_11_vom-geist-der-schwere.ptx",
+    "es": "Del espíritu de la pesadez"
+  },
+  {
+    "part": 3,
+    "idx": 12,
+    "de": "Von alten und neuen Tafeln",
+    "en": "OLD AND NEW TABLES",
+    "fr": "Des vieilles et des nouvelles tables.",
+    "xml_id": "ch-p3-12",
+    "file": "chapters/ch_p3_12_von-alten-und-neuen-tafeln.ptx",
+    "es": "De tablas viejas y nuevas"
+  },
+  {
+    "part": 3,
+    "idx": 13,
+    "de": "Der Genesende",
+    "en": "THE CONVALESCENT",
+    "fr": "Le convalescent.",
+    "xml_id": "ch-p3-13",
+    "file": "chapters/ch_p3_13_der-genesende.ptx",
+    "es": "El convaleciente"
+  },
+  {
+    "part": 3,
+    "idx": 14,
+    "de": "Von der grossen Sehnsucht",
+    "en": "THE GREAT LONGING",
+    "fr": "Du grand désir.",
+    "xml_id": "ch-p3-14",
+    "file": "chapters/ch_p3_14_von-der-grossen-sehnsucht.ptx",
+    "es": "Del gran anhelo"
+  },
+  {
+    "part": 3,
+    "idx": 15,
+    "de": "Das andere Tanzlied",
+    "en": "THE SECOND DANCE-SONG",
+    "fr": "L'autre chant de la danse.",
+    "xml_id": "ch-p3-15",
+    "file": "chapters/ch_p3_15_das-andere-tanzlied.ptx",
+    "es": "La otra canción del baile"
+  },
+  {
+    "part": 3,
+    "idx": 16,
+    "de": "Die sieben Siegel",
+    "en": "THE SEVEN SEALS",
+    "fr": "Les sept sceaux.",
+    "xml_id": "ch-p3-16",
+    "file": "chapters/ch_p3_16_die-sieben-siegel.ptx",
+    "es": "Los siete sellos"
+  },
+  {
+    "part": 4,
+    "idx": 1,
+    "de": "Das Honig-Opfer",
+    "en": "THE HONEY SACRIFICE",
+    "fr": "L'offrande du miel.",
+    "xml_id": "ch-p4-01",
+    "file": "chapters/ch_p4_01_das-honig-opfer.ptx",
+    "es": "La ofrenda de la miel"
+  },
+  {
+    "part": 4,
+    "idx": 2,
+    "de": "Der Nothschrei",
+    "en": "THE CRY OF DISTRESS",
+    "fr": "Le cri de détresse.",
+    "xml_id": "ch-p4-02",
+    "file": "chapters/ch_p4_02_der-nothschrei.ptx",
+    "es": "El grito de socorro"
+  },
+  {
+    "part": 4,
+    "idx": 3,
+    "de": "Gespräch mit den Königen",
+    "en": "TALK WITH THE KINGS",
+    "fr": "Entretien avec les rois.",
+    "xml_id": "ch-p4-03",
+    "file": "chapters/ch_p4_03_gesprach-mit-den-konigen.ptx",
+    "es": "Coloquio con los reyes"
+  },
+  {
+    "part": 4,
+    "idx": 4,
+    "de": "Der Blutegel",
+    "en": "THE LEECH",
+    "fr": "La sangsue.",
+    "xml_id": "ch-p4-04",
+    "file": "chapters/ch_p4_04_der-blutegel.ptx",
+    "es": "La sanguijuela"
+  },
+  {
+    "part": 4,
+    "idx": 5,
+    "de": "Der Zauberer",
+    "en": "THE MAGICIAN",
+    "fr": "L'enchanteur.",
+    "xml_id": "ch-p4-05",
+    "file": "chapters/ch_p4_05_der-zauberer.ptx",
+    "es": "El mago"
+  },
+  {
+    "part": 4,
+    "idx": 6,
+    "de": "Ausser Dienst",
+    "en": "OUT OF SERVICE",
+    "fr": "Hors de service.",
+    "xml_id": "ch-p4-06",
+    "file": "chapters/ch_p4_06_ausser-dienst.ptx",
+    "es": "Jubilado"
+  },
+  {
+    "part": 4,
+    "idx": 7,
+    "de": "Der hässlichste Mensch",
+    "en": "THE UGLIEST MAN",
+    "fr": "Le plus laid des hommes.",
+    "xml_id": "ch-p4-07",
+    "file": "chapters/ch_p4_07_der-hasslichste-mensch.ptx",
+    "es": "El más feo de los hombres"
+  },
+  {
+    "part": 4,
+    "idx": 8,
+    "de": "Der freiwillige Bettler",
+    "en": "THE VOLUNTARY BEGGAR",
+    "fr": "Le mendiant volontaire.",
+    "xml_id": "ch-p4-08",
+    "file": "chapters/ch_p4_08_der-freiwillige-bettler.ptx",
+    "es": "El mendigo voluntario"
+  },
+  {
+    "part": 4,
+    "idx": 9,
+    "de": "Der Schatten",
+    "en": "THE SHADOW",
+    "fr": "L'ombre.",
+    "xml_id": "ch-p4-09",
+    "file": "chapters/ch_p4_09_der-schatten.ptx",
+    "es": "La sombra"
+  },
+  {
+    "part": 4,
+    "idx": 10,
+    "de": "Mittags",
+    "en": "NOONTIDE",
+    "fr": "En plein midi.",
+    "xml_id": "ch-p4-10",
+    "file": "chapters/ch_p4_10_mittags.ptx",
+    "es": "A mediodía"
+  },
+  {
+    "part": 4,
+    "idx": 11,
+    "de": "Die Begrüssung",
+    "en": "THE GREETING",
+    "fr": "La salutation.",
+    "xml_id": "ch-p4-11",
+    "file": "chapters/ch_p4_11_die-begrussung.ptx",
+    "es": "El saludo"
+  },
+  {
+    "part": 4,
+    "idx": 12,
+    "de": "Das Abendmahl",
+    "en": "THE SUPPER",
+    "fr": "La Cène.",
+    "xml_id": "ch-p4-12",
+    "file": "chapters/ch_p4_12_das-abendmahl.ptx",
+    "es": "La Cena"
+  },
+  {
+    "part": 4,
+    "idx": 13,
+    "de": "Vom höheren Menschen",
+    "en": "THE HIGHER MAN",
+    "fr": "De l'homme supérieur.",
+    "xml_id": "ch-p4-13",
+    "file": "chapters/ch_p4_13_vom-hoheren-menschen.ptx",
+    "es": "Del hombre superior"
+  },
+  {
+    "part": 4,
+    "idx": 14,
+    "de": "Das Lied der Schwermuth",
+    "en": "THE SONG OF MELANCHOLY",
+    "fr": "Le chant de la mélancolie.",
+    "xml_id": "ch-p4-14",
+    "file": "chapters/ch_p4_14_das-lied-der-schwermuth.ptx",
+    "es": "La canción de la melancolía"
+  },
+  {
+    "part": 4,
+    "idx": 15,
+    "de": "Von der Wissenschaft",
+    "en": "SCIENCE",
+    "fr": "De la science.",
+    "xml_id": "ch-p4-15",
+    "file": "chapters/ch_p4_15_von-der-wissenschaft.ptx",
+    "es": "De la ciencia"
+  },
+  {
+    "part": 4,
+    "idx": 16,
+    "de": "Unter Töchtern der Wüste",
+    "en": "AMONG DAUGHTERS OF THE DESERT",
+    "fr": "Parmi les filles du désert.",
+    "xml_id": "ch-p4-16",
+    "file": "chapters/ch_p4_16_unter-tochtern-der-wuste.ptx",
+    "es": "Entre hijas del desierto"
+  },
+  {
+    "part": 4,
+    "idx": 17,
+    "de": "Die Erweckung",
+    "en": "THE AWAKENING",
+    "fr": "Le réveil.",
+    "xml_id": "ch-p4-17",
+    "file": "chapters/ch_p4_17_die-erweckung.ptx",
+    "es": "El despertar"
+  },
+  {
+    "part": 4,
+    "idx": 18,
+    "de": "Das Eselsfest",
+    "en": "THE ASS-FESTIVAL",
+    "fr": "La fête de l'âne.",
+    "xml_id": "ch-p4-18",
+    "file": "chapters/ch_p4_18_das-eselsfest.ptx",
+    "es": "La fiesta del asno"
+  },
+  {
+    "part": 4,
+    "idx": 19,
+    "de": "Das Nachtwandler-Lied",
+    "en": "THE DRUNKEN SONG",
+    "fr": "Le chant du noctambule.",
+    "xml_id": "ch-p4-19",
+    "file": "chapters/ch_p4_19_das-nachtwandler-lied.ptx",
+    "es": "La canción del noctámbulo"
+  },
+  {
+    "part": 4,
+    "idx": 20,
+    "de": "Das Zeichen",
+    "en": "THE SIGN",
+    "fr": "Le signe.",
+    "xml_id": "ch-p4-20",
+    "file": "chapters/ch_p4_20_das-zeichen.ptx",
+    "es": "El signo"
+  }
+]

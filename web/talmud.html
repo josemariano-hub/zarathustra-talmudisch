@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'">
+<title>Also sprach Zarathustra — Talmudische Ausgabe</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="reader">
+
+  <header class="page-head">
+    <span class="crumb">Erster Theil</span>
+    <span class="crumb">Vorrede</span>
+    <span class="crumb active" id="active-section">§ 1 · Der Untergang</span>
+    <span class="spacer"></span>
+    <a class="toc-toggle" id="toc-toggle" title="Inhalt · Contents · Table"
+       role="button" tabindex="0" aria-label="Open table of contents">☰</a>
+    <span class="lang-toggle" id="lang-toggle" role="group" aria-label="Reading language"></span>
+    <a class="about-link" href="about.html" title="About this edition" aria-label="About this edition">ⓘ</a>
+    <a class="back" href="index.html" title="Back to language selection" aria-label="Back to language selection">↩</a>
+  </header>
+
+  <!-- Slide-in chapter index -->
+  <nav class="toc" id="toc" hidden>
+    <header class="toc-head">
+      <span class="toc-title">Inhalt</span>
+      <button class="toc-close" id="toc-close" aria-label="close">×</button>
+    </header>
+    <div class="toc-body" id="toc-body"></div>
+  </nav>
+
+  <!-- Loading state — hidden once renderCenter() runs -->
+  <div class="loading" id="loading" aria-live="polite">
+    <span class="spinner"></span>
+    <span>Lade Kapitel…</span>
+  </div>
+
+  <main class="page" id="page">
+
+    <!-- INNER MARGIN (philology) -->
+    <aside class="margin margin-inner" id="margin-inner"></aside>
+
+    <!-- CENTER COLUMN (Urtext + mother tongue, verse by verse) -->
+    <section class="center" id="center"></section>
+
+    <!-- OUTER MARGIN (chapter commentary streams) -->
+    <aside class="margin margin-outer" id="margin-outer"></aside>
+
+    <!-- BOTTOM STRATA (cross-refs, Loeb) -->
+    <footer class="strata" id="strata"></footer>
+
+    <!-- Animated SVG threads layer (drawn between active verse and active notes) -->
+    <svg class="threads" id="threads" xmlns="http://www.w3.org/2000/svg"></svg>
+
+  </main>
+
+  <div class="zoom-hint" id="zoom-hint">scroll · or · ↑↓ · or · click a verse</div>
+
+  <script src="talmud.js"></script>
+</body>
+</html>

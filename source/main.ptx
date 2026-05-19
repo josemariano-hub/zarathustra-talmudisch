@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='utf-8'?>
+<pretext xml:lang="en-US" xmlns:xi="http://www.w3.org/2001/XInclude">
+
+  <xi:include href="./meta_docinfo.ptx" />
+
+  <book xml:id="zarathustra-talmud">
+    <title>Also sprach Zarathustra</title>
+    <subtitle>Ein Buch für Alle und Keinen — Talmudische Ausgabe</subtitle>
+
+    <xi:include href="./meta_frontmatter.ptx" />
+
+    <!-- Prologue (Vorrede) — hand-tuned with rich commentary -->
+    <xi:include href="./ch_vorrede.ptx" />
+
+    <!-- Erster Theil -->
+    <xi:include href="./chapters/ch_p1_01_von-den-drei-verwandlungen.ptx" />
+    <xi:include href="./chapters/ch_p1_02_von-den-lehrstuhlen-der-tugend.ptx" />
+    <xi:include href="./chapters/ch_p1_03_von-den-hinterweltlern.ptx" />
+    <xi:include href="./chapters/ch_p1_04_von-den-verachtern-des-leibes.ptx" />
+    <xi:include href="./chapters/ch_p1_05_von-den-freuden-und-leidenschaften.ptx" />
+    <xi:include href="./chapters/ch_p1_06_vom-bleichen-verbrecher.ptx" />
+    <xi:include href="./chapters/ch_p1_07_vom-lesen-und-schreiben.ptx" />
+    <xi:include href="./chapters/ch_p1_08_vom-baum-am-berge.ptx" />
+    <xi:include href="./chapters/ch_p1_09_von-den-predigern-des-todes.ptx" />
+    <xi:include href="./chapters/ch_p1_10_vom-krieg-und-kriegsvolke.ptx" />
+    <xi:include href="./chapters/ch_p1_11_vom-neuen-gotzen.ptx" />
+    <xi:include href="./chapters/ch_p1_12_von-den-fliegen-des-marktes.ptx" />
+    <xi:include href="./chapters/ch_p1_13_von-der-keuschheit.ptx" />
+    <xi:include href="./chapters/ch_p1_14_vom-freunde.ptx" />
+    <xi:include href="./chapters/ch_p1_15_von-tausend-und-einem-ziele.ptx" />
+    <xi:include href="./chapters/ch_p1_16_von-der-nachstenliebe.ptx" />
+    <xi:include href="./chapters/ch_p1_17_vom-wege-des-schaffenden.ptx" />
+    <xi:include href="./chapters/ch_p1_18_von-alten-und-jungen-weiblein.ptx" />
+    <xi:include href="./chapters/ch_p1_19_vom-biss-der-natter.ptx" />
+    <xi:include href="./chapters/ch_p1_20_von-kind-und-ehe.ptx" />
+    <xi:include href="./chapters/ch_p1_21_vom-freien-tode.ptx" />
+    <xi:include href="./chapters/ch_p1_22_von-der-schenkenden-tugend.ptx" />
+
+    <!-- Zweiter Theil -->
+    <xi:include href="./chapters/ch_p2_01_das-kind-mit-dem-spiegel.ptx" />
+    <xi:include href="./chapters/ch_p2_02_auf-den-gluckseligen-inseln.ptx" />
+    <xi:include href="./chapters/ch_p2_03_von-den-mitleidigen.ptx" />
+    <xi:include href="./chapters/ch_p2_04_von-den-priestern.ptx" />
+    <xi:include href="./chapters/ch_p2_05_von-den-tugendhaften.ptx" />
+    <xi:include href="./chapters/ch_p2_06_vom-gesindel.ptx" />
+    <xi:include href="./chapters/ch_p2_07_von-den-taranteln.ptx" />
+    <xi:include href="./chapters/ch_p2_08_von-den-beruhmten-weisen.ptx" />
+    <xi:include href="./chapters/ch_p2_09_das-nachtlied.ptx" />
+    <xi:include href="./chapters/ch_p2_10_das-tanzlied.ptx" />
+    <xi:include href="./chapters/ch_p2_11_das-grablied.ptx" />
+    <xi:include href="./chapters/ch_p2_12_von-der-selbst-uberwindung.ptx" />
+    <xi:include href="./chapters/ch_p2_13_von-den-erhabenen.ptx" />
+    <xi:include href="./chapters/ch_p2_14_vom-lande-der-bildung.ptx" />
+    <xi:include href="./chapters/ch_p2_15_von-der-unbefleckten-erkenntniss.ptx" />
+    <xi:include href="./chapters/ch_p2_16_von-den-gelehrten.ptx" />
+    <xi:include href="./chapters/ch_p2_17_von-den-dichtern.ptx" />
+    <xi:include href="./chapters/ch_p2_18_von-grossen-ereignissen.ptx" />
+    <xi:include href="./chapters/ch_p2_19_der-wahrsager.ptx" />
+    <xi:include href="./chapters/ch_p2_20_von-der-erlosung.ptx" />
+    <xi:include href="./chapters/ch_p2_21_von-der-menschen-klugheit.ptx" />
+    <xi:include href="./chapters/ch_p2_22_die-stillste-stunde.ptx" />
+
+    <!-- Dritter Theil -->
+    <xi:include href="./chapters/ch_p3_01_der-wanderer.ptx" />
+    <xi:include href="./chapters/ch_p3_02_vom-gesicht-und-rathsel.ptx" />
+    <xi:include href="./chapters/ch_p3_03_von-der-seligkeit-wider-willen.ptx" />
+    <xi:include href="./chapters/ch_p3_04_vor-sonnen-aufgang.ptx" />
+    <xi:include href="./chapters/ch_p3_05_von-der-verkleinernden-tugend.ptx" />
+    <xi:include href="./chapters/ch_p3_06_auf-dem-olberge.ptx" />
+    <xi:include href="./chapters/ch_p3_07_vom-vorubergehen.ptx" />
+    <xi:include href="./chapters/ch_p3_08_von-den-abtrunnigen.ptx" />
+    <xi:include href="./chapters/ch_p3_09_die-heimkehr.ptx" />
+    <xi:include href="./chapters/ch_p3_10_von-den-drei-bosen.ptx" />
+    <xi:include href="./chapters/ch_p3_11_vom-geist-der-schwere.ptx" />
+    <xi:include href="./chapters/ch_p3_12_von-alten-und-neuen-tafeln.ptx" />
+    <xi:include href="./chapters/ch_p3_13_der-genesende.ptx" />
+    <xi:include href="./chapters/ch_p3_14_von-der-grossen-sehnsucht.ptx" />
+    <xi:include href="./chapters/ch_p3_15_das-andere-tanzlied.ptx" />
+    <xi:include href="./chapters/ch_p3_16_die-sieben-siegel.ptx" />
+
+    <!-- Vierter und letzter Theil -->
+    <xi:include href="./chapters/ch_p4_01_das-honig-opfer.ptx" />
+    <xi:include href="./chapters/ch_p4_02_der-nothschrei.ptx" />
+    <xi:include href="./chapters/ch_p4_03_gesprach-mit-den-konigen.ptx" />
+    <xi:include href="./chapters/ch_p4_04_der-blutegel.ptx" />
+    <xi:include href="./chapters/ch_p4_05_der-zauberer.ptx" />
+    <xi:include href="./chapters/ch_p4_06_ausser-dienst.ptx" />
+    <xi:include href="./chapters/ch_p4_07_der-hasslichste-mensch.ptx" />
+    <xi:include href="./chapters/ch_p4_08_der-freiwillige-bettler.ptx" />
+    <xi:include href="./chapters/ch_p4_09_der-schatten.ptx" />
+    <xi:include href="./chapters/ch_p4_10_mittags.ptx" />
+    <xi:include href="./chapters/ch_p4_11_die-begrussung.ptx" />
+    <xi:include href="./chapters/ch_p4_12_das-abendmahl.ptx" />
+    <xi:include href="./chapters/ch_p4_13_vom-hoheren-menschen.ptx" />
+    <xi:include href="./chapters/ch_p4_14_das-lied-der-schwermuth.ptx" />
+    <xi:include href="./chapters/ch_p4_15_von-der-wissenschaft.ptx" />
+    <xi:include href="./chapters/ch_p4_16_unter-tochtern-der-wuste.ptx" />
+    <xi:include href="./chapters/ch_p4_17_die-erweckung.ptx" />
+    <xi:include href="./chapters/ch_p4_18_das-eselsfest.ptx" />
+    <xi:include href="./chapters/ch_p4_19_das-nachtwandler-lied.ptx" />
+    <xi:include href="./chapters/ch_p4_20_das-zeichen.ptx" />
+
+
+    <xi:include href="./meta_backmatter.ptx" />
+  </book>
+</pretext>
