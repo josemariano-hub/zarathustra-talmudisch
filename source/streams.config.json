@@ -4,99 +4,155 @@
     "philology": {
       "side": "inner",
       "color": "#8b5e3c",
-      "label": {"en": "Philology", "fr": "Philologie", "es": "Filología"},
+      "label": {
+        "en": "Philology",
+        "fr": "Philologie",
+        "es": "Filología"
+      },
       "_origin": null,
       "bibliographic": "Hand-curated philological glosses (Untergang, Übermensch, Adler & Schlange, …) compiled for this edition."
     },
     "sanchez-pascual-notes": {
       "side": "inner",
       "color": "#d4a23a",
-      "label": {"en":"Sánchez Pascual — Notes","fr":"Sánchez Pascual — Notes","es":"Notas (Sánchez Pascual)"},
+      "label": {
+        "en": "Sánchez Pascual — Notes",
+        "fr": "Sánchez Pascual — Notes",
+        "es": "Notas (Sánchez Pascual)"
+      },
       "_origin": "es",
       "bibliographic": "Andrés Sánchez Pascual — translator's footnotes to *Así habló Zaratustra* (Alianza, 1972). Origin: Spanish."
     },
     "crossref": {
       "side": "inner",
       "color": "#3b7a5a",
-      "label": {"en":"Cross-references","fr":"Renvois","es":"Referencias cruzadas"},
+      "label": {
+        "en": "Cross-references",
+        "fr": "Renvois",
+        "es": "Referencias cruzadas"
+      },
       "_origin": null,
       "bibliographic": "Cross-references to other works in the Nietzsche corpus."
     },
     "sanchez-meca": {
       "side": "inner",
       "color": "#3a8a8a",
-      "label": {"en":"Sánchez Meca (ES)","fr":"Sánchez Meca (ES)","es":"Sánchez Meca"},
+      "label": {
+        "en": "Sánchez Meca (ES)",
+        "fr": "Sánchez Meca (ES)",
+        "es": "Sánchez Meca"
+      },
       "_origin": "es",
       "bibliographic": "Diego Sánchez Meca, *Nietzsche: la experiencia dionisíaca del mundo* (Tecnos, 2005). Origin: Spanish."
     },
     "lampert": {
       "side": "outer",
       "color": "#7a3b3b",
-      "label": {"en":"Lampert","fr":"Lampert","es":"Lampert"},
-      "_origin": null,
+      "label": {
+        "en": "Lampert",
+        "fr": "Lampert",
+        "es": "Lampert"
+      },
+      "_origin": "en",
       "bibliographic": "Laurence Lampert, *Nietzsche's Teaching: An Interpretation of Thus Spoke Zarathustra* (Yale UP, 1986)."
     },
     "higgins": {
       "side": "outer",
       "color": "#3b5a7a",
-      "label": {"en":"Higgins","fr":"Higgins","es":"Higgins"},
-      "_origin": null,
+      "label": {
+        "en": "Higgins",
+        "fr": "Higgins",
+        "es": "Higgins"
+      },
+      "_origin": "en",
       "bibliographic": "Kathleen M. Higgins, *Nietzsche's Zarathustra* (Temple UP, 1987)."
     },
     "rosen": {
       "side": "outer",
       "color": "#5a3b7a",
-      "label": {"en":"Rosen","fr":"Rosen","es":"Rosen"},
-      "_origin": null,
+      "label": {
+        "en": "Rosen",
+        "fr": "Rosen",
+        "es": "Rosen"
+      },
+      "_origin": "en",
       "bibliographic": "Stanley Rosen, *The Mask of Enlightenment: Nietzsche's Zarathustra* (Cambridge UP, 1995)."
     },
     "gooding-williams": {
       "side": "outer",
       "color": "#7a5a3b",
-      "label": {"en":"Gooding-Williams","fr":"Gooding-Williams","es":"Gooding-Williams"},
-      "_origin": null,
+      "label": {
+        "en": "Gooding-Williams",
+        "fr": "Gooding-Williams",
+        "es": "Gooding-Williams"
+      },
+      "_origin": "en",
       "bibliographic": "Robert Gooding-Williams, *Zarathustra's Dionysian Modernism* (Stanford UP, 2001)."
     },
     "klossowski": {
       "side": "outer",
       "color": "#a04a55",
-      "label": {"en":"Klossowski (FR)","fr":"Klossowski","es":"Klossowski (FR)"},
+      "label": {
+        "en": "Klossowski (FR)",
+        "fr": "Klossowski",
+        "es": "Klossowski (FR)"
+      },
       "_origin": "fr",
       "bibliographic": "Pierre Klossowski, *Nietzsche et le cercle vicieux* (Mercure de France, 1969). Origin: French."
     },
     "deleuze": {
       "side": "outer",
       "color": "#c46a3a",
-      "label": {"en":"Deleuze (FR)","fr":"Deleuze","es":"Deleuze (FR)"},
+      "label": {
+        "en": "Deleuze (FR)",
+        "fr": "Deleuze",
+        "es": "Deleuze (FR)"
+      },
       "_origin": "fr",
       "bibliographic": "Gilles Deleuze, *Nietzsche et la philosophie* (PUF, 1962). Origin: French."
     },
     "sanchez-pascual": {
       "side": "outer",
       "color": "#d4a23a",
-      "label": {"en":"Sánchez Pascual","fr":"Sánchez Pascual","es":"Sánchez Pascual"},
+      "label": {
+        "en": "Sánchez Pascual",
+        "fr": "Sánchez Pascual",
+        "es": "Sánchez Pascual"
+      },
       "_origin": "es",
       "bibliographic": "Andrés Sánchez Pascual — editorial notes from *Así habló Zaratustra* (Alianza, 1972). Origin: Spanish."
     },
     "new-cambridge": {
       "side": "bottom",
       "color": "#3a6a3a",
-      "label": {"en":"New Cambridge Companion","fr":"New Cambridge Companion","es":"New Cambridge Companion"},
+      "label": {
+        "en": "New Cambridge Companion",
+        "fr": "New Cambridge Companion",
+        "es": "New Cambridge Companion"
+      },
       "_origin": "en",
       "bibliographic": "Keith Ansell-Pearson & Paul Bishop (eds.), *The New Cambridge Companion to Nietzsche's Zarathustra* (CUP, 2022). Origin: English."
     },
     "sp-introduction": {
       "side": "bottom",
       "color": "#b58a3a",
-      "label": {"en":"Sánchez Pascual — Introducción","fr":"Sánchez Pascual — Introducción","es":"Sánchez Pascual — Introducción"},
+      "label": {
+        "en": "Sánchez Pascual — Introducción",
+        "fr": "Sánchez Pascual — Introducción",
+        "es": "Sánchez Pascual — Introducción"
+      },
       "_origin": "es",
       "bibliographic": "Andrés Sánchez Pascual — introductory essay to *Así habló Zaratustra* (Alianza, 1972). Origin: Spanish."
     },
     "loeb": {
       "side": "bottom",
       "color": "#5a7a3b",
-      "label": {"en":"Loeb (P. S. Loeb)","fr":"Loeb (P. S. Loeb)","es":"Loeb (P. S. Loeb)"},
-      "_origin": null,
+      "label": {
+        "en": "Loeb (P. S. Loeb)",
+        "fr": "Loeb (P. S. Loeb)",
+        "es": "Loeb (P. S. Loeb)"
+      },
+      "_origin": "en",
       "bibliographic": "Paul S. Loeb, *The Death of Nietzsche's Zarathustra* (Cambridge UP, 2010). Not the Loeb Classical Library."
     }
   }

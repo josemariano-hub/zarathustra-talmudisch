@@ -11,7 +11,7 @@
 // =====================================================================
 
 const params = new URLSearchParams(location.search);
-const LANG  = ["en","fr","es"].includes(params.get("lang")) ? params.get("lang") : "en";
+const LANG  = ["en","fr","es","de"].includes(params.get("lang")) ? params.get("lang") : "en";
 // Chapter identifier: either the legacy "vorrede" (hand-tuned with rich
 // commentary) or one of the auto-generated chapter ids (e.g. "ch-p1-01").
 const CHAPTER_ID = params.get("ch") || "vorrede";
@@ -129,6 +129,20 @@ function buildTitleIndex(nav) {
 }
 
 const FLAGS = { fr: "🇫🇷", es: "🇪🇸", en: "🇬🇧", de: "🇩🇪" };
+const LANG_NAMES_UI = { en: "English", fr: "French", es: "Spanish", de: "German" };
+
+// Resolve a note's body in the reader's language, falling back to its
+// _origin (or any available language) and reporting which language was
+// actually used. The caller decides whether to flag the substitution.
+function resolveNoteBody(note, stream, lang) {
+  if (note[lang]) return { text: note[lang], srcLang: lang };
+  const origin = stream._origin;
+  if (origin && note[origin]) return { text: note[origin], srcLang: origin };
+  for (const L of ["en","es","fr","de"]) {
+    if (note[L]) return { text: note[L], srcLang: L };
+  }
+  return { text: "", srcLang: lang };
+}
 
 // Render a small bibliographic line (visible) + a translation-provenance
 // line when the stream's origin language differs from the reading lang.
@@ -365,7 +379,7 @@ function stripPreserveEm(node) {
 function renderLangToggle() {
   const target = $("#lang-toggle");
   target.innerHTML = "";
-  const langs = [["en","EN"],["fr","FR"],["es","ES"]];
+  const langs = [["de","DE"],["en","EN"],["fr","FR"],["es","ES"]];
   const chParam = state.chapterId ? `&ch=${state.chapterId}` : "";
   for (const [code,label] of langs) {
     // href has the chapter; the click handler appends the current verse
@@ -409,28 +423,32 @@ function renderCenter() {
   const { verses } = state.chapter;
   const spans = computeSpans(verses);
   state.spans = spans;
+  const deOnly = (state.lang === "de");
   for (const v of verses) {
     const node = el("article", { id: v.id, className: "verse", tabIndex: 0 },
       el("span", { className: "verse-mark", textContent: prettyVerseTitle(v.title) })
     );
     const de = v.byLang.de ?? "";
-    const ownTr = v.byLang[state.lang];
-    const spanFrom = !ownTr ? spans[state.lang]?.[v.id] : null;
-    const trText = ownTr
-      ?? (spanFrom && verses.find(x => x.id === spanFrom)?.byLang[state.lang])
-      ?? v.byLang.en ?? "";
     const pDe = el("p", { className: "de" }); pDe.innerHTML = safeHTML(de);
-    const pTr = el("p", { className: "tr" }); pTr.innerHTML = safeHTML(trText);
-    if (spanFrom) {
-      pTr.classList.add("span-continuation");
-      const mark = el("span", { className: "span-mark",
-        textContent: `↑ continues from ${prettyVerseTitle(verses.find(x => x.id === spanFrom)?.title || spanFrom)}` });
-      mark.title = "This translator paragraph spans multiple verses of the German source. " +
-                   "Sánchez Pascual / Henri Albert / Common (1909) wrote one paragraph " +
-                   "where Nietzsche set several short verses.";
-      pTr.prepend(mark);
+    node.append(pDe);
+    if (!deOnly) {
+      const ownTr = v.byLang[state.lang];
+      const spanFrom = !ownTr ? spans[state.lang]?.[v.id] : null;
+      const trText = ownTr
+        ?? (spanFrom && verses.find(x => x.id === spanFrom)?.byLang[state.lang])
+        ?? v.byLang.en ?? "";
+      const pTr = el("p", { className: "tr" }); pTr.innerHTML = safeHTML(trText);
+      if (spanFrom) {
+        pTr.classList.add("span-continuation");
+        const mark = el("span", { className: "span-mark",
+          textContent: `↑ continues from ${prettyVerseTitle(verses.find(x => x.id === spanFrom)?.title || spanFrom)}` });
+        mark.title = "This translator paragraph spans multiple verses of the German source. " +
+                     "Sánchez Pascual / Henri Albert / Common (1909) wrote one paragraph " +
+                     "where Nietzsche set several short verses.";
+        pTr.prepend(mark);
+      }
+      node.append(pTr);
     }
-    node.append(pDe, pTr);
     // Mobile-only inline commentary: shown when viewport is too narrow
     // for the radial Talmudic margins. Hidden by CSS on desktop.
     const inline = el("div", { className: "mobile-notes" });
@@ -455,27 +473,31 @@ function fillMobileNotes() {
     if (stream._disabled || key.startsWith("_")) continue;
     for (const n of stream.notes) {
       if (!verseIds.has(n.target)) continue;
-      const body = n[state.lang];
+      const { text: body, srcLang } = resolveNoteBody(n, stream, state.lang);
       if (!body) continue;
-      (byVerse[n.target] ||= []).push({ key, stream, note: n, body });
+      (byVerse[n.target] ||= []).push({ key, stream, note: n, body, srcLang });
     }
   }
   for (const [vid, items] of Object.entries(byVerse)) {
     const host = document.querySelector(`.verse[id="${CSS.escape(vid)}"] .mobile-notes`);
     if (!host) continue;
-    for (const { key, stream, note, body } of items) {
+    for (const { key, stream, note, body, srcLang } of items) {
       const card = el("div", { className: "mobile-note" });
       card.style.setProperty("--stream", stream.color);
       const head = el("span", { className: "mobile-note-stream",
-        textContent: stream.label[state.lang] || key });
+        textContent: stream.label[state.lang] || stream.label.en || key });
       if (stream.bibliographic) head.title = stream.bibliographic;
-      if (stream._origin && stream._origin !== state.lang) {
-        head.append(el("span", { className: "origin-badge",
-          textContent: ` ${FLAGS[stream._origin]||""} ${stream._origin.toUpperCase()}` }));
+      if (srcLang !== state.lang) {
+        const badge = el("span", { className: "origin-badge",
+          textContent: ` ${FLAGS[srcLang]||""} ${srcLang.toUpperCase()}` });
+        badge.title = "Note shown in " + (LANG_NAMES_UI[srcLang] || srcLang.toUpperCase()) +
+                      " — no " + (LANG_NAMES_UI[state.lang] || state.lang.toUpperCase()) +
+                      " translation available yet.";
+        head.append(badge);
       }
       if (note._audit_flag === "weak") card.classList.add("weak");
       const text = el("span", { className: "mobile-note-body" });
-      text.innerHTML = enrichNote(safeHTML(body.replace(/\n/g," ")), state.lang);
+      text.innerHTML = enrichNote(safeHTML(body.replace(/\n/g," ")), srcLang);
       card.append(head, text);
       host.append(card);
     }
@@ -525,7 +547,7 @@ function renderStrata() {
     div.append(stratumLabel);
     streamMetaLines(stream).forEach(node => div.append(node));
     for (const n of stream.notes) {
-      const bodyText = n[state.lang];
+      const { text: bodyText, srcLang } = resolveNoteBody(n, stream, state.lang);
       if (!bodyText) continue;
       const note = el("div", { className: "note" });
       note.dataset.target = n.target;
@@ -536,8 +558,16 @@ function renderStrata() {
         nn.title = "Original footnote number in Sánchez Pascual (Alianza, 1972).";
         tag.append(" ", nn);
       }
+      if (srcLang !== state.lang) {
+        const flag = el("span", { className: "note-srclang",
+          textContent: `${FLAGS[srcLang]||""} ${srcLang.toUpperCase()}` });
+        flag.title = "Shown in " + (LANG_NAMES_UI[srcLang] || srcLang.toUpperCase()) +
+                     " — no " + (LANG_NAMES_UI[state.lang] || state.lang.toUpperCase()) +
+                     " translation available yet.";
+        tag.append(" ", flag);
+      }
       const body = el("span", { className: "body" });
-      body.innerHTML = enrichNote(safeHTML(bodyText.replace(/\n/g," ")), state.lang);
+      body.innerHTML = enrichNote(safeHTML(bodyText.replace(/\n/g," ")), srcLang);
       note.append(tag, body);
       if (n._audit_flag === "weak") {
         note.classList.add("weak");
@@ -570,9 +600,17 @@ function renderStream(key, stream) {
     const note = el("div", { className: "note" });
     note.dataset.target = n.target;
     note.dataset.stream = key;
-    const tag = el("span", { className: "target-tag", textContent: n.target });
-    const bodyText = n[state.lang];
-    if (!bodyText) continue;   // no English fallback for non-EN readers
+    const tag = el("span", { className: "target-tag", textContent: shortVerseLabel(n.target) });
+    const { text: bodyText, srcLang } = resolveNoteBody(n, stream, state.lang);
+    if (!bodyText) continue;
+    if (srcLang !== state.lang) {
+      const flag = el("span", { className: "note-srclang",
+        textContent: `${FLAGS[srcLang]||""} ${srcLang.toUpperCase()}` });
+      flag.title = "Shown in " + (LANG_NAMES_UI[srcLang] || srcLang.toUpperCase()) +
+                   " — no " + (LANG_NAMES_UI[state.lang] || state.lang.toUpperCase()) +
+                   " translation available yet.";
+      tag.append(" ", flag);
+    }
     if (n.term) {
       const termText = (typeof n.term === "object") ? (n.term[state.lang] || "") : n.term;
       if (termText) {
@@ -585,7 +623,7 @@ function renderStream(key, stream) {
       note.append(tag);
     }
     const body = el("span", { className: "body" });
-    body.innerHTML = enrichNote(safeHTML(bodyText.replace(/\n/g," ")), state.lang);
+    body.innerHTML = enrichNote(safeHTML(bodyText.replace(/\n/g," ")), srcLang);
     note.append(body);
     if (n._audit_flag === "weak") {
       note.classList.add("weak");

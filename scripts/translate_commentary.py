@@ -23,11 +23,14 @@ PROJ  = Path("/Volumes/X10 Pro/Zarathustra/zarathustra-pt")
 COMM  = PROJ / "source" / "commentary.json"
 CACHE = PROJ / "source" / ".translation-cache.json"
 
-# Streams whose en/fr/es fields are duplicated source-language text (needing real translation)
+# Streams that needed initial translation away from a single source language
 RAG_STREAMS = {"klossowski", "deleuze", "sanchez-meca", "new-cambridge",
                "sp-introduction", "sanchez-pascual-notes"}
 
-LANG_NAME = {"en": "English", "fr": "French", "es": "Spanish"}
+# All four reader languages — DE is a target now so the reader can see
+# notes when reading the German Urtext side without any translation pairing.
+LANG_NAME = {"en": "English", "fr": "French", "es": "Spanish", "de": "German"}
+TARGET_LANGS = ("en", "fr", "es", "de")
 
 MODEL = "gemini-2.5-flash"
 BATCH = 4       # notes per API call
@@ -91,17 +94,21 @@ def main():
 
     todo: list[tuple] = []  # (stream, idx, src_lang, tgt_lang, text, cache_key)
     for sname, stream in data["streams"].items():
-        if sname not in RAG_STREAMS: continue
-        src = stream.get("_origin")
-        if not src: continue
+        if sname.startswith("_"): continue
+        # Pick a source language to translate from. RAG streams have an
+        # explicit _origin; hand-curated multilingual streams (philology,
+        # crossref) fall back to EN as the canonical source for translation.
+        src = stream.get("_origin") or "en"
         for i, n in enumerate(stream["notes"]):
-            origin_text = n.get(src, "")
+            origin_text = n.get(src, "") or n.get("en") or n.get("fr") or n.get("es")
             if not origin_text: continue
             # Hash-based cache key so caching survives changes in corpus_idx
             h = hashlib.sha1(origin_text.encode("utf-8")).hexdigest()[:12]
             n[src] = origin_text  # canonicalise
-            for tgt in ("en", "fr", "es"):
+            for tgt in TARGET_LANGS:
                 if tgt == src: continue
+                # Skip if target already has a non-empty value
+                if n.get(tgt): continue
                 ck = f"{src}->{tgt}::{h}"
                 if ck in cache:
                     n[tgt] = cache[ck]

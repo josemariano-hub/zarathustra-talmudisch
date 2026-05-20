@@ -116,6 +116,55 @@ body.landing {
   transition: .25s ease;
 }
 .lang-btn:hover { background: #fffaea; border-color: var(--accent); transform: translateY(-2px); }
+
+/* Prominent "Read in the German Urtext" button — the canonical mode */
+.lang-btn-de {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 1.2rem;
+  align-items: center;
+  padding: 1.6rem 1.8rem;
+  margin: 0 auto 1.5rem;
+  max-width: 580px;
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--accent) 14%, var(--paper)) 0%,
+    color-mix(in srgb, var(--accent) 6%, var(--paper-deep)) 100%);
+  border: 2px solid var(--accent);
+  text-decoration: none;
+  color: var(--ink);
+  transition: .25s ease;
+  box-shadow: 0 8px 24px -12px rgba(0,0,0,.25);
+}
+.lang-btn-de:hover {
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--accent) 22%, var(--paper)) 0%,
+    color-mix(in srgb, var(--accent) 10%, var(--paper-deep)) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px -10px rgba(0,0,0,.32);
+}
+.lang-btn-de .flag {
+  grid-row: 1 / span 2;
+  font-size: 2.6rem;
+}
+.lang-btn-de .name {
+  font-size: 1.45rem;
+  font-style: italic;
+  font-weight: 500;
+  color: var(--accent);
+}
+.lang-btn-de .hint {
+  font-size: .8rem;
+  color: var(--ink-soft);
+  letter-spacing: .05em;
+  font-variant: small-caps;
+}
+@media (max-width: 600px) {
+  .lang-btn-de { padding: 1.1rem 1.2rem; column-gap: .9rem; }
+  .lang-btn-de .flag { font-size: 2rem; }
+  .lang-btn-de .name { font-size: 1.15rem; }
+  .lang-btn-de .hint { font-size: .72rem; }
+}
 .lang-btn .flag { font-size: 1.6rem; }
 .lang-btn .name { font-size: 1.2rem; font-style: italic; }
 .lang-btn .hint { font-size: .7rem; color: var(--ink-faint); letter-spacing: .05em; }
@@ -426,6 +475,17 @@ body.reader { background: var(--paper); overflow: hidden; height: 100vh; }
   opacity: .8;
   cursor: help;
   margin-left: .15em;
+}
+.note-srclang {
+  font-size: .55rem;
+  letter-spacing: .05em;
+  color: var(--ink-faint);
+  opacity: .85;
+  cursor: help;
+  margin-left: .15em;
+  padding: 0 .25em;
+  background: color-mix(in srgb, var(--ink) 5%, transparent);
+  border-radius: 2px;
 }
 .note.weak { opacity: .65; }
 .note.weak.is-active { opacity: 1; }
