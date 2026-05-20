@@ -368,7 +368,16 @@ function renderLangToggle() {
   const langs = [["en","EN"],["fr","FR"],["es","ES"]];
   const chParam = state.chapterId ? `&ch=${state.chapterId}` : "";
   for (const [code,label] of langs) {
+    // href has the chapter; the click handler appends the current verse
+    // hash so switching language keeps the reader on the same verse.
     const a = el("a", { href: `?lang=${code}${chParam}`, textContent: label });
+    a.addEventListener("click", (e) => {
+      const v = state.activeVerse;
+      if (v) {
+        e.preventDefault();
+        location.href = `?lang=${code}${chParam}#${v}`;
+      }
+    });
     if (code === state.lang) a.className = "active";
     target.append(a);
   }
