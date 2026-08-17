@@ -179,3 +179,95 @@ print("  envelope; the fat pipe goes in the van where Z2I already owns it; Iridi
 print("  flies as a 30 g beacon so the search asset can always be found; and the")
 print("  architecture stays autonomous so no link is ever load-bearing.")
 hr()
+
+# ================================================================ 7. LTE primary
+print()
+hr()
+print("  LTE AS PRIMARY TELEMETRY - the architecture (decision: SIM card is the main link)")
+hr()
+print("""
+[7] LINK STACK
+
+        AIRCRAFT                                    VAN
+        --------                                    ---
+        ArduPilot (Pixhawk)                         GCS laptop (QGC/Mission Planner)
+             | serial                                    |
+        Pi Zero 2 W  --- mavlink-router                  |
+             | USB                                       |
+        LTE modem (Quectel EC25 / SIM7600) ==== WireGuard tunnel ==== Starlink or own SIM
+             |
+        multi-carrier IoT SIM
+
+        ELRS 868   : retained - manual RC for launch/landing, last-ditch failsafe
+        Iridium SBD: retained - position beacon, works where nothing else does
+        Onboard log: retained - the mission NEVER depends on any link (Ukraine rule)
+
+    MAVLink-over-LTE is a mature pattern; the Pi already in the BOM is the router.
+    The link the RF telemetry could never give you: live 1 fps thermal preview to
+    the van, so the operator marks hotspots DURING the sortie, not after it.
+""")
+
+print("[8] DATA BUDGET - computed\n")
+mav_bps   = 4 * 300 * 8            # 4 Hz MAVLink, ~300 B/burst
+prev_bps  = 1 * 40e3 * 8           # 1 fps Boson JPEG, ~40 kB
+tot_kbps  = (mav_bps + prev_bps) / 1e3
+night_gb  = (mav_bps + prev_bps) / 8 * 7.4 * 3600 / 1e9
+print(f"    MAVLink telemetry, 4 Hz:            {mav_bps/1e3:6.1f} kbps")
+print(f"    Thermal preview, 1 fps JPEG:        {prev_bps/1e3:6.1f} kbps")
+print(f"    Total sustained:                    {tot_kbps:6.1f} kbps  (rural LTE uplink: 5,000-20,000 kbps)")
+print(f"    Whole 7.4 h August night:           {night_gb:6.2f} GB   (a 10-15 EUR/mo IoT SIM shrugs)")
+assert tot_kbps < 1000 and night_gb < 3
+
+print("""
+[9] COVERAGE HONESTY, AND THE TWO MITIGATIONS THAT MATTER
+
+    Rural Meseta LTE is good on the llanura and unreliable in barrancos. Two fixes:
+
+    - MULTI-CARRIER IoT ROAMING SIM, not a consumer SIM. It attaches to the
+      strongest of Movistar/Orange/Vodafone instead of being married to one
+      network's coverage map. 10-15 EUR/mo. This is the single highest-value
+      line in the whole comms architecture.
+    - At 120 m the modem sees MANY towers - expect handover churn and weak-uplink
+      grief the ground never shows you. Band-locking the modem (B20/B3 rural
+      workhorses in Spain) after the first test flight calms it down.
+
+    And the gaps that remain are covered by design: Iridium beacons position
+    through them, and the mission does not need the link anyway.
+
+[10] FAILSAFE MATRIX - no path may require the link that just failed
+
+    event                     aircraft behaviour
+    ---------------------     ------------------------------------------------
+    LTE drops                 mission continues; logs onboard; LTE auto-rejoins
+    ELRS out of range         mission continues (normal beyond ~2 km anyway)
+    LTE + ELRS both lost      complete mission, then RTL; Iridium still beacons
+    GPS degraded/lost         ArduPilot dead-reckoning (airspeed+compass+baro) home
+    battery failsafe          RTL at reserve threshold, overrides everything
+
+    Configure once, test in daylight: one full sortie flown on LTE alone with
+    ELRS deliberately powered off is the gate before any night operation.
+
+[11] SECURITY - one rule
+
+    MAVLink is never exposed raw on the internet. The modem talks only through
+    the WireGuard tunnel to the van; trust lives in the keys, not in the SIM or
+    the carrier. (Tailscale is the zero-config way to get exactly this.)
+
+[12] BOM DELTA - LTE promoted from thumbnail path to primary
+""")
+LTE_DELTA = [
+    ("Quectel EC25/SIM7600 modem HAT + diversity antennas",   95),
+    ("Multi-carrier IoT roaming SIM (setup + first months)",  45),
+    ("(replaces) consumer USB dongle + SIM from section 6",  -70),
+]
+d = sum(v for _, v in LTE_DELTA)
+for k, v in LTE_DELTA:
+    print(f"      {k:<56}{v:>+7,}E")
+print(f"      {'NET DELTA':<56}{d:>+7,}E")
+print(f"      Night sweeper total: 3,470 -> {3470+d:,} EUR")
+print()
+hr()
+print("  ARCHITECTURE, FINAL: LTE carries the mission, ELRS carries the landing,")
+print("  Iridium carries the worst day, the SD card carries the data, and the van")
+print("  carries everything heavy. No link is load-bearing; every link is cheap.")
+hr()

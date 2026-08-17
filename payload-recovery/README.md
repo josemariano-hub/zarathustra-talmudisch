@@ -241,7 +241,17 @@ downlink never load-bearing; GNSS is a service — enable ArduPilot dead reckoni
 and-many beats exquisite-and-one — carry a €275 built spare airframe; logistics set sortie
 rate; the cheap FPV supply chain is wartime-scaled — buy spares while it is glutted.
 
-Delta: +€605 (beacon, 4G modem, spare airframe) → night sweeper **€3,470** all-in.
+**Decision: LTE (SIM card) is the primary telemetry.** Stack: Pixhawk → Pi Zero 2 W
+(mavlink-router) → EC25/SIM7600 modem → WireGuard → GCS in the van. Data budget: 330 kbps
+sustained (4 Hz MAVLink + 1 fps thermal preview) vs 5–20 Mbps rural uplink; 1.1 GB per
+full August night. Use a **multi-carrier IoT roaming SIM** (attaches to the strongest of
+Movistar/Orange/Vodafone), band-lock after the first flight (many-towers handover churn at
+120 m). ELRS retained for launch/landing + failsafe; Iridium retained as beacon; SD card
+means no link is ever load-bearing; MAVLink never raw on the internet (WireGuard only).
+Gate before night ops: one daylight sortie on LTE alone with ELRS off.
+
+Delta: +€605 (beacon, modem, spare airframe) +€70 (LTE-primary upgrade) →
+night sweeper **€3,540** all-in.
 
 **Verdict: ~€6,130 + ~90 h for both.** Build A (nothing touches its cost-per-km² if hours
 are free, and it out-resolves everything in this repo); skip B and buy the used M3T —

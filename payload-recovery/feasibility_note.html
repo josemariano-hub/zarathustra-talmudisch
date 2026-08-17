@@ -813,7 +813,17 @@ footer p{margin:0 0 8px}
       <li><strong>Logistics set the sortie rate.</strong> Batteries, chargers and field watts govern coverage &mdash; the same law the battery section quantified. The van's power budget is mission infrastructure.</li>
       <li><strong>The BOM's cheapness is the war's supply chain.</strong> ELRS links, Pixhawk clones and Li-ion at these prices exist because that ecosystem scaled to wartime volume. Order spares while it is glutted.</li>
     </ul>
-    <p class="lead">Delta to the build: Iridium beacon &euro;260, 4G thumbnail modem &euro;70, spare airframe &euro;275 &mdash; night sweeper goes from &euro;2,865 to <strong>&euro;3,470</strong>, with Starlink at &euro;0 because it stays in the van you already own.</p>
+    <h3>Decision: the SIM card is the primary telemetry</h3>
+    <p>LTE promoted from thumbnail path to main link &mdash; and the numbers endorse it. MAVLink at 4&nbsp;Hz plus a 1&nbsp;fps thermal preview totals <strong>330&nbsp;kbps sustained against a rural uplink of 5&ndash;20&nbsp;Mbps</strong>; a full 7.4-hour August night moves 1.1&nbsp;GB, which a &euro;10&ndash;15/month IoT SIM shrugs at. And it adds the one thing the RF link never had: <strong>live thermal preview to the van, so the operator marks hotspots during the sortie rather than after it.</strong></p>
+    <div class="spec"><dl>
+      <dt>Stack</dt><dd>Pixhawk &rarr; Pi Zero 2 W (mavlink-router) &rarr; EC25/SIM7600 modem<br>&rarr; WireGuard tunnel &rarr; GCS in the van (on Starlink)</dd>
+      <dt>ELRS 868</dt><dd>retained &mdash; manual RC for launch/landing, last-ditch failsafe</dd>
+      <dt>Iridium</dt><dd>retained &mdash; position beacon through coverage gaps</dd>
+      <dt>SD card</dt><dd>retained &mdash; the mission never depends on any link</dd>
+    </dl></div>
+    <p>Two field realities and their fixes: rural Meseta LTE is good on the llanura and unreliable in barrancos, so use a <strong>multi-carrier IoT roaming SIM</strong> that attaches to the strongest of Movistar/Orange/Vodafone rather than a consumer SIM married to one coverage map &mdash; the single highest-value line in this architecture. And at 120&nbsp;m the modem sees many towers at once; expect handover churn and band-lock the modem (B20/B3) after the first test flight.</p>
+    <p>The failsafe matrix keeps the Ukraine rule intact &mdash; no failsafe path may require the link that just failed: LTE drops &rarr; mission continues on autonomy; both links lost &rarr; complete mission then RTL, Iridium still beaconing; GPS lost &rarr; dead-reckon home. Security is one rule: MAVLink is never raw on the internet &mdash; everything rides the WireGuard tunnel, trust lives in keys, not the SIM. Gate before the first night op: <strong>one daylight sortie flown on LTE alone with ELRS deliberately off.</strong></p>
+    <p class="lead">Build delta: proper modem HAT + diversity antennas + IoT SIM replaces the consumer dongle for a net +&euro;70 &mdash; night sweeper lands at <strong>&euro;3,540 all-in</strong>. The final architecture in one sentence: LTE carries the mission, ELRS carries the landing, Iridium carries the worst day, the SD card carries the data, and the van carries everything heavy.</p>
   </div>
 </section>
 
