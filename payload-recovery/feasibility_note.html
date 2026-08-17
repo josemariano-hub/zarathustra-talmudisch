@@ -1,0 +1,427 @@
+<title>Porexpan from Orbit</title>
+<style>
+:root{
+  --ground:#F4F5F6; --surface:#FFFFFF; --surface-2:#EDEFF1;
+  --ink:#16191C; --ink-soft:#59616A; --ink-faint:#89929B;
+  --rule:#DBE0E4; --rule-soft:#E8ECEF;
+  --accent:#B26A12; --accent-soft:#F0E2CC; --accent-ink:#7C4A0B;
+  --deep:#1F4E6B; --deep-soft:#DFEAF1;
+  --good:#2E6F4E; --warn:#B26A12; --bad:#A33A2A;
+  --target:#FFFFFF; --target-edge:#B9C0C6; --shadow:#3A4249;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#0F1214; --surface:#171B1E; --surface-2:#1E2327;
+    --ink:#E8EAEC; --ink-soft:#9AA3AA; --ink-faint:#6E777E;
+    --rule:#2A3034; --rule-soft:#22282C;
+    --accent:#E0A040; --accent-soft:#3A2E1B; --accent-ink:#E9BC72;
+    --deep:#6FB3D6; --deep-soft:#16303E;
+    --good:#5FA97F; --warn:#E0A040; --bad:#D4705C;
+    --target:#FFFFFF; --target-edge:#5C666D; --shadow:#080A0B;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0F1214; --surface:#171B1E; --surface-2:#1E2327;
+  --ink:#E8EAEC; --ink-soft:#9AA3AA; --ink-faint:#6E777E;
+  --rule:#2A3034; --rule-soft:#22282C;
+  --accent:#E0A040; --accent-soft:#3A2E1B; --accent-ink:#E9BC72;
+  --deep:#6FB3D6; --deep-soft:#16303E;
+  --good:#5FA97F; --warn:#E0A040; --bad:#D4705C;
+  --target:#FFFFFF; --target-edge:#5C666D; --shadow:#080A0B;
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--ground); color:var(--ink);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:17px; line-height:1.62;
+  margin:0; padding:0;
+  -webkit-font-smoothing:antialiased;
+}
+.ui{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}
+
+.wrap{max-width:1080px; margin:0 auto; padding:0 28px 96px}
+.col{max-width:68ch}
+
+/* ---------- hero ---------- */
+header{
+  border-bottom:1px solid var(--rule);
+  background:var(--surface);
+  padding:56px 0 44px; margin-bottom:48px;
+}
+header .wrap{display:flex; flex-direction:column; gap:28px}
+.eyebrow{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size:11.5px; font-weight:600; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-faint);
+}
+h1{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size:clamp(32px,5.2vw,52px); font-weight:700; letter-spacing:-.025em; line-height:1.06;
+  text-wrap:balance; margin:0; max-width:19ch;
+}
+.standfirst{font-size:20px; line-height:1.5; color:var(--ink-soft); max-width:60ch; margin:0}
+
+.verdict{
+  display:flex; flex-wrap:wrap; gap:0;
+  border:1px solid var(--rule); border-radius:3px; overflow:hidden;
+  background:var(--ground);
+}
+.verdict div{
+  flex:1 1 190px; padding:16px 20px;
+  border-right:1px solid var(--rule);
+  display:flex; flex-direction:column; gap:5px;
+}
+.verdict div:last-child{border-right:0}
+.verdict dt{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size:10.5px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-faint);
+}
+.verdict dd{
+  margin:0; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-size:23px; font-weight:600; letter-spacing:-.02em; font-variant-numeric:tabular-nums;
+}
+.verdict small{font-size:12.5px; color:var(--ink-soft); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif; line-height:1.35}
+
+/* ---------- the dipole motif ---------- */
+.dipole{display:block; width:100%; max-width:520px; height:auto}
+
+/* ---------- sections ---------- */
+section{margin:0 0 56px}
+h2{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size:13px; font-weight:600; letter-spacing:.13em; text-transform:uppercase;
+  color:var(--accent-ink); margin:0 0 6px; padding-bottom:9px;
+  border-bottom:1px solid var(--rule);
+}
+h3{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size:23px; font-weight:650; letter-spacing:-.018em; line-height:1.22;
+  margin:26px 0 10px; text-wrap:balance;
+}
+h3:first-of-type{margin-top:20px}
+p{margin:0 0 15px}
+.lead{font-size:18.5px; color:var(--ink-soft)}
+strong{font-weight:700}
+a{color:var(--deep)}
+
+/* ---------- tables ---------- */
+.scroller{overflow-x:auto; margin:20px 0 12px; border:1px solid var(--rule); border-radius:3px; background:var(--surface)}
+table{border-collapse:collapse; width:100%; font-size:14px; min-width:560px}
+th,td{padding:9px 14px; text-align:left; border-bottom:1px solid var(--rule-soft); white-space:nowrap}
+thead th{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-size:10.5px; font-weight:600; letter-spacing:.09em; text-transform:uppercase;
+  color:var(--ink-faint); background:var(--surface-2); border-bottom:1px solid var(--rule);
+  position:sticky; top:0;
+}
+tbody tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-variant-numeric:tabular-nums}
+td.name{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif; font-size:13.5px}
+tr.hi td{background:var(--accent-soft)}
+tr.dim td{color:var(--ink-faint)}
+
+.pill{
+  display:inline-block; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-size:10.5px; font-weight:650; letter-spacing:.07em; text-transform:uppercase;
+  padding:3px 8px; border-radius:2px; border:1px solid currentColor; line-height:1.3;
+}
+.p-yes{color:var(--good)} .p-mid{color:var(--warn)} .p-no{color:var(--bad)}
+
+caption{
+  caption-side:bottom; text-align:left; padding:10px 14px;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-size:12.5px; color:var(--ink-faint); line-height:1.45; white-space:normal;
+  border-top:1px solid var(--rule-soft);
+}
+
+/* ---------- callout ---------- */
+.note{
+  border-left:2px solid var(--accent); background:var(--surface);
+  padding:16px 20px; margin:22px 0; border-radius:0 3px 3px 0;
+}
+.note p:last-child{margin-bottom:0}
+.note .tag{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-size:10.5px; font-weight:650; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--accent-ink); display:block; margin-bottom:6px;
+}
+
+/* ---------- ordered plan ---------- */
+ol.plan{list-style:none; counter-reset:step; padding:0; margin:22px 0; display:flex; flex-direction:column; gap:0}
+ol.plan li{
+  counter-increment:step; position:relative;
+  padding:18px 0 18px 58px; border-bottom:1px solid var(--rule-soft);
+}
+ol.plan li:last-child{border-bottom:0}
+ol.plan li::before{
+  content:counter(step,decimal-leading-zero);
+  position:absolute; left:0; top:18px;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-size:13px; font-weight:600; color:var(--accent); font-variant-numeric:tabular-nums;
+}
+ol.plan h4{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-size:16.5px; font-weight:650; margin:0 0 5px; letter-spacing:-.01em;
+}
+ol.plan p{margin:0; font-size:16px; color:var(--ink-soft)}
+
+/* ---------- spec block ---------- */
+.spec{
+  background:var(--surface); border:1px solid var(--rule); border-radius:3px;
+  padding:22px 24px; margin:22px 0;
+}
+.spec dl{display:grid; grid-template-columns:auto 1fr; gap:9px 22px; margin:0; font-size:14.5px}
+.spec dt{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-size:11px; font-weight:600; letter-spacing:.09em; text-transform:uppercase;
+  color:var(--ink-faint); padding-top:4px; white-space:nowrap;
+}
+.spec dd{margin:0; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:14px; line-height:1.5}
+
+ul.tight{padding-left:20px; margin:12px 0}
+ul.tight li{margin-bottom:7px}
+
+footer{border-top:1px solid var(--rule); margin-top:20px; padding-top:22px; font-size:13.5px; color:var(--ink-faint)}
+footer p{margin:0 0 8px}
+
+@media (max-width:640px){
+  body{font-size:16px}
+  .wrap{padding:0 18px 64px}
+  .spec dl{grid-template-columns:1fr; gap:3px 0}
+  .spec dt{padding-top:12px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important}}
+</style>
+
+<header>
+  <div class="wrap">
+    <span class="eyebrow">Zero 2 Infinity &middot; Payload recovery &middot; Feasibility note</span>
+    <h1>Can a satellite find a 70&nbsp;cm white sphere in a Spanish field?</h1>
+    <p class="standfirst">Short answer: yes &mdash; comfortably at 30&nbsp;cm, marginally at 50&nbsp;cm. But the hard part was never seeing it. It is telling it apart from every other white blob in the Meseta.</p>
+
+    <svg class="dipole" viewBox="0 0 520 130" role="img" aria-labelledby="dipole-t">
+      <title id="dipole-t">The detection signature: a bright sphere with an elongated shadow trailing away from the sun</title>
+      <defs>
+        <radialGradient id="sph" cx="38%" cy="32%" r="72%">
+          <stop offset="0%" stop-color="#ffffff"/>
+          <stop offset="62%" stop-color="#EDEFF1"/>
+          <stop offset="100%" stop-color="#AEB6BC"/>
+        </radialGradient>
+      </defs>
+      <!-- ground grid = 30 cm pixels -->
+      <g stroke="var(--rule)" stroke-width="1" opacity="0.85">
+        <path d="M40 20 H480 M40 42 H480 M40 64 H480 M40 86 H480 M40 108 H480"/>
+        <path d="M40 20 V108 M62 20 V108 M84 20 V108 M106 20 V108 M128 20 V108 M150 20 V108 M172 20 V108 M194 20 V108 M216 20 V108 M238 20 V108 M260 20 V108 M282 20 V108 M304 20 V108 M326 20 V108 M348 20 V108 M370 20 V108 M392 20 V108 M414 20 V108 M436 20 V108 M458 20 V108 M480 20 V108"/>
+      </g>
+      <!-- shadow -->
+      <ellipse cx="252" cy="70" rx="62" ry="15" fill="var(--shadow)" opacity="0.55" transform="rotate(-6 252 70)"/>
+      <!-- sphere -->
+      <circle cx="188" cy="64" r="21" fill="url(#sph)" stroke="var(--target-edge)" stroke-width="1"/>
+      <!-- annotation -->
+      <g class="ui" fill="var(--ink-faint)" font-size="10.5" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" letter-spacing="0.9">
+        <text x="188" y="30" text-anchor="middle">4.3 px BRIGHT</text>
+        <text x="300" y="103" text-anchor="middle">5.1 px SHADOW</text>
+        <text x="40" y="124">1 cell = 30 cm &middot; Pl&eacute;iades Neo</text>
+      </g>
+      <g stroke="var(--accent)" stroke-width="1.2" fill="none">
+        <path d="M188 36 V41"/><path d="M300 96 V84"/>
+      </g>
+    </svg>
+
+    <dl class="verdict">
+      <div><dt>Apparent reflectance</dt><dd>0.59</dd><small>Not 0.80 &mdash; curvature costs you 27%</small></div>
+      <div><dt>Contrast on dry soil</dt><dd>0.24</dd><small>&Delta;&rho; at 30 cm, after atmosphere</small></div>
+      <div><dt>Shadow, December</dt><dd>1.65 m</dd><small>The shadow is the bigger target</small></div>
+      <div><dt>Candidates to check</dt><dd>~143</dd><small>50 km&sup2;, with a before-baseline</small></div>
+    </dl>
+  </div>
+</header>
+
+<div class="wrap">
+
+<section class="col">
+  <h2>The target</h2>
+  <h3>A sphere is not a white panel</h3>
+  <p>The instinct is to treat a 70&nbsp;cm white porexpan ball as a 0.385&nbsp;m&sup2; patch of albedo&nbsp;0.80. It is not. A Lambertian sphere scatters flux across a curved surface, and only part of that curvature is simultaneously lit and facing the sensor. Integrating the lit-and-visible cap gives an <em>apparent</em> reflectance over the sphere's projected footprint of</p>
+  <div class="spec"><dl>
+    <dt>&rho;<sub>eff</sub></dt><dd>0.53 &ndash; 0.59 &nbsp; (sun high &rarr; sun low)</dd>
+    <dt>vs. flat panel</dt><dd>67% &ndash; 73% of the material albedo</dd>
+    <dt>Footprint</dt><dd>0.385 m&sup2; &nbsp;=&nbsp; 4.3 px at 30 cm, 1.5 px at 50 cm</dd>
+  </dl></div>
+  <p>So you lose about a quarter of the brightness you might have budgeted for. It still does not matter much &mdash; against dry Meseta soil at &rho;&nbsp;&asymp;&nbsp;0.20 the surface contrast is roughly 0.39 reflectance units, and about 0.24 after atmospheric attenuation. That is an enormous signal. Sensor noise is nowhere near the limiting factor: Pl&eacute;iades Neo's noise-equivalent contrast is around 0.0013, some 180&times; smaller than the signal.</p>
+
+  <h3>The shadow is the bigger target</h3>
+  <p>A sphere sitting on soil stands 0.70&nbsp;m proud of the ground, and for most of the year in central Spain its shadow presents more pixels than the sphere itself. At a typical 10:30 local-solar overpass at latitude&nbsp;40.4&deg;N:</p>
+</section>
+
+<div class="scroller">
+  <table>
+    <caption>Shadow geometry through the year. The winter shadow is three to four times the area of the sphere's own footprint &mdash; and it is the feature that distinguishes a sphere from flat white plastic, which casts none.</caption>
+    <thead><tr><th>Month</th><th class="num">Sun elevation</th><th class="num">Shadow length</th><th class="num">Shadow area</th><th class="num">px @ 30 cm</th><th class="num">px @ 50 cm</th></tr></thead>
+    <tbody>
+      <tr class="hi"><td class="name">January</td><td class="num">25.2&deg;</td><td class="num">1.49 m</td><td class="num">0.82 m&sup2;</td><td class="num">9.1</td><td class="num">3.3</td></tr>
+      <tr><td class="name">March</td><td class="num">43.1&deg;</td><td class="num">0.75 m</td><td class="num">0.41 m&sup2;</td><td class="num">4.6</td><td class="num">1.6</td></tr>
+      <tr class="dim"><td class="name">June</td><td class="num">64.3&deg;</td><td class="num">0.34 m</td><td class="num">0.18 m&sup2;</td><td class="num">2.1</td><td class="num">0.7</td></tr>
+      <tr class="dim"><td class="name">August</td><td class="num">56.7&deg;</td><td class="num">0.46 m</td><td class="num">0.25 m&sup2;</td><td class="num">2.8</td><td class="num">1.0</td></tr>
+      <tr><td class="name">October</td><td class="num">35.8&deg;</td><td class="num">0.97 m</td><td class="num">0.53 m&sup2;</td><td class="num">5.9</td><td class="num">2.1</td></tr>
+      <tr class="hi"><td class="name">December</td><td class="num">22.9&deg;</td><td class="num">1.65 m</td><td class="num">0.91 m&sup2;</td><td class="num">10.1</td><td class="num">3.6</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<section class="col">
+  <div class="note">
+    <span class="tag">Operational consequence</span>
+    <p>Ask for a <strong>low sun elevation</strong> acquisition, not a high one. The usual instinct is to want the brightest, most overhead illumination; here the opposite is true. A winter or shoulder-season image, or a late-afternoon pass, roughly triples the signature and adds a directional bright&ndash;dark dipole that is far more distinctive than a bright dot alone.</p>
+  </div>
+</section>
+
+<section>
+  <div class="col">
+    <h2>Sensor selection</h2>
+    <h3>What each option actually delivers</h3>
+    <p>The number that matters is not the marketing pixel size but the <em>effective resolution cell</em>. SkySat products are resampled to 50&nbsp;cm but the true ground sampling distance is 65&ndash;81&nbsp;cm, so the sphere shares a cell with a lot of soil.</p>
+  </div>
+  <div class="scroller">
+    <table>
+      <caption>Clean sphere on dry soil (&rho;=0.20), sun elevation 40&deg;. CCR is contrast-to-clutter in a co-registered before/after difference image, including a matched filter across the bright and shadow lobes.</caption>
+      <thead><tr><th>Sensor</th><th class="num">Product px</th><th class="num">True cell</th><th class="num">Bright px</th><th class="num">&Delta;&rho;</th><th class="num">CCR</th><th>Verdict</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td class="name">Pl&eacute;iades Neo &mdash; Airbus</td><td class="num">0.30 m</td><td class="num">0.30 m</td><td class="num">4.3</td><td class="num">0.238</td><td class="num">13.2</td><td><span class="pill p-yes">First choice</span></td></tr>
+        <tr><td class="name">Pl&eacute;iades 1A/1B &mdash; Airbus</td><td class="num">0.50 m</td><td class="num">0.70 m</td><td class="num">1.5</td><td class="num">0.150</td><td class="num">8.7</td><td><span class="pill p-mid">Workable</span></td></tr>
+        <tr><td class="name">SkySat &mdash; Planet</td><td class="num">0.50 m</td><td class="num">0.72 m</td><td class="num">1.5</td><td class="num">0.142</td><td class="num">8.3</td><td><span class="pill p-mid">Workable</span></td></tr>
+        <tr><td class="name">WorldView-3 / Legion &mdash; Maxar</td><td class="num">0.31 m</td><td class="num">0.31 m</td><td class="num">4.0</td><td class="num">0.238</td><td class="num">13.2</td><td><span class="pill p-yes">Equivalent</span></td></tr>
+        <tr class="dim"><td class="name">PlanetScope SuperDove</td><td class="num">3.00 m</td><td class="num">3.70 m</td><td class="num">0.03</td><td class="num">0.008</td><td class="num">0.9</td><td><span class="pill p-no">Cannot detect</span></td></tr>
+        <tr class="dim"><td class="name">Sentinel-2 &mdash; free</td><td class="num">10.0 m</td><td class="num">10.0 m</td><td class="num">0.004</td><td class="num">0.001</td><td class="num">0.2</td><td><span class="pill p-no">Cannot detect</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col">
+    <p>Two things to take from this. First, <strong>Pl&eacute;iades Neo is the right instrument</strong> &mdash; at 30&nbsp;cm the sphere is a genuine multi-pixel object with a resolvable shadow, not a single hot pixel, and its six bands give you a little spectral leverage on top. Second, <strong>PlanetScope will not find it</strong>. At 3&nbsp;m the sphere fills 4% of a pixel and lifts it by 0.008 in reflectance, which is below the day-to-day radiometric and co-registration stability of the archive. That is worth stating plainly, because the daily-revisit archive is the tempting free option and it will only waste time as a detector.</p>
+    <p>PlanetScope is still worth pulling, just for a different job: masking the search area down to plausible terrain, confirming which fields were harvested or ploughed between the flight and the acquisition, and checking cloud state on candidate dates. Use it to shrink and schedule, not to detect.</p>
+  </div>
+</section>
+
+<section>
+  <div class="col">
+    <h2>The actual problem</h2>
+    <h3>Discrimination, not detection</h3>
+    <p>Central Spain is full of bright compact objects around a metre across: white-wrapped silage bales, limestone float, plastic sheeting, agricultural debris, and a great many sheep. A single image gives you thousands of candidates in a 50&nbsp;km&sup2; box. The filters that actually work are temporal.</p>
+  </div>
+  <div class="scroller">
+    <table>
+      <caption>Candidate load over a 50 km&sup2; search box, Pl&eacute;iades Neo. Order-of-magnitude estimates of confuser density in Meseta farmland, cascaded through brightness, size, shadow, persistence and change-detection gates.</caption>
+      <thead><tr><th>Acquisition strategy</th><th class="num">Candidates</th><th>Dominant confuser</th></tr></thead>
+      <tbody>
+        <tr class="dim"><td class="name">1 image, no baseline</td><td class="num">5,573</td><td>Sheep</td></tr>
+        <tr><td class="name">2 images, no baseline</td><td class="num">2,040</td><td>Limestone float</td></tr>
+        <tr class="hi"><td class="name">2 images + archive &ldquo;before&rdquo;</td><td class="num">143</td><td>Sheep, fresh bales</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col">
+    <p>The archive baseline is what turns this from impossible into a morning's work. Anything already present before the flight &mdash; every rock, every permanent structure &mdash; subtracts away. Two post-landing dates then kill everything that moves. What survives is a short list of small, bright, sun-aligned dipoles that <em>appeared</em> in your window and <em>stayed put</em>, which is a very specific description of your payload.</p>
+    <div class="note">
+      <span class="tag">The one that bites</span>
+      <p>Round silage bales are the residual problem: white, compact, three-dimensional, they cast a shadow, and they appear in bursts during baling season. Your discriminator is size &mdash; a bale is 1.2&ndash;1.5&nbsp;m against your 0.70&nbsp;m &mdash; and that discrimination only exists at 30&nbsp;cm. At 50&nbsp;cm a bale and a sphere are both &ldquo;a bright blob about two pixels across&rdquo;. This is the single strongest argument for Pl&eacute;iades Neo over SkySat.</p>
+    </div>
+  </div>
+</section>
+
+<section class="col">
+  <h2>What to ask for</h2>
+  <h3>Tasking specification</h3>
+  <p>Something concrete to put in front of Planet and Airbus, rather than a general request for help:</p>
+  <div class="spec"><dl>
+    <dt>AOI</dt><dd>Landing ellipse, buffered &mdash; target &le;50 km&sup2;</dd>
+    <dt>Sensor</dt><dd>Pl&eacute;iades Neo, 30 cm, panchromatic + MS</dd>
+    <dt>Product</dt><dd>Primary or Projected, <strong>not</strong> pansharpened-only;<br>request the raw PAN band separately</dd>
+    <dt>Acquisitions</dt><dd>2 &times; post-landing, separated by &ge;3 days</dd>
+    <dt>Baseline</dt><dd>1 &times; archive, latest available pre-flight</dd>
+    <dt>Incidence</dt><dd>&le;15&deg; off-nadir &mdash; minimise terrain layover<br>and keep the footprint circular</dd>
+    <dt>Sun elevation</dt><dd>Prefer &le;45&deg;; accept later-in-day passes</dd>
+    <dt>Cloud</dt><dd>&le;5% over AOI</dd>
+    <dt>Licence</dt><dd>Ask for evaluation / goodwill terms &mdash; this is a<br>one-off recovery, not a commercial programme</dd>
+  </dl></div>
+  <p>Worth knowing before the conversation: SkySat tasking carries an order minimum around $15,000 and archive around $5,000, with a 25&nbsp;km&sup2; polygon minimum. Pl&eacute;iades Neo tasking has a practical minimum near 100&nbsp;km&sup2;, dropping to about 50&nbsp;km&sup2; under a subscription. <strong>Your cost is set by the order minimum, not by your area.</strong> A 10&nbsp;km&sup2; box and a 100&nbsp;km&sup2; box cost the same, which means there is no financial reason to over-tighten the AOI &mdash; but there is every analytical reason to, since candidate count scales linearly with area.</p>
+  <p class="lead">This is also precisely why the goodwill route is worth pursuing. The marginal cost to Planet or Airbus of one pass over an existing collection corridor is small; the invoice minimum is a commercial floor, not a physical one.</p>
+</section>
+
+<section class="col">
+  <h2>Sequence</h2>
+  <h3>How to run the search</h3>
+  <ol class="plan">
+    <li>
+      <h4>Reconstruct the descent before buying anything</h4>
+      <p>Last telemetry fix, burst altitude, descent rate, and ERA5 or GFS winds at the actual flight time, integrated down through the column. This is free and it is the highest-leverage step: halving the ellipse halves the candidate list. Do this first.</p>
+    </li>
+    <li>
+      <h4>Check whether someone already photographed it</h4>
+      <p>Spain's PNOA orthophoto programme flies at 25&ndash;50 cm and regional flights over Castilla y Le&oacute;n and Castilla-La Mancha are frequent. If a flight passed over the area after the landing date, that imagery is free and already at the resolution you need. Check the IGN archive before spending anything.</p>
+    </li>
+    <li>
+      <h4>Mask the search area</h4>
+      <p>Use Sentinel-2 and PlanetScope to strip out water, woodland canopy, urban fabric and anything under structure. You are not detecting with these; you are deciding where a white sphere could plausibly be visible from above at all.</p>
+    </li>
+    <li>
+      <h4>Pull the archive baseline</h4>
+      <p>Latest pre-flight high-resolution coverage of the masked area. Without this the whole approach degrades by an order of magnitude, so secure it before committing to tasking.</p>
+    </li>
+    <li>
+      <h4>Task two post-landing acquisitions</h4>
+      <p>Separated by at least three days so that anything mobile decorrelates. Low sun elevation preferred.</p>
+    </li>
+    <li>
+      <h4>Run a matched filter, not a threshold</h4>
+      <p>The template is a bright disc of 0.7 m with a dark ellipse trailing along the known solar azimuth at the known length for that date and time. Both lobes, correct orientation, correct separation. This rejects flat plastic and most debris outright, and it is far more selective than any brightness threshold.</p>
+    </li>
+    <li>
+      <h4>Ground-truth the shortlist</h4>
+      <p>A hundred-odd candidates is a day of driving, or an afternoon of drone sorties. Sort by descending match score and by accessibility, and go look.</p>
+    </li>
+  </ol>
+  <div class="note">
+    <span class="tag">Worth weighing honestly</span>
+    <p>If the ellipse is genuinely small &mdash; say under 20&nbsp;km&sup2; &mdash; a contracted VTOL drone survey at 3&nbsp;cm ground sampling would find the sphere with near-certainty in two or three days for roughly &euro;1,800, and it sees under partial canopy and into ditches where a satellite never will. The satellite route earns its place when the ellipse is large, when access is awkward, or when the imagery arrives as a favour rather than an invoice. The two combine well: satellite to triage a wide area down to a shortlist, drone to close it out.</p>
+  </div>
+</section>
+
+<section class="col">
+  <h2>Next flight</h2>
+  <h3>Make the payload answer back</h3>
+  <p>You raised the radar reflector idea, and it is the right instinct &mdash; it removes cloud, darkness and the entire discrimination problem in one stroke, because a corner reflector is not merely bright, it is <em>anomalously</em> bright in a way nothing agricultural is. A trihedral of inner leg&nbsp;<em>a</em> returns &sigma;&nbsp;=&nbsp;4&pi;a&#8308;/3&lambda;&sup2;. Requiring 15&nbsp;dB over farmland clutter in one resolution cell:</p>
+  <div class="scroller">
+    <table>
+      <caption>Trihedral sizing for a +15 dB signal-to-clutter margin over &sigma;&#8304; = &minus;10 dB farmland. Mass assumes three plates of aluminised 3 mm foam core at 0.35 kg/m&sup2; with 30% added for edging.</caption>
+      <thead><tr><th>SAR</th><th class="num">Band</th><th class="num">Cell</th><th class="num">Required RCS</th><th class="num">Leg</th><th class="num">Mass</th><th class="num">Revisit</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td class="name">ICEYE / Capella spotlight</td><td class="num">X</td><td class="num">1 m&sup2;</td><td class="num">3.2 m&sup2;</td><td class="num">0.16 m</td><td class="num">37 g</td><td class="num">1 d</td></tr>
+        <tr><td class="name">PAZ &mdash; Hisdesat, Spain</td><td class="num">X</td><td class="num">1 m&sup2;</td><td class="num">3.2 m&sup2;</td><td class="num">0.16 m</td><td class="num">37 g</td><td class="num">2 d</td></tr>
+        <tr><td class="name">TerraSAR-X &mdash; Airbus</td><td class="num">X</td><td class="num">1 m&sup2;</td><td class="num">3.2 m&sup2;</td><td class="num">0.16 m</td><td class="num">37 g</td><td class="num">2 d</td></tr>
+        <tr class="dim"><td class="name">Sentinel-1 IW &mdash; free</td><td class="num">C</td><td class="num">100 m&sup2;</td><td class="num">316 m&sup2;</td><td class="num">0.69 m</td><td class="num">658 g</td><td class="num">6 d</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>The X-band result is the striking one: <strong>a 16&nbsp;cm trihedral weighing under 40&nbsp;grams</strong> is theoretically sufficient against a 1&nbsp;m spotlight cell. Build it at 25&ndash;30&nbsp;cm for margin against off-boresight loss, incidence-angle variation and imperfect resting attitude, and it is still around 100&nbsp;g on a 3&nbsp;kg payload. Arrange eight trihedrals as an octahedral cluster so that whatever attitude the payload settles into, one corner faces up and out. Sentinel-1 is free but needs a 0.69&nbsp;m, 660&nbsp;g reflector to beat its coarse cell &mdash; a poor trade against a commercial X-band tasking.</p>
+  <p>Two cheaper things are worth adding alongside, since neither depends on anyone else's spacecraft: a satellite tracker with an independent power budget that survives landing and keeps reporting from the ground, and a RECCO reflector, which weighs 4&nbsp;grams and lets a mountain-rescue detector find the payload from a helicopter at short range. The corner reflector is elegant; the tracker is what actually recovers payloads.</p>
+</section>
+
+<section class="col">
+  <h2>Caveats</h2>
+  <h3>Where this analysis could be wrong</h3>
+  <ul class="tight">
+    <li><strong>Confuser densities are estimates.</strong> The candidate counts are order-of-magnitude figures for Meseta farmland, not measurements. The ranking of strategies is robust; the absolute numbers could be off by a factor of several.</li>
+    <li><strong>The sphere may not be intact, exposed, or still there.</strong> It could have fragmented on impact, lodged in a tree or hedge, been partly buried, or been picked up by a farmer within days. A half-obscured sphere still yields a workable signature, but a recovered-and-removed one yields nothing.</li>
+    <li><strong>Prices are indicative</strong> and drawn from public reseller listings rather than a quote. Treat them as the shape of the commercial structure, not as figures to budget against.</li>
+    <li><strong>Everything assumes a reasonably flat, open landing site.</strong> Under canopy or against a north-facing slope in winter, the whole optical approach degrades sharply and the drone or SAR routes become the only viable ones.</li>
+  </ul>
+</section>
+
+<footer class="col">
+  <p>Detection model: Lambertian sphere photometry, lit-and-visible cap integration, atmospheric contrast attenuation 0.82, matched filter across bright and shadow lobes against a difference-image clutter floor. Sensor and pricing parameters from Planet and Airbus public documentation and reseller listings, August 2026.</p>
+  <p>Figures are reproducible from the accompanying calculation script.</p>
+</footer>
+
+</div>

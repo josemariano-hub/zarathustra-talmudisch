@@ -1,0 +1,114 @@
+
+========================================================================================================
+  0.70 m WHITE EPS SPHERE - ORBITAL DETECTABILITY
+  projected footprint = 0.385 m^2   |   height above ground = 0.70 m
+========================================================================================================
+
+[1] SPHERE vs FLAT PANEL - the curvature penalty
+    A sphere is NOT a white panel: curvature spreads flux, so apparent brightness drops.
+
+     solar zenith  sun elev  rho_eff (clean)  rho_eff (dirty)   vs flat panel
+             10deg      80deg            0.534            0.400            67%
+             20deg      70deg            0.536            0.402            67%
+             30deg      60deg            0.542            0.407            68%
+             40deg      50deg            0.557            0.418            70%
+             50deg      40deg            0.588            0.441            73%
+             60deg      30deg            0.650            0.487            81%
+             70deg      20deg            0.792            0.594            99%
+
+[2] SHADOW LEVERAGE - central Spain (lat 40.4N), ~10:30 local solar time overpass
+    The shadow is the bigger target for most of the year.
+
+         month  sun elev  shadow len  shadow area  px @30cm  px @50cm
+           Jan    25.2deg      1.49 m       0.82 m2       9.1       3.3
+           Feb    33.3deg      1.06 m       0.59 m2       6.5       2.3
+           Mar    43.1deg      0.75 m       0.41 m2       4.6       1.6
+           Apr    53.5deg      0.52 m       0.29 m2       3.2       1.1
+           May    61.0deg      0.39 m       0.21 m2       2.4       0.9
+           Jun    64.3deg      0.34 m       0.18 m2       2.1       0.7
+           Jul    62.9deg      0.36 m       0.20 m2       2.2       0.8
+           Aug    56.7deg      0.46 m       0.25 m2       2.8       1.0
+           Sep    46.7deg      0.66 m       0.36 m2       4.0       1.4
+           Oct    35.8deg      0.97 m       0.53 m2       5.9       2.1
+           Nov    26.9deg      1.38 m       0.76 m2       8.4       3.0
+           Dec    22.9deg      1.65 m       0.91 m2      10.1       3.6
+
+[3] SENSOR COMPARISON  (clean sphere, dry Meseta soil rho=0.20, sun elev 40deg / zenith 50deg)
+    CCR = contrast-to-clutter ratio in a co-registered before/after difference image.
+
+    sensor                          px  bright px    d_rho  shadow px    CCR  verdict
+    Pleiades Neo (Airbus)        0.30m        4.3    0.238        5.1   13.2  STRONG   - unambiguous point/dipole detection
+    Pleiades 1A/1B (Airbus)      0.50m        1.5    0.150        1.8    8.7  STRONG   - unambiguous point/dipole detection
+    SkySat (Planet)              0.50m        1.5    0.142        1.8    8.3  STRONG   - unambiguous point/dipole detection
+    WorldView-3 / Legion (ref)   0.31m        4.0    0.238        4.8   13.2  STRONG   - unambiguous point/dipole detection
+    PlanetScope SuperDove        3.00m        0.0    0.008        0.1    0.9  NO       - below clutter floor
+    Sentinel-2 (free)           10.00m        0.0    0.001        0.0    0.2  NO       - below clutter floor
+
+[4] BACKGROUND SENSITIVITY - Pleiades Neo 30 cm, clean sphere, sun elev 40deg
+    What the sphere is lying ON matters more than which satellite you buy.
+
+    background                                rho_b    d_rho    CCR  verdict
+    Green irrigated crop (maize/alfalfa)       0.08    0.312   13.7  STRONG   - unambiguous point/dipole detection
+    Bare tilled soil (dark, moist)             0.13    0.281   13.5  STRONG   - unambiguous point/dipole detection
+    Bare soil, dry Meseta (typical)            0.20    0.238   13.2  STRONG   - unambiguous point/dipole detection
+    Dry pasture / fallow                       0.25    0.208   13.0  STRONG   - unambiguous point/dipole detection
+    Cereal stubble, post-harvest               0.30    0.177   12.7  STRONG   - unambiguous point/dipole detection
+    Chalk/gypsum outcrop (worst case)          0.40    0.115   12.3  STRONG   - unambiguous point/dipole detection
+
+[5] DEGRADED TARGET - Pleiades Neo 30 cm, dry soil rho=0.20, sun elev 40deg
+    clean white EPS                              CCR= 13.2  STRONG   - unambiguous point/dipole detection
+    dusty / soiled                               CCR=  9.7  STRONG   - unambiguous point/dipole detection
+    half-buried or in stubble (50% obscured)     CCR=  6.6  GOOD     - detectable, few false alarms
+
+[6] SEARCH ECONOMICS - indicative, confirm current rates with the providers
+         area     PNeo 30cm   SkySat flex   SkySat assured    drone @3cm  drone days
+        10 km2        3,200EUR          276EUR             920EUR          900EUR        0.8
+        25 km2        3,200EUR          276EUR             920EUR        2,250EUR        2.1
+        50 km2        3,200EUR          552EUR           1,840EUR        4,500EUR        4.2
+       100 km2        3,200EUR        1,104EUR           3,680EUR        9,000EUR        8.3
+       200 km2        6,400EUR        2,208EUR           7,360EUR       18,000EUR       16.7
+       400 km2       12,800EUR        4,416EUR          14,720EUR       36,000EUR       33.3
+    NOTE: SkySat carries a ~$15k tasking / ~$5k archive order minimum; PNeo tasking min ~100 km2
+          (50 km2 under a OnePlan subscription). Small AOIs pay the minimum, not the area price.
+
+[7] DISCRIMINATION - the real bottleneck (50 km2 AOI)
+    Radiometric detection is easy. Telling the sphere from every other white blob is not.
+
+    --- Pleiades Neo (Airbus) (0.30 m effective resolution)
+        1 image, no 'before' baseline  ->    5,573 candidates to eyeball (worst: Sheep (flocks, seasonal), 3,600)
+        2 images, no 'before' baseline  ->    2,040 candidates to eyeball (worst: Limestone/quartz rock float, 1,800)
+        2 images + archive 'before'     ->      143 candidates to eyeball (worst: Sheep (flocks, seasonal), 73)
+
+    --- SkySat (Planet) (0.72 m effective resolution)
+        1 image, no 'before' baseline  ->    6,673 candidates to eyeball (worst: Sheep (flocks, seasonal), 3,600)
+        2 images, no 'before' baseline  ->    3,140 candidates to eyeball (worst: Limestone/quartz rock float, 1,800)
+        2 images + archive 'before'     ->      220 candidates to eyeball (worst: Misc. agricultural debris, 84)
+
+[8] EFFECT OF SEARCH-AREA REDUCTION (Pleiades Neo, 2 dates + before-baseline)
+    Shrinking the ellipse with a proper descent reconstruction is the cheapest win available.
+
+          AOI   candidates   analyst-hours @400/hr   imagery cost
+         5 km2           14                   0.0 h        3,200EUR
+        10 km2           29                   0.1 h        3,200EUR
+        25 km2           72                   0.2 h        3,200EUR
+        50 km2          143                   0.4 h        3,200EUR
+       100 km2          287                   0.7 h        3,200EUR
+       200 km2          574                   1.4 h        6,400EUR
+
+========================================================================================================
+
+[9] NEXT FLIGHT - trihedral corner reflector sizing for SAR recovery
+    Trihedral RCS: sigma = 4*pi*a^4 / (3*lambda^2), a = inner leg length.
+    Requirement: reflector RCS must exceed farmland clutter in one resolution cell by ~15 dB.
+
+    sensor                            cell m2   clutter   need RCS    leg a   mass~  revisit
+    Sentinel-1 IW (free, C-band)        100.0     10.00      316.2    0.69m    658g       6d
+    ICEYE spotlight (X-band)              1.0      0.10        3.2    0.16m     37g       1d
+    Capella spotlight (X-band)            0.2      0.03        0.8    0.12m     18g       1d
+    TerraSAR-X ST (Airbus, X)             1.0      0.10        3.2    0.16m     37g       2d
+    PAZ (Hisdesat, Spain, X)              1.0      0.10        3.2    0.16m     37g       2d
+
+    -> An X-band trihedral of ~30 cm leg, well under 100 g, makes the payload a
+       point target that SAR finds through cloud, at night, in ANY weather.
+       Mount it so at least one trihedral faces up-and-sideways in any resting attitude
+       (an octahedral / 8-corner cluster guarantees this) and it always answers.
