@@ -9,7 +9,7 @@ SI units.
 import math
 def hr(c="="): print(c*104)
 
-L, R_TUBE = 1.5, 0.010        # m: boom length, tube radius (~20 mm OD)
+L, R_TUBE = 1.5, 0.004        # m: boom length, tube radius (8 mm OD - confirmed thin)
 V, R_OP   = 13.0, 200.0       # sweeper survey speed, radar offset
 GSD_DAY, GSD_SAT, GSD_TH = 0.029, 0.30, 0.158
 
@@ -32,9 +32,15 @@ for name,lam in BANDS:
 r24=cyl_rcs(0.0124)
 assert abs(cyl_rcs(0.031)/cyl_rcs(0.0124) - 0.0124/0.031) < 1e-9   # scales as 1/lambda
 print(f"""
-    {r24:.0f} m2 at 24 GHz is corner-reflector class - but confined to a glint
-    lobe a quarter of a degree wide. Brightness was never the question;
-    crossing the glint is.
+    {r24:.1f} m2 at 24 GHz - still a strong target, though the thin 8 mm tube
+    trims it (RCS scales linearly with radius). Two regime checks the thin
+    tube forces: (a) circumference/lambda = 2.0 at 24 GHz - the optical
+    formula is at its validity edge, good to a couple of dB; at X-band
+    (ratio 0.8) it enters the resonant thin-wire regime where returns are
+    weaker and strongly polarization-dependent. (b) CF conductivity
+    (~5e4 S/m) is far below copper but sigma/(omega*eps0) ~ 4e4 >> 1:
+    still an excellent microwave reflector, loss under ~1 dB.
+    The glint lobe stays 0.24 deg wide - crossing it is still the game.
 
 [2] DOES THE SWEEPER CROSS THE GLINT? - yes, once per pass, by geometry
 
@@ -46,8 +52,10 @@ print(f"""
       glint dwell   = {lobe_deg(0.0124):.2f} deg / {math.degrees(V/R_OP):.1f} deg/s = {lobe_deg(0.0124)/math.degrees(V/R_OP)*1000:.0f} ms
       chirps in the flash at 1 kHz = ~{lobe_deg(0.0124)/math.degrees(V/R_OP)*1000:.0f}
 
-    A ~{r24:.0f} m2 target for ~65 chirps at a constant range: a hard, brief,
-    localised FLASH. Three honest caveats:
+    A ~{r24:.1f} m2 target for ~65 chirps at constant range: a brief, localised
+    flash. Against clutter at 150 m offset (cell ~2.5 m2) that is ~+3 dB
+    single-look and ~+11 dB across the dwell - detectable, with the
+    operating offset pulled in from 200 to ~150 m for the thin tube. Three honest caveats:
       - The boom must lie near-horizontal. Propped on the sphere or a furrow,
         the specular cone tilts and can miss the aircraft's altitude plane.
         A tilt of a few degrees is fine (the drone's depression angle varies
@@ -64,7 +72,8 @@ print(f"""
 
 [3] SATELLITE SAR: A LOTTERY TICKET, NOT A TASKING CASE
 
-    X-band broadside {cyl_rcs(0.031):.1f} m2 with a {lobe_deg(0.031):.2f} deg lobe, but a satellite
+    X-band nominal {cyl_rcs(0.031):.1f} m2 (and the thin-wire regime cuts it further,
+    polarization-dependent) with a {lobe_deg(0.031):.2f} deg lobe - and a satellite
     has ONE fixed look geometry per pass: the boom heading must align within
     ~a degree -> P ~ 1-2% per scene. Do not task SAR for the boom. If an
     X-band scene exists anyway, a free look costs nothing - a bright point
@@ -72,11 +81,14 @@ print(f"""
 
 [4] DRONE RGB: THE BEST NEW DISCRIMINATOR
 
-    At {GSD_DAY*100:.1f} cm GSD the boom is {L/GSD_DAY:.0f} px long x {2*R_TUBE/GSD_DAY:.1f} px wide - a resolvable
-    dark line ATTACHED TO the white disc, plus an Insta360 blob ({0.07/GSD_DAY:.1f} px) at
-    its far end. No bale, stone or sheet has a 1.5 m appendage. Update the
-    day-search scoring: sphere + line + end-blob as a compound template,
-    and the residual confuser list effectively empties.
+    At {GSD_DAY*100:.1f} cm GSD the 8 mm boom is {L/GSD_DAY:.0f} px long but only {2*R_TUBE/GSD_DAY:.2f} px WIDE -
+    sub-pixel width dilutes the dark-line contrast to ~0.07 reflectance
+    per pixel. Faint to the eye, but a 52-px correlated streak is exactly
+    what an oriented line filter (Hough / steerable) recovers: sqrt(52)
+    ~ 7x SNR gain along the line. Plus the Insta360 blob ({0.07/GSD_DAY:.1f} px) at its
+    far end. Keep the compound sphere+line+blob template - the line is now
+    a supporting cue, not a headline feature - and note the 50 m inspection
+    pass sees it at 0.66 px wide x 125 px long: unmistakable there.
     (At satellite 30 cm: {L/GSD_SAT:.0f} px long but {2*R_TUBE/GSD_SAT:.2f} px wide - an occasional
      1-px-wide smudge; do not rely on it. Thermal at {GSD_TH*100:.0f} cm: invisible.)
 

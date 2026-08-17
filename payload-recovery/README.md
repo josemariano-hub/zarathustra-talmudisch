@@ -6,11 +6,11 @@
 
 Feasibility analysis for locating a 3 kg high-altitude balloon payload — a 0.70 m
 white expanded-polystyrene sphere carrying a **1.5 m carbon-fibre boom + Insta360** —
-over the Spanish Meseta. The conductive boom is a linear radar scatterer (11.4 m²
-broadside at 24 GHz, glint-lobe 0.24°: a once-per-pass 65-chirp flash for the radar
-bay — a stochastic third channel for THIS search) and, at drone GSD, a 52-px dark
-line attached to the white disc — the compound sphere+boom+camera template empties
-the residual confuser list. SAR tasking unchanged (glint ~1–2%/scene: never task
+over the Spanish Meseta. The conductive 8 mm boom is a linear radar scatterer (4.6 m² broadside at 24 GHz,
+glint-lobe 0.24°: a once-per-pass 65-chirp flash at ~150 m offset — a stochastic third
+channel for THIS search) and, at drone GSD, a 52-px × 0.28-px faint streak recoverable
+by an oriented line filter, anchored by the 2.4-px Insta360 blob — a strong supporting
+cue in the compound template, unmistakable on 50 m inspection passes. SAR tasking unchanged (glint ~1–2%/scene: never task
 for it). The Insta360's card holds the descent video — the recovery prize.
 
 ## Contents
