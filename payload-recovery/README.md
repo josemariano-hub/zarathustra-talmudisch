@@ -34,6 +34,8 @@ satellite imagery over the Spanish Meseta.
 | `datalink_tradeoff_output.txt` | Full numeric output of the above. |
 | `sensor_upgrade.py` | 1280-LWIR / 61 MP upgrade trade and full-sortie coverage arithmetic. |
 | `sensor_upgrade_output.txt` | Full numeric output of the above. |
+| `battery_chemistry.py` | Li-ion vs AA Ultimate Lithium (L91) primaries; beacon buses. |
+| `battery_chemistry_output.txt` | Full numeric output of the above. |
 
 ## Workflow
 
@@ -276,6 +278,16 @@ llanura only, no night descents in barrancos. The 61 MP day camera (+€1,100,
 are free, and it out-resolves everything in this repo); skip B and buy the used M3T —
 unless the Boson has a second life on the balloon payloads, which is the one defensible
 reason to build it.
+
+**Li-ion vs AA Ultimate Lithium (L91):** the 220 W climb burst against L91's 2 A/cell
+ceiling forces a 10S9P, 90-cell, 1,350 g pack (vs 600 g Li-ion). It would fly longer
+(299 vs 159 min) but consumes €225 per sortie and burns the rechargeable budget by
+sortie two — not for propulsion, ever. L91s belong on the beacons: an independent 2×AA
+bus for the drone's Iridium (12 days duty-cycled — the crash that kills the main pack
+can't kill the thing that reports it) and 4×AA on the next balloon tracker.
+*Rechargeables spin the propeller, primaries keep the promise.* Pack inventory: no
+purchase records in Gmail (ask Bravo/Falco; Drive needs an interactive approval); the
+airframe absorbs any 3S–6S, 450–700 g pack without redesign.
 
 **Buy the airframe used, buy the batteries new.** Cycle count and storage abuse are
 invisible in a photograph; a tired pack sags under load and a swollen cell is a fire in

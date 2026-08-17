@@ -1,0 +1,69 @@
+
+========================================================================================================
+  BATTERY CHEMISTRY - your Li-ion packs vs AA Ultimate Lithium (L91) primaries
+========================================================================================================
+
+[1] THE INVENTORY QUESTION - answered honestly
+
+    Searched the Gmail account: no battery purchase records - Saft newsletters
+    and HobbyKing marketing (addressed to Robert Falco and Jose Luis Bravo, who
+    are therefore the people to ask). Google Drive search was attempted twice
+    but requires an interactive tool approval this remote session cannot
+    collect - run it from claude.ai and the query takes seconds.
+
+    Design compatibility while the shelf is inventoried: the airframe absorbs
+    ANY 3S-6S Li-ion or LiPo pack of 450-700 g without redesign - the ESC takes
+    the voltage range, the motor/prop pairing tolerates it, and only the trim
+    ballast moves. Whatever is found flies; nothing found blocks the build.
+
+[2] CAN L91 PRIMARIES FLY THE AIRCRAFT? - solve the pack, then judge
+
+    Bus: 10S x 1.25 V = 12.5 V under load
+    Climb burst 220 W -> 17.6 A bus -> 9P to respect 2 A/cell
+    Pack: 10S9P = 90 cells, 1350 g, 330 Wh usable, 225 EUR
+    Cruise per-cell drain 0.43 A -> capacity 2.9 Ah/cell (the low-drain magic is intact)
+
+                              Li-ion 4S2P (yours)     L91 10S9P
+    pack mass                               600 g        1350 g
+    usable energy                          128 Wh        313 Wh
+    AUW                                   2.09 kg       2.84 kg
+    endurance                             159 min       299 min
+    cost of THIS flight        ~0.5 EUR amortised 225 EUR consumed
+
+[3] CAMPAIGN COST - the number that ends the argument
+
+      sorties  Li-ion (3 packs+charger)   L91 primaries
+            5                     420E          1,125E
+           10                     420E          2,250E
+           20                     420E          4,500E
+           40                     420E          9,000E
+
+    Primaries cost 225 EUR per sortie, forever. The rechargeable kit is bought
+    once. By sortie two the primaries have burned the entire Li-ion budget.
+
+    Full honesty: the 90-cell primary pack WOULD fly longer per sortie (299 min
+    vs 159 - it carries 2.4x the usable energy). But it burns 225 EUR doing it,
+    every time, and 90 spring-contact cells in a vibrating airframe is a
+    reliability lottery no serious operator plays.
+
+    And the physics is no kinder than the economics: the 9P needed to survive
+    the climb burst drags 750 g of extra pack up every flight for
+    +186 Wh of usable energy. High-drain loads are exactly where
+    Li/FeS2 stops being magic. VERDICT: not for propulsion. Ever.
+
+[4] WHERE THE L91 GENUINELY BELONGS
+
+    2xAA on the drone's Iridium backup bus          9 Wh ->   12 days of duty-cycled beacon
+    4xAA on the next balloon payload tracker       18 Wh ->   25 days of duty-cycled beacon
+
+    Cold to -40 C, a decade of shelf life, no charging logistics, no fire risk,
+    ~300 Wh/kg at beacon drain - this is why L91s are the standard HAB
+    battery, and both beacons here should fly them:
+    - the drone's Iridium beacon gets an INDEPENDENT 2xAA bus, so the crash
+      that kills the main pack cannot kill the thing that reports the crash;
+    - the next balloon flight's tracker flies 4xAA, as every HAB tracker should.
+
+    The chemistry rule in one line: rechargeables spin the propeller,
+    primaries keep the promise.
+
+========================================================================================================
