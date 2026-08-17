@@ -42,6 +42,9 @@ satellite imagery over the Spanish Meseta.
 | `diy_radar_output.txt` | Full numeric output of the above. |
 | `prop_and_speed.py` | Cruise-speed optimization (wind, sensors, regimes) and the folding-prop buy list. |
 | `prop_and_speed_output.txt` | Full numeric output of the above. |
+| `reflector_build_sheet.md` | One-page build sheet for the 70 g octahedral reflector cluster. |
+| `lost_sweeper.py` | Can radar find a downed sweeper with a dead beacon? NLJD physics + the 19 g fix. |
+| `lost_sweeper_output.txt` | Full numeric output of the above. |
 
 ## Workflow
 

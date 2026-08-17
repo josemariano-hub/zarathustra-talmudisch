@@ -1,0 +1,67 @@
+
+========================================================================================================
+  FINDING THE FINDER - a downed sweeper with a dead Iridium beacon
+========================================================================================================
+
+[1] DETECTING THE DEAD ELECTRONICS THEMSELVES - honest physics
+
+    The technology exists: nonlinear junction detection (NLJD). Illuminate a
+    semiconductor junction and it re-radiates harmonics (2f, 3f) - how bug
+    sweepers and RECCO both work. But an UNTUNED junction (a dead modem's
+    PCB) has a monstrous conversion loss, and the harmonic radar equation
+    scales as R^8, not R^4 - both legs of the trip are one-way.
+
+    Anchor on reality: a commercial 3 W NLJD detects a phone at ~3 m.
+    Scaling to airborne standoff:
+
+         10 m standoff -> needs 42 dB more link budget (1.5e+04x the power-aperture)
+         30 m standoff -> needs 80 dB more link budget (1.0e+08x the power-aperture)
+        100 m standoff -> needs 122 dB more link budget (1.5e+12x the power-aperture)
+    -> At 30 m you need +80 dB; at 100 m, +122 dB. No airborne platform
+       closes that on an untuned target. VERDICT: NO - a dead modem cannot
+       be radar-detected from the aircraft. NLJD is a 1-3 m technology; it
+       could help ON FOOT, sweeping the last 100 m2 - a rented TSCM wand
+       or RECCO detector on the ground, not from a plane.
+
+    The exception that proves the rule: RECCO. Its diode sits between TWO
+    TUNED antennas (917 MHz in, 1.83 GHz out), recovering ~40-60 dB of the
+    conversion loss - which is exactly why a helicopter detector reaches
+    ~100-200 m. Tuning is everything; dead modems are not tuned.
+
+[2] IS THE BARE AIRFRAME A RADAR TARGET? - marginal at best
+
+    Foam is radar-transparent; the echo is motor+battery+harness ~0.05 m2.
+    Noise-limited range: 56 m - but clutter in a 150 m cell is 2.5 m2,
+    i.e. the airframe sits -17 dB UNDER the stubble. Undetectable
+    in clutter, marginal even on plowed bare soil. Not a search plan.
+
+[3] THE 14-GRAM FIX - make the sweeper carry its own answer
+
+    a) EMBEDDED CORNER, 10 cm, foil-on-Depron, built into the fuselage bay
+       wall (~15 g, ~0 EUR from build-sheet offcuts): 2.7 m2 at 24 GHz.
+       Checked against clutter honestly: at 100 m the single-look SCR is
+       only ~2 dB - the corner needs the ~10 dB of coherent chirp
+       integration to stand out, giving reliable detection at ~100 m and
+       degrading fast beyond. Fly the SPARE airframe (radar bay swaps over)
+       in tight 150 m lines over the LTE last-fix strip. The attrition
+       doctrine pays again: the fleet searches for its own casualty.
+       (An 8 cm corner sits BELOW clutter at range - too small; 10 cm is
+       the floor for an embedded tag.)
+
+    b) RECCO TAB glued in the fuselage (~4 g, 5 EUR): a tuned harmonic
+       target detectable by any RECCO detector - mountain rescue flies
+       them on helicopters across Europe, and handheld units cover the
+       last-100-m ground search.
+
+    c) Plus the forensics that cost nothing: the LTE modem's last WireGuard
+       keepalive gives a last-known position to ~one survey line; ELRS
+       link-loss telemetry brackets it further. Radar then only has to
+       clear a strip, not a map.
+
+    VERDICT: you cannot radar-detect the dead modem - but ~19 g of passive
+    preparation makes the dead modem irrelevant. Add the embedded corner
+    and the RECCO tab to the build NOW, while the fuselage is still open.
+    Every asset that flies should carry the same three-layer humility:
+    a link, a tag, and a shape that answers radar.
+
+========================================================================================================
