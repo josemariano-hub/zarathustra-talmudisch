@@ -1,8 +1,12 @@
 # Outreach drafts — Planet and Airbus
 
-Placeholders in `«guillemets»` need filling once `descent_reconstruction.py` has produced
-the ellipse. Keep both emails short: your contacts will forward them internally, and the
-person who actually approves a goodwill tasking wants the ask in the first three lines.
+Placeholders are marked `[LIKE THIS]` and take under a minute to fill. The drafts are
+written to be sendable BEFORE the descent reconstruction finishes — the ellipse is
+described as in progress, with the GeoJSON promised as a follow-up — because the
+stubble-ploughing clock argues against holding them for the exact AOI. When
+`descent_reconstruction.py` has run, replace that sentence with the real km² figure.
+Keep both emails short: your contacts will forward them internally, and the person who
+actually approves a goodwill tasking wants the ask in the first three lines.
 
 **Send both.** They are not competing for the same favour — Airbus has the resolution you
 need, Planet has the revisit and the archive depth. If both say yes, you get a stronger
@@ -14,15 +18,16 @@ result than either alone.
 
 > **Subject:** 30 cm tasking request — recovering a stratospheric balloon payload in central Spain
 
-Hi «name»,
+Hi [NAME],
 
 We lost a payload and I think Pléiades Neo can find it.
 
-On «date» we flew a 3 kg stratospheric balloon from «launch site». The payload is a
-0.70 m white expanded-polystyrene sphere — about as close to an ideal high-albedo
+On [FLIGHT DATE] we flew a 3 kg stratospheric balloon from [LAUNCH SITE]. The payload is
+a 0.70 m white expanded-polystyrene sphere — about as close to an ideal high-albedo
 calibration target as anything that falls out of the sky by accident. Telemetry ends at
-«altitude» and our descent reconstruction puts it inside a «N» km² box near «place»,
-centred on «lat, lon».
+[LAST-FIX ALTITUDE], and our descent reconstruction is running now: we expect a search
+box of some tens of km² in the [REGION] area, and I will send the exact AOI polygon
+(GeoJSON) as a follow-up within days.
 
 I ran the detection numbers before writing to you. At 30 cm the sphere is 4.3 pixels of
 projected area, with an apparent reflectance of 0.59 once you account for the fact that a
@@ -35,8 +40,8 @@ buys and 50 cm does not. That is why I am asking you specifically.
 
 What would make this work:
 
-- 1 × archive scene over the AOI, most recent available before «date»
-- 2 × tasked acquisitions after «date», separated by ≥3 days
+- 1 × archive scene over the AOI, most recent available before [FLIGHT DATE]
+- 2 × tasked acquisitions after [FLIGHT DATE], separated by ≥3 days
 - ≤15° off-nadir, ≤5% cloud, PAN delivered separately from the pansharpened product
 
 I know this sits under your tasking minimums, so I am asking whether it can go out as
@@ -62,13 +67,14 @@ José Mariano
 
 > **Subject:** Finding a 0.7 m sphere in Spain — tasking request, and a question about Pelican
 
-Hi «name»,
+Hi [NAME],
 
 An unusual ask, and one I think is genuinely interesting rather than just a favour.
 
-On «date» we flew a 3 kg stratospheric balloon from «launch site». The payload is a 0.70 m
-white expanded-polystyrene sphere. Telemetry ends at «altitude»; our reconstructed landing
-ellipse is «N» km² near «place», centred on «lat, lon».
+On [FLIGHT DATE] we flew a 3 kg stratospheric balloon from [LAUNCH SITE]. The payload is a
+0.70 m white expanded-polystyrene sphere. Telemetry ends at [LAST-FIX ALTITUDE]; our
+descent reconstruction is running now, and I will send the landing ellipse and AOI polygon
+as a follow-up within days.
 
 I modelled the detection before asking. Against dry soil the sphere gives about 0.14
 contrast at SkySat's true 0.72 m ground sampling — comfortably above the noise floor, so
@@ -84,7 +90,7 @@ So two questions:
    demonstration target for a new sensor — a known-size, known-albedo, known-position
    object is a rare thing to have on the ground.
 2. **If SkySat is the realistic option**, could we get two acquisitions separated by ≥3
-   days, plus the most recent archive scene from before «date»? The temporal pair is what
+   days, plus the most recent archive scene from before [FLIGHT DATE]? The temporal pair is what
    kills the movers, and the archive baseline is what removes everything that was already
    there. With both, my estimate is a shortlist of a couple of hundred candidates over
    50 km², which is a day of driving.
