@@ -15,6 +15,39 @@ satellite imagery over the Spanish Meseta.
 | `sphere_detectability.py` | Detection model. Lambertian sphere photometry, shadow geometry, sensor comparison, confuser discrimination cascade, search economics, SAR reflector sizing. |
 | `analysis_output.txt` | Full numeric output of the above. |
 | `feasibility_note.html` | Written brief, suitable for forwarding to imagery providers. |
+| `descent_reconstruction.py` | Telemetry → landing ellipse → tasking AOI as GeoJSON. |
+| `sphere_detector.py` | Matched-filter detector over delivered imagery → ranked candidate list. |
+| `outreach_drafts.md` | Emails to Planet and Airbus. |
+
+## Workflow
+
+```sh
+pip install numpy scipy          # rasterio too, if you have GeoTIFFs
+
+# 1. turn telemetry into a search box
+python3 descent_reconstruction.py flight.csv --mass 3.0 --ground-alt 700 --out landing
+#    -> landing.geojson  (nominal point, 50%/95% ellipses, square tasking AOI)
+
+# 2. send the AOI with the emails in outreach_drafts.md
+
+# 3. when imagery arrives, rank the candidates
+python3 sphere_detector.py --post post_a.tif post_b.tif --pre baseline.tif \
+        --gsd 0.30 --sun-az 148 --sun-elev 57 --out candidates
+#    -> candidates.geojson  (open in QGIS over the imagery, work down the ranking)
+```
+
+`descent_reconstruction.py` pulls ERA5 winds from Open-Meteo automatically. If the flight
+is too recent for ERA5, or you are offline, it falls back to using the balloon's **own
+ascent as a wind sonde** — differentiating the ascent track recovers the wind profile it
+flew through, which is often better than reanalysis anyway since it is the actual air the
+payload moved through. You can also supply `--winds` manually.
+
+The default `--cda` assumes the sphere descending as its own drag body (Cd 0.5). **If you
+flew a parachute, pass the real drag area** — the ellipse depends on it strongly.
+
+`sphere_detector.py` was validated on a synthetic 420 m scene at 30 cm seeded with 73
+confusers (silage bales, limestone float, sheep, and bales appearing after the baseline).
+The target ranked **first at 22.8 σ against a next-best of 3.6**.
 
 ## Headline results
 
