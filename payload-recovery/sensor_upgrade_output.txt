@@ -1,0 +1,43 @@
+
+========================================================================================================
+  SENSOR INVESTMENT + FULL-SORTIE ARITHMETIC  (3.0 kg MTOM, ~0.5-0.9 kg margin free)
+========================================================================================================
+
+  configuration                         GSD   swath px on 0.7m  ID?  flight  km2/sortie   +EUR
+  DAY  a6000 24MP (baseline)          2.9cm    176m       23.9  YES  138min         8.9      0
+  DAY  a7R-class 61MP (upgrade)       2.8cm    268m       24.8  YES  132min        13.0  1,100
+  NIGHT InfiRay 640 (baseline)       15.8cm    101m        4.4   no  158min         5.9      0
+  NIGHT 1280 LWIR, sharp lens         7.9cm    101m        8.8  YES  156min         5.9  3,300
+  NIGHT 1280 LWIR, wide lens         15.8cm    203m        4.4   no  156min        11.7  3,300
+
+  FULL SORTIE, wall clock (night, baseline 640):
+    preflight checks           10 min
+    hand launch + climb         1 min      (40 s to 120 m at 3 m/s)
+    transit to survey area      2 min      (~1.5 km at 13 m/s)
+    survey lines              128 min
+    return + land               5 min
+    ------------------------------------
+    airborne ~158 min, block time ~173 min, 5.9 km2 scanned
+
+  Per 7.4 h August night: 2 full sorties + a partial ->
+    NIGHT InfiRay 640 (baseline)        ~ 16.4 km2/night
+    NIGHT 1280 LWIR, sharp lens         ~ 16.4 km2/night
+    NIGHT 1280 LWIR, wide lens          ~ 32.8 km2/night
+
+  THE INVESTMENT CALL
+  Same core, two lenses, two different missions:
+    - SHARP (18.2 mm): 7.9 cm GSD, 8.8 px on target -> crosses the 6 px
+      IDENTIFICATION threshold. Every night detection is self-confirming;
+      the day-confirmation loop disappears. Coverage unchanged (~17 km2/night).
+    - WIDE (9.1 mm): same 16 cm GSD as the 640 but double swath ->
+      ~34 km2/night of positions-only.
+  Buy the SHARP lens. Nights are plentiful; what is scarce is certainty at
+  3 a.m. An identification-capable night sensor removes an entire day-loop
+  per candidate cluster. NETD upgrades (Boson+ 20 mK) buy nothing - the
+  margin is already ~100 sigma; resolution is the only axis that matters.
+  Mass +60 g fits the MTOM margin trivially. ~3,300 EUR is a quote-item
+  mid-estimate; night sweeper goes ~3,540 -> ~6,000 EUR.
+  The 61 MP day upgrade (+1,100 EUR, +52% swath, 13.0 km2/sortie) is a
+  separate, defensible coverage buy - take it only if the ellipse is large.
+
+========================================================================================================

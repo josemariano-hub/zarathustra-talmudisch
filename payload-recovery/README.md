@@ -32,6 +32,8 @@ satellite imagery over the Spanish Meseta.
 | `night_sweeper_output.txt` | Full numeric output of the above. |
 | `datalink_tradeoff.py` | Comms trade: Starlink/Iridium/4G/ELRS, anti-poacher precedent, Ukraine lessons. |
 | `datalink_tradeoff_output.txt` | Full numeric output of the above. |
+| `sensor_upgrade.py` | 1280-LWIR / 61 MP upgrade trade and full-sortie coverage arithmetic. |
+| `sensor_upgrade_output.txt` | Full numeric output of the above. |
 
 ## Workflow
 
@@ -252,6 +254,19 @@ Gate before night ops: one daylight sortie on LTE alone with ELRS off.
 
 Delta: +€605 (beacon, modem, spare airframe) +€70 (LTE-primary upgrade) →
 night sweeper **€3,540** all-in.
+
+### Sensor upgrade + sortie arithmetic
+
+Full night sortie: ~158 min airborne (10 preflight + 1 launch/climb + 2 transit +
+128 survey + 5 return/land), **5.9 km²/sortie**, ~16 km²/night over 2–3 sorties.
+Day: 138 min, 8.9 km²/sortie.
+
+**Upgrade call: a 1280×1024 LWIR core with the SHARP lens (~€3,300 quote-item).**
+7.9 cm GSD puts **8.8 px on the sphere — past the 6 px identification threshold**, so
+every night detection self-confirms and the day-confirmation loop disappears. The wide
+lens alternative doubles coverage (~33 km²/night) but stays position-only; NETD upgrades
+buy nothing (margin is already ~100σ). +60 g fits the MTOM margin. The 61 MP day camera
+(+€1,100, 13.0 km²/sortie) is a separate coverage buy for a large ellipse.
 
 **Verdict: ~€6,130 + ~90 h for both.** Build A (nothing touches its cost-per-km² if hours
 are free, and it out-resolves everything in this repo); skip B and buy the used M3T —
