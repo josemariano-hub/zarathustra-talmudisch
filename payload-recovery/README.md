@@ -24,6 +24,8 @@ satellite imagery over the Spanish Meseta.
 | `drone_procurement_output.txt` | Full numeric output of the above. |
 | `battery_logistics.py` | Pack count, charging channels, field power, and the used-airframe kit list. |
 | `battery_logistics_output.txt` | Full numeric output of the above. |
+| `thermal_resolution_check.py` | Diffraction/Q check on the thermal optics; detection vs identification. |
+| `thermal_resolution_output.txt` | Full numeric output of the above. |
 
 ## Workflow
 
@@ -155,6 +157,29 @@ core with no relocation — 10 sorties, 3 packs cycling, ~7.6 km² of core per A
 
 **Field power** favours the small aircraft decisively: M3T draws ~118 W average (car
 inverter), a twin-TB60 Matrice 300 needs ~716 W (a petrol generator running at 04:00).
+
+### Thermal resolution — checked
+
+LWIR at 10 µm against a 12 µm pixel and f/1.0 optics is where diffraction can make a
+nominal GSD meaningless, so it was verified. **Q = λF/p = 0.83** for all three cameras:
+the diffraction FWHM is 10.3 µm against a 12 µm pixel, so they are detector-limited and
+the nominal GSD is honest. (The Airy null-to-null diameter is 24.4 µm ≈ 2 px, which looks
+alarming, but resolution tracks the PSF core, not the first null.)
+
+**Correction to an earlier claim.** The RGB analysis set six pixels across as the threshold
+for confident identification; the thermal case was then waved through at 4.1 px without
+noting the criterion had changed. The relaxation is defensible but the reason should have
+been stated: **detection is contrast-limited, identification is resolution-limited.**
+
+| Camera | GSD | px across | Detect | Identify |
+| --- | --- | --- | --- | --- |
+| M3T thermal (61°) | 17.2 cm | 4.1 | yes, ~100σ | no — cold blob only |
+| M4T thermal (45°) | 12.1 cm | 5.8 | yes, ~100σ | marginal |
+| H30T (1280², 45°) | 6.1 cm | 11.5 | yes, ~100σ | yes |
+
+A 5 K anomaly against a 50 mK detector is unmistakable at 2 px across, so all of them
+detect. None of the Mavic-class cameras identifies. **Thermal tells you where to walk;
+RGB at 2–3 cm or a car journey tells you what you found.**
 
 **Buy the airframe used, buy the batteries new.** Cycle count and storage abuse are
 invisible in a photograph; a tired pack sags under load and a swollen cell is a fire in

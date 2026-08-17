@@ -556,7 +556,7 @@ footer p{margin:0 0 8px}
       <p>STS-02 requires a <strong>C6-class</strong> aircraft. Multirotors carry C2, so they are visual-line-of-sight only unless you write your own SORA and win a bespoke authorisation. That leaves a &euro;9,500 Matrice 4T as an excellent instrument tethered to a 0.8&nbsp;km&sup2; bubble around its pilot, while a &euro;38,000 fixed wing roams a 12.6&nbsp;km&sup2; one. The price gap buys airspace, not image quality.</p>
     </div>
     <p>Which means the honest answer splits by ellipse size. A multirotor needs about 16 days to cover 120&nbsp;km&sup2; once you count relocating the pilot 153 times; a C6 fixed wing does it in under three. But for 10&nbsp;km&sup2; the multirotor takes a day and a half, and for a shortlist or a thermal core sweep it is the better tool outright.</p>
-    <p>Note also that the cheapest aircraft covers the <em>most</em> thermal ground per night &mdash; the Mavic 3 Thermal's wider 61&deg; lens beats the Matrice's sharper 45&deg; one, because for a search what matters is swath, not sampling. You need four pixels on the sphere and it delivers 4.1.</p>
+    <p>Note also that the cheapest aircraft covers the <em>most</em> thermal ground per night &mdash; the Mavic 3 Thermal's wider 61&deg; lens beats the Matrice's sharper 45&deg; one, because for a search what matters is swath, not sampling. That claim deserves scrutiny, so it is checked in full below.</p>
     <h3>Payback</h3>
   </div>
   <div class="scroller">
@@ -574,6 +574,34 @@ footer p{margin:0 0 8px}
   <div class="col">
     <p class="lead">Buy the Matrice 4T. One aircraft, both sensors, around &euro;11,000 all-in, and it makes the thermal idea real rather than theoretical. Do not buy a &euro;48,000 fixed wing for payload recovery alone &mdash; it needs other survey work to carry it. If this particular ellipse turns out large, contract a Spanish STS-02 operator for the wide daylight sweep and fly your own aircraft on the thermal follow-up. That splits the job exactly where each tool is genuinely better.</p>
     <p>One procurement detail worth catching early: any night flying needs a flashing green beacon on the aircraft, and the remote pilot needs the appropriate certificate before the first sortie, not after. Neither is expensive, both have lead time.</p>
+  </div>
+</section>
+
+<section>
+  <div class="col">
+    <h2>Checking the thermal optics</h2>
+    <h3>Does diffraction eat the wide lens?</h3>
+    <p>Long-wave infrared runs at 10&nbsp;&micro;m against a 12&nbsp;&micro;m pixel pitch and a fast f/1.0 lens, which is exactly the regime where the diffraction spot can rival the detector and make a nominal ground sample meaningless. Worth verifying before trusting any of it.</p>
+    <p>The useful quantity is <strong>Q = &lambda;F/p</strong>. Below&nbsp;1 the detector limits resolution; near&nbsp;2 the optics do. The M3T comes out at <strong>Q&nbsp;=&nbsp;0.83</strong>: the diffraction FWHM is 10.3&nbsp;&micro;m against a 12&nbsp;&micro;m pixel, so the optics are marginally <em>sharper</em> than the detector samples. The Airy pattern's null-to-null diameter is 24.4&nbsp;&micro;m &mdash; about two pixels, which is what makes this look alarming at first glance &mdash; but resolution tracks the PSF core, not the first null.</p>
+  </div>
+  <div class="scroller">
+    <table>
+      <caption>All three are detector-limited, so the nominal ground sample is honest. &ldquo;With MTF loss&rdquo; derates the pixel count by a realistic 1.4&times; system point-spread.</caption>
+      <thead><tr><th>Camera</th><th class="num">Focal</th><th class="num">GSD @120 m</th><th class="num">Q</th><th class="num">px across</th><th class="num">px on target</th><th class="num">with MTF loss</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td class="name">M3T thermal, 61&deg;</td><td class="num">8.35 mm</td><td class="num">17.2 cm</td><td class="num">0.83</td><td class="num">4.1</td><td class="num">12.9</td><td class="num">6.6</td></tr>
+        <tr><td class="name">M4T thermal, 45&deg;</td><td class="num">11.87 mm</td><td class="num">12.1 cm</td><td class="num">0.83</td><td class="num">5.8</td><td class="num">26.2</td><td class="num">13.3</td></tr>
+        <tr><td class="name">H30T thermal, 1280&sup2;</td><td class="num">23.74 mm</td><td class="num">6.1 cm</td><td class="num">0.83</td><td class="num">11.5</td><td class="num">104.6</td><td class="num">53.4</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col">
+    <div class="note">
+      <span class="tag">Correction</span>
+      <p>The resolution figure survives the check, but the reasoning offered for it earlier did not. The RGB analysis set a threshold of <strong>six pixels across for confident identification</strong>, and the thermal case was then waved through at 4.1 &mdash; a criterion quietly relaxed without saying so. The relaxation is defensible, but only because <em>detection and identification are different problems</em>, and that distinction should have been stated rather than buried.</p>
+      <p><strong>Detection is contrast-limited, not resolution-limited.</strong> A 5&nbsp;K anomaly against a 50&nbsp;mK detector is unmistakable at two pixels across, so all three cameras detect the sphere with enormous margin. <strong>Identification needs about six pixels, and neither Mavic-class camera delivers it.</strong> At 4.1 px the sphere is a cold blob. Thermal tells you where to walk; it does not tell you that what you found is your payload rather than a patch of dry straw or a damp hollow.</p>
+    </div>
+    <p>So the wide-lens argument holds for what thermal is actually for &mdash; sweeping a core at night and producing a short list of positions &mdash; and the M3T's extra coverage is real. But it reinforces the division of labour rather than softening it: <strong>identification comes from the daylight RGB pass at 2&ndash;3&nbsp;cm, or from driving to the coordinates.</strong> If you wanted thermal alone to confirm identity you would need the H30T's 1280&times;1024 detector at 6.1&nbsp;cm, and that is a &euro;28,000 aircraft to avoid a car journey.</p>
   </div>
 </section>
 

@@ -1,0 +1,35 @@
+================================================================================================
+  THERMAL RESOLUTION CHECK
+================================================================================================
+
+  Q = lambda * F/# / pixel_pitch      Q<1 detector-limited, Q~2 diffraction-limited
+
+  camera              focal   GSD@120m   Airy FWHM      Q      limited by
+  M3T thermal        8.35mm      17.2cm      10.3um   0.83  detector (pixel)    
+  M4T thermal       11.87mm      12.1cm      10.3um   0.83  detector (pixel)    
+  H30T thermal      23.74mm       6.1cm      10.3um   0.83  detector (pixel)    
+
+  Pixel pitch is 12.0 um. The diffraction FWHM is 10.3 um,
+  i.e. 0.86 of a pixel - the optics are slightly SHARPER than the
+  detector samples. The null-to-null Airy diameter is 2.44*lambda*F = 24.4 um (~2 px),
+  but resolution tracks the PSF core, not the first null. So the nominal GSD is honest.
+
+  What the target actually subtends:
+
+  camera                GSD  px across  px on target  with MTF loss
+  M3T thermal        17.2cm        4.1          12.9            6.6
+  M4T thermal        12.1cm        5.8          26.2           13.3
+  H30T thermal        6.1cm       11.5         104.6           53.4
+
+  DETECTION vs IDENTIFICATION - the distinction I glossed over
+  ---------------------------------------------------------------
+  M3T thermal       4.1 px across   detect   100 sigma   shape ID: NO - a cold blob only
+  M4T thermal       5.8 px across   detect   100 sigma   shape ID: NO - a cold blob only
+  H30T thermal     11.5 px across   detect   100 sigma   shape ID: yes
+
+  Detection needs contrast, not pixels: a 5 K anomaly against a 50 mK detector is
+  detectable at 2 px across. Identification needs ~6 px, and none of these deliver
+  that on a 0.70 m target from 120 m. Thermal tells you WHERE to walk. It does not
+  tell you the thing you found is your sphere rather than a patch of dry straw.
+
+================================================================================================
