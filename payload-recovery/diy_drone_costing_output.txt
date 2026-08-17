@@ -1,0 +1,107 @@
+
+========================================================================================================
+  VARIANT A - 'SWEEPER': RGB fixed wing, hand-launched foam twin-boom
+========================================================================================================
+
+  [A1] Flight physics
+       AUW 2.3 kg -> weight 22.6 N
+       P_cruise = W*v/(L/D * eta) = 22.6*16.0/(8.0*0.55) = 82 W electric
+       battery 14.4 V x 10.4 Ah = 150 Wh, 85% usable
+       endurance = 93 min   (sanity: Believer-class published ~90-120 min - consistent)
+
+  [A2] Sensor: used 24 MP APS-C + 16 mm prime, 1 s intervalometer
+       GSD 2.9 cm  (24 px across the sphere - ID threshold is 6)
+       swath 176 m,  5.9 km2/h,  9.2 km2 per flight
+
+  [A3] Packs to fly continuously: ceil((93+10+150)/(93+5)) = 3
+
+  [A4] Bill of materials
+       Foam twin-boom airframe kit (Believer 1960 class)           340E
+       Pixhawk-class autopilot + M10 GPS + compass                 270E
+       Motors x2, ESCs, props, hand-launch spares                  130E
+       ELRS control link + 868 MHz telemetry                       110E
+       Used 24 MP APS-C body (a6000-class)                         350E
+       16 mm f/2.8 pancake prime, used                             120E
+       Hot-shoe/PWM intervalometer trigger + hard mount             60E
+       Li-ion packs x3 (4S 10.4 Ah, built from 18650s)             330E
+       Dual-channel Li-ion charger                                  90E
+       Harness, connectors, 3D-printed camera bay, spares          140E
+       TOTAL VARIANT A                                           1,940E
+
+========================================================================================================
+  VARIANT B - 'NIGHT CORE': 10-inch quad + Boson 640 thermal core
+========================================================================================================
+
+  [B1] Sensor: Boson 640, 8.7 mm f/1.0 (<=9 Hz export-friendly version)
+       GSD 16.6 cm, swath 106 m, 4.2 px on target
+       diffraction Q = 0.83 (detector-limited - same check as the M3T, passes)
+       9 Hz is NOT a handicap: at 8 m/s, 1 fps gives ~90% forward overlap.
+
+  [B2] Flight physics (momentum theory)
+       disk area 0.203 m2, ideal 102 W, FM 0.65, electrical 185 W hover
+       battery 178 Wh -> 49 min survey endurance  (sanity: 10-inch Li-ion rigs ~40-55 min - consistent)
+       thrust/weight = 3.3  (>=2 required - OK)
+       1.78 km2/h -> ~7.3 km2 per August night; 3 packs to cycle
+
+  [B3] Bill of materials
+       Boson 640, 8.7 mm, <=9 Hz (via GroupGets/OEMcameras)      2,950E
+       10-inch quad: frame, 4x motors, ESC, FC (ArduPilot)         420E
+       Raspberry Pi CM4 + USB capture + NVMe logger                180E
+       Vibration-isolated hard mount (printed + silicone)           40E
+       ELRS link + telemetry (shared spares with A)                 80E
+       Li-ion packs x3 (6S 8 Ah)                                   390E
+       Dual charger + field power wiring                           130E
+       Flashing green night beacon + strobes                        90E
+       Harness, spares, props                                      110E
+       TOTAL VARIANT B                                           4,390E
+
+       -> 67% of variant B is the thermal core. The drone is almost free;
+          you are buying a Boson and giving it wings.
+
+========================================================================================================
+  COMPARISON - DIY vs used market vs contracting
+========================================================================================================
+
+  option                                 cash   build  RGB km2/d TH km2/night  legal envelope
+  A: DIY RGB fixed wing                1,940E    40 h       64.2            -  Open A3, VLOS only
+  B: DIY thermal quad                  4,390E    50 h          -          7.3  Open A3, VLOS only
+  A + B (shared ground kit)            6,130E    90 h       64.2          7.3  Open A3, VLOS only
+  Used M3T kit (prior analysis)        7,380E     0 h       37.7          5.3  Open A2/A3, VLOS
+  Contracted C6 fixed wing           1,500E/d     0 h         45            -  STS-02 BVLOS, 2 km
+
+  Notes the table cannot carry:
+  - A DIY build has no C-class mark: STS-02 is unavailable AT ANY PRICE. The
+    contracted operator's 12.6 km2/setup bubble cannot be replicated by building.
+  - The M3T's RGB day rate (37.7) and DIY-A's (64.2) are both VLOS-limited in
+    practice: ~0.8 km2 per setup, then relocate. Per-setup, all VLOS options tie.
+  - Variant A's camera (24 MP APS-C at 2.9 cm) outresolves the M3T's RGB and
+    every satellite option by an order of magnitude. Identification is trivial.
+  - Build hours at engineer rates dwarf the cash gap: 90 h of integration is
+    real money at any loaded rate. DIY wins on cash only if the hours are free.
+  - One crash on day one: DIY-A loses ~1,470E and is repairable with foam and
+    glue; the camera usually survives. An M3T crash is a total loss of 4,500E.
+
+========================================================================================================
+  VERDICT
+========================================================================================================
+
+  Total DIY cost, both aircraft, shared ground kit:  ~6,130 EUR + ~90 build-hours.
+
+  The interesting split:
+
+  - Variant A is the genuine bargain: 1,940 EUR for a machine that resolves the
+    sphere at 24 px, flies 93-minute sorties, and repairs with hot glue.
+    Nothing you can buy touches its cost-per-km2 - IF your hours are free.
+
+  - Variant B is not really a drone project. It is a 2,950 EUR sensor purchase
+    with 1,440 EUR of aircraft around it - and for 7,380 EUR the used M3T
+    delivers the same 640-class detector already integrated, gimballed, weather-
+    sealed and warrantied. DIY thermal only wins if you want the Boson anyway
+    (radiometric raw access, future payload integration) - which, for a company
+    that flies stratospheric payloads, is a genuinely defensible reason.
+
+  Recommendation: build A, buy the M3T used, skip B unless the Boson has a
+  second life planned on your balloon payloads - where a 100 g radiometric
+  640 core is exactly the instrument a recovery beacon wants next to it.
+
+========================================================================================================

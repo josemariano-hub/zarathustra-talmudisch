@@ -677,6 +677,55 @@ footer p{margin:0 0 8px}
   </div>
 </section>
 
+<section>
+  <div class="col">
+    <h2>The DIY option</h2>
+    <h3>What a purpose-built drone would cost &mdash; and the clause that caps it</h3>
+    <p>Before any bill of materials, the fact that shapes the whole design space: <strong>a privately built aircraft carries no C-class marking, so STS-02 is unavailable to it at any price.</strong> A homebuilt flies Open category A3 &mdash; VLOS, under 25&nbsp;kg, 150&nbsp;m from uninvolved people &mdash; or it needs a full SORA authorisation. Building cannot buy range; it can only buy sensors and redundancy cheaply. So the DIY design splits into the two jobs VLOS work actually rewards.</p>
+    <h3>Variant A &mdash; the sweeper: &euro;1,940</h3>
+    <p>A hand-launched foam twin-boom (Believer class) with an ArduPilot stack and a used 24&nbsp;MP APS-C camera on a one-second intervalometer. The physics closes comfortably: 82&nbsp;W cruise from a 150&nbsp;Wh pack gives <strong>93-minute sorties</strong>, and the camera delivers 2.9&nbsp;cm ground sampling &mdash; <strong>24 pixels across the sphere</strong> against an identification threshold of six, out-resolving the M3T's RGB and every satellite option by an order of magnitude. 5.9&nbsp;km&sup2;/h, 9.2&nbsp;km&sup2; per flight, three battery packs to fly continuously.</p>
+  </div>
+  <div class="scroller">
+    <table>
+      <caption>Variant A bill of materials, indicative street prices, August 2026.</caption>
+      <thead><tr><th>Item</th><th class="num">&euro;</th></tr></thead>
+      <tbody>
+        <tr><td class="name">Foam twin-boom airframe kit (Believer 1960 class)</td><td class="num">340</td></tr>
+        <tr><td class="name">Pixhawk-class autopilot + M10 GPS + compass</td><td class="num">270</td></tr>
+        <tr><td class="name">Motors &times;2, ESCs, props, launch spares</td><td class="num">130</td></tr>
+        <tr><td class="name">ELRS control link + 868 MHz telemetry</td><td class="num">110</td></tr>
+        <tr><td class="name">Used 24 MP APS-C body + 16 mm pancake prime</td><td class="num">470</td></tr>
+        <tr><td class="name">Intervalometer trigger + hard mount</td><td class="num">60</td></tr>
+        <tr><td class="name">3 &times; Li-ion pack (4S 10.4 Ah) + dual charger</td><td class="num">420</td></tr>
+        <tr><td class="name">Harness, camera bay, spares</td><td class="num">140</td></tr>
+        <tr class="hi"><td class="name"><strong>Total</strong></td><td class="num"><strong>1,940</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col">
+    <h3>Variant B &mdash; the night core: &euro;4,390, of which 67% is one part</h3>
+    <p>A 10-inch ArduPilot quad carrying a <strong>Boson 640</strong> with the 8.7&nbsp;mm f/1.0 lens: 16.6&nbsp;cm thermal GSD, 4.2&nbsp;px on target, diffraction Q&nbsp;=&nbsp;0.83 &mdash; the same detector-limited check the M3T passed. One clever economy: the <strong>&le;9&nbsp;Hz export-friendly Boson is cheaper and entirely sufficient</strong>, because at 8&nbsp;m/s survey speed one frame per second still gives ~90% forward overlap. Momentum theory gives 185&nbsp;W in slow survey flight and 49-minute endurance from a 6S Li-ion pack; thrust-to-weight is 3.3.</p>
+    <p>But the bill of materials tells the real story: &euro;2,950 of the &euro;4,390 is the thermal core. <strong>Variant B is not a drone project &mdash; it is a sensor purchase with &euro;1,440 of aircraft around it.</strong> And for &euro;7,380 the used M3T delivers the same 640-class detector already integrated, gimballed, weather-sealed and warrantied.</p>
+  </div>
+  <div class="scroller">
+    <table>
+      <caption>DIY against the alternatives. Build hours are honest integration estimates; at any loaded engineer rate they dwarf the cash differences.</caption>
+      <thead><tr><th>Option</th><th class="num">Cash</th><th class="num">Build</th><th class="num">RGB km&sup2;/day</th><th class="num">Thermal km&sup2;/night</th><th>Legal envelope</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td class="name">A: DIY RGB fixed wing</td><td class="num">&euro;1,940</td><td class="num">40 h</td><td class="num">64.2</td><td class="num">&mdash;</td><td>Open A3, VLOS</td></tr>
+        <tr><td class="name">B: DIY thermal quad</td><td class="num">&euro;4,390</td><td class="num">50 h</td><td class="num">&mdash;</td><td class="num">7.3</td><td>Open A3, VLOS</td></tr>
+        <tr><td class="name">A + B, shared ground kit</td><td class="num">&euro;6,130</td><td class="num">90 h</td><td class="num">64.2</td><td class="num">7.3</td><td>Open A3, VLOS</td></tr>
+        <tr><td class="name">Used M3T kit</td><td class="num">&euro;7,380</td><td class="num">0 h</td><td class="num">37.7</td><td class="num">5.3</td><td>Open A2/A3, VLOS</td></tr>
+        <tr><td class="name">Contracted C6 fixed wing</td><td class="num">&euro;1,500/day</td><td class="num">0 h</td><td class="num">45</td><td class="num">&mdash;</td><td><span class="pill p-yes">STS-02 BVLOS</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col">
+    <p>The daily RGB figures flatter every VLOS option equally &mdash; in practice all of them are relocation-limited to ~0.8&nbsp;km&sup2; per pilot setup, and per-setup they tie. Two asymmetries the table cannot carry: a day-one crash costs DIY-A about &euro;1,470 and is repairable with foam and hot glue, where an M3T crash is a &euro;4,500 total loss; and the contracted operator's 12.6&nbsp;km&sup2; BVLOS bubble <em>cannot be replicated by building anything</em>.</p>
+    <p class="lead">Verdict: <strong>~&euro;6,130 and ninety build-hours for both aircraft.</strong> Build the sweeper &mdash; &euro;1,940 for the best identification camera in this entire document is a genuine bargain if the hours are free. Skip the thermal quad and buy the used M3T instead &mdash; unless the Boson has a second life planned, and for a company flying stratospheric payloads it does: a 100&nbsp;g radiometric 640 core is exactly the instrument the next recovery beacon wants riding beside it.</p>
+  </div>
+</section>
+
 <section class="col">
   <h2>Next flight</h2>
   <h3>Make the payload answer back</h3>

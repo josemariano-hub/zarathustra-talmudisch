@@ -26,6 +26,8 @@ satellite imagery over the Spanish Meseta.
 | `battery_logistics_output.txt` | Full numeric output of the above. |
 | `thermal_resolution_check.py` | Diffraction/Q check on the thermal optics; detection vs identification. |
 | `thermal_resolution_output.txt` | Full numeric output of the above. |
+| `diy_drone_costing.py` | Purpose-built DIY drone: two variants, BOMs, physics, verdict. |
+| `diy_drone_costing_output.txt` | Full numeric output of the above. |
 
 ## Workflow
 
@@ -180,6 +182,26 @@ been stated: **detection is contrast-limited, identification is resolution-limit
 A 5 K anomaly against a 50 mK detector is unmistakable at 2 px across, so all of them
 detect. None of the Mavic-class cameras identifies. **Thermal tells you where to walk;
 RGB at 2–3 cm or a car journey tells you what you found.**
+
+### DIY build — costed
+
+A homebuilt has **no C-class marking, so STS-02 is unavailable at any price** — it flies
+Open A3 (VLOS) or needs a full SORA. DIY cannot buy range, only sensors and redundancy.
+
+- **Variant A "Sweeper" — €1,940 + ~40 h**: foam twin-boom (Believer class), ArduPilot,
+  used 24 MP APS-C + 16 mm at 1 fps. 82 W cruise → 93 min sorties; 2.9 cm GSD = **24 px
+  on the sphere** (ID threshold is 6); 9.2 km²/flight; 3 Li-ion packs to fly continuously.
+  A day-one crash costs ~€1,470 and repairs with hot glue.
+- **Variant B "Night core" — €4,390 + ~50 h**: 10-inch quad + Boson 640 (8.7 mm f/1.0,
+  Q = 0.83, 4.2 px on target). The ≤9 Hz export-friendly Boson suffices (1 fps = ~90%
+  forward overlap at 8 m/s). **67% of the cost is the sensor** — it is a €2,950 core with
+  €1,440 of aircraft around it, and the used M3T (€7,380) delivers the same detector
+  integrated and warrantied.
+
+**Verdict: ~€6,130 + ~90 h for both.** Build A (nothing touches its cost-per-km² if hours
+are free, and it out-resolves everything in this repo); skip B and buy the used M3T —
+unless the Boson has a second life on the balloon payloads, which is the one defensible
+reason to build it.
 
 **Buy the airframe used, buy the batteries new.** Cycle count and storage abuse are
 invisible in a photograph; a tired pack sags under load and a swollen cell is a fire in
