@@ -1,0 +1,61 @@
+
+========================================================================================================
+  DIY RADAR FOR THE NEXT FLIGHT - the corner reflector closes the loop
+========================================================================================================
+
+[1] THE TARGET, AT OUR OWN FREQUENCY
+
+    At 24 GHz (lambda 12.4 mm) the printed trihedral is enormous:
+       leg a  RCS at 24 GHz   vs the sphere alone
+         8cm          1.1 m2(porexpan itself: ~0.001 m2 - invisible)
+        10cm          2.7 m2                                        
+        15cm         13.7 m2                                        
+        20cm         43.4 m2                                        
+
+    Design point: 15 cm legs -> 13.7 m2. A truck-sized radar target folded
+    from ~246 g of printed frame and aluminium sheet. The octahedral
+    cluster keeps one corner facing any direction, so resting attitude
+    does not matter. Shorter legs than the X-band satellite design work
+    because OUR radar picks the wavelength - 24 GHz rewards small corners.
+
+[2] DETECTION RANGE FROM THE SWEEPER
+
+    Radar equation, noise-limited: R_max = 227 m  (13 dB SNR, single chirp)
+    Clutter check at 200 m: cell 52 m2 x sigma0(-12 dB) = 3.3 m2 clutter
+    -> signal-to-clutter 6 dB; a stable point over speckle, and
+       coherent integration over ~100 chirps adds ~10 dB more margin.
+
+    Operating swath ~340 m (side-looking both sides at 200 m):
+    12 km2/h from the same 13 m/s glider - vs 4.8 for day RGB and 2.8
+    for thermal. And it is indifferent to cloud, fog, rain, darkness and the
+    sphere being under a hedge. Range resolution 0.75 m localises the hit
+    to a strip a tractor can drive down.
+
+[3] WHAT IT COSTS
+
+      24 GHz FMCW eval module (IWR1443BOOST / K-MD2 class)        320E
+      Raw-ADC capture board (DCA1000 class, used)                 220E
+      Printed radome + side-look mount (X1C, PETG - no CF)          5E
+      Cabling, power from existing 5 A UBEC stock                   5E
+      TOTAL RADAR BAY                                             550E
+
+      Plus the true cost: ~40-60 h of FMCW signal-processing work (chirp
+      config, range-FFT, CFAR detection, geotagging on the Pi). That is DSP
+      on a laptop, not microwave engineering - the module IS the radar.
+      A from-scratch or harmonic-radar build (SDR + PA + LNA + two bands)
+      runs ~800-1,000 EUR and 3-5x the hours; not worth it when a 5 EUR
+      RECCO tab and a rented detector already give the clutter-free channel.
+
+[4] THE NEXT-FLIGHT RECOVERY KIT, COMPLETE
+
+      X1C-printed octahedral reflector cluster (Al-faced)      ~20 EUR, 246 g
+      Iridium tracker on 4xAA L91 (the real fix)              ~300 EUR, 120 g
+      RECCO reflector                                            ~5 EUR, 4 g
+      Radar bay on the sweeper (above)                          550 EUR
+      ------------------------------------------------------------------
+      Three independent recovery channels for ~875 EUR total. The tracker
+      tells you where it landed; the radar and RECCO find it if the tracker
+      dies; the reflector needs no power at all and outlives everything.
+      That is what "the next recovery becomes a non-event" costs.
+
+========================================================================================================

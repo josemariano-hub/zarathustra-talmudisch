@@ -38,6 +38,8 @@ satellite imagery over the Spanish Meseta.
 | `battery_chemistry_output.txt` | Full numeric output of the above. |
 | `day_vs_night.py` | Honest day/night recheck (day wins; night = hours + tie-breaker) and the X1C printed-parts manifest. |
 | `day_vs_night_output.txt` | Full numeric output of the above. |
+| `diy_radar.py` | 24 GHz FMCW radar bay for the reflector-equipped next flight; costs and physics. |
+| `diy_radar_output.txt` | Full numeric output of the above. |
 
 ## Workflow
 
@@ -120,6 +122,19 @@ Sentinel-1 is free but needs 0.69 m / 660 g to beat its 100 m² cell.
 
 Add a surviving satellite tracker and a 4 g RECCO reflector. The corner reflector is
 elegant; the tracker is what actually recovers payloads.
+
+### Our own radar — €550
+
+Once the payload carries the printed reflector cluster, the sweeper grows a radar bay:
+a COTS 24 GHz FMCW module (ISM, licence-free at 100 mW EIRP) + raw-ADC capture + printed
+mount = **€550**, plus 40–60 h of FMCW DSP (the module IS the radar). Choosing our own
+wavelength makes 15 cm printed legs return **13.7 m²** — noise-limited range 227 m,
+6 dB over stubble clutter (+~10 dB integration), **~340 m swath, 12 km²/h** — double the
+day camera, in any weather, at night, under hedges, with 0.75 m range resolution.
+From-scratch/harmonic SDR builds (~€900, 3–5× hours) are not worth it next to a €5 RECCO.
+
+**Complete next-flight recovery kit ~€875**: printed reflector ~€20 + Iridium tracker on
+4×AA ~€300 + RECCO €5 + radar bay €550 — three independent recovery channels.
 
 ## Buying a drone
 
