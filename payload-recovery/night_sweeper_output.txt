@@ -1,0 +1,87 @@
+
+========================================================================================================
+  NIGHT SWEEPER - iterating the 1,940 EUR day sweeper into a quiet night aircraft
+========================================================================================================
+
+  Prior art check: this class EXISTS and works. Air Shepherd flew foam fixed
+  wings with LWIR cameras, exclusively at night, over African reserves - 6,000+
+  flight hours. We are re-implementing a proven concept at Meseta scale, not
+  inventing one. The beacon stays on: quiet is a courtesy, conspicuity is law.
+
+[ITERATION 0] Baseline: day sweeper as designed (Believer twin-boom, APS-C RGB)
+    Night capability: NONE (RGB is blind at night)
+    Noise at ground from 120 m: 31 dBA vs 32 dBA ambient  -> masked
+    Cost: 1,940 EUR
+
+[ITERATION 1] Bolt a cheap thermal core onto the Believer
+    sensor                             GSD   swath px on target   detect   km2/h    EUR
+    FLIR Lepton 3.5 (160x120)        103cm    165m          0.7      36s    5.55    250
+    InfiRay P2-class (256x192)        45cm    115m          1.6     125s    3.88    340
+    InfiRay Mini2-640, 9.1 mm         16cm    101m          4.4     125s    3.41    900
+    FLIR Boson 640, 8.7 mm            17cm    106m          4.2     100s    3.57  2,950
+    -> Detection is contrast-limited, so even the 250 EUR Lepton 'sees' the
+       sphere - but at 1.0 m GSD every cooling straw patch is a candidate and
+       nothing can be told apart. The P2-class core detects hard (125 sigma)
+       at 1.6 px. The InfiRay 640 matches the Boson's geometry at 1/3 price.
+       Noise and endurance unchanged - the airframe is still the limit.
+
+[ITERATION 2] Swap airframe: twin-boom -> foam motor-glider (2.5 m class)
+    AUW 2.0 kg, L/D 12.0, cruise 13.0 m/s -> 47 W electric (vs 82 W twin-boom)
+    endurance on the same 150 Wh pack: 164 min  (sanity: foam motor-gliders publish 2.5-3.5 h - consistent)
+    night air: rho 1.16 vs 1.1 kg/m3 (+5%), zero thermal turbulence,
+    nocturnal boundary layer typically calm -> the quoted numbers are conservative at night
+    14-inch folding prop at 2,800 rpm: tip speed 52 m/s (vs 72)
+    noise at ground: 18 dBA vs 32 dBA ambient -> BELOW ambient: unnoticeable
+    climb-glide option: glide 55 s (motor OFF - silent), climb 20 s
+    -> 73% of the sortie is a gliding airframe with the prop folded;
+       even the climb burst is 42 dBA at ground, a faint 20-second hum
+
+[ITERATION 3] Final configuration: motor-glider + InfiRay 640 + dual payload bay
+    thermal: 16 cm GSD, 101 m swath, 4.4 px on target, 125 sigma detection
+    smear at 13.0 m/s: 0.8 px on a 4.4 px target - irrelevant (checked pattern)
+    coverage: 2.77 km2/h x 164 min = 7.6 km2/sortie
+    an August night (7.4 h usable): ~3 sorties, ~17 km2 of thermal sweep
+    vs 7.3 km2/night for the DIY quad and 5.3 for the M3T - the wing wins on wing physics
+
+    Bill of materials (day AND night capable):
+      Foam motor-glider kit, 2.5 m class                          180E
+      Low-Kv motor + 14-inch folding prop + spinner                95E
+      Pixhawk-class autopilot + M10 GPS + airspeed                300E
+      ELRS control link + 868 MHz telemetry                       110E
+      InfiRay Mini2-640, 9.1 mm, USB board                        900E
+      Raspberry Pi Zero 2 W logger + storage                       80E
+      Swappable day bay: used 24 MP APS-C + 16 mm + trigger       530E
+      Li-ion packs x3 (4S 10.4 Ah) + dual charger                 420E
+      Flashing green night beacon + position strobes               90E
+      Harness, printed payload bays, spares                       160E
+      TOTAL                                                     2,865E
+      (night-only, without the RGB day bay: 2,335 EUR)
+
+========================================================================================================
+  ITERATION SUMMARY
+========================================================================================================
+
+  iter  configuration                                 night  dBA@gnd   endur     EUR
+  0     Believer + APS-C (day sweeper)                   no      31   93 min   1,940
+  1     Believer + P2-class thermal                    weak      31   93 min   2,290
+  2     Motor-glider airframe swap                        -      18  164 min   ~same
+  3     Motor-glider + InfiRay 640 + day bay            YES      18  164 min   2,865
+
+  What the iteration bought, for +925 EUR over the day sweeper:
+  - Night capability at Boson-class geometry (4.4 px, 125 sigma) for 1/3 the Boson price
+  - 18 dBA at ground against a 32 dBA rural night - below ambient, the aircraft
+    is inaudible in cruise and SILENT 73% of the time in climb-glide
+  - 164-minute sorties: ~17 km2 of thermal per August night, 4x any quad option
+  - The same airframe flies the APS-C by day: one aircraft, both jobs
+
+  Chain to the mission: night thermal produces POSITIONS (detection at 125 sigma,
+  identification at 4.4 px still impossible - established); the day bay or a car
+  confirms them. Air Shepherd proved this exact loop for a decade; ours is smaller,
+  slower, quieter and pointed at one styrofoam ball instead of poachers.
+
+  Honest costs not in the BOM: ~50-60 build hours (the thermal USB capture
+  pipeline is the real work), ArduPilot tuning flights, and the pilot's night
+  rating admin. And the A3 rules bind at night exactly as by day: VLOS to the
+  beacon, 150 m from uninvolved people, relocation between setups.
+
+========================================================================================================

@@ -28,6 +28,8 @@ satellite imagery over the Spanish Meseta.
 | `thermal_resolution_output.txt` | Full numeric output of the above. |
 | `diy_drone_costing.py` | Purpose-built DIY drone: two variants, BOMs, physics, verdict. |
 | `diy_drone_costing_output.txt` | Full numeric output of the above. |
+| `night_sweeper.py` | Iterating the sweeper into a quiet night aircraft: acoustics, sensor ladder, BOM. |
+| `night_sweeper_output.txt` | Full numeric output of the above. |
 
 ## Workflow
 
@@ -197,6 +199,26 @@ Open A3 (VLOS) or needs a full SORA. DIY cannot buy range, only sensors and redu
   forward overlap at 8 m/s). **67% of the cost is the sensor** — it is a €2,950 core with
   €1,440 of aircraft around it, and the used M3T (€7,380) delivers the same detector
   integrated and warrantied.
+
+### Night sweeper iteration — €2,865, day and night, below ambient noise
+
+Prior art: this class is proven (Air Shepherd — foam fixed wings + LWIR, night-only
+anti-poaching, 6,000+ flight hours). Scope: "quiet" means acoustic courtesy; the legally
+required green night beacon stays on.
+
+- **Sensor ladder**: detection is contrast-limited, so even a €250 Lepton "sees" the
+  5 K anomaly (36σ) but discriminates nothing at 1 m GSD. The reset: an **InfiRay
+  Mini2-640 (~€900) matches Boson 640 geometry at 1/3 the price** — 16 cm GSD,
+  4.4 px on target, 125σ.
+- **The airframe swap is where quiet comes from**: prop noise ~ tip-speed^5.5. A 2.5 m
+  foam motor-glider with a 14″ folding prop at 2,800 rpm = 52 m/s tip speed, 47 W cruise
+  → **18 dBA at ground vs 32 dBA rural night ambient** (below ambient), and **164 min**
+  endurance on the same 150 Wh pack. Climb-glide makes 73% of the sortie motor-off silent.
+- **~17 km² of thermal per August night** — 4× any quad option — and the same airframe
+  flies the APS-C day bay. Total €2,865 (€2,335 night-only), ~50–60 build hours.
+
+Night thermal produces positions (125σ); identification at 4.4 px remains impossible —
+the day bay or a car closes the loop. A3 rules bind at night as by day.
 
 **Verdict: ~€6,130 + ~90 h for both.** Build A (nothing touches its cost-per-km² if hours
 are free, and it out-resolves everything in this repo); skip B and buy the used M3T —

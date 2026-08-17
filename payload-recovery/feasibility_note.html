@@ -726,6 +726,58 @@ footer p{margin:0 0 8px}
   </div>
 </section>
 
+<section>
+  <div class="col">
+    <h2>The night sweeper</h2>
+    <h3>Iterating the &euro;1,940 day wing into a quiet night aircraft</h3>
+    <p>Scope first: <em>quiet</em> here means acoustically discreet &mdash; pre-dawn sorties that wake no village, no livestock, and no dogs. The flashing green night beacon required by the night rules <strong>stays on the aircraft</strong>: conspicuity to observers and other airspace users is law and safety, not a design variable.</p>
+    <p>And this class is not speculative. <strong>Air Shepherd</strong> flew foam fixed wings with thermal cameras, exclusively at night, over African reserves &mdash; over 6,000 flight hours of anti-poaching patrol. The hand-launched foam-plus-LWIR form factor is the Raven/Puma lineage, proven for two decades. We are re-implementing a mature concept at Meseta scale, pointed at one styrofoam ball instead of poachers.</p>
+    <h3>Iteration 1 &mdash; the sensor ladder</h3>
+    <p>Detection is contrast-limited, which produces a surprising ladder: even a &euro;250 Lepton &ldquo;sees&rdquo; a 5&nbsp;K anomaly &mdash; but at 1&nbsp;m GSD every cooling straw patch is an indistinguishable candidate. The finding that resets the economics: an <strong>InfiRay Mini2-640 matches the Boson's geometry at one-third the price</strong>.</p>
+  </div>
+  <div class="scroller">
+    <table>
+      <caption>Thermal cores at the 120 m ceiling, 12 &micro;m pitch throughout. Detection sigma assumes the 5 K pre-dawn contrast.</caption>
+      <thead><tr><th>Core</th><th class="num">GSD</th><th class="num">Swath</th><th class="num">px on target</th><th class="num">Detect</th><th class="num">&euro;</th></tr></thead>
+      <tbody>
+        <tr class="dim"><td class="name">FLIR Lepton 3.5 (160&times;120)</td><td class="num">103 cm</td><td class="num">165 m</td><td class="num">0.7</td><td class="num">36&sigma;</td><td class="num">250</td></tr>
+        <tr><td class="name">InfiRay P2-class (256&times;192)</td><td class="num">45 cm</td><td class="num">115 m</td><td class="num">1.6</td><td class="num">125&sigma;</td><td class="num">340</td></tr>
+        <tr class="hi"><td class="name">InfiRay Mini2-640, 9.1 mm</td><td class="num">16 cm</td><td class="num">101 m</td><td class="num">4.4</td><td class="num">125&sigma;</td><td class="num">900</td></tr>
+        <tr><td class="name">FLIR Boson 640, 8.7 mm</td><td class="num">17 cm</td><td class="num">106 m</td><td class="num">4.2</td><td class="num">100&sigma;</td><td class="num">2,950</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col">
+    <h3>Iteration 2 &mdash; the airframe swap is where quiet comes from</h3>
+    <p>Propeller noise scales roughly with tip speed to the 5.5th power, so tip speed is <em>the</em> acoustic design variable. Swapping the twin-boom for a 2.5&nbsp;m foam <strong>motor-glider</strong> with a 14-inch folding prop turning at 2,800&nbsp;rpm cuts tip speed from 72 to 52&nbsp;m/s and cruise power from 82 to 47&nbsp;W. The result at ground level under a 120&nbsp;m pass: <strong>18&nbsp;dBA against a 32&nbsp;dBA rural night ambient</strong> &mdash; below ambient, genuinely unnoticeable. The same swap nearly doubles endurance to <strong>164 minutes</strong> on the same 150&nbsp;Wh pack.</p>
+    <p>The climb-glide profile goes further: glide from 120 to 60&nbsp;m with the motor off and the prop folded (55&nbsp;s, an actually silent airframe), climb back in 20&nbsp;s. <strong>73% of the sortie makes no propulsion noise at all</strong>, and the climb burst reaches a faint 42&nbsp;dBA for twenty seconds. Night air helps everything: denser, calmer, no thermals &mdash; the numbers above are conservative after dark.</p>
+    <h3>Iteration 3 &mdash; final configuration</h3>
+  </div>
+  <div class="scroller">
+    <table>
+      <caption>Night sweeper bill of materials, indicative street prices. Night-only (without the swappable RGB day bay): &euro;2,335.</caption>
+      <thead><tr><th>Item</th><th class="num">&euro;</th></tr></thead>
+      <tbody>
+        <tr><td class="name">Foam motor-glider kit, 2.5 m class</td><td class="num">180</td></tr>
+        <tr><td class="name">Low-Kv motor + 14&Prime; folding prop</td><td class="num">95</td></tr>
+        <tr><td class="name">Pixhawk-class autopilot + GPS + airspeed</td><td class="num">300</td></tr>
+        <tr><td class="name">ELRS link + 868 MHz telemetry</td><td class="num">110</td></tr>
+        <tr class="hi"><td class="name">InfiRay Mini2-640, 9.1 mm, USB</td><td class="num">900</td></tr>
+        <tr><td class="name">Pi Zero 2 W logger</td><td class="num">80</td></tr>
+        <tr><td class="name">Swappable day bay: used APS-C + 16 mm + trigger</td><td class="num">530</td></tr>
+        <tr><td class="name">3 &times; Li-ion pack + dual charger</td><td class="num">420</td></tr>
+        <tr><td class="name">Green night beacon + strobes</td><td class="num">90</td></tr>
+        <tr><td class="name">Harness, payload bays, spares</td><td class="num">160</td></tr>
+        <tr class="hi"><td class="name"><strong>Total, day + night capable</strong></td><td class="num"><strong>2,865</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col">
+    <p class="lead">For &euro;925 over the day sweeper: Boson-class thermal geometry (4.4&nbsp;px, 125&sigma;) at a third of the Boson price, an aircraft inaudible from the ground in cruise and silent 73% of the time, 164-minute sorties, and <strong>~17&nbsp;km&sup2; of thermal sweep per August night &mdash; four times any quad option</strong> &mdash; with the same airframe flying the 24&nbsp;MP camera by day.</p>
+    <p>The chain of custody stands: night thermal produces <em>positions</em> at 125&sigma;; identification at 4.4&nbsp;px remains impossible, so the day bay or a car confirms them. Honest costs outside the BOM: 50&ndash;60 build hours (the thermal capture pipeline is the real work), tuning flights, and the fact that A3 rules bind at night exactly as by day &mdash; VLOS to the beacon, 150&nbsp;m from uninvolved people, relocation between setups.</p>
+  </div>
+</section>
+
 <section class="col">
   <h2>Next flight</h2>
   <h3>Make the payload answer back</h3>
