@@ -18,6 +18,8 @@ satellite imagery over the Spanish Meseta.
 | `descent_reconstruction.py` | Telemetry → landing ellipse → tasking AOI as GeoJSON. |
 | `sphere_detector.py` | Matched-filter detector over delivered imagery → ranked candidate list. |
 | `outreach_drafts.md` | Emails to Planet and Airbus. |
+| `spectral_and_drone.py` | Porexpan spectral separability, and a costed drone-search trade study. |
+| `spectral_and_drone_output.txt` | Full numeric output of the above. |
 
 ## Workflow
 

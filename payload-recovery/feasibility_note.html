@@ -234,7 +234,7 @@ footer p{margin:0 0 8px}
       <div><dt>Apparent reflectance</dt><dd>0.59</dd><small>Not 0.80 &mdash; curvature costs you 27%</small></div>
       <div><dt>Contrast on dry soil</dt><dd>0.24</dd><small>&Delta;&rho; at 30 cm, after atmosphere</small></div>
       <div><dt>Shadow, December</dt><dd>1.65 m</dd><small>The shadow is the bigger target</small></div>
-      <div><dt>Candidates to check</dt><dd>~143</dd><small>50 km&sup2;, with a before-baseline</small></div>
+      <div><dt>Candidates to check</dt><dd>~27</dd><small>50 km&sup2;, baseline + spectral gate</small></div>
     </dl>
   </div>
 </header>
@@ -411,7 +411,121 @@ footer p{margin:0 0 8px}
   </ol>
   <div class="note">
     <span class="tag">Worth weighing honestly</span>
-    <p>If the ellipse is genuinely small &mdash; say under 20&nbsp;km&sup2; &mdash; a contracted VTOL drone survey at 3&nbsp;cm ground sampling would find the sphere with near-certainty in two or three days for roughly &euro;1,800, and it sees under partial canopy and into ditches where a satellite never will. The satellite route earns its place when the ellipse is large, when access is awkward, or when the imagery arrives as a favour rather than an invoice. The two combine well: satellite to triage a wide area down to a shortlist, drone to close it out.</p>
+    <p>A contracted VTOL drone survey covers roughly 45&nbsp;km&sup2;/day at 2&ndash;3&nbsp;cm for about &euro;1,500/day, and sees under partial canopy and into ditches where a satellite never will. Across every realistic ellipse size the two routes cost about the same, so this is a capability choice rather than a budget one &mdash; see <em>Flying it ourselves</em> below. They also combine well: satellite to triage the wide area down to a shortlist, drone to close it out.</p>
+  </div>
+</section>
+
+<section>
+  <div class="col">
+    <h2>Spectral signature</h2>
+    <h3>Diagnostic in the SWIR, unreachable from orbit</h3>
+    <p>Porexpan does have a particular signature, and it is a strong one. Expanded polystyrene carries C&ndash;H stretch overtones that cut deep absorption features into the short-wave infrared, around 1200, 1700 and 2300&nbsp;nm. Against a NIR-to-2300&nbsp;nm continuum the 1730&nbsp;nm feature is a <strong>46% band depth</strong> for porexpan, where limestone shows none at all. Spectrally this is not a close call &mdash; a single SWIR spectrum would identify your sphere beyond argument.</p>
+    <p>The problem is sampling it. There is no orbital SWIR sensor that resolves a 0.7&nbsp;m object:</p>
+  </div>
+  <div class="scroller">
+    <table>
+      <caption>SWIR-capable platforms and what fraction of a pixel the sphere would occupy. Only airborne and drone sensors put meaningful signal in a resolution cell.</caption>
+      <thead><tr><th>Platform</th><th class="num">GSD</th><th class="num">Pixels on sphere</th><th>Usable</th></tr></thead>
+      <tbody>
+        <tr class="dim"><td class="name">WorldView-3 SWIR</td><td class="num">3.7 m</td><td class="num">0.03</td><td><span class="pill p-no">No</span></td></tr>
+        <tr class="dim"><td class="name">EnMAP / PRISMA hyperspectral</td><td class="num">30 m</td><td class="num">0.0004</td><td><span class="pill p-no">No</span></td></tr>
+        <tr class="dim"><td class="name">EMIT (ISS), free</td><td class="num">60 m</td><td class="num">0.0001</td><td><span class="pill p-no">No</span></td></tr>
+        <tr><td class="name">Airborne hyperspectral</td><td class="num">1.0 m</td><td class="num">0.38</td><td><span class="pill p-mid">Marginal</span></td></tr>
+        <tr class="hi"><td class="name">Drone SWIR at 120 m AGL</td><td class="num">5 cm</td><td class="num">154</td><td><span class="pill p-yes">Decisive</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col">
+    <h3>What the visible bands can still do</h3>
+    <p>In the VNIR, where the 30&nbsp;cm sensors actually work, porexpan has no absorption features &mdash; but its <em>flatness</em> is itself the signature. It is bright and almost perfectly neutral from 400 to 900&nbsp;nm, and essentially nothing natural is. Take a simple slope index across the visible-to-NIR span:</p>
+  </div>
+  <div class="scroller">
+    <table>
+      <caption>Slope index (NIR &minus; DeepBlue)/(NIR + DeepBlue). Near zero means spectrally flat. The gate is: mean VNIR reflectance &gt; 0.55 <em>and</em> |slope| &lt; 0.08.</caption>
+      <thead><tr><th>Material</th><th class="num">Brightness</th><th class="num">Slope</th><th>Gate</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td class="name">Porexpan, clean</td><td class="num">0.83</td><td class="num">0.012</td><td><span class="pill p-yes">Passes</span></td></tr>
+        <tr class="hi"><td class="name">Porexpan, soiled</td><td class="num">0.62</td><td class="num">0.049</td><td><span class="pill p-yes">Passes</span></td></tr>
+        <tr><td class="name">PE silage bale wrap</td><td class="num">0.84</td><td class="num">0.043</td><td><span class="pill p-mid">Passes too</span></td></tr>
+        <tr><td class="name">PE sheeting / mulch</td><td class="num">0.81</td><td class="num">0.045</td><td><span class="pill p-mid">Passes too</span></td></tr>
+        <tr class="dim"><td class="name">Limestone / gypsum</td><td class="num">0.50</td><td class="num">0.247</td><td><span class="pill p-no">Rejected</span></td></tr>
+        <tr class="dim"><td class="name">Sheep fleece</td><td class="num">0.44</td><td class="num">0.412</td><td><span class="pill p-no">Rejected</span></td></tr>
+        <tr class="dim"><td class="name">Cereal stubble</td><td class="num">0.28</td><td class="num">0.579</td><td><span class="pill p-no">Rejected</span></td></tr>
+        <tr class="dim"><td class="name">Dry soil</td><td class="num">0.20</td><td class="num">0.474</td><td><span class="pill p-no">Rejected</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col">
+    <p>Every <em>natural</em> confuser falls out. What survives is porexpan and the other white polymers &mdash; which is exactly the honest limit: <strong>colour cannot separate your sphere from bale wrap, because both are white plastic.</strong> Size, shape and shadow do that. But the natural confusers were the numerous ones, and removing them takes the 50&nbsp;km&sup2; shortlist from <strong>143 candidates to about 27</strong>.</p>
+    <div class="note">
+      <span class="tag">A second reason for Pl&eacute;iades Neo</span>
+      <p>The gate leans on the blue end, because natural bright materials all fall off toward the blue and polymers do not. Pl&eacute;iades Neo's 400&ndash;450&nbsp;nm deep-blue band widens the separation from limestone by about <strong>35%</strong> relative to a conventional 4-band sensor whose blue starts at 450&nbsp;nm. Its six bands were already a modest bonus; with the spectral gate in play they become a second independent argument for that sensor over any 4-band alternative.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="col">
+    <h2>Flying it ourselves</h2>
+    <h3>The legal ceiling, not the camera, sets the pace</h3>
+    <p>Your instinct about fixed wing is right, with one refinement: <strong>VTOL fixed wing</strong>, so you can launch and recover vertically from a stubble field with no runway and no hand-launch.</p>
+    <p>The first surprise is that camera choice barely matters. EASA and AESA cap you at 120&nbsp;m AGL, which fixes ground sampling by optics alone &mdash; and every serious survey payload lands between 1.5 and 3.2&nbsp;cm there. You need roughly six pixels across the sphere for a confident call; all of them deliver twenty to forty-six. Buying a sharper camera buys nothing. What matters is swath &times; endurance.</p>
+  </div>
+  <div class="scroller">
+    <table>
+      <caption>At the 120 m ceiling, with search overlap. Coverage assumes 78% of airtime on productive survey lines and seven to eight flights per working day.</caption>
+      <thead><tr><th>Platform</th><th class="num">GSD</th><th class="num">px on sphere</th><th class="num">Swath</th><th class="num">km&sup2;/flight</th><th class="num">km&sup2;/day</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td class="name">AgEagle eBee X</td><td class="num">2.5 cm</td><td class="num">28</td><td class="num">152 m</td><td class="num">7.7</td><td class="num">53.7</td></tr>
+        <tr class="hi"><td class="name">Quantum Trinity F90+</td><td class="num">1.5 cm</td><td class="num">45</td><td class="num">123 m</td><td class="num">6.6</td><td class="num">46.1</td></tr>
+        <tr><td class="name">WingtraOne GEN II</td><td class="num">1.9 cm</td><td class="num">37</td><td class="num">179 m</td><td class="num">5.9</td><td class="num">41.4</td></tr>
+        <tr class="dim"><td class="name">DJI Mavic 3E (multirotor)</td><td class="num">3.2 cm</td><td class="num">22</td><td class="num">170 m</td><td class="num">4.0</td><td class="num">32.2</td></tr>
+        <tr class="dim"><td class="name">DJI M350 + P1 (multirotor)</td><td class="num">1.5 cm</td><td class="num">46</td><td class="num">124 m</td><td class="num">3.3</td><td class="num">26.0</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col">
+    <div class="note">
+      <span class="tag">Free coverage most operators leave on the table</span>
+      <p>Survey planners default to 65&ndash;75% sidelap because that is what photogrammetry needs to build an orthomosaic. <strong>You are not making a map.</strong> Drop to 25% sidelap &mdash; enough to guarantee no gaps &mdash; and coverage roughly <strong>doubles</strong>, at no cost and no loss of detection performance. Then run the matched filter directly on the geotagged original frames. Building an orthomosaic first would burn more compute than the search itself, and would blur the very target you are hunting.</p>
+    </div>
+    <h3>The constraint that actually decides it</h3>
+    <p>Neither airframe nor camera is the binding limit. It is how far the aircraft may legally fly from its pilot.</p>
+  </div>
+  <div class="scroller">
+    <table>
+      <caption>Coverage per pilot setup under each regulatory regime, and the number of separate setups a 120 km&sup2; search would require.</caption>
+      <thead><tr><th>Regime</th><th class="num">Radius</th><th class="num">km&sup2; per setup</th><th class="num">Setups for 120 km&sup2;</th></tr></thead>
+      <tbody>
+        <tr class="dim"><td class="name">Open category A3, VLOS</td><td class="num">0.5 km</td><td class="num">0.8</td><td class="num">153</td></tr>
+        <tr class="hi"><td class="name">STS-02, BVLOS + observer</td><td class="num">2.0 km</td><td class="num">12.6</td><td class="num">10</td></tr>
+        <tr><td class="name">Specific category, bespoke</td><td class="num">5.0 km</td><td class="num">78.5</td><td class="num">2</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col">
+    <p>Under plain visual-line-of-sight a 120&nbsp;km&sup2; search needs around <strong>153 separate pilot setups</strong> &mdash; which is not a survey, it is a fortnight of driving between field gates. <strong>STS-02 is the enabling step</strong>: BVLOS with an airspace observer, up to 2&nbsp;km from the pilot, under a declaration rather than a full authorisation, using a C6-class aircraft. Ten setups instead of a hundred and fifty-three. Any operator you contract must already hold it; if you fly this yourselves, obtaining it is the long pole, not buying the aircraft.</p>
+  </div>
+  <div class="scroller">
+    <table>
+      <caption>Contracted survey at &euro;1,500/day for a two-person crew and a VTOL fixed wing, covering ~45 km&sup2;/day under STS-02 with search overlap. Pléiades Neo column is the tasking floor for the same area.</caption>
+      <thead><tr><th class="num">AOI</th><th class="num">Drone days</th><th class="num">Contracted</th><th class="num">Pl&eacute;iades Neo</th><th class="num">Drone &euro;/km&sup2;</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td class="num">20 km&sup2;</td><td class="num">1</td><td class="num">&euro;1,500</td><td class="num">&euro;3,200</td><td class="num">&euro;75</td></tr>
+        <tr><td class="num">50 km&sup2;</td><td class="num">2</td><td class="num">&euro;3,000</td><td class="num">&euro;3,200</td><td class="num">&euro;60</td></tr>
+        <tr><td class="num">120 km&sup2;</td><td class="num">3</td><td class="num">&euro;4,500</td><td class="num">&euro;3,840</td><td class="num">&euro;38</td></tr>
+        <tr><td class="num">250 km&sup2;</td><td class="num">6</td><td class="num">&euro;9,000</td><td class="num">&euro;8,000</td><td class="num">&euro;36</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col">
+    <p>The two routes cost roughly the same across the whole range, which is the genuinely useful finding: <strong>this is not a budget decision, it is a capability decision.</strong> The drone gives you 2&ndash;3&nbsp;cm instead of 30&nbsp;cm, sees under partial canopy, into ditches and along field margins, and can be re-flown tomorrow. The satellite covers the whole ellipse in one pass, needs no permissions or crew, and is already collecting whether or not you show up.</p>
+    <p>Buying rather than contracting runs &euro;28,000&ndash;45,000 for the airframe plus &euro;4,000&ndash;8,000 for STS-02 crew training, certification and insurance. For a one-off recovery, contract. Buying only pays back if drone search becomes standard practice after every flight &mdash; which, given that you fly balloons regularly, is not an absurd proposition.</p>
+    <div class="note">
+      <span class="tag">The pre-dawn thermal trick</span>
+      <p>Porexpan is a near-perfect insulator: thermal inertia around 30&nbsp;SI against 580 for dry soil and 1,650 for limestone. With almost no thermal ballast it radiates to the night sky and settles at roughly <strong>5&nbsp;K colder than the surrounding ground</strong> before dawn. A 50&nbsp;mK thermal camera sees that at about 100&sigma; &mdash; and critically, it is a signature no bale, rock or plastic sheet can imitate, because they all carry far more heat.</p>
+      <p>The catch is a 16&nbsp;cm ground sample and 2.6&nbsp;km&sup2;/h, inside a one-to-two-hour window before sunrise. So it is not the primary search. It is what you fly over the shortlist, or over a small high-probability core, when the RGB pass has left you with candidates you cannot resolve. Cereal stubble also cools fast and is the one thing that will mimic it.</p>
+    </div>
   </div>
 </section>
 
@@ -443,6 +557,8 @@ footer p{margin:0 0 8px}
     <li><strong>The sphere may not be intact, exposed, or still there.</strong> It could have fragmented on impact, lodged in a tree or hedge, been partly buried, or been picked up by a farmer within days. A half-obscured sphere still yields a workable signature, but a recovered-and-removed one yields nothing.</li>
     <li><strong>Prices are indicative</strong> and drawn from public reseller listings rather than a quote. Treat them as the shape of the commercial structure, not as figures to budget against.</li>
     <li><strong>Everything assumes a reasonably flat, open landing site.</strong> Under canopy or against a north-facing slope in winter, the whole optical approach degrades sharply and the drone or SAR routes become the only viable ones.</li>
+    <li><strong>The spectral values are library figures, not measurements.</strong> Before relying on the flat-and-bright gate, put a field spectrometer on an offcut of the actual porexpan you flew &mdash; a ten-minute measurement pins the gate to your material instead of to a literature average, and would be worth doing regardless.</li>
+    <li><strong>Drone coverage figures assume good conditions.</strong> Wind above roughly 12 m/s, thermals over stubble in the afternoon, and airspace restrictions near aerodromes or Natura 2000 sites will all cut the daily figure. Treat 45 km&sup2;/day as a planning number, not a guarantee.</li>
   </ul>
 </section>
 

@@ -1,0 +1,157 @@
+
+========================================================================================================
+  A. SPECTRAL SEPARABILITY OF PORExPAN
+========================================================================================================
+
+[A1] Band reflectances and separation indices
+
+    material                   DeepBlue     Blue    Green      Red  RedEdge      NIR  bright  slope6  slope4  1730 dip
+    EPS / porexpan (clean)         0.80     0.83     0.84     0.84     0.84     0.82    0.83   0.012  -0.006      46%
+    EPS / porexpan (soiled)        0.58     0.61     0.63     0.64     0.65     0.64    0.62   0.049   0.024      39%
+    PE silage bale wrap            0.78     0.83     0.85     0.86     0.86     0.85    0.84   0.043   0.012      37%
+    PE sheeting / mulch            0.75     0.80     0.82     0.83     0.83     0.82    0.81   0.045   0.012      39%
+    Limestone / gypsum             0.35     0.42     0.50     0.55     0.57     0.58    0.50   0.247   0.160     -14%
+    Sheep fleece (dirty)           0.25     0.32     0.42     0.50     0.55     0.60    0.44   0.412   0.304      10%
+    Cereal stubble                 0.12     0.16     0.24     0.30     0.38     0.45    0.28   0.579   0.475       3%
+    Dry soil (Meseta)              0.10     0.13     0.18     0.23     0.26     0.28    0.20   0.474   0.366     -20%
+    Green crop                     0.04     0.05     0.12     0.05     0.25     0.48    0.17   0.846   0.811      17%
+
+[A2] The VNIR gate: bright AND spectrally flat
+    Rule: mean(6 VNIR bands) > 0.55  AND  |slope6| < 0.08
+
+    EPS / porexpan (clean)     PASS  <-- survives the gate 
+    EPS / porexpan (soiled)    PASS  <-- survives the gate 
+    PE silage bale wrap        PASS  <-- survives the gate 
+    PE sheeting / mulch        PASS  <-- survives the gate 
+    Limestone / gypsum         reject                      (bright 0.50)
+    Sheep fleece (dirty)       reject                      (bright 0.44)
+    Cereal stubble             reject                      (bright 0.28)
+    Dry soil (Meseta)          reject                      (bright 0.20)
+    Green crop                 reject                      (bright 0.17)
+
+    -> Every NATURAL confuser is rejected. Only the white polymers survive,
+       and porexpan is a white polymer, so VNIR cannot separate it from bale wrap.
+       The gate removes the *numerous* confusers and leaves the *few*.
+
+[A3] Why the deep-blue band matters
+    Natural bright materials fall off toward the blue; polymers do not.
+    material                    slope, 6-band  slope, 4-band  margin lost
+    Limestone / gypsum                  0.247          0.160         35%
+    Sheep fleece (dirty)                0.412          0.304         26%
+    Cereal stubble                      0.579          0.475         18%
+    -> Pleiades Neo's 400-450 nm band widens the separation from limestone by ~35%.
+       This is a concrete reason to prefer it over any 4-band 30-50 cm sensor.
+
+[A4] The SWIR features are diagnostic but unreachable from orbit
+    C-H absorption at 1730 nm: 46% depth for porexpan,
+    versus -14% for limestone. Unambiguous - if you can sample it.
+
+    platform                           GSD  px on sphere   usable?  note
+    WorldView-3 SWIR                 3.70m          0.03        no  regulator-resampled to 7.5 m for non-US users
+    EnMAP / PRISMA hyperspectral    30.00m          0.00        no  full 400-2500 nm, 30 m
+    EMIT (ISS)                      60.00m          0.00        no  free, but 60 m
+    Airborne hyperspectral           1.00m          0.38       yes  light aircraft, full SWIR
+    Drone SWIR / hyperspectral       0.05m           154       yes  at 120 m AGL
+
+    -> The signature that would be decisive needs SWIR, and no orbital SWIR
+       sensor resolves a 0.7 m object. It becomes usable only from an aircraft
+       or a drone - which is the bridge to part B.
+
+[A5] Effect of the VNIR spectral gate on the candidate list (50 km2)
+    1 image                     5,573  ->      171 with spectral gate (97% reduction)
+    2 images                    2,040  ->      101 with spectral gate (95% reduction)
+    2 images + baseline           143  ->       27 with spectral gate (81% reduction)
+    Residual is bales and sheeting - separated by size and shape, not colour.
+
+========================================================================================================
+  B. SEARCHING WITH OUR OWN DRONE
+========================================================================================================
+
+[B1] At the 120 m legal ceiling, resolution is not the differentiator
+     GSD is set by optics and the ceiling; every option resolves the sphere easily.
+
+    platform                         GSD  px on sphere    swath         type
+    DJI Mavic 3 Enterprise         3.2cm           22     170m   multirotor
+    DJI Matrice 350 + P1           1.5cm           46     124m   multirotor
+    WingtraOne GEN II RGB61        1.9cm           37     179m   VTOL fixed
+    Quantum Trinity F90+           1.5cm           45     123m   VTOL fixed
+    AgEagle eBee X (Aeria X)       2.5cm           28     152m   fixed wing
+    Thermal (640x512, 9 mm)       15.8cm            4     101m   multirotor
+
+    Need only ~6 px across the sphere for confident ID. All RGB options
+    clear that by a wide margin, so the binding parameter is SWATH x ENDURANCE,
+    not camera quality. Buying a sharper camera buys nothing here.
+
+[B2] Survey overlap: the single biggest operational lever
+     Mapping missions default to 65-75% sidelap to build an orthomosaic.
+     You are not making a map. You are looking for an object.
+
+    platform                         map 65%   search 25%    gain
+    DJI Mavic 3 Enterprise            2.51km2/h       5.37km2/h    2.1x
+    DJI Matrice 350 + P1              1.82km2/h       3.90km2/h    2.1x
+    WingtraOne GEN II RGB61           2.81km2/h       6.02km2/h    2.1x
+    Quantum Trinity F90+              2.05km2/h       4.39km2/h    2.1x
+    AgEagle eBee X (Aeria X)          2.39km2/h       5.11km2/h    2.1x
+    -> Dropping to search overlap roughly doubles coverage for free.
+       Process the raw geotagged frames directly; skip orthomosaic generation.
+
+[B3] Productive coverage
+    platform                      km2/flight   km2/day  days @120km2
+    DJI Mavic 3 Enterprise             4.03      32.2          3.7
+    DJI Matrice 350 + P1               3.25      26.0          4.6
+    WingtraOne GEN II RGB61            5.92      41.4          2.9
+    Quantum Trinity F90+               6.59      46.1          2.6
+    AgEagle eBee X (Aeria X)           7.67      53.7          2.2
+    Thermal (640x512, 9 mm)            1.71      13.7          8.8
+
+[B4] The regulatory constraint dominates everything
+     Coverage per pilot setup is capped by how far the aircraft may legally go.
+
+    regime                            radius   km2/setup   setups for 120 km2  note
+    Open category A3, VLOS              0.5km         0.8                  153  no paperwork; ~500 m visual range
+    STS-02, BVLOS + observer            2.0km        12.6                   10  declaration, C6 aircraft, trained crew
+    Specific cat., bespoke LUC          5.0km        78.5                    2  full authorisation, weeks of lead time
+
+    -> Under plain VLOS a 120 km2 search needs ~153 separate pilot setups.
+       That, not the airframe, is what makes or breaks a drone search.
+       STS-02 is the enabling step: 10 setups instead of 153.
+
+[B5] Cost: contract vs. buy
+         AOI  drone days   contracted   Pleiades Neo   per km2 (drone)
+       20 km2           1       1,500E         3,200E               75E
+       50 km2           2       3,000E         3,200E               60E
+      120 km2           3       4,500E         3,840E               38E
+      250 km2           6       9,000E         8,000E               36E
+
+    Buying instead of contracting:
+      Thermal (640x512, 9 mm)        9,000E
+      AgEagle eBee X (Aeria X)      28,000E
+      Quantum Trinity F90+          30,000E
+      WingtraOne GEN II RGB61       45,000E
+      + STS-02 crew training, C6 aircraft, insurance:  ~4,000-8,000 EUR
+    -> For a one-off recovery, contract. Buying only pays back across many flights.
+
+[B6] Data volume - the hidden cost
+    Quantum Trinity F90+          46.1 km2/day      194 Gpx  ~16,342 frames/day
+    AgEagle eBee X (Aeria X)      53.7 km2/day       84 Gpx  ~12,432 frames/day
+    Run the matched filter per frame on the geotagged originals.
+    Building an orthomosaic first would cost more compute than the search itself.
+
+[B7] The pre-dawn thermal option
+     Porexpan is a near-perfect insulator, so it has almost no thermal ballast.
+
+    material                 thermal inertia   dT vs air, pre-dawn
+    EPS / porexpan                    30 SI                -6.4 K
+    Dry soil                         580 SI                -1.4 K
+    Limestone                       1652 SI                -0.5 K
+    Silage bale (wet)                917 SI                -0.9 K
+    Cereal stubble                   120 SI                -4.0 K
+
+    -> Porexpan sits about 5.0 K COLDER than surrounding soil before dawn.
+       A 50 mK-NETD thermal camera sees that at ~100 sigma.
+       At 120 m: 16 cm GSD, 4.4 px on target, 2.56 km2/h.
+       Limitation: a 1-2 hour window before sunrise, and stubble also cools fast.
+       Use it to confirm a shortlist or sweep a small high-probability core,
+       not as the primary wide-area search.
+
+========================================================================================================
