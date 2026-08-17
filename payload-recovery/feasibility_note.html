@@ -778,6 +778,45 @@ footer p{margin:0 0 8px}
   </div>
 </section>
 
+<section>
+  <div class="col">
+    <h2>Comms architecture</h2>
+    <h3>Starlink, Iridium, or neither &mdash; and what the precedents teach</h3>
+    <p>The legal envelope decides most of this before any link budget: an A3 homebuilt flies VLOS, at most ~2&nbsp;km from the pilot. A link only earns its mass if it serves a mission the aircraft may actually fly &mdash; and the ELRS&nbsp;868 control link already in the BOM closes that entire envelope at 25&nbsp;g.</p>
+    <h3>Starlink on the glider: computed, and disqualifying</h3>
+  </div>
+  <div class="scroller">
+    <table>
+      <caption>Starlink Mini on the 2.0 kg night sweeper, same cruise-power and acoustics formulas as the night-sweeper section.</caption>
+      <thead><tr><th></th><th class="num">Baseline</th><th class="num">With Starlink Mini</th></tr></thead>
+      <tbody>
+        <tr><td class="name">All-up weight</td><td class="num">2.0 kg</td><td class="num">3.1 kg (+55%)</td></tr>
+        <tr><td class="name">Cruise power</td><td class="num">47 W</td><td class="num">98 W (+110%)</td></tr>
+        <tr class="hi"><td class="name">Endurance</td><td class="num">164 min</td><td class="num">78 min (&minus;52%)</td></tr>
+        <tr><td class="name">Noise at ground</td><td class="num">18 dBA</td><td class="num">30 dBA (ambient 32)</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col">
+    <p>The terminal weighs more than half the aircraft, halves the endurance, and thins the acoustic margin &mdash; to deliver bandwidth with no consumer, since the matched filter runs post-flight on logged frames. <strong>Starlink's home is the ground vehicle</strong>, where Zero&nbsp;2&nbsp;Infinity already owns the kit and the van genuinely needs the fat pipe: candidate review, PNOA tiles, weather, coordinating two teams.</p>
+    <h3>Iridium: wrong as telemetry, right as insurance</h3>
+    <p>340-byte messages with minutes of latency cannot do C2 or imagery. But as a <strong>lost-aircraft beacon</strong> &mdash; 30&nbsp;g, ~&euro;260 &mdash; it turns a night aircraft down in dark scrub from a morning of searching into a walk. The aircraft hunting a lost payload should not itself become a lost payload; carry it. And the same 30&nbsp;g module, transmitting one fix per minute through a balloon descent, would have made this entire project unnecessary &mdash; the cheapest sentence in this document.</p>
+    <div class="note">
+      <span class="tag">The precedent architecture</span>
+      <p>Air Shepherd's 6,000 night hours flew exactly one shape: a thin RF link from the aircraft to a <strong>control vehicle that is the ops centre</strong> &mdash; pilots, screens, batteries and uplink on wheels, minimum radio in the air. Copy it: aircraft carries ELRS + Iridium beacon and logs everything onboard; the van carries the Starlink, the power station, and the decisions. <em>The van is the node. The wing is a sensor that comes home.</em></p>
+    </div>
+    <h3>Lessons from Ukraine &mdash; the civilian-applicable ones</h3>
+    <ul class="tight">
+      <li><strong>Links fail; autonomy completes the mission.</strong> Any architecture needing a continuous link is fragile. Ours already passes &mdash; pre-planned mission, onboard logging, post-flight processing. Never let a design decision make the downlink load-bearing.</li>
+      <li><strong>GNSS is a service, not a fact.</strong> Largely irrelevant over the Meseta, and free to hedge: ArduPilot's dead-reckoning brings the aircraft home from 2&nbsp;km with GPS dark. Enable it, test it once.</li>
+      <li><strong>Cheap-and-many beats exquisite-and-one.</strong> A built-and-trimmed spare airframe is ~&euro;275. The fleet that keeps flying after a crash out-searches the fleet that grounds itself.</li>
+      <li><strong>Logistics set the sortie rate.</strong> Batteries, chargers and field watts govern coverage &mdash; the same law the battery section quantified. The van's power budget is mission infrastructure.</li>
+      <li><strong>The BOM's cheapness is the war's supply chain.</strong> ELRS links, Pixhawk clones and Li-ion at these prices exist because that ecosystem scaled to wartime volume. Order spares while it is glutted.</li>
+    </ul>
+    <p class="lead">Delta to the build: Iridium beacon &euro;260, 4G thumbnail modem &euro;70, spare airframe &euro;275 &mdash; night sweeper goes from &euro;2,865 to <strong>&euro;3,470</strong>, with Starlink at &euro;0 because it stays in the van you already own.</p>
+  </div>
+</section>
+
 <section class="col">
   <h2>Next flight</h2>
   <h3>Make the payload answer back</h3>

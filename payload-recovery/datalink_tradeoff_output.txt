@@ -1,0 +1,119 @@
+
+========================================================================================================
+  DATALINK TRADE - what flies on the aircraft, what stays on the ground
+========================================================================================================
+
+[1] THE CANDIDATE LINKS
+
+    An A3 homebuilt flies VLOS - at most ~2 km from the pilot, usually much
+    less. That legal fact does most of the deciding before any link budget:
+    a link only earns its mass if it serves a mission the aircraft may fly.
+
+    link                           mass   power    kit  service       rate  latency  serves
+    ELRS 868 + MAVLink telem        25g    1.0W   110E     free  ~100 kbps       ms  C2 + telemetry over the whole VLOS envelope
+    4G LTE modem + SIM              50g    2.5W    70E  10 E/mo   10+ Mbps  ~100 ms  live thumbnails / candidate coords to the van
+    Iridium SBD (RockBLOCK)         30g    0.5W   260E ~15 E/mo  340 B/msg  minutes  lost-aircraft beacon; works with zero infrastructure
+    Starlink Mini                 1100g   30.0W   300E 40+ E/mo  100+ Mbps   ~30 ms  broadband - but see what it does to the aircraft
+
+[2] STARLINK MINI ON THE GLIDER - computed, not assumed
+
+                                  baseline  with Starlink Mini
+    AUW                              2.0 kg               3.1 kg   (+55%)
+    cruise power                      47 W                98 W   (+110%)
+    endurance                        164 min              78 min   (-52%)
+    noise at ground                   18 dBA              30 dBA   (ambient 32)
+
+    -> The terminal weighs more than half the aircraft. Endurance collapses from
+       164 to 78 minutes, the wing loading and stall speed jump, and the
+       acoustic margin thins. And the bandwidth buys nothing the mission needs:
+       the matched filter runs POST-FLIGHT on logged frames - there is no
+       real-time consumer of 100 Mbps on this aircraft. Disqualified on physics,
+       not fashion. Starlink's home is the GROUND VEHICLE: Z2I already owns the
+       kit, and the van needs the fat pipe (candidate review, PNOA tiles,
+       weather, coordinating two teams) far more than the wing does.
+
+[3] IRIDIUM - wrong as telemetry, right as insurance
+
+    As a telemetry link Iridium SBD is a non-starter: 340-byte messages with
+    minutes of latency cannot carry imagery and cannot do C2. But reframe it:
+
+    - On the DRONE, as a lost-aircraft beacon: 30 g and ~260 EUR one-off. A night
+      aircraft that goes down 1.5 km away in dark scrub is itself a recovery
+      problem - position-on-descent over Iridium turns that from a morning of
+      searching into a walk. The aircraft hunting a lost payload should not
+      become a lost payload. VERDICT: carry it. It is 1.5% of AUW.
+
+    - On the NEXT BALLOON FLIGHT: this same 30 g module transmitting one fix per
+      minute through descent would have made this entire project unnecessary.
+      That is the cheapest sentence in this repository.
+
+    (A 4G module is the same insurance for a fifth of the service cost wherever
+    there is coverage - rural Meseta coverage is good but not guaranteed in
+    barrancos; Iridium works everywhere, which is the point of insurance.)
+
+[4] WHAT THE ANTI-POACHERS ACTUALLY FLEW
+
+    Air Shepherd's architecture (6,000+ night hours): a thin RF C2/video link
+    from the aircraft to a CONTROL VEHICLE - a van that is the ops centre, with
+    the pilots, the screens, the batteries and the uplink in it. The aircraft
+    carried the minimum radio that closed the loop; everything heavy stayed on
+    wheels. Delta/Kruger operations ran the same shape with radio masts.
+
+    That is the pattern to copy, and it maps directly onto our kit:
+
+        AIRCRAFT : ELRS 868 C2 + telemetry (in the BOM already)
+                   Iridium beacon (new, 30 g)
+                   everything else logged onboard to the Pi
+        VAN      : Starlink Mini (Z2I existing kit) - candidate review,
+                   satellite tasking follow-ups, PNOA tiles, team coordination
+                   2 kWh power station (in the kit list already)
+
+    The van is the node. The wing is a sensor that comes home.
+
+[5] LESSONS FROM UKRAINE - the civilian-applicable ones
+
+    The published engineering lessons of the drone war, filtered to what a
+    civilian search program can legitimately use:
+
+    1. LINKS FAIL; AUTONOMY COMPLETES THE MISSION. The defining airframe lesson:
+       any architecture that needs a continuous link is fragile. Ours passes
+       already - the survey flies a pre-planned ArduPilot mission and the
+       matched filter runs post-flight on logged frames. Telemetry is a
+       convenience, not a dependency. Keep it that way: no design decision
+       should ever make the downlink load-bearing.
+
+    2. GNSS IS NOT GUARANTEED. Jamming taught everyone that position is a
+       service, not a fact. Irrelevant over the Meseta on a good day - and
+       free to hedge: ArduPilot's airspeed+compass+baro dead reckoning gets
+       the aircraft home from 2 km with GPS dark. Enable it, test it once.
+
+    3. CHEAP-AND-MANY BEATS EXQUISITE-AND-ONE. The war normalised treating
+       airframes as consumables. Our 2,865 EUR wing embodies that philosophy,
+       and a spare foam airframe + motor is ~275 EUR - carry one built. The
+       fleet that keeps flying after a crash out-searches the fleet that
+       grounds itself to grieve.
+
+    4. LOGISTICS SET THE SORTIE RATE. Ukraine's drone units live and die by
+       batteries and chargers, not airframes. We quantified the same law in
+       battery_logistics.py: packs, channels and field watts govern coverage.
+       The van's power budget is mission-critical infrastructure.
+
+    5. OUR SUPPLY CHAIN IS THE WAR'S SUPPLY CHAIN. ELRS links, Pixhawk clones,
+       Li-ion packs, FPV motors at these prices exist because that ecosystem
+       scaled to wartime volumes. The BOM's cheapness is not an accident of
+       hobbyism - order spares while the ecosystem is glutted.
+
+[6] WHAT CHANGES IN THE BUILD
+
+      Iridium SBD module (RockBLOCK 9603) + antenna           260E
+      4G LTE USB modem + prepaid SIM (thumbnail path)          70E
+      Spare foam airframe + motor, built and trimmed          275E
+      TOTAL DELTA                                             605E
+      Night sweeper: 2,865 -> 3,470 EUR. Starlink stays in the van (0 EUR: existing kit).
+
+========================================================================================================
+  VERDICT: neither Starlink nor Iridium AS TELEMETRY. ELRS closes the legal
+  envelope; the fat pipe goes in the van where Z2I already owns it; Iridium
+  flies as a 30 g beacon so the search asset can always be found; and the
+  architecture stays autonomous so no link is ever load-bearing.
+========================================================================================================

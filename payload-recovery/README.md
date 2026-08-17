@@ -30,6 +30,8 @@ satellite imagery over the Spanish Meseta.
 | `diy_drone_costing_output.txt` | Full numeric output of the above. |
 | `night_sweeper.py` | Iterating the sweeper into a quiet night aircraft: acoustics, sensor ladder, BOM. |
 | `night_sweeper_output.txt` | Full numeric output of the above. |
+| `datalink_tradeoff.py` | Comms trade: Starlink/Iridium/4G/ELRS, anti-poacher precedent, Ukraine lessons. |
+| `datalink_tradeoff_output.txt` | Full numeric output of the above. |
 
 ## Workflow
 
@@ -219,6 +221,27 @@ required green night beacon stays on.
 
 Night thermal produces positions (125σ); identification at 4.4 px remains impossible —
 the day bay or a car closes the loop. A3 rules bind at night as by day.
+
+### Comms architecture — the van is the node
+
+**Starlink Mini on the glider is disqualified by physics**: +1.1 kg on a 2.0 kg aircraft,
+cruise power 47 → 98 W, endurance 164 → 78 min — to deliver bandwidth with no consumer,
+since the matched filter runs post-flight. Starlink stays on the **ground vehicle** (Z2I
+existing kit) where the fat pipe is actually needed.
+
+**Iridium is wrong as telemetry, right as insurance**: 30 g / ~€260 lost-aircraft beacon —
+the aircraft hunting a lost payload should not become a lost payload. The same module on
+the next balloon flight would have made this whole project unnecessary.
+
+**Precedent (Air Shepherd, 6,000 night hours)**: thin RF in the air, ops centre on wheels.
+Aircraft: ELRS + Iridium beacon + onboard logging. Van: Starlink, power, decisions.
+
+**Ukraine lessons (civilian-applicable)**: links fail — keep the sortie autonomous and the
+downlink never load-bearing; GNSS is a service — enable ArduPilot dead reckoning; cheap-
+and-many beats exquisite-and-one — carry a €275 built spare airframe; logistics set sortie
+rate; the cheap FPV supply chain is wartime-scaled — buy spares while it is glutted.
+
+Delta: +€605 (beacon, 4G modem, spare airframe) → night sweeper **€3,470** all-in.
 
 **Verdict: ~€6,130 + ~90 h for both.** Build A (nothing touches its cost-per-km² if hours
 are free, and it out-resolves everything in this repo); skip B and buy the used M3T —
