@@ -40,6 +40,8 @@ satellite imagery over the Spanish Meseta.
 | `day_vs_night_output.txt` | Full numeric output of the above. |
 | `diy_radar.py` | 24 GHz FMCW radar bay for the reflector-equipped next flight; costs and physics. |
 | `diy_radar_output.txt` | Full numeric output of the above. |
+| `prop_and_speed.py` | Cruise-speed optimization (wind, sensors, regimes) and the folding-prop buy list. |
+| `prop_and_speed_output.txt` | Full numeric output of the above. |
 
 ## Workflow
 
@@ -273,6 +275,22 @@ Gate before night ops: one daylight sortie on LTE alone with ELRS off.
 
 Delta: +€605 (beacon, modem, spare airframe) +€70 (LTE-primary upgrade) →
 night sweeper **€3,540** all-in.
+
+### Cruise speed, optimized — and the props
+
+13 m/s was an assumption; the sensors don't limit speed (all clear 20+ m/s: blur 0.35 px,
+gapless overlap to 65–90 m/s, thermal smear 1.3 px). The optimum depends on the scarce
+resource: **energy-limited → ~14 m/s calm** (avionics floor pushes it above best-L/D),
+rising with wind (**add half the wind**: the broad energy optimum makes speeding up ~free
+in km²/Wh but worth ~15% in km²/h); **time-limited → fast cruise 16–18 m/s** (+30–38%
+km²/h). With 3 packs cycling, day sweeps are time-limited → fly fast; night thermal flies
+the energy optimum. Noise never vetoes: even 20 m/s stays under the 32 dBA night ambient.
+Survey lines fly **crosswind** for uniform crab and sidelap.
+
+**Props (folding, Aeronaut CAM system, ~€135)**: 14×8 blades for the quiet night/energy
+regime (~54 m/s tip), 14×11 for the fast day regime (~61 m/s tip), 42 mm spinner + yoke,
+magnetic balancer — balance every pair; an unbalanced folder eats the thermal camera's
+vibration budget. Two props, two missions, one aircraft.
 
 ### Correction: day is the primary search, not night
 

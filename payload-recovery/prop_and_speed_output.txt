@@ -1,0 +1,87 @@
+
+========================================================================================================
+  CRUISE SPEED, OPTIMIZED - not assumed
+========================================================================================================
+
+[1] DO THE SENSORS LIMIT SPEED? - checked, and no
+
+    RGB, 1/2000 s shutter:  blur = V/2000 -> at 20 m/s, 1.0 cm = 0.35 px. Fine.
+    RGB, 1 fps frame rate:  along-track footprint 116 m -> gapless to ~90 m/s.
+    Thermal, 10 ms tau:     smear at 20 m/s = 1.3 px on 4.4 px. Acceptable.
+    Thermal, 1 fps:         81 m footprint -> gapless to ~65 m/s.
+    Radar, chirps at kHz:   irrelevant at aircraft speeds.
+
+    Every sensor clears 20+ m/s. The speed decision belongs to the airframe
+    and the mission constraint, not the payload. So which constraint binds?
+
+[2] THE OPTIMUM DEPENDS ON WHICH RESOURCE IS SCARCE
+
+    Survey lines are flown CROSSWIND (constant crab both directions, so
+    sidelap stays uniform): ground speed Vg = sqrt(Va^2 - Vw^2).
+
+      wind |     ENERGY-limited: max km2/Wh     |    TIME-limited: max km2/h    
+           |  best Va    Vg     P     km2/Wh* |     Va     Vg    km2/h*
+       0m/s |   13.6m/s  13.6   50W       0.100 |   18m/s   18.0       6.7
+       4m/s |   14.0m/s  13.4   52W       0.096 |   18m/s   17.5       6.5
+       8m/s |   15.2m/s  12.9   58W       0.083 |   18m/s   16.1       6.0
+      (*RGB payload; thermal scales by swath 101/176)
+
+    Two honest findings:
+    - In calm air the energy optimum is ~14 m/s - the 13 m/s assumption was
+      close but slightly slow; the avionics power floor pushes the optimum
+      a little above best-L/D (classic MacCready-with-sink result).
+    - In wind, SPEED UP: at 8 m/s wind the optimum airspeed rises to ~15 m/s.
+      The energy optimum is BROAD - flying the calm-air speed in that wind
+      costs only ~1% in km2/Wh - but it costs ~15% in km2/HOUR, because
+      ground speed sags. Speeding up in wind is nearly free energy-wise
+      and recovers the lost ground speed: textbook speed-to-fly, applied
+      to surveying. Practical rule: add half the wind to the airspeed.
+
+    WHICH REGIME ARE WE IN? With 3 packs cycling and the van charging, energy
+    is NOT scarce - flight hours are (daylight, VLOS relocations, crew). So
+    the day sweep should fly the TIME-limited answer: fast cruise ~16-18 m/s,
+    +30-38% coverage per hour over 13 m/s, paid for in watts we can afford.
+    The night thermal sortie flips regimes: packs cycle slower at night, the
+    thermal swath is narrow, and quiet matters - fly the energy optimum.
+
+[3] DOES FAST CRUISE STAY QUIET? - the check that could veto it
+
+        Va   P elec    rpm     tip  dBA at ground   vs 32 dBA night ambient
+      13m/s      48W   2811     52m           19  under
+      16m/s      62W   3183     59m           23  under
+      18m/s      76W   3527     66m           26  under
+      20m/s      95W   3931     73m           29  under
+
+    Even 20 m/s stays under the rural night ambient - the acoustic design
+    margin survives the fast optimum. Day flying has ~45 dBA ambient and
+    does not care at all. Noise does not veto speed; fly the optimum.
+
+[4] THE PROPELLERS TO BUY - now derivable
+
+    Requirements: folding (climb-glide), pitch speed matching TWO cruise
+    regimes, tip speed <= ~65 m/s at cruise for the night acoustic case,
+    and climb thrust at the 220 W burst. Pitch speed = rpm/60 * pitch.
+
+    prop                           pitch speed @3000rpm  role
+    Aeronaut CAM 14x8 folding                   10.2 m/s  night/energy cruise 12-13 m/s at ~2,900 rpm, tip 54 m/s
+    Aeronaut CAM 14x11 folding                  14.0 m/s  day/fast cruise 16-18 m/s at ~3,300 rpm, tip 61 m/s
+    Aeronaut CAM 13x11 folding                  14.0 m/s  spare/fast alternative, slightly higher rpm
+
+    BUY LIST (folding-prop system, motor-glider standard):
+      Aeronaut CAM blades 14x8, 2 pairs                    ~44 EUR
+      Aeronaut CAM blades 14x11, 2 pairs                   ~48 EUR
+      42 mm turbo spinner + folding yoke, 8 mm shaft       ~28 EUR
+      Magnetic prop balancer                               ~15 EUR
+      ------------------------------------------------------------
+      TOTAL                                               ~135 EUR
+      (replaces the 95 EUR 'motor + folding prop' line's prop share;
+       net BOM delta ~ +90 EUR - the price of flying two optima)
+
+    Rules: swap blades, not aircraft trim - the yoke stays. Balance every
+    pair (an unbalanced folder is the loudest thing on the airframe and
+    eats the thermal camera's vibration budget). NEVER print propellers.
+    The 14x8 flies the quiet night survey at the energy optimum; the 14x11
+    flies the fast day sweep at the time optimum. Two props, two missions,
+    one aircraft - the same doctrine as the payload bays.
+
+========================================================================================================
