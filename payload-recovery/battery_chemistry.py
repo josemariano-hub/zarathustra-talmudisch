@@ -48,6 +48,33 @@ print("""
     ANY 3S-6S Li-ion or LiPo pack of 450-700 g without redesign - the ESC takes
     the voltage range, the motor/prop pairing tolerates it, and only the trim
     ballast moves. Whatever is found flies; nothing found blocks the build.
+
+    UPDATE - Drive access obtained; two 1hobby/HobbyKing invoices found
+    (Jan 2016 to J.L. Bravo, Nov 2018 to R. Falco). Contents vs the mission:
+
+      pack                              year  config   qty  total Wh
+      nano-tech 1300 mAh 3S 25-50C      2016    3S       4      58
+      nano-tech 1200 mAh 1S round       2016    1S      12      53
+      nano-tech 350 mAh 1S 65-130C      2018    1S       4       5
+      1000 mAh 1S 20C                   2018    1S       5      19
+      nano-tech 950 mAh 1S 25-50C       2018    1S      12      42
+
+    Verdict: NOTHING here flies the sweeper. The 33 x 1S cells are micro-heli
+    packs (Walkera-era); the only multi-cell packs are four 3S 1300s that gang
+    to 58 Wh against a 150 Wh requirement - and they are TEN years old. LiPo
+    calendar life is 3-5 years; an 8-10 year old pack is a puffed-cell hazard,
+    not a flight battery. Retire them to ground-support duty or the recycling
+    point; do not fly them at night over anything you care about.
+
+    What the invoices DO contribute: 6x 5A UBECs + micro BECs + 2x HXT UBEC -
+    exactly the regulators the avionics rails, LTE modem and beacon bus need
+    (saves ~25 EUR of harness budget), and 20 charge markers for field kit.
+    The motors (1704-2300Kv) are micro-quad size, no use to the glider.
+
+    The 330 EUR of NEW Li-ion packs stays in the BOM, now doubly justified.
+    These are also only two invoices - if larger packs (4S-6S Multistar era)
+    exist in the Drive from later years, the same age test applies: anything
+    older than ~4 years fails it.
 """)
 
 # ---------------------------------------------------------------- propulsion pack
