@@ -82,3 +82,55 @@ print(f"""
   separate, defensible coverage buy - take it only if the ellipse is large.
 """)
 hr()
+
+# ================================================================ descend-to-inspect
+print()
+hr()
+print("  DESCEND-TO-INSPECT - altitude as the zoom lens you already own")
+hr()
+INSPECT_ALT=50.0
+gsd640_lo=INSPECT_ALT*12e-6/0.0091
+px_lo=TARGET/gsd640_lo
+print(f"""
+  The 640 core at {INSPECT_ALT:.0f} m AGL: GSD {gsd640_lo*100:.1f} cm -> {px_lo:.1f} px on the sphere.
+  That is PAST the 6 px identification threshold - the same certainty the
+  1,280-class core delivers from 120 m, using the 900 EUR sensor already bought.
+""")
+# maneuver cost: spiral down, low pass, climb back
+sink_spiral=3.0; climb=3.0; dh=CEILING-INSPECT_ALT
+t_down=dh/sink_spiral; t_pass=20.0; t_up=dh/climb
+t_insp=(t_down+t_pass+t_up)/60.0
+e_climb=2.09*G0*dh/0.55/3600     # Wh, climb at drivetrain efficiency
+print(f"  Cost per inspection: {t_down:.0f} s spiral down + {t_pass:.0f} s pass + {t_up:.0f} s climb "
+      f"= {t_insp:.1f} min, {e_climb:.1f} Wh (negligible)")
+# acoustics at 50 m
+spl_lo=18.0+20*math.log10(CEILING/INSPECT_ALT)
+print(f"  Noise during the pass: ~{spl_lo:.0f} dBA at ground - still under the 32 dBA night ambient.")
+
+# break-even vs the 1280 core
+rate640=res["NIGHT InfiRay 640 (baseline)"][2]
+surv=128.0
+print(f"\n  {'false alarms/km2':>18}{'inspections/sortie':>20}{'survey lost':>13}{'km2/sortie':>12}")
+for d in [0.5,1,2,3,5,8]:
+    # solve A = rate*(surv - t_insp*d*A)/60  ->  A = rate*surv/60 / (1 + rate*t_insp*d/60)
+    A=rate640*surv/60/(1+rate640*t_insp*d/60)
+    n=d*A
+    print(f"  {d:>18.1f}{n:>20.0f}{n*t_insp:>10.0f}min{A:>12.1f}")
+print(f"""
+  Break-even: even at 3 false alarms per km2 the inspections cost only 17 of the
+  128 survey minutes (13% of coverage); it takes ~8/km2 before nearly a third of
+  the sortie is spent spiralling. Below that, identification is essentially free.
+
+  VERDICT - revised: DO NOT buy the 1280 core yet. Fly the 900 EUR 640 with
+  descend-to-inspect: detect at 120 m, geotag, finish the survey lines, then fly
+  one inspection tour of the queue at 50 m before landing (the LTE preview makes
+  the queue live - the van marks candidates as they appear). The first sortie
+  MEASURES the real false-alarm density; buy the 1280 sharp core only if it
+  comes in well above ~5/km2. The 3,300 EUR stays in the pocket until the data,
+  not a datasheet, says otherwise.
+
+  One safety note: 50 m at night demands a hard terrain floor - flat llanura
+  only, ArduPilot terrain data loaded, inspection waypoints auto-capped, and
+  no descents in the barrancos. The sphere is not worth the aircraft.
+""")
+hr()

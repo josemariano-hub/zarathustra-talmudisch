@@ -261,12 +261,16 @@ Full night sortie: ~158 min airborne (10 preflight + 1 launch/climb + 2 transit 
 128 survey + 5 return/land), **5.9 km²/sortie**, ~16 km²/night over 2–3 sorties.
 Day: 138 min, 8.9 km²/sortie.
 
-**Upgrade call: a 1280×1024 LWIR core with the SHARP lens (~€3,300 quote-item).**
-7.9 cm GSD puts **8.8 px on the sphere — past the 6 px identification threshold**, so
-every night detection self-confirms and the day-confirmation loop disappears. The wide
-lens alternative doubles coverage (~33 km²/night) but stays position-only; NETD upgrades
-buy nothing (margin is already ~100σ). +60 g fits the MTOM margin. The 61 MP day camera
-(+€1,100, 13.0 km²/sortie) is a separate coverage buy for a large ellipse.
+**Upgrade call — revised: don't buy optics, descend.** The €900 640 core at **50 m AGL
+gives 6.6 cm GSD = 10.6 px on the sphere** — past the identification threshold, same
+certainty the €3,300 1280-core delivers from 120 m. An inspection (spiral down, low pass,
+climb back) costs 1.1 min and 0.7 Wh, stays under the 32 dBA night ambient (~26 dBA), and
+even at 3 false alarms/km² eats only 13% of the sortie. Fly: detect at 120 m → geotag →
+finish lines → one 50 m inspection tour of the queue (the LTE preview makes the queue
+live from the van). The first sortie *measures* the false-alarm density; buy the 1280
+sharp core only if it comes in well above ~5/km². Safety: hard terrain floor, flat
+llanura only, no night descents in barrancos. The 61 MP day camera (+€1,100,
+13.0 km²/sortie) remains a separate coverage buy for a large ellipse.
 
 **Verdict: ~€6,130 + ~90 h for both.** Build A (nothing touches its cost-per-km² if hours
 are free, and it out-resolves everything in this repo); skip B and buy the used M3T —
