@@ -1,0 +1,121 @@
+
+========================================================================================================
+  BUYING A DRONE FOR THIS JOB
+========================================================================================================
+
+[1] Does a fixed wing smear the thermal target?
+    Uncooled microbolometers have a thermal time constant of ~8-12 ms.
+    A moving platform drags the scene across the detector during that time.
+
+    Target spans 5.8 thermal px at 12 cm GSD; raw margin is 100 sigma.
+
+         speed    smear  smear px   peak kept  margin left  verdict
+          6 m/s    0.06m      0.49        92%         92s  fine  (multirotor slow)
+          8 m/s    0.08m      0.66        90%         90s  fine  (multirotor)
+         12 m/s    0.12m      0.99        85%         85s  fine  (slow fixed wing)
+         17 m/s    0.17m      1.40        80%         80s  fine  (fixed wing cruise)
+         22 m/s    0.22m      1.81        76%         76s  fine  (fast fixed wing)
+
+    -> Even at fast fixed-wing cruise the target keeps ~80% of its peak contrast
+       and retains tens of sigma of margin. Smear is real but irrelevant here,
+       because a 5 K anomaly against a 50 mK detector is an enormous signal.
+       Fixed-wing thermal is viable; smear is not a reason to prefer a multirotor.
+
+[2] How long is the usable night window?
+    Correction to the earlier note: this is NOT a 1-2 hour pre-dawn slot.
+    Porexpan reaches its steady cold offset within ~30 min of sunset, while soil
+    keeps drawing heat from depth all night, so the contrast is open for hours.
+    Waiting 3 h after sunset lets high-inertia objects shed their daytime heat,
+    which is what makes the cold anomaly clean rather than merely present.
+
+       month   night length   usable window  (sunset +3 h to sunrise)
+         Aug         10.4 h           7.4 h
+         Sep         11.8 h           8.8 h
+         Oct         13.1 h          10.1 h
+         Nov         14.3 h          11.3 h
+         Dec         14.9 h          11.9 h
+
+    -> August gives ~7.4 usable hours per night, not one or two.
+       That is 3-4 fixed-wing sorties, or 6-8 multirotor batteries.
+
+[3] Coverage, both sensors, at the 120 m ceiling
+    platform                              RGB GSD  RGB km2/d   TH GSD  TH px  TH km2/night
+    DJI Mavic 3 Thermal (M3T)               2.3cm       26.5   17.2cm    4.1           7.6
+    DJI Matrice 4T                          2.3cm       37.7   12.1cm    5.8           5.3
+    DJI Matrice 350 + H30T                  1.6cm       27.6    6.1cm   11.5           5.3
+    AgEagle eBee X + Duet T                 2.5cm       53.7   12.1cm    5.8          10.7
+    Quantum Trinity Pro (RGB+thermal)       1.5cm       46.1   12.1cm    5.8          11.4
+    WingtraOne GEN II (RGB only)            1.9cm       41.4        -      -             -
+
+    -> Thermal covers far less ground than RGB: the detector has 640 px where
+       the RGB camera has 8,000. Even across a full night, thermal sweeps a few
+       km2, not tens. It is a shortlist and small-core tool, as suspected -
+       but a whole night of it clears a genuinely useful area.
+
+[4] The catch that decides which aircraft to buy
+    STS-02 (BVLOS, 2 km from pilot) requires a C6-class aircraft.
+    Multirotors carry C2. They are therefore VLOS-only unless you write your
+    own SORA and obtain a bespoke authorisation.
+
+    platform                              class                max regime  km2 per setup
+    DJI Mavic 3 Thermal (M3T)                C2         VLOS only, ~500 m            0.8
+    DJI Matrice 4T                           C2         VLOS only, ~500 m            0.8
+    DJI Matrice 350 + H30T                   C2         VLOS only, ~500 m            0.8
+    AgEagle eBee X + Duet T                  C6        STS-02 BVLOS, 2 km           12.6
+    Quantum Trinity Pro (RGB+thermal)        C6        STS-02 BVLOS, 2 km           12.6
+    WingtraOne GEN II (RGB only)             C6        STS-02 BVLOS, 2 km           12.6
+
+    -> This, not coverage rate, is the real split. A 9,500 EUR Matrice 4T is
+       an excellent instrument tethered to a 0.8 km2 bubble around the pilot.
+
+[5] What each option can realistically search
+    platform                                10 km2    30 km2    60 km2   120 km2
+    DJI Mavic 3 Thermal (M3T)                  1.5       4.4       8.7      17.3   days
+    DJI Matrice 4T                             1.3       4.0       8.0      15.9   days
+    DJI Matrice 350 + H30T                     1.4       4.3       8.6      17.1   days
+    AgEagle eBee X + Duet T                    0.2       0.7       1.3       2.7   days
+    Quantum Trinity Pro (RGB+thermal)          0.3       0.8       1.5       3.0   days
+    WingtraOne GEN II (RGB only)               0.3       0.8       1.7       3.3   days
+
+[6] Buy vs contract
+    Contracted VTOL fixed wing + crew: 1,500 EUR/day at ~45 km2/day
+
+    platform                                price  + compliance     total     payback
+    DJI Mavic 3 Thermal (M3T)              6,000E        1,500E    7,500E        5 days
+    DJI Matrice 4T                         9,500E        1,500E   11,000E        7 days
+    DJI Matrice 350 + H30T                28,000E        1,500E   29,500E       20 days
+    AgEagle eBee X + Duet T               38,000E        6,000E   44,000E       29 days
+    Quantum Trinity Pro (RGB+thermal)     48,000E        6,000E   54,000E       36 days
+    WingtraOne GEN II (RGB only)          45,000E        6,000E   51,000E       34 days
+
+    Compliance covers: remote pilot certification, STS-02 declaration and crew
+    training where applicable, operator registration, third-party insurance,
+    and a night-operations flashing green beacon (required for any night flight).
+
+[7] Payback across your own flight cadence
+    Assume one balloon campaign needs a 2-day search when a payload is lost.
+
+      losses per year     M4T (9.5k+1.5k)   Trinity Pro (48k+6k)
+                    1              3.7 yr                18.0 yr
+                    2              1.8 yr                 9.0 yr
+                    4              0.9 yr                 4.5 yr
+                    8              0.5 yr                 2.2 yr
+
+    -> A ~10k EUR dual-sensor multirotor pays for itself in under four years
+       at one loss per year, and in under one year at four. A 48k EUR fixed wing
+       does not pay back on recovery alone - it needs other survey work to carry it.
+
+========================================================================================================
+
+RECOMMENDATION
+  Buy the DJI Matrice 4T (or Mavic 3 Thermal if budget is tight). One aircraft,
+  both sensors, ~10k EUR all-in, and it covers the thermal idea properly.
+  Accept that it is VLOS-only: it is a precision instrument for a small area,
+  a shortlist, or a whole-night thermal sweep of a high-probability core.
+
+  Do NOT buy a 48k EUR fixed wing for payload recovery alone. If this ellipse
+  turns out large, contract a Spanish STS-02 operator for the wide RGB sweep
+  and use your own aircraft for the thermal follow-up. That splits the job
+  along the line where each tool is actually better.
+
+========================================================================================================

@@ -20,6 +20,8 @@ satellite imagery over the Spanish Meseta.
 | `outreach_drafts.md` | Emails to Planet and Airbus. |
 | `spectral_and_drone.py` | Porexpan spectral separability, and a costed drone-search trade study. |
 | `spectral_and_drone_output.txt` | Full numeric output of the above. |
+| `drone_procurement.py` | Buy-vs-contract case: thermal smear, night window, C2/C6 class limits, payback. |
+| `drone_procurement_output.txt` | Full numeric output of the above. |
 
 ## Workflow
 
@@ -102,6 +104,30 @@ Sentinel-1 is free but needs 0.69 m / 660 g to beat its 100 m² cell.
 
 Add a surviving satellite tracker and a 4 g RECCO reflector. The corner reflector is
 elegant; the tracker is what actually recovers payloads.
+
+## Buying a drone
+
+**Buy the DJI Matrice 4T (~€9,500, ~€11,000 all-in).** One aircraft, RGB and thermal,
+37.7 km²/day daylight and 5.3 km²/night thermal. Pays back against €1,500/day contracting
+in 7 search days.
+
+Two findings behind that:
+
+- **Fixed wings do not smear the thermal target.** A ~10 ms microbolometer time constant
+  gives 1.4 px of smear at 17 m/s on a 5.8 px target — 80% of peak contrast retained,
+  against a starting margin of ~100σ. Smear is real and irrelevant.
+- **The night window is ~7.4 h in August, not 1–2 h.** Porexpan settles to its cold offset
+  within ~30 min of sunset; soil keeps drawing heat from depth all night. Allow 3 h after
+  sunset for high-inertia objects to shed daytime heat and the anomaly is clean.
+
+**The constraint that decides the aircraft is regulatory, not optical.** STS-02 BVLOS needs
+a **C6**-class aircraft; multirotors carry **C2** and are VLOS-only (0.8 km² per pilot setup
+against 12.6). A €48,000 fixed wing does not pay back on recovery alone — it needs other
+survey work to carry it. For a large ellipse, contract the daylight sweep and fly your own
+aircraft on the thermal follow-up.
+
+Night flying requires a flashing green beacon and a current remote-pilot certificate — both
+cheap, both with lead time.
 
 ## Running it
 

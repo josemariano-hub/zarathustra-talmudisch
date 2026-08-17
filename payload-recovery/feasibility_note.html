@@ -524,8 +524,56 @@ footer p{margin:0 0 8px}
     <div class="note">
       <span class="tag">The pre-dawn thermal trick</span>
       <p>Porexpan is a near-perfect insulator: thermal inertia around 30&nbsp;SI against 580 for dry soil and 1,650 for limestone. With almost no thermal ballast it radiates to the night sky and settles at roughly <strong>5&nbsp;K colder than the surrounding ground</strong> before dawn. A 50&nbsp;mK thermal camera sees that at about 100&sigma; &mdash; and critically, it is a signature no bale, rock or plastic sheet can imitate, because they all carry far more heat.</p>
-      <p>The catch is a 16&nbsp;cm ground sample and 2.6&nbsp;km&sup2;/h, inside a one-to-two-hour window before sunrise. So it is not the primary search. It is what you fly over the shortlist, or over a small high-probability core, when the RGB pass has left you with candidates you cannot resolve. Cereal stubble also cools fast and is the one thing that will mimic it.</p>
+      <p>The window is also far wider than a dawn slot. Porexpan reaches its steady cold offset within about half an hour of sunset while soil keeps drawing heat from depth all night, so the contrast stays open for hours. Allowing three hours after sunset for rocks and bales to shed their daytime heat &mdash; which is what makes the anomaly clean rather than merely present &mdash; August still leaves roughly <strong>7.4 usable hours per night</strong>, rising past 11 by December.</p>
+      <p>The real limit is the detector: 640 pixels where the survey camera has 8,000. Even across a full night thermal sweeps single-digit km&sup2;. Cereal stubble also cools fast and is the one thing that will mimic it.</p>
     </div>
+  </div>
+</section>
+
+<section>
+  <div class="col">
+    <h2>Buying one</h2>
+    <h3>Yes &mdash; and the aircraft to buy is not the expensive one</h3>
+    <p>Two things had to be checked before recommending hardware. Both came out well.</p>
+    <p><strong>Fixed wings do not smear the thermal target.</strong> Uncooled microbolometers have a thermal time constant near 10&nbsp;ms, so a moving aircraft drags the scene across the detector. At 17&nbsp;m/s that is 1.4 pixels of smear on a target spanning 5.8 &mdash; but a 5&nbsp;K anomaly against a 50&nbsp;mK detector starts with about 100&sigma; of margin, and keeps 80% of its peak. Smear is real and irrelevant.</p>
+  </div>
+  <div class="scroller">
+    <table>
+      <caption>Both sensors at the 120 m ceiling, search overlap. Thermal figures assume a full August night at 55% duty for battery swaps and transits.</caption>
+      <thead><tr><th>Aircraft</th><th class="num">Price</th><th class="num">RGB km&sup2;/day</th><th class="num">Thermal px on target</th><th class="num">Thermal km&sup2;/night</th><th>Class</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td class="name">DJI Matrice 4T</td><td class="num">&euro;9,500</td><td class="num">37.7</td><td class="num">5.8</td><td class="num">5.3</td><td><span class="pill p-mid">C2 &mdash; VLOS</span></td></tr>
+        <tr class="hi"><td class="name">DJI Mavic 3 Thermal</td><td class="num">&euro;6,000</td><td class="num">26.5</td><td class="num">4.1</td><td class="num">7.6</td><td><span class="pill p-mid">C2 &mdash; VLOS</span></td></tr>
+        <tr><td class="name">DJI M350 + H30T</td><td class="num">&euro;28,000</td><td class="num">27.6</td><td class="num">11.5</td><td class="num">5.3</td><td><span class="pill p-mid">C2 &mdash; VLOS</span></td></tr>
+        <tr><td class="name">AgEagle eBee X + Duet T</td><td class="num">&euro;38,000</td><td class="num">53.7</td><td class="num">5.8</td><td class="num">10.7</td><td><span class="pill p-yes">C6 &mdash; BVLOS</span></td></tr>
+        <tr><td class="name">Quantum Trinity Pro</td><td class="num">&euro;48,000</td><td class="num">46.1</td><td class="num">5.8</td><td class="num">11.4</td><td><span class="pill p-yes">C6 &mdash; BVLOS</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col">
+    <div class="note">
+      <span class="tag">The clause that decides it</span>
+      <p>STS-02 requires a <strong>C6-class</strong> aircraft. Multirotors carry C2, so they are visual-line-of-sight only unless you write your own SORA and win a bespoke authorisation. That leaves a &euro;9,500 Matrice 4T as an excellent instrument tethered to a 0.8&nbsp;km&sup2; bubble around its pilot, while a &euro;38,000 fixed wing roams a 12.6&nbsp;km&sup2; one. The price gap buys airspace, not image quality.</p>
+    </div>
+    <p>Which means the honest answer splits by ellipse size. A multirotor needs about 16 days to cover 120&nbsp;km&sup2; once you count relocating the pilot 153 times; a C6 fixed wing does it in under three. But for 10&nbsp;km&sup2; the multirotor takes a day and a half, and for a shortlist or a thermal core sweep it is the better tool outright.</p>
+    <p>Note also that the cheapest aircraft covers the <em>most</em> thermal ground per night &mdash; the Mavic 3 Thermal's wider 61&deg; lens beats the Matrice's sharper 45&deg; one, because for a search what matters is swath, not sampling. You need four pixels on the sphere and it delivers 4.1.</p>
+    <h3>Payback</h3>
+  </div>
+  <div class="scroller">
+    <table>
+      <caption>Years to break even against contracting at &euro;1,500/day, assuming a lost payload costs two search days. Compliance adds &euro;1,500 for a multirotor (pilot certificate, registration, insurance, night beacon) and &euro;6,000 for a C6 fixed wing with STS-02 crew training.</caption>
+      <thead><tr><th class="num">Losses per year</th><th class="num">Matrice 4T (&euro;11k all-in)</th><th class="num">Trinity Pro (&euro;54k all-in)</th></tr></thead>
+      <tbody>
+        <tr><td class="num">1</td><td class="num">3.7 yr</td><td class="num">18.0 yr</td></tr>
+        <tr class="hi"><td class="num">2</td><td class="num">1.8 yr</td><td class="num">9.0 yr</td></tr>
+        <tr><td class="num">4</td><td class="num">0.9 yr</td><td class="num">4.5 yr</td></tr>
+        <tr><td class="num">8</td><td class="num">0.5 yr</td><td class="num">2.2 yr</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col">
+    <p class="lead">Buy the Matrice 4T. One aircraft, both sensors, around &euro;11,000 all-in, and it makes the thermal idea real rather than theoretical. Do not buy a &euro;48,000 fixed wing for payload recovery alone &mdash; it needs other survey work to carry it. If this particular ellipse turns out large, contract a Spanish STS-02 operator for the wide daylight sweep and fly your own aircraft on the thermal follow-up. That splits the job exactly where each tool is genuinely better.</p>
+    <p>One procurement detail worth catching early: any night flying needs a flashing green beacon on the aircraft, and the remote pilot needs the appropriate certificate before the first sortie, not after. Neither is expensive, both have lead time.</p>
   </div>
 </section>
 
