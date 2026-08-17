@@ -274,7 +274,34 @@ footer p{margin:0 0 8px}
 <section class="col">
   <div class="note">
     <span class="tag">Operational consequence</span>
-    <p>Ask for a <strong>low sun elevation</strong> acquisition, not a high one. The usual instinct is to want the brightest, most overhead illumination; here the opposite is true. A winter or shoulder-season image, or a late-afternoon pass, roughly triples the signature and adds a directional bright&ndash;dark dipole that is far more distinctive than a bright dot alone.</p>
+    <p>Prefer a <strong>low sun elevation</strong> acquisition, not a high one. The usual instinct is to want the brightest, most overhead illumination; here the opposite is true. A low sun roughly triples the signature and adds a directional bright&ndash;dark dipole that is far more distinctive than a bright dot alone.</p>
+    <p>In practice you cannot choose: the 30&nbsp;cm optical constellations fly sun-synchronous orbits with a mid-morning descending node, so sun elevation is set by your date, not by your order. For an August landing imaged promptly, that means about 57&deg; and a 0.46&nbsp;m shadow &mdash; the weakest geometry of the year.</p>
+  </div>
+</section>
+
+<section>
+  <div class="col">
+    <h2>This flight</h2>
+    <h3>An August landing is the hard case, and it is on a clock</h3>
+    <p>Recomputing for the actual conditions &mdash; mid-August, sun at 57&deg;, and post-harvest cereal stubble at &rho;&nbsp;&asymp;&nbsp;0.30, which is the brightest realistic background &mdash; costs you on both sides at once. The shadow shrinks to 2.8 pixels and the stubble narrows the contrast:</p>
+  </div>
+  <div class="scroller">
+    <table>
+      <caption>Clean sphere on post-harvest stubble (&rho;=0.30), sun elevation 56.7&deg;. The December column is the same target under winter illumination on the same background, for scale.</caption>
+      <thead><tr><th>Sensor</th><th class="num">Bright px</th><th class="num">Shadow px</th><th class="num">&Delta;&rho;</th><th class="num">CCR, August</th><th class="num">CCR, December</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td class="name">Pl&eacute;iades Neo</td><td class="num">4.3</td><td class="num">2.8</td><td class="num">0.151</td><td class="num">11.0</td><td class="num">17.3</td></tr>
+        <tr><td class="name">Pl&eacute;iades 1A/1B</td><td class="num">1.5</td><td class="num">1.0</td><td class="num">0.095</td><td class="num">5.7</td><td class="num">&mdash;</td></tr>
+        <tr><td class="name">SkySat</td><td class="num">1.5</td><td class="num">1.0</td><td class="num">0.090</td><td class="num">5.4</td><td class="num">&mdash;</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col">
+    <p>Pl&eacute;iades Neo absorbs this comfortably &mdash; CCR&nbsp;11 is still a clean detection, because the sphere's own four pixels carry the signature even when the shadow is weak. The 50&nbsp;cm options do not absorb it as well: they fall to around 5.5, where the sphere is a one-and-a-half pixel blob with a one-pixel shadow. That is still a detection, but it is no longer a <em>description</em>, and description is what rejects bales. <strong>In August the case for 30&nbsp;cm over 50&nbsp;cm is stronger than it would be in winter, not weaker.</strong></p>
+    <div class="note">
+      <span class="tag">Time pressure</span>
+      <p>Cereal harvest across the Meseta finishes through July, and stubble ploughing runs from August into September. A sphere lying in a stubble field has a genuinely limited window before it is buried, shredded, or pushed into a field margin. This argues for accepting a good-enough acquisition now over an optimal one later, and it is worth saying plainly to both providers &mdash; a deadline that is real makes a goodwill request easier to prioritise, not harder.</p>
+    </div>
   </div>
 </section>
 
@@ -355,7 +382,7 @@ footer p{margin:0 0 8px}
   <ol class="plan">
     <li>
       <h4>Reconstruct the descent before buying anything</h4>
-      <p>Last telemetry fix, burst altitude, descent rate, and ERA5 or GFS winds at the actual flight time, integrated down through the column. This is free and it is the highest-leverage step: halving the ellipse halves the candidate list. Do this first.</p>
+      <p>Last telemetry fix, burst altitude, descent rate, and ERA5 winds at the actual flight time, integrated down through the column. Free, and the highest-leverage step available: halving the ellipse halves the candidate list. <strong>Tooling for this is written and tested</strong> &mdash; it takes a telemetry CSV and emits the 50% and 95% ellipses plus a square tasking AOI as GeoJSON. If reanalysis is unavailable it derives the wind profile from the balloon's own ascent track, which is arguably better: it is the actual air the payload flew through.</p>
     </li>
     <li>
       <h4>Check whether someone already photographed it</h4>
@@ -375,7 +402,7 @@ footer p{margin:0 0 8px}
     </li>
     <li>
       <h4>Run a matched filter, not a threshold</h4>
-      <p>The template is a bright disc of 0.7 m with a dark ellipse trailing along the known solar azimuth at the known length for that date and time. Both lobes, correct orientation, correct separation. This rejects flat plastic and most debris outright, and it is far more selective than any brightness threshold.</p>
+      <p>The template is a bright disc of 0.7 m with a dark ellipse trailing along the known solar azimuth at the known length for that date and time. Both lobes, correct orientation, correct separation, scored in sigma units and stacked with cross-date persistence and novelty against the baseline. <strong>This is written and validated</strong>: on a synthetic 30 cm scene seeded with 73 confusers &mdash; bales, limestone float, sheep, and bales appearing after the baseline &mdash; the target ranked first at 22.8&sigma; against a next-best of 3.6.</p>
     </li>
     <li>
       <h4>Ground-truth the shortlist</h4>
