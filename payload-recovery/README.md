@@ -135,7 +135,8 @@ wavelength makes 15 cm printed legs return **13.7 m²** — noise-limited range 
 day camera, in any weather, at night, under hedges, with 0.75 m range resolution.
 From-scratch/harmonic SDR builds (~€900, 3–5× hours) are not worth it next to a €5 RECCO.
 
-**Complete next-flight recovery kit ~€875**: printed reflector ~€20 + Iridium tracker on
+**Complete next-flight recovery kit ~€875**: printed reflector ~€20/63 g (three interlocking foil-on-Depron plates — one metallized-mylar
+caveat: ~100 nm Al is under one skin depth at 24 GHz, use real foil) + Iridium tracker on
 4×AA ~€300 + RECCO €5 + radar bay €550 — three independent recovery channels.
 
 ## Buying a drone

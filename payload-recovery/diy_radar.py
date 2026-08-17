@@ -42,11 +42,24 @@ for a in (0.08, 0.10, 0.15, 0.20):
 A_LEG = 0.15
 RCS = 4*math.pi*A_LEG**4/(3*LAM**2)
 print(f"""
-    Design point: 15 cm legs -> {RCS:.1f} m2. A truck-sized radar target folded
-    from ~{8*3*A_LEG**2*0.35*1.3*1000:.0f} g of printed frame and aluminium sheet. The octahedral
-    cluster keeps one corner facing any direction, so resting attitude
-    does not matter. Shorter legs than the X-band satellite design work
-    because OUR radar picks the wavelength - 24 GHz rewards small corners.
+    Design point: 15 cm legs -> {RCS:.1f} m2 - a truck-sized radar target.
+
+    MASS, corrected (the first estimate reused SAR-panel areal density and
+    double-counted geometry): the octahedral cluster is THREE interlocking
+    2a x 2a plates sharing every face among 8 corners - 0.27 m2 total, not
+    0.54. At 24 GHz the skin depth in aluminium is 0.53 um, so 12 um kitchen
+    foil is 23 skin depths - a perfect reflector at 32 g/m2 - and the
+    lambda/16 flatness spec (0.78 mm) is trivial for foil on 3 mm Depron.
+
+      12 um foil + 3 mm Depron + printed slot-joint frame:   ~63 g
+      foil drum-skinned on printed edge frame only:          ~43 g
+      (metallized mylar/ripstop REJECTED: ~100 nm Al is under
+       one skin depth - looks shiny, reflects poorly at 24 GHz)
+
+    Build the foil-on-Depron version: 63 g, robust, flatness guaranteed by
+    the substrate. 2% of the payload. The cluster keeps one corner facing
+    any direction, so resting attitude does not matter. And if 150 m radar
+    range suffices, a 10 cm cluster weighs 42 g.
 """)
 
 # ---------------------------------------------------------------- range
@@ -98,7 +111,7 @@ print(f"""
 
 [4] THE NEXT-FLIGHT RECOVERY KIT, COMPLETE
 
-      X1C-printed octahedral reflector cluster (Al-faced)      ~20 EUR, {8*3*A_LEG**2*0.35*1.3*1000:.0f} g
+      X1C-printed octahedral reflector cluster (foil/Depron)   ~20 EUR, 63 g
       Iridium tracker on 4xAA L91 (the real fix)              ~300 EUR, 120 g
       RECCO reflector                                            ~5 EUR, 4 g
       Radar bay on the sweeper (above)                          {tot} EUR
