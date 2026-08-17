@@ -415,6 +415,16 @@ footer p{margin:0 0 8px}
   </div>
 </section>
 
+<section class="col">
+  <h2>The boom</h2>
+  <h3>A 1.5 m carbon-fibre appendage changes the search</h3>
+  <p>New payload fact: a ~1.5&nbsp;m carbon-fibre boom connects an Insta360 to the sphere &mdash; and carbon fibre is <em>conductive</em>. The payload has been carrying a linear radar scatterer all along. Per channel, honestly:</p>
+  <p><strong>Radar &mdash; bright but aspect-fussy.</strong> A conducting cylinder returns &sigma;&nbsp;=&nbsp;2&pi;L&sup2;r/&lambda; at broadside: <strong>11.4&nbsp;m&sup2; at 24&nbsp;GHz</strong> &mdash; corner-reflector class &mdash; but inside a glint lobe only 0.24&deg; wide. The saving geometry: a straight survey pass sweeps azimuth continuously and <em>crosses the glint once per side regardless of boom heading</em>, dwelling ~65&nbsp;ms = ~65 chirps of an 11&nbsp;m&sup2; flash at one fixed range. Caveats: the boom must lie near-horizontal (a propped tilt of tens of degrees kills it), burial dampens it, and the CFAR must run a <em>transient</em> detector &mdash; a persistence filter would erase the one-flash-per-pass signature. Doctrine change: <strong>the &euro;550 radar bay is no longer next-flight-only</strong>; this payload already justifies it as a stochastic third channel over the same survey lines.</p>
+  <p><strong>Satellite SAR &mdash; a lottery ticket.</strong> 4.6&nbsp;m&sup2; broadside at X-band, but one fixed look per pass against a 0.6&deg; lobe: ~1&ndash;2% per scene. Never task SAR for it; glance at any scene that exists anyway.</p>
+  <p><strong>Drone RGB &mdash; the best new discriminator.</strong> At 2.9&nbsp;cm the boom is a <strong>52-pixel dark line attached to the white disc</strong>, with a 2.4-px camera blob at its end. No bale, stone or sheet has a 1.5&nbsp;m appendage: score sphere&nbsp;+&nbsp;line&nbsp;+&nbsp;end-blob as a compound template and the residual confuser list effectively empties. (At 30&nbsp;cm satellite the line is 0.07&nbsp;px wide &mdash; don't rely on it. Thermal: invisible.)</p>
+  <p>And the Insta360 itself is no detection channel (radios weeks dead) but is the recovery prize: its card holds the descent video &mdash; the ground truth this entire analysis has been reconstructing from physics.</p>
+</section>
+
 <section>
   <div class="col">
     <h2>Spectral signature</h2>

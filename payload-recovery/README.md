@@ -5,8 +5,13 @@
 > branch for this task pointed at this repo. Move it to a proper home when convenient.
 
 Feasibility analysis for locating a 3 kg high-altitude balloon payload — a 0.70 m
-diameter white expanded-polystyrene sphere — using commercial high-resolution
-satellite imagery over the Spanish Meseta.
+white expanded-polystyrene sphere carrying a **1.5 m carbon-fibre boom + Insta360** —
+over the Spanish Meseta. The conductive boom is a linear radar scatterer (11.4 m²
+broadside at 24 GHz, glint-lobe 0.24°: a once-per-pass 65-chirp flash for the radar
+bay — a stochastic third channel for THIS search) and, at drone GSD, a 52-px dark
+line attached to the white disc — the compound sphere+boom+camera template empties
+the residual confuser list. SAR tasking unchanged (glint ~1–2%/scene: never task
+for it). The Insta360's card holds the descent video — the recovery prize.
 
 ## Contents
 
@@ -45,6 +50,8 @@ satellite imagery over the Spanish Meseta.
 | `reflector_build_sheet.md` | One-page build sheet for the 70 g octahedral reflector cluster. |
 | `lost_sweeper.py` | Can radar find a downed sweeper with a dead beacon? NLJD physics + the 19 g fix. |
 | `lost_sweeper_output.txt` | Full numeric output of the above. |
+| `boom_detectability.py` | The payload's 1.5 m CF boom as a radar/optical target, per channel. |
+| `boom_detectability_output.txt` | Full numeric output of the above. |
 
 ## Workflow
 

@@ -1,0 +1,74 @@
+
+========================================================================================================
+  THE CARBON BOOM - a 1.5 m linear scatterer attached to the sphere
+========================================================================================================
+
+[1] RADAR: BRIGHT BUT ASPECT-FUSSY
+
+    Broadside RCS of a conducting cylinder, sigma = 2*pi*L^2*r/lambda:
+
+    band                         lambda  RCS broadside  glint width
+    Our 24 GHz FMCW bay          12.4mm         11.4 m2       0.24 deg
+    X-band SAR (ICEYE/PAZ)       31.0mm          4.6 m2       0.59 deg
+    C-band (Sentinel-1)          55.0mm          2.6 m2       1.05 deg
+
+    11 m2 at 24 GHz is corner-reflector class - but confined to a glint
+    lobe a quarter of a degree wide. Brightness was never the question;
+    crossing the glint is.
+
+[2] DOES THE SWEEPER CROSS THE GLINT? - yes, once per pass, by geometry
+
+    Flying a straight line past a horizontal boom, the azimuth aspect sweeps
+    continuously and crosses perpendicularity to the boom axis exactly once
+    per side, whatever the boom's heading. At closest approach:
+
+      azimuth rate  = V/R = 13.0/200.0 = 3.7 deg/s
+      glint dwell   = 0.24 deg / 3.7 deg/s = 64 ms
+      chirps in the flash at 1 kHz = ~64
+
+    A ~11 m2 target for ~65 chirps at a constant range: a hard, brief,
+    localised FLASH. Three honest caveats:
+      - The boom must lie near-horizontal. Propped on the sphere or a furrow,
+        the specular cone tilts and can miss the aircraft's altitude plane.
+        A tilt of a few degrees is fine (the drone's depression angle varies
+        across the swath); tens of degrees kills it.
+      - Ground contact and partial burial dampen the return.
+      - The flash appears ONCE per pass in ONE range bin. The CFAR stage
+        must run a TRANSIENT detector (single-sweep exceedance, logged with
+        position), not a persistence filter - persistence would erase it.
+
+    DOCTRINE UPDATE: the 550 EUR radar bay is no longer next-flight-only.
+    THIS payload already carries a radar signature worth flying for -
+    orientation-dependent, so treat radar as an additional stochastic
+    channel over the same survey lines, not a guaranteed sweep.
+
+[3] SATELLITE SAR: A LOTTERY TICKET, NOT A TASKING CASE
+
+    X-band broadside 4.6 m2 with a 0.59 deg lobe, but a satellite
+    has ONE fixed look geometry per pass: the boom heading must align within
+    ~a degree -> P ~ 1-2% per scene. Do not task SAR for the boom. If an
+    X-band scene exists anyway, a free look costs nothing - a bright point
+    in a field is worth a candidate pin.
+
+[4] DRONE RGB: THE BEST NEW DISCRIMINATOR
+
+    At 2.9 cm GSD the boom is 52 px long x 0.7 px wide - a resolvable
+    dark line ATTACHED TO the white disc, plus an Insta360 blob (2.4 px) at
+    its far end. No bale, stone or sheet has a 1.5 m appendage. Update the
+    day-search scoring: sphere + line + end-blob as a compound template,
+    and the residual confuser list effectively empties.
+    (At satellite 30 cm: 5 px long but 0.07 px wide - an occasional
+     1-px-wide smudge; do not rely on it. Thermal at 16 cm: invisible.)
+
+[5] THE INSTA360 ITSELF
+
+    ~7 cm of camera: sub-pixel to satellites, 2.4 px to the drone, radios
+    weeks dead - no detection channel. But it is the recovery PRIZE: its
+    card holds the descent video and, with it, the ground-truth landing
+    footage this entire repository has been reconstructing from physics.
+
+  SUMMARY: the boom adds two real channels - a compound shape signature to
+  the day camera (strong, deterministic) and a specular flash to our own
+  radar (strong, stochastic). It changes nothing for satellite tasking.
+
+========================================================================================================
