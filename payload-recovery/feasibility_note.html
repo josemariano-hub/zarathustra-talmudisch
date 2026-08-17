@@ -577,6 +577,78 @@ footer p{margin:0 0 8px}
   </div>
 </section>
 
+<section>
+  <div class="col">
+    <h2>Batteries</h2>
+    <h3>Charge time over flight time, plus the term everyone forgets</h3>
+    <p>The instinct is right, but it under-counts. A pack is unavailable for <em>flight + cooldown + charge</em> after each launch, while the aircraft launches again every <em>flight + swap</em>. A DJI hub refuses to charge a pack above about 40&nbsp;&deg;C, and in an August field in Castilla that is fifteen to twenty minutes of the pack sitting there doing nothing.</p>
+    <div class="spec"><dl>
+      <dt>Packs</dt><dd>ceil( (flight + cool + charge) / (flight + swap) ) &times; packs per flight</dd>
+      <dt>Channels</dt><dd>ceil( packs &times; charge / (flight + swap) )</dd>
+    </dl></div>
+    <p>Charging throughput is a separate constraint from pack count, and it is the one that catches people out &mdash; <strong>every aircraft here needs a second charging hub</strong>, because a single hub cannot turn packs around fast enough to keep the aircraft airborne.</p>
+  </div>
+  <div class="scroller">
+    <table>
+      <caption>Second-hand thermal-capable multirotors. Swap time 4 min. &ldquo;Naive&rdquo; is charge&nbsp;&divide;&nbsp;flight; &ldquo;packs&rdquo; is the corrected figure.</caption>
+      <thead><tr><th>Aircraft</th><th class="num">Flight</th><th class="num">Naive</th><th class="num">Packs</th><th class="num">Channels needed</th><th class="num">Hub has</th></tr></thead>
+      <tbody>
+        <tr><td class="name">Mavic 2 Enterprise Adv.</td><td class="num">29 min</td><td class="num">3.1</td><td class="num">5</td><td class="num">3</td><td class="num">1</td></tr>
+        <tr><td class="name">Autel EVO II Dual 640T</td><td class="num">34 min</td><td class="num">2.6</td><td class="num">4</td><td class="num">3</td><td class="num">1</td></tr>
+        <tr class="hi"><td class="name">Mavic 3 Thermal (M3T)</td><td class="num">42 min</td><td class="num">1.4</td><td class="num">3</td><td class="num">2</td><td class="num">1</td></tr>
+        <tr><td class="name">Matrice 30T</td><td class="num">38 min</td><td class="num">1.6</td><td class="num">6</td><td class="num">3</td><td class="num">2</td></tr>
+        <tr><td class="name">Matrice 300 + H20T</td><td class="num">50 min</td><td class="num">1.2</td><td class="num">6</td><td class="num">3</td><td class="num">2</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col">
+    <p><strong>Three packs for a single-battery aircraft, six for a twin-pack one.</strong> Beyond that you are buying idle inventory rather than airtime. The M3T is the sweet spot precisely because it charges fast relative to its endurance &mdash; it sits at a ratio of 2.2 to 2.9 and stays on three packs whatever the weather, where the older M2EA sits on the boundary and a hot afternoon genuinely costs it a fifth pack.</p>
+    <div class="note">
+      <span class="tag">Before buying a fourth battery, check you can use the third</span>
+      <p>Under visual-line-of-sight the pilot works a bubble of roughly 500&nbsp;m &mdash; 0.79&nbsp;km&sup2;. At 4.7&nbsp;km&sup2;/h the M3T clears that entire legal area in <strong>ten minutes</strong>, about a quarter of one battery. Then you pack up and drive to the next field. Under strict VLOS you are <strong>relocation-limited, not energy-limited</strong>, and the fourth pack buys you nothing at all.</p>
+      <p>More batteries only pay off once you have bought more range: an observer and an EVLOS arrangement, a bespoke authorisation, or &mdash; cheapest and most effective &mdash; a second pilot leapfrogging setups in a second vehicle, which doubles throughput outright.</p>
+    </div>
+    <p>The exception, and it is the one you care about, is the <strong>night thermal sortie</strong>. There you are re-flying a small known core rather than covering new ground, so there is no relocation and the aircraft can stay up continuously. Ten sorties across a 7.4-hour August night, three packs cycling, and roughly 7.6&nbsp;km&sup2; of thermal core cleared before sunrise. That is the case the battery maths was made for.</p>
+    <h3>Field power</h3>
+    <p>To fly continuously you must generate what the aircraft burns, divided by charger efficiency. This is where the small aircraft quietly wins:</p>
+  </div>
+  <div class="scroller">
+    <table>
+      <caption>Sustained draw for continuous sorties, at 85% charger efficiency.</caption>
+      <thead><tr><th>Aircraft</th><th class="num">Wh per sortie</th><th class="num">Average draw</th><th class="num">Peak draw</th><th>Field supply</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td class="name">Mavic 3 Thermal</td><td class="num">77 Wh</td><td class="num">118 W</td><td class="num">181 W</td><td>Car inverter</td></tr>
+        <tr><td class="name">Autel EVO II Dual</td><td class="num">82 Wh</td><td class="num">152 W</td><td class="num">193 W</td><td>Car inverter</td></tr>
+        <tr><td class="name">Matrice 30T</td><td class="num">263 Wh</td><td class="num">442 W</td><td class="num">464 W</td><td>1 kWh station</td></tr>
+        <tr class="dim"><td class="name">Matrice 300 + H20T</td><td class="num">548 Wh</td><td class="num">716 W</td><td class="num">967 W</td><td>2 kW generator</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col">
+    <p>A Mavic-class aircraft sips about 130&nbsp;W and will run all day off a car inverter. A twin-TB60 Matrice&nbsp;300 needs a real generator &mdash; fuel, weight, and a petrol engine running at four in the morning in a village field. For night work that difference matters more than anything on the spec sheet.</p>
+    <div class="note">
+      <span class="tag">Buy the airframe used. Buy the batteries new.</span>
+      <p>Lithium packs are the one component where the second-hand saving is not worth taking. You cannot see cycle count or storage abuse in a photograph; a tired pack sags under load and triggers a low-voltage landing over the wrong field; a swollen cell is a fire in the back of the car. DJI packs run roughly 200&ndash;400 cycles, and a ten-day search at ten sorties a day is only about 25 cycles per pack &mdash; so new packs will outlast several campaigns. The airframe has no equivalent wear item, which is exactly why buying <em>that</em> used is sensible.</p>
+    </div>
+  </div>
+  <div class="scroller">
+    <table>
+      <caption>Complete field kit around a used Mavic 3 Thermal. Pays back against contracting at &euro;1,500/day in five search days.</caption>
+      <thead><tr><th>Item</th><th class="num">&euro;</th></tr></thead>
+      <tbody>
+        <tr><td class="name">Mavic 3 Thermal airframe + controller, used</td><td class="num">4,500</td></tr>
+        <tr class="hi"><td class="name">3 &times; BS65 battery, new</td><td class="num">810</td></tr>
+        <tr><td class="name">Second charging hub</td><td class="num">220</td></tr>
+        <tr><td class="name">2 kWh portable power station</td><td class="num">1,300</td></tr>
+        <tr><td class="name">12 V fan + insulated crate for pack cooldown</td><td class="num">60</td></tr>
+        <tr><td class="name">Flashing green beacon, night operations</td><td class="num">90</td></tr>
+        <tr><td class="name">Props, filters, SD cards, hard case</td><td class="num">400</td></tr>
+        <tr class="hi"><td class="name"><strong>Total</strong></td><td class="num"><strong>7,380</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
 <section class="col">
   <h2>Next flight</h2>
   <h3>Make the payload answer back</h3>

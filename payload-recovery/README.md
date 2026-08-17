@@ -22,6 +22,8 @@ satellite imagery over the Spanish Meseta.
 | `spectral_and_drone_output.txt` | Full numeric output of the above. |
 | `drone_procurement.py` | Buy-vs-contract case: thermal smear, night window, C2/C6 class limits, payback. |
 | `drone_procurement_output.txt` | Full numeric output of the above. |
+| `battery_logistics.py` | Pack count, charging channels, field power, and the used-airframe kit list. |
+| `battery_logistics_output.txt` | Full numeric output of the above. |
 
 ## Workflow
 
@@ -128,6 +130,35 @@ aircraft on the thermal follow-up.
 
 Night flying requires a flashing green beacon and a current remote-pilot certificate — both
 cheap, both with lead time.
+
+### Batteries for continuous sorties
+
+`charge / flight` is the right start but under-counts. A pack is unavailable for
+*flight + cooldown + charge* while the aircraft relaunches every *flight + swap*:
+
+```
+packs    = ceil((flight + cool + charge) / (flight + swap)) x packs_per_flight
+channels = ceil(packs x charge / (flight + swap))
+```
+
+**Three packs for a single-battery aircraft, six for a twin-pack one.** Charging
+throughput is a separate constraint — every candidate needs a **second charging hub**.
+Cooldown is the forgotten term: DJI hubs refuse packs above ~40 °C, which is 15–20 min
+in an August field.
+
+**Check you can use the third pack before buying a fourth.** Under VLOS the pilot works
+a ~500 m bubble (0.79 km²), which an M3T clears in **10 minutes** — a quarter of one
+battery. Under strict VLOS you are relocation-limited, not energy-limited. More batteries
+only pay once you have more range; a second pilot leapfrogging setups is the cheapest way
+to get it. The exception is the **night thermal sortie**, which re-flies a small known
+core with no relocation — 10 sorties, 3 packs cycling, ~7.6 km² of core per August night.
+
+**Field power** favours the small aircraft decisively: M3T draws ~118 W average (car
+inverter), a twin-TB60 Matrice 300 needs ~716 W (a petrol generator running at 04:00).
+
+**Buy the airframe used, buy the batteries new.** Cycle count and storage abuse are
+invisible in a photograph; a tired pack sags under load and a swollen cell is a fire in
+the car. A used M3T field kit totals ~€7,380 and pays back in 5 search days.
 
 ## Running it
 

@@ -1,0 +1,124 @@
+
+========================================================================================================
+  BATTERY LOGISTICS FOR CONTINUOUS SORTIES
+========================================================================================================
+
+[1] The formula, corrected
+
+    Naive:   N = charge / flight
+
+    Actual:  a pack is unavailable for (flight + cooldown + charge) after each
+             launch, while the aircraft launches again every (flight + swap).
+
+                 N_sets  = ceil( (flight + cool + charge) / (flight + swap) )
+                 N_packs = N_sets x packs_per_flight
+
+             and separately, charging throughput must keep up:
+
+                 channels_needed = ceil( packs x charge / (flight + swap) )
+
+    Cooldown is the term people forget. A DJI hub refuses to charge a pack above
+    about 40 C, and in an August field in Castilla that is 15-20 minutes of doing
+    nothing. It can add a whole battery to the requirement on its own.
+
+    aircraft                         naive   +cool   sets   PACKS  ch. needed  have
+    DJI Mavic 2 Enterprise Adv.        3.1     3.6      5       5           3     1  <-- need a 2nd charger
+    Autel EVO II Dual 640T v3          2.6     3.1      4       4           3     1  <-- need a 2nd charger
+    DJI Mavic 3 Thermal (M3T)          1.4     1.8      3       3           2     1  <-- need a 2nd charger
+    DJI Matrice 30T                    1.6     2.1      3       6           3     2  <-- need a 2nd charger
+    DJI Matrice 300 + H20T             1.2     1.6      3       6           3     2  <-- need a 2nd charger
+
+    -> Three to four packs sustains a single-battery aircraft; six to eight a
+       twin-pack one. Beyond that you are buying idle inventory, not airtime.
+
+[2] What cooldown actually costs you
+    Whether it tips you into another pack depends on how much headroom the
+    aircraft's flight-to-charge ratio already has. Raw ratio shown alongside,
+    so you can see how close each one sits to rounding up.
+
+    condition                                M3T ratio   M3T packs  M2EA ratio  M2EA packs
+    shaded, cool morning, forced-air fan          2.22           3        3.61           4
+    spring / autumn, ambient 15 C                 2.43           3        3.91           4
+    August afternoon, ambient 35 C                2.65           3        4.21           5
+    midday in the sun, no shade                   2.87           3        4.52           5
+
+    -> The M3T charges fast relative to its endurance, so it sits at 2.2-2.9
+       and stays on 3 packs whatever the weather. The older M2EA charges slowly
+       relative to a shorter flight, sits right on the boundary, and a hot
+       August afternoon genuinely costs it a fifth pack.
+       So: a 20 EUR fan and a shaded crate is worth having either way, but it
+       only saves you money on the slow-charging aircraft.
+
+[3] Field power - the constraint that actually bites
+    To sustain continuous flight you must generate, on average, the energy
+    the aircraft burns, divided by charger efficiency.
+
+    aircraft                        Wh/sortie  avg draw  peak draw  field supply
+    DJI Mavic 2 Enterprise Adv.          59Wh      127W       140W  car inverter or 500 Wh power station
+    Autel EVO II Dual 640T v3            82Wh      152W       193W  car inverter or 500 Wh power station
+    DJI Mavic 3 Thermal (M3T)            77Wh      118W       181W  car inverter or 500 Wh power station
+    DJI Matrice 30T                     263Wh      442W       464W  1 kWh power station
+    DJI Matrice 300 + H20T              548Wh      716W       967W  2 kW generator or 2+ kWh station
+
+    -> A single-battery Mavic-class aircraft sips ~130 W average. You can run it
+       all day off a car inverter. A twin-TB60 Matrice 300 needs ~700 W average,
+       which is a real generator, fuel, and noise at 04:00 in a village field.
+       For night thermal work that difference matters more than the spec sheet.
+
+[4] Reality check: is the battery even the bottleneck?
+    Under VLOS the pilot may only work a ~500 m bubble. Time to exhaust it:
+
+    aircraft                          RGB rate   VLOS area  time to clear  vs flight
+    DJI Mavic 2 Enterprise Adv.         4.15km2/h       0.79km2           11 min       39%
+    Autel EVO II Dual 640T v3           4.15km2/h       0.79km2           11 min       33%
+    DJI Mavic 3 Thermal (M3T)           4.73km2/h       0.79km2           10 min       24%
+    DJI Matrice 30T                     5.09km2/h       0.79km2            9 min       24%
+    DJI Matrice 300 + H20T              1.78km2/h       0.79km2           26 min       53%
+
+    -> Every one of these clears its entire legal VLOS bubble in roughly a third
+       to a half of one battery. You then have to pack up and drive to the next
+       field. Under strict VLOS you are RELOCATION-limited, not energy-limited,
+       and a fourth battery buys you nothing.
+
+       Buying more batteries only pays off if you first buy more range:
+         - an observer and an EVLOS arrangement, or
+         - a second pilot leapfrogging setups in a second vehicle, or
+         - a bespoke specific-category authorisation.
+       Of those, the second pilot is the cheapest and doubles throughput outright.
+
+[5] The night thermal sortie, which is the case that DOES need batteries
+    Thermal sweeps a small core continuously from one setup - no relocation,
+    because you are re-flying ground you already know rather than covering new.
+
+    DJI Mavic 3 Thermal (M3T)
+      10 sorties across a 7.4 h August night, 10 pack-charges
+      3 packs cycling keeps it airborne all night (17 cm thermal GSD, 4.1 px on target)
+      clears ~7.6 km2 of thermal core per night
+
+    DJI Matrice 30T
+      11 sorties across a 7.4 h August night, 21 pack-charges
+      6 packs cycling keeps it airborne all night (12 cm thermal GSD, 5.8 px on target)
+      clears ~5.3 km2 of thermal core per night
+
+[6] Shopping list, and the one thing not to buy used
+    Mavic 3 Thermal airframe + controller, used             4,500E
+    3 x BS65 battery, NEW (see warning)                       810E
+    2nd charging hub, so throughput is not the limit          220E
+    2 kWh portable power station                            1,300E
+    12 V fan + insulated crate for pack cooldown               60E
+    Flashing green beacon for night operations                 90E
+    Spare props, filters, SD cards, hard case                 400E
+                                                        ---------
+    total                                                   7,380E
+
+    Pays back against contracting at 1,500 EUR/day in 5 search days.
+
+    WARNING - buy the airframe used, buy the batteries NEW.
+    Second-hand lithium packs are the one component where the saving is not worth
+    it. You cannot see cycle count or storage abuse from a photograph, a tired pack
+    sags under load and triggers a low-voltage landing over the wrong field, and a
+    swollen cell is a fire in the back of the car. DJI packs are good for roughly
+    200-400 cycles; a 10-day search at 10 sorties a day is ~25 cycles per pack, so
+    new packs will outlast several campaigns. The airframe has no such wear item.
+
+========================================================================================================
