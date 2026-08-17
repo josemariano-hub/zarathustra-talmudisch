@@ -1,0 +1,81 @@
+
+========================================================================================================
+  DAY vs NIGHT - the recheck the question deserved
+========================================================================================================
+
+[1] SENSOR-FOR-SENSOR, DAY WINS ALMOST EVERYTHING
+
+                                       day RGB  night thermal
+    GSD                                  2.9cm         15.8cm
+    px on the sphere                      23.9            4.4
+    identify without descending?           YES             no
+    coverage per sortie                 8.9 km2         5.9 km2
+    terrain-floor risk                    none   real at 50 m
+    confuser handling             shape, at 3 cm  unique signature
+
+    At 2.9 cm a silage bale, a stone and a plastic sheet are OBVIOUSLY not a
+    0.7 m sphere - the satellite's discrimination problem simply does not
+    exist at drone GSD. Day RGB detects, identifies and covers more, in one
+    pass, with no low-altitude night maneuvering.
+
+[2] WHAT NIGHT ACTUALLY BUYS: HOURS, NOT VISION
+
+    August day (~14 h flyable):    53.8 km2 of RGB search
+    August night (7.4 h usable):    16.4 km2 of thermal search
+    Day+night total:               70.2 km2/24h  (+31% tempo)
+
+    (Airtime-limited figures. Under strict VLOS both are relocation-limited
+    - ~0.8 km2 per pilot setup, as established earlier - so the real daily
+    numbers are lower for BOTH modes equally; the day:night ratio holds.)
+
+    So the honest sentence is: at night we do not see the sphere BETTER -
+    we see it DIFFERENTLY, and we get to keep searching after sunset.
+    "Better at night" was true for one narrow thing only: the thermal
+    CONTRAST signature (a 5 K cold anomaly no bale, rock or plastic sheet
+    can imitate) exists only at night. That makes thermal the TIE-BREAKER
+    for a candidate that day RGB cannot call - white blob deep in a hedge,
+    half-buried, in shadow - not the primary search instrument.
+
+[3] CORRECTED DOCTRINE AND SHOPPING ORDER
+
+    - PRIMARY:   day RGB sweep. Detects and identifies in one pass.
+    - SECOND SHIFT: night thermal, when the ellipse is big enough that
+      54 km2/day of daylight coverage is not finishing the job fast
+      enough, or ploughing pressure demands 24 h tempo.
+    - TIE-BREAKER: thermal signature on specific ambiguous candidates.
+
+    Procurement re-order: buy airframe + camera + comms FIRST (~2,640 EUR
+    without the thermal core) and start flying days immediately. Add the
+    900 EUR InfiRay when - and only when - the ellipse turns out larger
+    than about two day-searches of area, or day sorties produce
+    ambiguous candidates that need the cold-anomaly check. The telemetry
+    still decides everything: a small ellipse never needs the night shift.
+
+========================================================================================================
+  BAMBU X1C - printed-parts manifest for the sweeper
+========================================================================================================
+
+    part                                         material  note
+    Camera/thermal payload bays (swappable)       CF-PETG  stiff, dimensionally stable in a hot car
+    Battery tray + strap anchors                  CF-PETG  the 600 g pack must not move in a hand launch
+    Motor mount reinforcement plate               CF-PETG  print flat, load in-plane; NOT the firewall itself
+    Thermal-core isolation mount                      TPU  replaces the silicone-damper hack, tuned durometer
+    Prop-saver belly skids                            TPU  field landings on stubble, every sortie
+    LTE/ELRS/Iridium antenna mounts                  PETG  RF-transparent, no CF near antennas
+    Hatches, covers, wire combs, GPS mast            PETG  quick reprints when field repairs eat them
+    Hand-launch grip insert                       CF-PETG  repeatable release at 3.0 kg MTOM
+    Charge-crate fan duct (pack cooling)             PETG  the 20 EUR fan that saves a battery, ducted
+    Octahedral corner-reflector frame             CF-PETG  NEXT FLIGHT: print frame, bond aluminium sheet
+
+    DO NOT PRINT: propellers, the wing spar (buy carbon tube), any part
+    bathed in motor heat unless switched to ASA. CF-PETG is stiff but its
+    layer adhesion is the weak axis - orient loads in-plane, and keep CF
+    filament away from antenna line-of-sight (carbon is conductive).
+
+    BOM effect: replaces ~120 EUR of bought mounts, bays and brackets with
+    ~25 EUR of filament, and turns every field breakage into an overnight
+    reprint instead of a shipping delay. The printer also manufactures the
+    corner-reflector cluster for the next balloon flight - the part of this
+    whole saga that makes the NEXT recovery a non-event.
+
+========================================================================================================

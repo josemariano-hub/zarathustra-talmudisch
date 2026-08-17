@@ -36,6 +36,8 @@ satellite imagery over the Spanish Meseta.
 | `sensor_upgrade_output.txt` | Full numeric output of the above. |
 | `battery_chemistry.py` | Li-ion vs AA Ultimate Lithium (L91) primaries; beacon buses. |
 | `battery_chemistry_output.txt` | Full numeric output of the above. |
+| `day_vs_night.py` | Honest day/night recheck (day wins; night = hours + tie-breaker) and the X1C printed-parts manifest. |
+| `day_vs_night_output.txt` | Full numeric output of the above. |
 
 ## Workflow
 
@@ -256,6 +258,24 @@ Gate before night ops: one daylight sortie on LTE alone with ELRS off.
 
 Delta: +€605 (beacon, modem, spare airframe) +€70 (LTE-primary upgrade) →
 night sweeper **€3,540** all-in.
+
+### Correction: day is the primary search, not night
+
+A fair challenge exposed drift in emphasis. Sensor for sensor, **day RGB wins**: 2.9 vs
+15.8 cm GSD, 24 vs 4.4 px, identifies in-pass, 8.9 vs 5.9 km²/sortie, no terrain-floor
+risk — and at 3 cm the discrimination problem doesn't exist. Night buys **hours** (~16 km²
+thermal on top of ~54 km² daylight per August 24 h, airtime-limited) plus the one unique
+thing: the 5 K cold-anomaly signature nothing agricultural imitates — the **tie-breaker**
+for candidates day RGB can't call. Doctrine: day sweeps, night is second shift +
+discriminator. Procurement re-orders: airframe + camera + comms first (~€2,640), thermal
+core only if the ellipse exceeds ~two day-searches.
+
+### Bambu X1C printed parts
+
+CF-PETG bays/trays/mounts/grip, TPU isolation mount + skids, PETG hatches and all antenna
+mounts (CF is conductive — keep it away from RF). Never props or the spar. ~€120 of bought
+hardware → ~€25 of filament, field breakages become overnight reprints, and the printer
+makes the next flight's octahedral corner-reflector frame.
 
 ### Sensor upgrade + sortie arithmetic
 
