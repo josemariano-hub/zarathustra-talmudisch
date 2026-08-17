@@ -19,7 +19,13 @@
     (ratio 0.8) it enters the resonant thin-wire regime where returns are
     weaker and strongly polarization-dependent. (b) CF conductivity
     (~5e4 S/m) is far below copper but sigma/(omega*eps0) ~ 4e4 >> 1:
-    still an excellent microwave reflector, loss under ~1 dB.
+    still an excellent microwave reflector, loss under ~1 dB. (c) The
+    tube is HOLLOW, 1 mm wall - irrelevant: skin depth in CF is 14.5 um
+    at 24 GHz, so the wall is ~69 skin depths thick. Electrically it is a
+    solid rod at every band of interest; only the OUTER diameter matters,
+    and that is what the RCS already uses. Fibre anisotropy is also
+    benign: broadside scattering rides axial currents, and the fibres
+    run along the boom - the high-conductivity axis.
     The glint lobe stays 0.24 deg wide - crossing it is still the game.
 
 [2] DOES THE SWEEPER CROSS THE GLINT? - yes, once per pass, by geometry
