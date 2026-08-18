@@ -72,3 +72,32 @@
       That is what "the next recovery becomes a non-event" costs.
 
 ========================================================================================================
+
+========================================================================================================
+  POWER & MASS AUDIT - does the radar bay's draw fly with it? (it did not, until now)
+========================================================================================================
+
+    Fault admitted: every endurance figure carried P_avionics = 8 W and never
+    added the radar. Audit, using the same P = W*v/(L/D*eta) + P_av model:
+
+    configuration                                   AUW   P_av  P total  endurance
+    Day RGB baseline (consistency check)          2.50kg   8.0W      56W     136 min
+    Day + radar SMART: module only, on-chip CFAR  2.57kg  10.5W      60W     127 min
+    Day + radar NAIVE: DCA1000 airborne           2.70kg  15.0W      67W     114 min
+    Night thermal + radar smart                   2.16kg  10.5W      52W     146 min
+
+    THE FIX THE AUDIT FORCED: the DCA1000 raw-ADC capture board (~4-5 W of
+    FPGA + Ethernet, >100 g) has no business flying. The IWR1443's own C674x
+    DSP runs range-FFT + CFAR on-chip (the standard TI demo) and reports
+    detected objects over UART - bytes per second, which is exactly what a
+    transient-flash detector needs. So:
+
+      FLIGHT config : radar module alone, ~70 g, ~2.5 W -> UART to the Pi
+      BENCH config  : + DCA1000 for development and chirp tuning only
+
+    Honest cost of the second channel, flown smart: 9 min of endurance
+    (6%). Flown naive it would be 22 min (16%) - rejected.
+    Software also gets easier: the 40-60 h estimate shifts from raw-ADC
+    pipelines to chirp configuration and flash integration on the Pi.
+
+========================================================================================================

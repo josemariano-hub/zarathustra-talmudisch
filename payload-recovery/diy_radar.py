@@ -122,3 +122,49 @@ print(f"""
       That is what "the next recovery becomes a non-event" costs.
 """)
 hr()
+
+# ================================================================ 5. power & mass audit
+print()
+hr()
+print("  POWER & MASS AUDIT - does the radar bay's draw fly with it? (it did not, until now)")
+hr()
+G0=9.80665; LD, ETA, VC = 12.0, 0.55, 13.0
+E_USE = 150.0*0.85
+def endur_min(auw_kg, p_av):
+    p = auw_kg*G0*VC/(LD*ETA) + p_av
+    return E_USE/p*60.0, p
+
+CONFIGS=[
+ ("Day RGB baseline (consistency check)",           2.50,  8.0),
+ ("Day + radar SMART: module only, on-chip CFAR",   2.57, 10.5),
+ ("Day + radar NAIVE: DCA1000 airborne",            2.70, 15.0),
+ ("Night thermal + radar smart",                    2.16, 10.5),
+]
+print(f"""
+    Fault admitted: every endurance figure carried P_avionics = 8 W and never
+    added the radar. Audit, using the same P = W*v/(L/D*eta) + P_av model:
+
+    {'configuration':<44}{'AUW':>7}{'P_av':>7}{'P total':>9}{'endurance':>11}""")
+base=None
+for name,auw,pav in CONFIGS:
+    t,p = endur_min(auw,pav)
+    if base is None: base=t
+    print(f"    {name:<44}{auw:>6.2f}kg{pav:>6.1f}W{p:>8.0f}W{t:>8.0f} min")
+t_smart,_ = endur_min(2.57,10.5); t_naive,_ = endur_min(2.70,15.0)
+assert 130 < base < 142                    # must reproduce the established ~136 min
+print(f"""
+    THE FIX THE AUDIT FORCED: the DCA1000 raw-ADC capture board (~4-5 W of
+    FPGA + Ethernet, >100 g) has no business flying. The IWR1443's own C674x
+    DSP runs range-FFT + CFAR on-chip (the standard TI demo) and reports
+    detected objects over UART - bytes per second, which is exactly what a
+    transient-flash detector needs. So:
+
+      FLIGHT config : radar module alone, ~70 g, ~2.5 W -> UART to the Pi
+      BENCH config  : + DCA1000 for development and chirp tuning only
+
+    Honest cost of the second channel, flown smart: {base-t_smart:.0f} min of endurance
+    ({(1-t_smart/base)*100:.0f}%). Flown naive it would be {base-t_naive:.0f} min ({(1-t_naive/base)*100:.0f}%) - rejected.
+    Software also gets easier: the 40-60 h estimate shifts from raw-ADC
+    pipelines to chirp configuration and flash integration on the Pi.
+""")
+hr()
