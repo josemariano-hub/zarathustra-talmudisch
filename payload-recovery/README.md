@@ -71,6 +71,7 @@ for it). The Insta360's card holds the descent video — the recovery prize.
 | `cots_comparison.md` | The COTS mirror: closest commercial full products (UX11, eBee X, Believer RTF, Trinity Pro) and the gaps no product fills. |
 | `flight_facts.md` | Ground truth from the Flight 2 investigation report: Zone A/B, canopy-is-the-target pivot, updated sensor table. |
 | `eur2000_build.md` | The €2,000 hardware brief: single-camera day sweeper BOM, what it covers, what the cut €1,540 was buying. |
+| `radar_rod_test_plan.md` | Z2I-TP-001: one-day ground test calibrating the boom-glint channel on an identical CF rod — the €320 spend gate for the radar bay. |
 
 ## Workflow
 
