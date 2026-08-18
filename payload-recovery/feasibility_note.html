@@ -241,6 +241,31 @@ footer p{margin:0 0 8px}
 
 <div class="wrap">
 
+<section>
+  <div class="col">
+    <h2>Ground truth</h2>
+    <h3>The investigation report is in &mdash; the search has a box, and a better target</h3>
+    <p>Everything below this section was written while the landing site was &ldquo;somewhere in the middle of Spain&rdquo;. On 18 August the Flight&nbsp;2 investigation report closed that gap. The flight launched from <strong>Villadiego, Burgos on 12 August 2026 at 18:23&nbsp;UTC</strong>; a battery that had been running 7.1 hours before release could no longer service the Iridium transmitter's 1.5&nbsp;A pulse, telemetry ended at 22,205&nbsp;m still climbing, and the Venter watchdog cut the balloon down ~10 minutes later. The payload landed gently &mdash; 2.4&nbsp;m/s under canopy &mdash; after dark, and its radio never spoke again: the pack was flat by morning. <strong>The radio route is permanently closed; this is a physical search, exactly as planned for.</strong></p>
+  </div>
+  <div class="scroller">
+    <table>
+      <caption>Search zones from the report's calibrated wind reconstruction (GFS fields, checked out of sample against the recorded ascent). Zone B requires BOTH independent termination paths to have failed &mdash; treat it as an outer bound, not an alternative.</caption>
+      <thead><tr><th>Zone</th><th class="num">Centre (WGS84)</th><th class="num">50% area</th><th class="num">90% area</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td class="name">ZONE A &mdash; search this</td><td class="num">42.66265 N, 3.85740 W</td><td class="num">38 km&sup2; (r&nbsp;=&nbsp;3.5 km)</td><td class="num">139 km&sup2; (r&nbsp;=&nbsp;6.7 km)</td><td><span class="pill p-yes">primary</span></td></tr>
+        <tr class="dim"><td class="name">Zone B &mdash; outer bound</td><td class="num">42.67460 N, 4.10652 W</td><td class="num">77 km&sup2;</td><td class="num">323 km&sup2;</td><td><span class="pill p-mid">contingency</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col">
+    <div class="note">
+      <span class="tag">The target upgrade</span>
+      <p>The 84-inch parachute <strong>stayed attached</strong>. The thing to find is no longer a 0.70&nbsp;m sphere at 2.3&nbsp;px &mdash; it is a <strong>2.13&nbsp;m canopy</strong> spread on stubble: <strong>7.1&nbsp;px at Pl&eacute;iades Neo's 30&nbsp;cm, 4.3&nbsp;px at 50&nbsp;cm, and 3.0&nbsp;px at SkySat's true 0.72&nbsp;m cell</strong> &mdash; which puts SkySat back in play. The discrimination problem inverts: the canopy <em>out-sizes</em> the 1.2&ndash;1.5&nbsp;m silage bales that were the residual confusers, and if the gore colours are non-white (unconfirmed &mdash; the one datum to nail down before tasking) an RGB gate removes bales outright. The sphere, boom and Insta360 lie within metres of the canopy on the train. For the sweeper, the canopy is ~90&nbsp;px across from 120&nbsp;m: inspection passes become confirmations. Zone&nbsp;A's 50% circle is <strong>under one sweeper-day</strong> (51&nbsp;km&sup2;/day); the 90% circle is about three.</p>
+    </div>
+    <p>Imagery from any pass after 21:00&nbsp;UTC on 12 August is valid &mdash; nothing has moved since, except six days of harvest traffic, which is the clock. The 50% tasking box is 42.63156&ndash;42.69375&nbsp;N, 3.89968&ndash;3.81511&nbsp;W; the outreach emails are filled in and sendable today.</p>
+  </div>
+</section>
+
 <section class="col">
   <h2>The target</h2>
   <h3>A sphere is not a white panel</h3>

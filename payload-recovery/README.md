@@ -14,6 +14,15 @@ by an oriented line filter, anchored by the 2.4-px Insta360 blob — a strong su
 cue in the compound template, unmistakable on 50 m inspection passes. SAR tasking unchanged (glint ~1–2%/scene: never task
 for it). The Insta360's card holds the descent video — the recovery prize.
 
+> **GROUND TRUTH (18 Aug 2026).** The Flight 2 investigation report is in: launched
+> Villadiego (Burgos) 12 Aug, watchdog cut-down after a battery failure at 22 km,
+> gentle 2.4 m/s landing after dark, radio permanently silent. **Search Zone A:
+> 42.66265 N, 3.85740 W — 50% radius 3.5 km (38 km²), 90% 6.7 km (139 km²).** The
+> 84-inch parachute stayed attached: **the 2.13 m canopy is now the primary target**
+> (7 px at Pléiades Neo, 3 px at SkySat — SkySat is back in play). Digest and all
+> implications: `flight_facts.md`. Outreach emails are filled in and sendable —
+> only the canopy colour remains to confirm.
+
 ## Contents
 
 | File | What it is |
@@ -58,6 +67,7 @@ for it). The Insta360's card holds the descent video — the recovery prize.
 | `field_ops_amarok.py` | Pickup-based ops: bed/rolling launch, alternator power budget, dust. |
 | `field_ops_amarok_output.txt` | Full numeric output of the above. |
 | `cots_comparison.md` | The COTS mirror: closest commercial full products (UX11, eBee X, Believer RTF, Trinity Pro) and the gaps no product fills. |
+| `flight_facts.md` | Ground truth from the Flight 2 investigation report: Zone A/B, canopy-is-the-target pivot, updated sensor table. |
 
 ## Workflow
 
@@ -65,10 +75,12 @@ for it). The Insta360's card holds the descent video — the recovery prize.
 pip install numpy scipy          # rasterio too, if you have GeoTIFFs
 
 # 1. turn telemetry into a search box
-python3 descent_reconstruction.py flight.csv --mass 3.0 --ground-alt 700 --out landing
+#    DONE for Flight 2 — the investigation report's calibrated reconstruction gives
+#    Zone A (see flight_facts.md); the tool below remains for re-runs / future flights
+python3 descent_reconstruction.py flight.csv --mass 2.52 --ground-alt 950 --out landing
 #    -> landing.geojson  (nominal point, 50%/95% ellipses, square tasking AOI)
 
-# 2. send the AOI with the emails in outreach_drafts.md
+# 2. send the AOI with the emails in outreach_drafts.md (filled in, sendable)
 
 # 3. when imagery arrives, rank the candidates
 python3 sphere_detector.py --post post_a.tif post_b.tif --pre baseline.tif \
