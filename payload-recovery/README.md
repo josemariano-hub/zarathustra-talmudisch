@@ -70,6 +70,7 @@ for it). The Insta360's card holds the descent video — the recovery prize.
 | `field_ops_amarok_output.txt` | Full numeric output of the above. |
 | `cots_comparison.md` | The COTS mirror: closest commercial full products (UX11, eBee X, Believer RTF, Trinity Pro) and the gaps no product fills. |
 | `flight_facts.md` | Ground truth from the Flight 2 investigation report: Zone A/B, canopy-is-the-target pivot, updated sensor table. |
+| `eur2000_build.md` | The €2,000 hardware brief: single-camera day sweeper BOM, what it covers, what the cut €1,540 was buying. |
 
 ## Workflow
 
