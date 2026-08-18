@@ -43,7 +43,7 @@ already counted). Legal envelope: Open A3, VLOS, 120 m — the whole plan assume
 | --- | --- | --- |
 | Second camera (two-bay, 330 m swath) | ~530 | +34% coverage — turns 4 days into 3. Nice, not necessary. **First re-add if budget appears.** |
 | InfiRay Mini2-640 thermal | ~900 | Day-primary was already the honest verdict; an orange canopy needs daylight, not ΔT. |
-| 24 GHz radar bay | ~550 | The CF boom IS a real target for it (4.6 m² broadside, one ~65-chirp flash per pass — established doctrine says worth flying). It's cut here on redundancy, not weakness: the orange canopy hands the day camera a *deterministic* detection, so the radar's *stochastic* boom flash only earns its €550 if the canopy is hidden (hedge, ditch, dragged). It is the first re-add if Zone A's open fields come up empty. |
+| 24 GHz radar bay | ~550 | The CF boom is a real but now *marginal* target (~1.0 m² broadside after the 0.70 m length correction; ~6 dB integrated margin at 100 m offset). The cut is doubly safe: the orange canopy hands the day camera a *deterministic* detection, and the boom channel must first survive the Z2I-TP-001 ground test before it justifies flight integration at all. |
 | Iridium sweeper beacon | ~300 | Under VLOS + LTE last-fix + RECCO/corner tab, a lost sweeper is findable without it. |
 | Aeronaut CAM prop pair set | ~75 | Stock props cost ~2–3% efficiency. Accept it. |
 
@@ -52,9 +52,11 @@ already counted). Legal envelope: Open A3, VLOS, 120 m — the whole plan assume
 1. **€2,000 (this brief):** single-camera day sweeper — completes Zone A 90% in ~4 days.
 2. **+€530:** second camera bay → 51 km²/day, Zone A 90% in ~3 days.
 3. **+€75:** proper folding props (worth it once the airframe is proven).
-4. **+€550 radar bay:** the escalation move if the open-field sweep finds nothing —
-   the boom's 4.6 m² glint sees through hedges, canopy folds and partial cover that
-   defeat the camera, and the same bay serves every future reflector-equipped flight.
+4. **+€320 module, then the rest of the €550 radar bay only if Z2I-TP-001 passes:**
+   the escalation move if the open-field sweep finds nothing — the boom's ~1.0 m²
+   glint can see through hedges and canopy folds that defeat the camera, but at
+   ~6 dB predicted margin (100 m offset) the ground test decides whether the channel
+   exists. The same bay serves every future reflector-equipped flight regardless.
 5. **+€900 thermal:** last — an orange canopy is a daylight target; thermal is for
    searches this one no longer is.
 

@@ -1,112 +1,122 @@
 #!/usr/bin/env python3
 """
-New fact about the lost payload: a ~1.5 m carbon-fibre boom connects an
-Insta360 camera to the sphere. CF is CONDUCTIVE - the payload has been
-carrying a linear radar scatterer all along. Detectability, per channel.
+Fact about the lost payload, twice corrected: a 0.70 m carbon-fibre boom
+(first reported "1.5 m or so") connects an Insta360 camera to the sphere.
+CF is CONDUCTIVE - the payload has been carrying a linear radar scatterer
+all along, just a smaller one than first thought: RCS goes as L^2, so the
+length correction costs -6.6 dB. Detectability, per channel, re-derived.
 
 SI units.
 """
 import math
 def hr(c="="): print(c*104)
 
-L, R_TUBE = 1.5, 0.004        # m: boom length, tube radius (8 mm OD - confirmed thin)
-V, R_OP   = 13.0, 200.0       # sweeper survey speed, radar offset
+L, R_TUBE = 0.70, 0.004       # m: boom length (CORRECTED from 1.5), tube radius (8 mm OD)
+V         = 13.0              # sweeper survey speed
 GSD_DAY, GSD_SAT, GSD_TH = 0.029, 0.30, 0.158
+SIGMA0    = 10**(-12/10)      # stubble clutter, same model as diy_radar.py
+TH_AZ, DR = math.radians(20.0), 0.75
+G_INT_DB  = 8.0               # credited integration gain over partially-decorrelating clutter
 
 def cyl_rcs(lam):  return 2*math.pi*L*L*R_TUBE/lam     # broadside, conducting cylinder
-def lobe_deg(lam): return math.degrees(lam/(2*L))      # first-null glint half-width scale
+def lobe_deg(lam): return math.degrees(lam/(2*L))      # glint half-width scale
+def clut_rcs(R):   return R*TH_AZ*DR*SIGMA0            # clutter equivalent RCS in one cell
+def margin_db(R):
+    scr = cyl_rcs(0.0124)/clut_rcs(R)
+    return 10*math.log10(scr), 10*math.log10(scr)+G_INT_DB
+def dwell_ms(R):   return lobe_deg(0.0124)/math.degrees(V/R)*1000
 
 print(); hr()
-print("  THE CARBON BOOM - a 1.5 m linear scatterer attached to the sphere")
+print("  THE CARBON BOOM, CORRECTED - a 0.70 m linear scatterer attached to the sphere")
 hr()
 
 print(f"""
-[1] RADAR: BRIGHT BUT ASPECT-FUSSY
+[1] RADAR: STILL BRIGHT, NO LONGER COMFORTABLE
 
-    Broadside RCS of a conducting cylinder, sigma = 2*pi*L^2*r/lambda:
+    Broadside RCS of a conducting cylinder, sigma = 2*pi*L^2*r/lambda,
+    and the L^2 law is why a factor-2.1 length correction costs 6.6 dB:
 
     {'band':<26}{'lambda':>9}{'RCS broadside':>15}{'glint width':>13}""")
 BANDS=[("Our 24 GHz FMCW bay",0.0124),("X-band SAR (ICEYE/PAZ)",0.031),("C-band (Sentinel-1)",0.055)]
 for name,lam in BANDS:
-    print(f"    {name:<26}{lam*1000:>7.1f}mm{cyl_rcs(lam):>13.1f} m2{lobe_deg(lam):>11.2f} deg")
+    print(f"    {name:<26}{lam*1000:>7.1f}mm{cyl_rcs(lam):>13.2f} m2{lobe_deg(lam):>11.2f} deg")
 r24=cyl_rcs(0.0124)
 assert abs(cyl_rcs(0.031)/cyl_rcs(0.0124) - 0.0124/0.031) < 1e-9   # scales as 1/lambda
+assert abs(r24 - 2*math.pi*0.49*0.004/0.0124) < 1e-6
 print(f"""
-    {r24:.1f} m2 at 24 GHz - still a strong target, though the thin 8 mm tube
-    trims it (RCS scales linearly with radius). Two regime checks the thin
-    tube forces: (a) circumference/lambda = 2.0 at 24 GHz - the optical
-    formula is at its validity edge, good to a couple of dB; at X-band
-    (ratio 0.8) it enters the resonant thin-wire regime where returns are
-    weaker and strongly polarization-dependent. (b) CF conductivity
-    (~5e4 S/m) is far below copper but sigma/(omega*eps0) ~ 4e4 >> 1:
-    still an excellent microwave reflector, loss under ~1 dB. (c) The
-    tube is HOLLOW, 1 mm wall - irrelevant: skin depth in CF is 14.5 um
-    at 24 GHz, so the wall is ~69 skin depths thick. Electrically it is a
-    solid rod at every band of interest; only the OUTER diameter matters,
-    and that is what the RCS already uses. Fibre anisotropy is also
-    benign: broadside scattering rides axial currents, and the fibres
-    run along the boom - the high-conductivity axis.
-    The glint lobe stays 0.24 deg wide - crossing it is still the game.
+    {r24:.1f} m2 at 24 GHz (was 4.6 at the reported 1.5 m). The regime checks
+    survive the correction unchanged, since they depend on radius and wall,
+    not length: (a) circumference/lambda = 2.0 - optical formula at its
+    validity edge, good to a couple of dB; at X-band (0.8) it enters the
+    resonant thin-wire regime, weaker and polarization-dependent. (b) CF
+    conductivity (~5e4 S/m) still gives loss under ~1 dB along the fibres.
+    (c) The 1 mm hollow wall is ~69 skin depths - electrically a solid rod.
+    What DID change: the glint lobe doubles to {lobe_deg(0.0124):.2f} deg (a shorter
+    aperture beams less tightly), which buys back some dwell.
 
-[2] DOES THE SWEEPER CROSS THE GLINT? - yes, once per pass, by geometry
+[2] DOES THE SWEEPER CROSS THE GLINT? - yes, but the margin is now thin
 
-    Flying a straight line past a horizontal boom, the azimuth aspect sweeps
-    continuously and crosses perpendicularity to the boom axis exactly once
-    per side, whatever the boom's heading. At closest approach:
+    Flying a straight line past a horizontal boom, the azimuth aspect still
+    crosses perpendicularity once per side, whatever the boom's heading.
+    Same clutter model as diy_radar.py (sigma0 = -12 dB, 20 deg x 0.75 m cell):
 
-      azimuth rate  = V/R = {V}/{R_OP} = {math.degrees(V/R_OP):.1f} deg/s
-      glint dwell   = {lobe_deg(0.0124):.2f} deg / {math.degrees(V/R_OP):.1f} deg/s = {lobe_deg(0.0124)/math.degrees(V/R_OP)*1000:.0f} ms
-      chirps in the flash at 1 kHz = ~{lobe_deg(0.0124)/math.degrees(V/R_OP)*1000:.0f}
+    {'offset':>10}{'clutter RCS':>13}{'SCR 1-look':>12}{'dwell':>9}{'chirps':>8}{'SCR + integ.':>13}""")
+for R in (150.0, 120.0, 100.0, 80.0):
+    s1,si = margin_db(R)
+    print(f"    {R:>8.0f} m{clut_rcs(R):>11.2f} m2{s1:>10.1f} dB{dwell_ms(R):>7.0f} ms{dwell_ms(R):>7.0f}{si:>11.1f} dB")
+s1_100, si_100 = margin_db(100.0)
+print(f"""
+    VERDICT CHANGE. At the old 150 m offset the integrated margin is now
+    ~{margin_db(150)[1]:.0f} dB - below any comfortable CFAR threshold. Pulling the
+    operating offset in to ~100 m recovers ~{si_100:.0f} dB: DETECTABLE BUT
+    MARGINAL, where the 1.5 m boom was comfortable at 150 m. Consequences:
+      - The boom channel is downgraded from "reliable once-per-pass flash"
+        to "marginal, ground-test-gated". Z2I-TP-001 (the rod drive-by
+        test) is now the decisive gate, not a formality: the worst-case
+        polarization measurement decides whether this channel exists.
+      - Radar survey lines for the boom run at ~100 m offset (both sides:
+        ~170 m usable swath), not 300-400 m. Coverage rate roughly halves.
+      - The three caveats stand: near-horizontal attitude required, ground
+        contact damps the return, and the CFAR stage must be a TRANSIENT
+        single-sweep detector - persistence filtering would erase the flash.
 
-    A ~{r24:.1f} m2 target for ~65 chirps at constant range: a brief, localised
-    flash. Against clutter at 150 m offset (cell ~2.5 m2) that is ~+3 dB
-    single-look and ~+11 dB across the dwell - detectable, with the
-    operating offset pulled in from 200 to ~150 m for the thin tube. Three honest caveats:
-      - The boom must lie near-horizontal. Propped on the sphere or a furrow,
-        the specular cone tilts and can miss the aircraft's altitude plane.
-        A tilt of a few degrees is fine (the drone's depression angle varies
-        across the swath); tens of degrees kills it.
-      - Ground contact and partial burial dampen the return.
-      - The flash appears ONCE per pass in ONE range bin. The CFAR stage
-        must run a TRANSIENT detector (single-sweep exceedance, logged with
-        position), not a persistence filter - persistence would erase it.
+    DOCTRINE, RE-UPDATED: the radar bay remains the hidden-canopy
+    escalation option, but its case now rests on the ground test passing
+    at 100 m in the worse polarization. Do not integrate the bay before
+    TP-001 produces that number.
 
-    DOCTRINE UPDATE: the 550 EUR radar bay is no longer next-flight-only.
-    THIS payload already carries a radar signature worth flying for -
-    orientation-dependent, so treat radar as an additional stochastic
-    channel over the same survey lines, not a guaranteed sweep.
+[3] SATELLITE SAR: EVEN MORE OF A LOTTERY TICKET
 
-[3] SATELLITE SAR: A LOTTERY TICKET, NOT A TASKING CASE
+    X-band nominal {cyl_rcs(0.031):.2f} m2 (thin-wire regime cuts it further,
+    polarization-dependent) with a {lobe_deg(0.031):.2f} deg lobe. The wider lobe
+    roughly doubles the alignment odds, but the RCS drop more than eats the
+    gain: P(glint) ~ 2-4% per scene AND the flash now sits barely above a
+    1 m2-cell clutter floor. Do not task SAR for the boom - unchanged, with
+    more force. A free look at an existing X-band scene still costs nothing.
 
-    X-band nominal {cyl_rcs(0.031):.1f} m2 (and the thin-wire regime cuts it further,
-    polarization-dependent) with a {lobe_deg(0.031):.2f} deg lobe - and a satellite
-    has ONE fixed look geometry per pass: the boom heading must align within
-    ~a degree -> P ~ 1-2% per scene. Do not task SAR for the boom. If an
-    X-band scene exists anyway, a free look costs nothing - a bright point
-    in a field is worth a candidate pin.
-
-[4] DRONE RGB: THE BEST NEW DISCRIMINATOR
+[4] DRONE RGB: A SHORTER STREAK, SAME ROLE
 
     At {GSD_DAY*100:.1f} cm GSD the 8 mm boom is {L/GSD_DAY:.0f} px long but only {2*R_TUBE/GSD_DAY:.2f} px WIDE -
     sub-pixel width dilutes the dark-line contrast to ~0.07 reflectance
-    per pixel. Faint to the eye, but a 52-px correlated streak is exactly
-    what an oriented line filter (Hough / steerable) recovers: sqrt(52)
-    ~ 7x SNR gain along the line. Plus the Insta360 blob ({0.07/GSD_DAY:.1f} px) at its
-    far end. Keep the compound sphere+line+blob template - the line is now
-    a supporting cue, not a headline feature - and note the 50 m inspection
-    pass sees it at 0.66 px wide x 125 px long: unmistakable there.
-    (At satellite 30 cm: {L/GSD_SAT:.0f} px long but {2*R_TUBE/GSD_SAT:.2f} px wide - an occasional
-     1-px-wide smudge; do not rely on it. Thermal at {GSD_TH*100:.0f} cm: invisible.)
+    per pixel. A {L/GSD_DAY:.0f}-px correlated streak still rewards an oriented line
+    filter (Hough / steerable): sqrt({L/GSD_DAY:.0f}) ~ {math.sqrt(L/GSD_DAY):.0f}x SNR gain along the line
+    (was 7x at 1.5 m). Plus the Insta360 blob ({0.07/GSD_DAY:.1f} px) at its far end.
+    Keep the compound sphere+line+blob template - the line was already a
+    supporting cue, and it supports a little less now. The 50 m inspection
+    pass sees it at 0.66 px wide x {L/(GSD_DAY*50/120):.0f} px long: still unmistakable.
+    (At satellite 30 cm: {L/GSD_SAT:.1f} px long x {2*R_TUBE/GSD_SAT:.2f} px wide - forget it.
+     Thermal at {GSD_TH*100:.0f} cm: invisible.)
 
-[5] THE INSTA360 ITSELF
+[5] THE INSTA360 ITSELF - unchanged
 
     ~7 cm of camera: sub-pixel to satellites, {0.07/GSD_DAY:.1f} px to the drone, radios
-    weeks dead - no detection channel. But it is the recovery PRIZE: its
-    card holds the descent video and, with it, the ground-truth landing
-    footage this entire repository has been reconstructing from physics.
+    weeks dead - no detection channel, but the recovery PRIZE: its card
+    holds the descent video.
 
-  SUMMARY: the boom adds two real channels - a compound shape signature to
-  the day camera (strong, deterministic) and a specular flash to our own
-  radar (strong, stochastic). It changes nothing for satellite tasking.
+  SUMMARY, CORRECTED: the boom still adds two channels, both demoted one
+  grade - a shorter compound-shape cue to the day camera (still useful),
+  and a marginal specular flash to our own radar at ~100 m offset that
+  only counts if the ground test confirms it. The orange canopy remains
+  the primary target by a wide margin; satellite tasking is unaffected.
 """)
 hr()

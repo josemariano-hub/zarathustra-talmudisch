@@ -5,14 +5,19 @@
 > branch for this task pointed at this repo. Move it to a proper home when convenient.
 
 Feasibility analysis for locating a 3 kg high-altitude balloon payload — a 0.70 m
-white expanded-polystyrene sphere carrying a **1.5 m carbon-fibre boom + Insta360** —
-over the Spanish Meseta. The conductive 8 mm boom is a linear radar scatterer (4.6 m² broadside at 24 GHz,
-glint-lobe 0.24°: boom confirmed near-horizontal, so a RELIABLE once-per-pass 65-chirp
-flash at ≤150 m offset — the radar co-flies with the day RGB bay: module-only flight config (~70 g, ~2.5 W,
-on-chip CFAR over UART; the DCA1000 stays on the bench), costing 6% endurance, 136→127 min) and, at drone GSD, a 52-px × 0.28-px faint streak recoverable
-by an oriented line filter, anchored by the 2.4-px Insta360 blob — a strong supporting
-cue in the compound template, unmistakable on 50 m inspection passes. SAR tasking unchanged (glint ~1–2%/scene: never task
-for it). The Insta360's card holds the descent video — the recovery prize.
+white expanded-polystyrene sphere carrying a **0.70 m carbon-fibre boom + Insta360**
+(length corrected from "1.5 m or so"; RCS goes as L², so −6.6 dB) — over the Spanish
+Meseta. The conductive 8 mm boom is a linear radar scatterer (~1.0 m² broadside at
+24 GHz, glint-lobe 0.51°: boom confirmed near-horizontal, so a once-per-pass ~68-chirp
+flash — but now **MARGINAL (~6 dB integrated at 100 m offset), ground-test-gated by
+Z2I-TP-001** rather than reliable at 150 m. The radar co-flies with the day RGB bay:
+module-only flight config (~70 g, ~2.5 W, on-chip CFAR over UART; the DCA1000 stays on
+the bench), costing 6% endurance, 136→127 min) and, at drone GSD, a 24-px × 0.28-px
+faint streak recoverable by an oriented line filter (√24 ≈ 5× gain), anchored by the
+2.4-px Insta360 blob — a supporting cue in the compound template, still unmistakable on
+50 m inspection passes. SAR tasking unchanged with more force (0.40 m² at X-band,
+glint ~2–4%/scene: never task for it). The Insta360's card holds the descent video —
+the recovery prize.
 
 > **GROUND TRUTH (18 Aug 2026).** The Flight 2 investigation report is in: launched
 > Villadiego (Burgos) 12 Aug, watchdog cut-down after a battery failure at 22 km,
@@ -62,7 +67,7 @@ for it). The Insta360's card holds the descent video — the recovery prize.
 | `reflector_build_sheet.md` | One-page build sheet for the 70 g octahedral reflector cluster. |
 | `lost_sweeper.py` | Can radar find a downed sweeper with a dead beacon? NLJD physics + the 19 g fix. |
 | `lost_sweeper_output.txt` | Full numeric output of the above. |
-| `boom_detectability.py` | The payload's 1.5 m CF boom as a radar/optical target, per channel. |
+| `boom_detectability.py` | The payload's 0.70 m CF boom as a radar/optical target, per channel (length-corrected re-derivation). |
 | `boom_detectability_output.txt` | Full numeric output of the above. |
 | `size_pareto.py` | MTOM sweep 1.2–8 kg: the 3 kg knee derived, not assumed. |
 | `size_pareto_output.txt` | Full numeric output of the above. |
