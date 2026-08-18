@@ -33,7 +33,8 @@ for it). The Insta360's card holds the descent video — the recovery prize.
 | `feasibility_note.html` | Written brief, suitable for forwarding to imagery providers. |
 | `descent_reconstruction.py` | Telemetry → landing ellipse → tasking AOI as GeoJSON. |
 | `sphere_detector.py` | Matched-filter detector over delivered imagery → ranked candidate list. |
-| `outreach_drafts.md` | Emails to Planet and Airbus. |
+| `outreach_drafts.md` | Emails to Planet and Airbus (English reference version). |
+| `outreach_drafts_ca.md` | Sendable Catalan versions, as UPC Space Program students, with the example-photo reference. |
 | `spectral_and_drone.py` | Porexpan spectral separability, and a costed drone-search trade study. |
 | `spectral_and_drone_output.txt` | Full numeric output of the above. |
 | `drone_procurement.py` | Buy-vs-contract case: thermal smear, night window, C2/C6 class limits, payback. |
