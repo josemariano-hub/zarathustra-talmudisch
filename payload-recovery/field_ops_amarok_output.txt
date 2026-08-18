@@ -1,0 +1,59 @@
+
+========================================================================================================
+  LAUNCHING FROM THE AMAROK - the truck is part of the aircraft system
+========================================================================================================
+
+[1] LAUNCH FROM THE BED - height and sight, modest but free
+
+    Launcher standing in the bed releases at ~3.4 m instead of ~1.9 m.
+    The extra 1.5 m of height buys ~1 s of grace before any stall-mush
+    meets the ground - the difference between a fumbled throw costing a
+    re-launch and costing a wingtip. Observer eye height ~3.2 m also
+    lifts the VLOS horizon over standing cereal and gentle rises: the
+    0.5 km bubble becomes reliably usable instead of hedge-limited.
+
+[2] ROLLING LAUNCH - the option that moves the Pareto ceiling
+
+    Drive into wind along a camino at 15 km/h and release from the bed:
+    the aircraft starts with 4.2 m/s of free airspeed against a stall of
+    8.3 m/s (at 3.0 kg MTOM). The thrower now only adds ~4.1 m/s -
+    a push, not a javelin throw. Consequences:
+      - Hand-launch at MTOM becomes routine instead of athletic.
+      - The size_pareto hand-launch ceiling (3.5 kg) stretches toward
+        ~4.5-5 kg IF a bigger aircraft is ever wanted - the bungee-cadence
+        penalty that closed the >3.5 kg branch softens when the truck IS
+        the bungee. (The 3 kg verdict stands; this is future margin.)
+    Private farm tracks only, walking-pace release, thrower harnessed or
+    seated on the bed rail - a dropped aircraft at 15 km/h still bounces.
+
+[3] THE ALTERNATOR IS THE GENERATOR - the field power problem dissolves
+
+    A 25 A DC-DC charger feeds the 2 kWh station ~300 W whenever the
+    engine runs. The VLOS day IS driving: ~35 relocations x ~6 min =
+    3.5 h of engine time -> ~1050 Wh harvested per day, against a
+    fleet consumption of ~540 Wh (60 W x 9 h airborne).
+
+    -> After the ~85% charge-chain efficiency that is ~892 Wh delivered -
+       still 165% of daily flight energy, free, during drives you make anyway.
+       and the 2 kWh station becomes a buffer, not a reservoir. No petrol
+       generator, ever - which also protects the night acoustic budget.
+
+[4] THE WARNING: DUST
+
+    Meseta caminos in August are talc. The charging crate's fan now needs
+    a filter (print a G3-foam holder for the duct), packs travel in the
+    closed crate, and the camera bay gets a lens check per relocation.
+    Dust is the Amarok's only tax on this architecture.
+
+[5] BED RACK - three more X1C prints
+
+    - Charging crate tie-down base + filtered fan duct       (PETG)
+    - Aircraft chocks: wing cradles for transit on stubble   (TPU pads)
+    - GCS/antenna mast foot for the bed rail (ELRS + LTE)    (PETG, no CF)
+
+  SUMMARY: the truck was already in the plan as 'the van'; the Amarok makes
+  it better than planned - higher launch, free rolling airspeed, and an
+  alternator that cancels the generator. The ops doctrine gains one line:
+  ENGINE ON while relocating is not idling, it is refuelling the fleet.
+
+========================================================================================================

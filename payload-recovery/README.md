@@ -55,6 +55,8 @@ for it). The Insta360's card holds the descent video — the recovery prize.
 | `boom_detectability_output.txt` | Full numeric output of the above. |
 | `size_pareto.py` | MTOM sweep 1.2–8 kg: the 3 kg knee derived, not assumed. |
 | `size_pareto_output.txt` | Full numeric output of the above. |
+| `field_ops_amarok.py` | Pickup-based ops: bed/rolling launch, alternator power budget, dust. |
+| `field_ops_amarok_output.txt` | Full numeric output of the above. |
 
 ## Workflow
 
