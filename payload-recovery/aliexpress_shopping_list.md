@@ -57,7 +57,18 @@ The this-week-with-returns basket:
 - **24× 18650 (Samsung 35E / Molicel P28A)** — nkon.nl ~€130. Both marketplaces are
   fake-capacity minefields for cells; this is non-negotiable for flight packs.
 - **Used Sony a6000 + 16 mm f/2.8** — Wallapop/eBay ES ~€470.
-- **Multi-carrier IoT SIM** — Spanish/EU IoT provider (1NCE class), ~€10–20/yr.
+- **IoT SIM: 1NCE Lifetime Flat** (1nce.com, ships to Spain) — **€12 + €1 SIM,
+  one-time, 10 years, 500 MB included**, roams onto **Movistar + Vodafone + Orange**
+  in Spain (attaches to whichever serves the field — exactly the multi-carrier
+  requirement), throttled to 1 Mbit/s, top-up €10 per extra 500 MB + 250 SMS.
+  APN `iot.1nce.net`. Data budget: MAVLink ~30 MB/sortie + geotagged thumbnails
+  ~20 MB + a few full-res confirmations ~30 MB ≈ **80 MB/sortie → ~6 sorties on the
+  included 500 MB** — one Zone A campaign costs €13, maybe one top-up. The 1 Mbit/s
+  cap fits the 330 kbps design load; full-res frames take ~1 min each, so send them
+  only for flagged candidates and dump the rest from the SD card after landing.
+  Fat-pipe plan B if live full-res ever matters: a €5–7/mo Simyo/Lobster consumer
+  prepaid (Orange network, 10–25 GB) — single-network, so check the Zone A coverage
+  map before trusting it.
 - **RECCO tab** ~€5; foil + Depron + spray adhesive (reflector/test corner) ~€15 — local.
 
 ## Totals
