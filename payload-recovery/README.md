@@ -53,6 +53,8 @@ for it). The Insta360's card holds the descent video — the recovery prize.
 | `lost_sweeper_output.txt` | Full numeric output of the above. |
 | `boom_detectability.py` | The payload's 1.5 m CF boom as a radar/optical target, per channel. |
 | `boom_detectability_output.txt` | Full numeric output of the above. |
+| `size_pareto.py` | MTOM sweep 1.2–8 kg: the 3 kg knee derived, not assumed. |
+| `size_pareto_output.txt` | Full numeric output of the above. |
 
 ## Workflow
 

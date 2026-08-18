@@ -1,0 +1,56 @@
+
+========================================================================================================
+  SWEEPER SIZE - the Pareto sweep the 3 kg number never had
+========================================================================================================
+
+    Fixed by the mission, independent of size: payload 0.72 kg (sensors,
+    comms, beacons), swath 176 m (the camera, not the wing), VLOS bubble
+    0.79 km2 per setup. Size buys endurance, speed and wind margin;
+    it taxes launch cadence, cost, crash energy and van space.
+
+       AUW  batt%   L/D     v  endur  launch  km2/day  kit EUR  crash J  Vg@8m/s
+      1.2kg   INFEASIBLE - fixed payload starves the battery
+      1.6kg   INFEASIBLE - fixed payload starves the battery
+      2.0kg    14%  11.6 12.5m    71m    hand     36.4    2,135      156     9.6m
+      2.4kg    20%  11.9 12.8m   110m    hand     37.0    2,278      198    10.0m
+      2.8kg    25%  12.1 13.1m   140m    hand     37.4    2,422      242    10.4m
+      3.2kg    29%  12.3 13.4m   163m    hand     37.8    2,567      288    10.8m
+      3.6kg    32%  12.5 13.7m   181m  bungee     27.2    2,713      335    11.1m
+      4.0kg    34%  12.6 13.9m   196m  bungee     27.4    2,860      385    11.3m
+      4.4kg    36%  12.8 14.1m   208m  bungee     27.5    3,008      435    11.6m
+      4.8kg    38%  12.9 14.3m   219m  bungee     27.7    3,157      488    11.8m
+      5.2kg    39%  13.0 14.4m   228m  bungee     27.8    3,306      541    12.0m
+      5.6kg    40%  13.2 14.6m   235m  bungee     27.9    3,456      596    12.2m
+      6.0kg    41%  13.3 14.7m   242m  bungee     28.0    3,607      652    12.4m
+      6.4kg    42%  13.4 14.9m   248m  2-crew     19.8    3,758      709    12.5m
+      6.8kg    43%  13.5 15.0m   253m  2-crew     19.8    3,910      767    12.7m
+      7.2kg    43%  13.6 15.1m   258m  2-crew     19.8    4,062      826    12.9m
+      7.6kg    44%  13.6 15.3m   262m  2-crew     19.9    4,215      886    13.0m
+      8.0kg    44%  13.7 15.4m   266m  2-crew     19.9    4,369      947    13.1m
+
+    Anchor check: 2.6 kg case gives 126 min vs the established 127 min - consistent.
+
+  READING THE FRONTIER
+
+    - BELOW ~1.9 kg: infeasible or battery-starved. The 0.72 kg payload is a
+      fixed tax; small airframes pay it in battery fraction and die early.
+    - THE KNEE, 2.4-3.4 kg: battery fraction 20-29%, hand launch keeps the
+      per-setup overhead at 8 min, and daily coverage peaks (~38 km2/day
+      at 3.2 kg). Wind penetration at 8 m/s is workable (11 m/s).
+    - ABOVE 3.5 kg: the bungee arrives. Endurance keeps climbing (223 min
+      at 5 kg) but daily coverage FALLS (27.7 km2/day) because under
+      VLOS you relocate ~35 times a day and each launch now costs 15 min
+      instead of 8. Crash energy doubles, the kit price climbs, and the wing
+      stops fitting across the van. Size buys the wrong currency: endurance
+      was never the VLOS bottleneck - setups are.
+    - The 5+ kg class only wins if BVLOS ever arrives (setups vanish, lines
+      lengthen) - and a homebuilt cannot fly BVLOS, so that branch is closed
+      by regulation, not physics.
+
+  VERDICT: 3.0 kg MTOM is confirmed - now by the frontier, not by habit.
+  It sits at the knee: hand-launch cadence, ~28% battery fraction, peak
+  km2/day, tolerable crash energy, one-person field ops. The right answer
+  to "should it be bigger?" is: only if the rules ever let it fly farther
+  than the pilot can see. Until then, the small quiet wing wins the day.
+
+========================================================================================================
