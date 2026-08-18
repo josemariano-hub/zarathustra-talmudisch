@@ -86,5 +86,49 @@ will spend (second motor pair, props, servos, wing foam).
    Universe" style resellers are legitimate but charge the 3× shown above.
 3. **Band gates:** SIM7600**E-H** (EU LTE bands), ELRS **868 MHz LBT** for Spain.
 4. **% OFF theatre on both sites** — compare checkout totals only.
-5. Order sequence: AliExpress cart today (1–2 week lead), nkon with it, Amazon cart
-   the week the airframe ships, camera hunt on Wallapop in parallel.
+5. Order sequence: see **The 2-week plan** below — the China-shipping default breaks
+   the deadline, so sourcing changes for everything flight-critical.
+
+## The 2-week plan (hard deadline: all equipment in hand ≤14 days)
+
+**Rule: nothing flight-critical ships from China unless the listing explicitly says
+EU/Spain warehouse.** The China cart saves ~€200 but costs 1–2 weeks; the reserve
+absorbs the premium (~€180–250) and the total stays ≤ €1,980.
+
+**Day 0 (today) — six orders + one hunt, ~1 hour:**
+1. **Amazon.es basket** (Pi Zero 2 W, LiPo bag, CA/epoxy, velcro, +servos €25/pair
+   and ISDT D2 MK2 €93 as EU substitutes where step 2 lacks stock) → arrives in 1–2 days.
+2. **RC Innovations (rc-innovations.es, Spanish drone shop)**: Pixhawk 6C + M10 GPS,
+   RadioMaster Pocket + RP1, motors/ESCs/props if stocked → 24–72 h. *Stock not
+   verifiable remotely — whatever they lack, fall back per item to Amazon.es or to
+   AliExpress listings filtered "Enviado desde España".*
+3. **SIM7600E-H HAT from Amazon.es** (~€75–90, third-party) — pay the ~€25 premium
+   over Ali for the deadline.
+4. **nkon.nl cells** → 3–6 working days.
+5. **1NCE SIM** → 3–7 days.
+6. **Foil + Depron + adhesive** locally; start printing bays/frames the same day.
+7. **Wallapop a6000 hunt opens today** — local Barcelona pickup preferred; set a
+   day-4 deadline, then widen to eBay ES with envío.
+
+**Day 0–2 — the airframe decision tree (the only real risk):**
+- **Branch A:** AliExpress app, filter *Enviado desde: España/Europa* on
+  `Believer 1960mm kit` and `Skywalker X8 frame` → if found: buy, 5–8 days. ~30 min
+  of checking, do it first.
+- **Branch B:** Banggood Believer **only if** it shows EU-warehouse stock (the
+  global page currently shows an arrival-notice/backorder state — do not order a
+  backorder against a deadline).
+- **Branch C:** Foxtech / MakeFlyEasy direct with **DHL/FedEx Express** (~€80–100
+  shipping on the big box): 5–8 days door-to-door including customs, properly
+  invoiced. Reliable but the priciest branch.
+- **Branch D:** Wallapop/eBay ES used Believer, X8 or Skywalker — Spain's RC
+  second-hand scene turns these up regularly; a used airframe is fine, the foam is
+  going to meet stubble anyway.
+- **Hard rule:** if no branch has secured an airframe with ≤10-day delivery by the
+  end of day 2, buy Branch C immediately — it is the only branch with a guaranteed
+  clock.
+
+**Resulting timeline:** everything except the airframe lands by day 5–7; the
+airframe lands day 5–10 on any branch → **complete kit in hand by day 10–12, two to
+four days of margin inside the deadline.** Build order absorbs the staggering: packs
++ LTE node + printed parts in week 1, airframe integration and maiden in the 2–3
+days after the box arrives.
