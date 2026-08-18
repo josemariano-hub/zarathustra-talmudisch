@@ -149,3 +149,74 @@ print(f"""
     second airframe are each worth more than any kilogram of extra wing.
 """)
 hr()
+
+# ================================================================ sensor co-optimization
+print()
+hr()
+print("  CORRECTION: A BIGGER PLANE CAN FLY A BIGGER SENSOR - the co-optimized frontier")
+hr()
+print("""
+    The sweeps above held the sensor FIXED - which quietly assumed the
+    conclusion. Payload capacity grows with AUW, and the realistic way to
+    spend it is a MULTI-CAMERA OBLIQUE ARRAY (nadir + tilted a6000s, the
+    standard survey-aircraft trick): swath scales with camera count.
+    Obliques at ~30 deg degrade edge GSD to ~4.5 cm -> still 15 px on the
+    sphere, identification retained.
+
+    Cameras: 1x = 0.47 kg / 176 m   2x = 0.94 kg / 330 m   3x = 1.41 kg / 440 m
+    Other payload fixed 0.35 kg (radar, Pi, LTE, Iridium, beacon, avionics).
+""")
+CAMS={1:(0.47,176.0), 2:(0.94,330.0), 3:(1.41,440.0)}
+def cooptim(auw, ncam, bvlos):
+    m_cam, sw = CAMS[ncam]
+    batt = auw*(1-STRUCT_FRAC) - 0.35 - m_cam
+    if batt <= 0 or batt/auw < 0.13: return None
+    ld=min(12.0*(auw/2.6)**0.12,14.0); v=13.0*(auw/2.6)**0.15
+    p=auw*G0*v/(ld*ETA)+P_AV; t=batt*E_SPEC*USABLE/p*60
+    if bvlos:
+        rate=sw*(1-SIDELAP)*v*0.93*3600/1e6
+        transit=2*10000/v/60; prod=max(t-transit,0)/t
+        day=rate*DAY_H*0.85*prod
+    else:
+        rate=sw*(1-SIDELAP)*v*TURN*3600/1e6
+        setup=8.0 if auw<=3.5 else (15.0 if auw<=6.0 else 25.0)
+        per=VLOS_KM2/rate*60+setup
+        day=min(DAY_H*60/per*VLOS_KM2, rate*DAY_H*0.8)
+    cost=120*(auw/2.6)**1.3 + (batt*E_SPEC/150.0)*110*3 + 1430 + ncam*470
+    return dict(t=t,day=day,cost=cost,batt_f=batt/auw,v=v)
+
+for regime,bv in (("VLOS (today's rules)",False), ("BVLOS (counterfactual)",True)):
+    print(f"    --- {regime} ---")
+    print(f"    {'AUW':>6}{'cams':>6}{'swath':>7}{'batt%':>7}{'endur':>7}{'km2/day':>9}{'kit EUR':>9}{'per k-EUR':>10}")
+    best=None
+    for auw in (2.6,3.0,3.4,4.0,4.5,5.0,6.0,7.0,8.0):
+        for nc in (1,2,3):
+            r=cooptim(auw,nc,bv)
+            if r is None: continue
+            if best is None or r['day']>best[2]['day']: best=(auw,nc,r)
+            if nc==1 and auw not in (3.0,4.5): continue   # keep table readable
+            print(f"    {auw:>5.1f}kg{nc:>6}{CAMS[nc][1]:>6.0f}m{r['batt_f']*100:>6.0f}%"
+                  f"{r['t']:>6.0f}m{r['day']:>9.0f}{r['cost']:>9,.0f}{r['day']/r['cost']*1000:>10.1f}")
+    a,n,r=best
+    print(f"    BEST: {a:.1f} kg with {n} cameras -> {r['day']:.0f} km2/day\n")
+
+print("""  REVISED VERDICTS - the challenge was correct and changes one of them:
+
+    VLOS (the world we fly in): the knee stays SMALL but gains a camera.
+    Best is 3.4 kg with TWO cameras (51 km2/day, +34% over the single-cam
+    3 kg design) - the second camera is worth more than any kilogram, and
+    hand launch survives at 3.4 kg (rolling launch off the Amarok makes it
+    trivial). The battery fraction is thin (17%, 94-min sorties) - fine
+    with packs cycling. MTOM 3.5 kg, two-camera bay: the new baseline.
+
+    BVLOS (if the rules ever open): the knee MOVES, exactly as challenged.
+    Per-euro coverage peaks at 5 kg with a 3-camera array (150 km2/day,
+    41 km2/day per k-EUR); the absolute maximum keeps crawling up to 8 kg
+    (180 km2/day) but the curve is flat - +20% coverage for +31% cost
+    above 5 kg. Call the BVLOS knee 5-6 kg, 3 cameras, ~150-165 km2/day:
+    2.6x the small wing. 'Bigger plane, bigger sensor' is exactly right
+    there; the fixed-sensor sweep had assumed it away. Under VLOS the
+    setup cadence still caps the gain - but the moment line-of-sight
+    stops binding, the aircraft should grow WITH its sensor.
+""")
+hr()
