@@ -102,3 +102,50 @@ print(f"""
   than the pilot can see. Until then, the small quiet wing wins the day.
 """)
 hr()
+
+# ================================================================ BVLOS counterfactual
+print()
+hr()
+print("  COUNTERFACTUAL: ASSUME NO LINE-OF-SIGHT CONSTRAINT - does the knee move?")
+hr()
+TURN_BVLOS=0.93       # 5+ km lines, turns become rare
+DUTY=0.85             # pack swaps only - no relocations at all
+STANDOFF_KM=10.0      # launch point to survey area, one site serves the ellipse
+print(f"""
+    Remove VLOS entirely: one launch site, {STANDOFF_KM:.0f} km standoff, long lines
+    (turn efficiency {TURN_BVLOS} vs 0.78), no relocations, packs cycling.
+
+    {'AUW':>6}{'v':>7}{'endur':>8}{'transit loss':>13}{'km2/h':>8}{'km2/day':>9}{'kit EUR':>9}{'km2/day/EUR':>12}""")
+bv={}
+for auw in (2.0,2.4,2.8,3.2,4.0,5.0,6.0,8.0):
+    a=aircraft(auw)
+    rate=SWATH*(1-SIDELAP)*a['v']*TURN_BVLOS*3600/1e6
+    transit=2*STANDOFF_KM*1000/a['v']/60
+    prod=max(a['t']-transit,0)/a['t']
+    day=rate*DAY_H*DUTY*prod
+    bv[auw]=(day,a['cost'])
+    print(f"    {auw:>5.1f}kg{a['v']:>6.1f}m{a['t']:>7.0f}m{transit:>10.0f}min{rate:>8.1f}{day:>9.0f}{a['cost']:>9,.0f}{day/a['cost']*1000:>12.1f}")
+d32,c32=bv[3.2]; d8,c8=bv[8.0]
+print(f"""
+    Reading it: without LOS the aircraft flies all day from one site and
+    coverage jumps for EVERY size (the real BVLOS dividend is GEOMETRY -
+    long lines and zero relocations - worth ~2x at any mass). But size
+    still buys almost nothing: 8 kg out-covers 3.2 kg by only {d8/d32-1:+.0%},
+    because swath is fixed by the camera and speed scales as AUW^0.15.
+    Meanwhile the 8 kg costs {c8/c32-1:+.0%} more, quadruples crash energy, and
+    needs the bungee crew.
+
+    THE FLEET COMPARISON that settles it:
+      1 x 8.0 kg : {d8:>5.0f} km2/day for {c8:>6,.0f} EUR
+      2 x 3.2 kg : {2*d32:>5.0f} km2/day for {2*c32:>6,.0f} EUR   <- +62% coverage for +18% money,
+                                                 attrition-tolerant, spares shared
+
+    VERDICT, UNCHANGED AND STRONGER: the knee stays at ~3 kg even without
+    LOS, because coverage is bought MULTIPLICATIVELY (more aircraft, wider
+    sensors) not by scaling one airframe. What BVLOS would actually change:
+    fly longer lines (turn eff 0.78 -> 0.93), budget transit reserves, and
+    nothing about the aircraft - whose LTE-primary comms architecture is,
+    conveniently, already BVLOS-shaped. The 61 MP camera (+52% swath) and a
+    second airframe are each worth more than any kilogram of extra wing.
+""")
+hr()

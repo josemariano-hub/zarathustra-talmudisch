@@ -54,3 +54,43 @@
   than the pilot can see. Until then, the small quiet wing wins the day.
 
 ========================================================================================================
+
+========================================================================================================
+  COUNTERFACTUAL: ASSUME NO LINE-OF-SIGHT CONSTRAINT - does the knee move?
+========================================================================================================
+
+    Remove VLOS entirely: one launch site, 10 km standoff, long lines
+    (turn efficiency 0.93 vs 0.78), no relocations, packs cycling.
+
+       AUW      v   endur transit loss   km2/h  km2/day  kit EUR km2/day/EUR
+      2.0kg  12.5m     71m        27min     5.5       41    2,135        19.2
+      2.4kg  12.8m    110m        26min     5.7       52    2,278        22.7
+      2.8kg  13.1m    140m        25min     5.8       57    2,422        23.4
+      3.2kg  13.4m    163m        25min     5.9       60    2,567        23.3
+      4.0kg  13.9m    196m        24min     6.1       64    2,860        22.4
+      5.0kg  14.3m    223m        23min     6.3       68    3,231        20.9
+      6.0kg  14.7m    242m        23min     6.5       70    3,607        19.5
+      8.0kg  15.4m    266m        22min     6.8       74    4,369        17.0
+
+    Reading it: without LOS the aircraft flies all day from one site and
+    coverage jumps for EVERY size (the real BVLOS dividend is GEOMETRY -
+    long lines and zero relocations - worth ~2x at any mass). But size
+    still buys almost nothing: 8 kg out-covers 3.2 kg by only +24%,
+    because swath is fixed by the camera and speed scales as AUW^0.15.
+    Meanwhile the 8 kg costs +70% more, quadruples crash energy, and
+    needs the bungee crew.
+
+    THE FLEET COMPARISON that settles it:
+      1 x 8.0 kg :    74 km2/day for  4,369 EUR
+      2 x 3.2 kg :   120 km2/day for  5,134 EUR   <- +62% coverage for +18% money,
+                                                 attrition-tolerant, spares shared
+
+    VERDICT, UNCHANGED AND STRONGER: the knee stays at ~3 kg even without
+    LOS, because coverage is bought MULTIPLICATIVELY (more aircraft, wider
+    sensors) not by scaling one airframe. What BVLOS would actually change:
+    fly longer lines (turn eff 0.78 -> 0.93), budget transit reserves, and
+    nothing about the aircraft - whose LTE-primary comms architecture is,
+    conveniently, already BVLOS-shaped. The 61 MP camera (+52% swath) and a
+    second airframe are each worth more than any kilogram of extra wing.
+
+========================================================================================================
