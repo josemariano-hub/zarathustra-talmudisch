@@ -29,19 +29,21 @@ self-consistent; no need to re-run ours unless the raw CSV surfaces.
 Everything before this was designed around a 0.70 m sphere at 2.3 px. The **2.13 m
 canopy** is the object to search for:
 
-| Sensor | GSD | Sphere px | **Canopy px** | Verdict change |
+| Sensor | GSD | Sphere px | **Canopy px (orange)** | Verdict change |
 | --- | --- | --- | --- | --- |
 | Pléiades Neo | 0.30 m | 2.3 | **7.1** | detection → easy; **discrimination now works too** |
 | Pléiades | 0.50 m | 1.4 | **4.3** | was marginal → now usable |
 | SkySat (true cell) | 0.72 m | ~1 | **3.0** | was "sees a blob" → now a real candidate sensor |
 | PlanetScope | 3 m | — | 0.7 | still no |
 
-The discrimination problem inverts: a silage bale is 1.2–1.5 m, the canopy is 2.13 m —
-the size gate now rejects bales *from above*, and the canopy is fabric draped over
-stubble, not a compact 3-D object with a hard shadow. If the canopy has any colour
-(**unconfirmed — the one datum to nail down before tasking; the report flags it too**),
-an RGB colour gate ends the bale problem outright. The sphere + boom + Insta360 sit
-within metres of the canopy on the train — find the canopy, walk the line.
+The discrimination problem inverts twice. A silage bale is 1.2–1.5 m, the canopy is
+2.13 m — the size gate now rejects bales *from above*. And the canopy is confirmed
+**orange**: high red reflectance over very low blue gives a red/blue band ratio of
+≈ 4–6, against ≈ 1 for white bale wrap and ≈ 1.5–2 for dry soil — a one-line colour
+gate that ends the bale problem categorically, and works even at SkySat's coarse
+cell. Nothing else in an August harvest landscape is a 2 m orange disc. The sphere +
+boom + Insta360 sit within metres of the canopy on the train — find the canopy, walk
+the line.
 
 For the sweeper the change is bigger still: at 120 m AGL the day camera puts **~90 px**
 across the canopy. False-alarm density collapses; descend-to-inspect passes become

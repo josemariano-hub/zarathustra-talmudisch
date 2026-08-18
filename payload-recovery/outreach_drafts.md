@@ -1,10 +1,10 @@
 # Outreach drafts — Planet and Airbus
 
-**Status: sendable as-is.** The investigation report (12 Aug 2026 flight) filled every
-placeholder: real AOI boxes, real dates, and one upgrade that strengthens both asks —
-the 84-inch parachute stayed attached, so the primary target is a **2.13 m canopy**,
-not a 0.70 m sphere. Only one datum remains open: **canopy colour** (check the chute
-before sending, or say it is being confirmed).
+**Status: fully sendable — the only placeholder left is [NAME].** The investigation
+report (12 Aug 2026 flight) filled the dates and AOI boxes, and the canopy colour is
+now confirmed: **orange**. That completes the pitch — the primary target is a 2.13 m
+orange canopy, and orange fabric's high-red/low-blue signature gives a band-ratio gate
+that removes white bales and bare soil categorically, on top of the size gate.
 
 **Send both.** They are not competing for the same favour — Airbus has the resolution,
 Planet has the revisit and the archive depth. If both say yes, you get a stronger
@@ -28,12 +28,15 @@ north of Villadiego, with a 139 km² 90% box around it. Exact WGS84 boxes below;
 and GPX on request.
 
 The good news for imaging: the 84-inch parachute stayed attached, so the target is not
-just our 0.70 m polystyrene sphere — it is a **2.13 m canopy** spread over stubble.
-At 30 cm that is 7 pixels across, riding next to the sphere's bright-plus-shadow
-dipole. I ran the radiometry before writing: detection has large margin, and the
-discrimination that used to worry me (white 1.2–1.5 m silage bales) now works in our
-favour — the canopy out-sizes every bale, and it is fabric, not a shadowed 3-D object.
-[Canopy colour: CONFIRM AND STATE — if coloured, an RGB gate removes bales entirely.]
+just our 0.70 m polystyrene sphere — it is a **2.13 m orange canopy** spread over
+stubble. At 30 cm that is 7 pixels across, riding next to the sphere's
+bright-plus-shadow dipole. I ran the radiometry before writing: detection has large
+margin, and the discrimination that used to worry me (white 1.2–1.5 m silage bales)
+now works doubly in our favour. The canopy out-sizes every bale — and it is orange:
+high red reflectance over very low blue, so a simple red/blue band ratio on the
+multispectral product separates it categorically from white plastic (ratio ≈ 1) and
+dry soil (≈ 1.5–2). Six-band VNIR at 30 cm is close to ideal for exactly this gate,
+which is one more reason the ask is to Pléiades Neo specifically.
 
 What would make this work:
 
@@ -80,9 +83,11 @@ The target is better than I first thought when I modelled this. The 84-inch para
 stayed attached, so the object to find is a **2.13 m canopy** on stubble — about
 3 pixels across at SkySat's true 0.72 m cell, which moves SkySat from "sees an
 unidentifiable blob" to a genuine candidate, with the 0.70 m sphere and its shadow as
-a co-located confirming cue. My residual concern is separating the canopy from 1.2–1.5 m
-silage bales; the canopy out-sizes them, and if the gore colours are confirmed
-non-white [CONFIRM], an RGB gate settles it.
+a co-located confirming cue. My residual concern was separating the canopy from
+1.2–1.5 m silage bales; it dissolved twice over. The canopy out-sizes them, and the
+gores are **orange** — a red/blue band ratio flags orange fabric at ≈ 4–6 against ≈ 1
+for white bale wrap and ≈ 1.5–2 for dry soil, so the colour gate settles the bale
+problem even at SkySat's cell size.
 
 So two questions:
 
@@ -126,13 +131,10 @@ three lines.
 that a real investigation report with a calibrated wind reconstruction sits behind the
 AOI — signals this is not a fishing expedition and their pixels will not be wasted.
 
-**The canopy upgrade is the strongest new card.** A 7-pixel target at 30 cm and a
-3-pixel target at SkySat's cell is a materially easier ask than the original 2-pixel
-sphere. Both emails now lead with it.
-
-**Confirm the canopy colour before sending.** It is the one placeholder left, it
-decides the contrast model, and the report flags it explicitly. Fruity Chutes ships
-Iris Ultra canopies in several gore schemes — check the packing photos or the order.
+**The canopy upgrade is the strongest new card.** A 7-pixel orange target at 30 cm
+and a 3-pixel one at SkySat's cell is a materially easier ask than the original
+2-pixel white sphere — and the orange colour turns discrimination from a size
+argument into a band-ratio one-liner. Both emails now lead with it.
 
 **Do not oversell the odds.** Six days of harvest traffic have already passed. The
 canopy may be dragged, balled up, or in a farmer's shed. Say so if asked — a partner

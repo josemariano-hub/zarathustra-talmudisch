@@ -19,9 +19,10 @@ for it). The Insta360's card holds the descent video — the recovery prize.
 > gentle 2.4 m/s landing after dark, radio permanently silent. **Search Zone A:
 > 42.66265 N, 3.85740 W — 50% radius 3.5 km (38 km²), 90% 6.7 km (139 km²).** The
 > 84-inch parachute stayed attached: **the 2.13 m canopy is now the primary target**
-> (7 px at Pléiades Neo, 3 px at SkySat — SkySat is back in play). Digest and all
-> implications: `flight_facts.md`. Outreach emails are filled in and sendable —
-> only the canopy colour remains to confirm.
+> (7 px at Pléiades Neo, 3 px at SkySat — SkySat is back in play), and the canopy is
+> **confirmed orange** — a red/blue band-ratio gate removes the bale confusers
+> categorically. Digest and all implications: `flight_facts.md`. Outreach emails are
+> fully filled in and sendable today.
 
 ## Contents
 
