@@ -1,59 +1,79 @@
-# AliExpress shopping list — the €2,000 sweeper, cart by cart
+# Shopping lists — AliExpress vs Amazon.es, cheaper-wins rule
 
-Maps every line of `eur2000_build.md` to a search line, what to pick, and a realistic
-price. Prices marked **[live]** were scraped from AliExpress on 18 Aug 2026; the rest
-are indicative street prices — AliExpress "% OFF" theatre means you compare final
-checkout prices only, with EU VAT included (shown at checkout in Spain).
+Rule applied per item: **AliExpress only where it actually beats Amazon.es**; ties and
+near-ties go to Amazon.es for the 24–48 h delivery and returns. Prices marked
+**[live]** were scraped 18 Aug 2026 (AliExpress search JSON / Amazon.es result
+pages); the rest are indicative. Compare checkout prices with VAT only — both sites
+show them VAT-inclusive in Spain.
 
-## A. The AliExpress cart
+## 1. The comparison table
 
-| # | Search line | Pick / spec gate | Qty | ~Price |
+| Item | AliExpress | Amazon.es | Verdict | Note |
 | --- | --- | --- | --- | --- |
-| 1 | `Believer 1960mm UAV kit` | KIT (no electronics), twin-motor, EPO. **[live] $269–289** | 1 | ~€270 |
-| 2 | `Pixhawk 6C flight controller` | **Holybro official store only.** Pixhawk 6C + M10 GPS/compass combo. Budget alternative: `Matek F405 WING V2` + `Matek M10Q GPS` (~€110 total, same ArduPilot) | 1 | ~€210 |
-| 3 | `SunnySky X2216 880KV motor` | ×2 (twin). Official SunnySky/Emax store | 2 | ~€40 |
-| 4 | `Hobbywing Skywalker 40A ESC` | ×2, with BEC disabled on one (one 5 V source rule) | 2 | ~€30 |
-| 5 | `APC style propeller 11x5.5` + `12x6` | 3 pairs of each — crash spares are cheap here | 6+ | ~€15 |
-| 6 | `EMAX ES08MA II metal gear servo` | **[live] $4.39 each.** Metal gear only. 4 needed + 2 spares | 6 | ~€26 |
-| 7 | `RadioMaster Pocket ELRS 2.4GHz` or `RadioMaster Ranger Micro 868` | **Spain = 868 MHz LBT firmware region for long range**; 2.4 GHz ELRS is fine for launch/land-only under LTE-primary. Handset + one `RadioMaster RP1 receiver` | 1+1 | ~€90 |
-| 8 | `Waveshare SIM7600E-H 4G HAT` | **Waveshare official store; the E-H variant** — EU bands B3/B20. (The G-A variant is the Americas one.) | 1 | ~€55 |
-| 9 | `ToolkitRC M6D dual charger` | Dual-channel, DC-input — feeds straight off the Amarok DC-DC | 1 | ~€65 |
-| 10 | `Sony multi terminal shutter release cable` + `camera trigger PWM` | Multiport shutter cable for the a6000 + PWM-to-shutter trigger board (Seagull MAP-style) | 1 | ~€30 |
-| 11 | `XT60 connector` , `4S balance lead JST-XH` , `nickel strip 0.15mm` , `16AWG silicone wire` | Pack-building hardware and harness stock | lot | ~€25 |
-| 12 | `lipo safe bag large` + velcro straps + foam-safe CA glue | Field kit | lot | ~€20 |
+| Believer 1960 airframe KIT | **$269–289 [live]** | not stocked | **ALI** | no race — Amazon has no survey airframes |
+| Pixhawk 6C + M10 GPS (Holybro official) | ~€210 | marketplace scalpers only | **ALI** | official store; clones are the trap |
+| SunnySky X2216 880KV ×2 | ~€40 | rare/overpriced | **ALI** | |
+| Hobbywing Skywalker 40A ESC ×2 | ~€30 | ~€50 | **ALI** | |
+| Props 11×5.5 / 12×6 (6+) | ~€2.5/prop | **€14–30 for 2–3 [live]** | **ALI** | 3–5× gap; buy many |
+| EMAX metal-gear servos ×6 | **$4.39/u [live]** | **€25/pair [live]** (ES08MD) | **ALI** | 3× gap |
+| RadioMaster Pocket ELRS + RP1 rx | ~€90 | barely stocked | **ALI** | 868 MHz LBT region for Spain |
+| Waveshare SIM7600**E-H** 4G HAT | ~€55 (official) | ~€75–90 (3rd party; **[live]** search shows only generic €47 boards + €117 OSTENT modems) | **ALI** | E-H = EU bands B3/B20 |
+| ToolkitRC M6D dual charger | ~€65 | **ISDT D2 MK2 €93 [live]** | **ALI** | M6D is DC-in — the Amarok DC-DC feeds it |
+| XT60, balance leads, nickel strip, silicone wire | ~€25 lot | ~€45 equivalent | **ALI** | |
+| Sony shutter cable + PWM trigger | ~€15 | **€22.54 [live]** (A6000-compatible cable) | **ALI** | if compatibility doubts: Amazon version, returnable |
+| Raspberry Pi Zero 2 W | ~€28 (often scalped) | ~€25 | **AMAZON** | kubii/berrybase ~€18 beats both if not urgent |
+| LiPo safe bag | ~€12 | **€17–23 [live]** | **AMAZON** | near-tie after shipping; fire safety item, want it before first charge |
+| Foam-safe CA + activator, epoxy | slow, liquid-shipping issues | ~€15, next-day | **AMAZON** | |
+| Velcro straps, cable ties, heatshrink | ~€8 | ~€12 | **AMAZON** | tie → speed wins |
 
-**Cart A total ≈ €875** (airframe + all electronics except camera and cells).
+## 2. Final AliExpress cart (~€800)
 
-## B. Deliberately NOT from AliExpress
+Search lines, in order of lead time (airframe first):
 
-| Item | Where | Why not Ali | ~Price |
-| --- | --- | --- | --- |
-| **18650 cells** (24× Samsung 35E / Molicel P28A for 3× 4S3P packs) | nkon.nl or EU battery vendor | AliExpress 18650s are the fake-capacity epicentre; a flight pack is not the place to find out | ~€130 |
-| **Used Sony a6000 + 16 mm f/2.8** | Wallapop / eBay ES | Used market is cheaper and inspectable; no used-gear market on Ali | ~€470 |
-| **Raspberry Pi Zero 2 W** | EU retail (kubii.fr, berrybase) | Ali scalps it above EU retail (~€18) | ~€20 |
-| **Multi-carrier IoT SIM** | Spanish/EU IoT provider (1NCE, Things Mobile class) | The whole point is roaming across Movistar/Orange/Vodafone in Zone A | ~€10–20/yr |
-| **RECCO tab** | Recco dealer / ski shop | Not sold on Ali | ~€5 |
-| Kitchen foil, 3 mm Depron, spray adhesive (reflector + test corner) | Local | Trivial | ~€15 |
-| Filament (PETG, CF-PETG, TPU) | Bambu store / eSUN EU | Print quality consistency; Ali okay as fallback | ~€45 |
+1. `Believer 1960mm UAV kit` — KIT, twin-motor, EPO — ~€270
+2. `Pixhawk 6C flight controller` — Holybro official store, M10 GPS combo — ~€210
+   (budget path: `Matek F405 WING V2` + `Matek M10Q GPS` ~€110)
+3. `SunnySky X2216 880KV motor` ×2 — ~€40
+4. `Hobbywing Skywalker 40A ESC` ×2 — ~€30
+5. `APC style propeller 11x5.5` + `12x6` — 3 pairs each — ~€15
+6. `EMAX ES08MA II metal gear servo` ×6 — ~€26
+7. `RadioMaster Pocket ELRS` + `RadioMaster RP1 receiver` — ~€90
+8. `Waveshare SIM7600E-H 4G HAT` — Waveshare official store, E-H variant — ~€55
+9. `ToolkitRC M6D dual charger` — ~€65
+10. `Sony multi terminal shutter release cable` + `camera trigger PWM` — ~€15
+11. `XT60 connector` + `4S balance lead JST-XH` + `nickel strip 0.15mm` + `16AWG silicone wire` — ~€25
 
-**Cart B total ≈ €700.**
+## 3. Final Amazon.es cart (~€75)
 
-## Running total vs budget
+The this-week-with-returns basket:
 
-≈ **€1,575–1,650 landed** against the €1,980 plan — the margin (~€350) is the crash
-reserve, which a foam aircraft on a real search *will* spend: a second motor pair,
-more props, a servo handful, spare wing foam.
+1. Raspberry Pi Zero 2 W — ~€25 (or kubii.fr €18 if a few days don't matter)
+2. Bolsa LiPo ignífuga — ~€19 [live €17–23] — before the first pack charge, not after
+3. Cianocrilato apto para foam + activador, epoxi 30 min — ~€15
+4. Velcro, bridas, termorretráctil — ~€12
+
+## 4. Neither list (never was a two-way race, ~€620)
+
+- **24× 18650 (Samsung 35E / Molicel P28A)** — nkon.nl ~€130. Both marketplaces are
+  fake-capacity minefields for cells; this is non-negotiable for flight packs.
+- **Used Sony a6000 + 16 mm f/2.8** — Wallapop/eBay ES ~€470.
+- **Multi-carrier IoT SIM** — Spanish/EU IoT provider (1NCE class), ~€10–20/yr.
+- **RECCO tab** ~€5; foil + Depron + spray adhesive (reflector/test corner) ~€15 — local.
+
+## Totals
+
+AliExpress ~€800 + Amazon.es ~€75 + neither ~€620 ≈ **€1,495–1,570 landed** against
+the €1,980 plan → **~€400 crash reserve**, which a foam aircraft on a real search
+will spend (second motor pair, props, servos, wing foam).
 
 ## Warnings that save money
 
-1. **Name collision:** "Sky Surfer X8" (€50–150 beginner trainer) is not a Skywalker
-   X8 and neither is our airframe. Search terms above avoid it.
-2. **Official stores only** for FC, motors, ELRS, Waveshare — the clone Pixhawks are
-   the second classic AliExpress trap after fake 18650s.
-3. **Band checks:** SIM7600**E-H** (EU LTE bands), ELRS on **868 MHz LBT** region for
-   Spain if you go the long-range module route.
-4. **The €3,067 "UAV catapult launcher"** that shows up in these searches is what the
-   Amarok rolling launch does for €0.
-5. Shipping: AliExpress Choice consolidates and lands in ~1–2 weeks to Spain; order
-   the airframe first (longest lead), electronics second, and start the pack build
-   the day the nkon box arrives.
+1. **Name collision:** "Sky Surfer X8" (€50–150 trainer) is neither a Skywalker X8
+   nor our airframe.
+2. **Official stores only** on AliExpress for FC, motors, ELRS, Waveshare — clone
+   Pixhawks are the second classic trap after fake 18650s. On Amazon, "Adapter
+   Universe" style resellers are legitimate but charge the 3× shown above.
+3. **Band gates:** SIM7600**E-H** (EU LTE bands), ELRS **868 MHz LBT** for Spain.
+4. **% OFF theatre on both sites** — compare checkout totals only.
+5. Order sequence: AliExpress cart today (1–2 week lead), nkon with it, Amazon cart
+   the week the airframe ships, camera hunt on Wallapop in parallel.
