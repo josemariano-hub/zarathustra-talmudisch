@@ -57,6 +57,7 @@ for it). The Insta360's card holds the descent video — the recovery prize.
 | `size_pareto_output.txt` | Full numeric output of the above. |
 | `field_ops_amarok.py` | Pickup-based ops: bed/rolling launch, alternator power budget, dust. |
 | `field_ops_amarok_output.txt` | Full numeric output of the above. |
+| `cots_comparison.md` | The COTS mirror: closest commercial full products (UX11, eBee X, Believer RTF, Trinity Pro) and the gaps no product fills. |
 
 ## Workflow
 

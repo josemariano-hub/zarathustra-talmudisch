@@ -874,6 +874,33 @@ footer p{margin:0 0 8px}
   </div>
 </section>
 
+<section>
+  <div class="col">
+    <h2>The COTS mirror</h2>
+    <h3>The closest full commercial product to this aircraft</h3>
+    <p>Fair question after all this design work: does someone already sell it? Three near-misses, each mirroring a different face of the spec. The <strong>Delair UX11</strong> is the <em>architectural</em> twin &mdash; a 1.5&nbsp;kg hand-launched survey wing whose signature feature is flying command and telemetry <strong>over the 3G/4G cellular network</strong>; our SIM-card-primary decision independently reinvented Delair's headline capability, and the UX11 now even ships as a C6-labelled variant. The <strong>AgEagle eBee&nbsp;X</strong> is the <em>doctrinal</em> twin &mdash; hand-launched foam, field-swappable RGB and RGB+thermal bays (exactly our two-bay concept), and the first aircraft family to earn the EASA <strong>C6 label</strong>, legal for BVLOS over a controlled ground area since January 2024. And a <strong>Believer-class RTF mapping package</strong> (MakeFlyEasy / Foxtech, ArduPilot + Sony, &euro;3&ndash;6k) is the <em>genetic and price</em> twin: the same airframe family our design started from, with the airframe labour bought out.</p>
+  </div>
+  <div class="scroller">
+    <table>
+      <caption>The market mapped against the sweeper spec. Prices indicative street/quote levels, August 2026 &mdash; survey-drone pricing is quote-driven.</caption>
+      <thead><tr><th>Product</th><th class="num">MTOM</th><th>Comms</th><th>Payloads</th><th>Class</th><th class="num">Price</th><th>Missing vs spec</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td class="name">Delair UX11</td><td class="num">1.5 kg</td><td>2.4 GHz + <strong>LTE C2</strong></td><td>sealed 21.4 MP PPK</td><td><span class="pill p-yes">C6 variant</span></td><td class="num">~&euro;15&ndash;20k</td><td>thermal, radar, Iridium</td></tr>
+        <tr class="hi"><td class="name">AgEagle eBee X + Duet T</td><td class="num">1.6 kg</td><td>2.4 GHz</td><td>swappable RGB / thermal</td><td><span class="pill p-yes">C6 &mdash; BVLOS</span></td><td class="num">~&euro;15&ndash;38k</td><td>radar, beacon bus, quiet doctrine</td></tr>
+        <tr class="hi"><td class="name">Believer RTF package</td><td class="num">3.5&ndash;5.5 kg</td><td>ELRS/RFD900</td><td>Sony A-series / dual oblique</td><td><span class="pill p-mid">none</span></td><td class="num">~&euro;3&ndash;6k</td><td>thermal, radar, Iridium &mdash; i.e. our build minus our additions</td></tr>
+        <tr><td class="name">Quantum Trinity Pro</td><td class="num">5 kg</td><td>LTE option</td><td>swappable incl. 3-view oblique</td><td><span class="pill p-mid">SORA route</span></td><td class="num">~&euro;48k</td><td>radar; 13&times; the price of our 5 kg variant</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col">
+    <div class="note">
+      <span class="tag">What no COTS product has</span>
+      <p>Four spec lines exist nowhere on the market: the <strong>24&nbsp;GHz radar bay</strong> (no commercial survey wing carries radar &mdash; the channel that makes the next recovery a non-event is unique to this build); the <strong>independent L91 Iridium beacon bus</strong>; the <strong>climb-glide 18&nbsp;dBA acoustic doctrine</strong> (a procedure plus a prop, not a product feature); and the <strong>&euro;3.5k price</strong>. The 4&ndash;13&times; COTS premium buys integration, warranty and &mdash; on the UX11 and eBee &mdash; the C-class label, not capability this mission needs. And one gap runs the other way: <strong>the C6 label is the single spec line that cannot be homebuilt at any price.</strong> If the ellipse ever outgrows VLOS setups, the pivot is to stop building and buy an eBee&nbsp;X with Duet&nbsp;T; until then, the Trinity Pro's existence is the market agreeing with our co-optimized frontier &mdash; a ~5&nbsp;kg wing with a 3-camera bay is what a BVLOS search aircraft should be.</p>
+    </div>
+    <p class="lead">Closest single product: the Delair UX11 &mdash; our comms architecture in a sealed commercial shell. Closest to what we would actually buy: a Believer-class RTF, because it is our aircraft minus the parts that make it a recovery aircraft.</p>
+  </div>
+</section>
+
 <section class="col">
   <h2>Next flight</h2>
   <h3>Make the payload answer back</h3>
