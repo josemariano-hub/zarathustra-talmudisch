@@ -43,7 +43,7 @@ already counted). Legal envelope: Open A3, VLOS, 120 m — the whole plan assume
 | --- | --- | --- |
 | Second camera (two-bay, 330 m swath) | ~530 | +34% coverage — turns 4 days into 3. Nice, not necessary. **First re-add if budget appears.** |
 | InfiRay Mini2-640 thermal | ~900 | Day-primary was already the honest verdict; an orange canopy needs daylight, not ΔT. |
-| 24 GHz radar bay | ~550 | This payload flew **no reflector** — only the boom glint channel remains, a bonus not a plan. Radar rejoins on the next flight, with the €20 printed cluster. |
+| 24 GHz radar bay | ~550 | The CF boom IS a real target for it (4.6 m² broadside, one ~65-chirp flash per pass — established doctrine says worth flying). It's cut here on redundancy, not weakness: the orange canopy hands the day camera a *deterministic* detection, so the radar's *stochastic* boom flash only earns its €550 if the canopy is hidden (hedge, ditch, dragged). It is the first re-add if Zone A's open fields come up empty. |
 | Iridium sweeper beacon | ~300 | Under VLOS + LTE last-fix + RECCO/corner tab, a lost sweeper is findable without it. |
 | Aeronaut CAM prop pair set | ~75 | Stock props cost ~2–3% efficiency. Accept it. |
 
@@ -52,8 +52,11 @@ already counted). Legal envelope: Open A3, VLOS, 120 m — the whole plan assume
 1. **€2,000 (this brief):** single-camera day sweeper — completes Zone A 90% in ~4 days.
 2. **+€530:** second camera bay → 51 km²/day, Zone A 90% in ~3 days.
 3. **+€75:** proper folding props (worth it once the airframe is proven).
-4. **+€900 thermal / +€550 radar:** only if Zone A comes up empty and the search
-   escalates — or for the next flight's kit, where they were always aimed.
+4. **+€550 radar bay:** the escalation move if the open-field sweep finds nothing —
+   the boom's 4.6 m² glint sees through hedges, canopy folds and partial cover that
+   defeat the camera, and the same bay serves every future reflector-equipped flight.
+5. **+€900 thermal:** last — an orange canopy is a daylight target; thermal is for
+   searches this one no longer is.
 
 The other €2,000 option — putting it toward a used Mavic 3 Thermal (~€6,000) — buys
 a third of a drone. Toward a SkySat tasking it might buy imagery once, with no
