@@ -77,6 +77,7 @@ the recovery prize.
 | `flight_facts.md` | Ground truth from the Flight 2 investigation report: Zone A/B, canopy-is-the-target pivot, updated sensor table. |
 | `eur2000_build.md` | The €2,000 hardware brief: single-camera day sweeper BOM, what it covers, what the cut €1,540 was buying. |
 | `radar_rod_test_plan.md` | Z2I-TP-001: one-day ground test calibrating the boom-glint channel on an identical CF rod — the €320 spend gate for the radar bay. |
+| `local_partners_burgos.md` | Local allies near Zone A: the UBU drone lab, Aerobur and others — means, motive, and two ready-to-send Spanish emails. |
 | `aliexpress_shopping_list.md` | Two shopping lists (AliExpress vs Amazon.es) under the cheaper-wins rule, with live-scraped price anchors from both sites, spec gates, and the neither-list. |
 
 ## Workflow
