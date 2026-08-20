@@ -4,6 +4,11 @@ Zone A centre **42.66265 N, 3.85740 W**. Target: **2.13 m orange canopy** + 0.70
 white sphere + boom + Insta360. On the ground since **12 Aug 2026, ~21:12 UTC**.
 Today is day 0.
 
+> **CURRENT POSITION (20 Aug 2026).** Satellite lane: **Airbus and Planet already
+> contacted** (Planet request finalised 19 Aug) — that lane is now a follow-up, not
+> a to-do. Everything else below is still open. The village lane has not started and
+> is the one with the best odds.
+
 ## The strategy in four lines
 
 Four lanes run at different speeds. Start all of them today; let none of them wait
@@ -12,7 +17,7 @@ for another.
 | Lane | Can find it in | Cost | Odds |
 | --- | --- | --- | --- |
 | **1. The village** — farmers, harvest crews, hunters | **days** | ~€350 | **best** |
-| **2. Satellites** — Airbus / Planet goodwill tasking | 1–3 weeks | €0 if goodwill | good |
+| **2. Satellites** — Airbus / Planet ✅ *already contacted* | 1–3 weeks | €0 if goodwill | good |
 | **3. Local drones** — UBU lab, Aerobur | 1–2 weeks | €0–1,500 | good |
 | **4. Our own sweeper** | 2–3 weeks minimum | ~€1,600 | it is the hedge |
 
@@ -72,21 +77,18 @@ the most likely finders in this entire plan, and this costs a phone call.
   more than the flight.**
 - Expect a reply in 1–3 working days.
 
-## Step 5 · Fire the satellite lane (15 min)
+## Step 5 · Satellite lane — DONE, set a reminder ✅
 
-Two emails, two different senders — decide per contact:
+Airbus and Planet were contacted (Planet request finalised 19 Aug 2026). Nothing to
+send. Two calendar reminders instead:
 
-- **If your Airbus/Planet contacts read Catalan/Spanish and a UPC association member
-  will send it:** use `outreach_drafts_ca.md` (UPC Space Program version), sent from
-  **the student's own address**, with the balloon photo attached. Do not send this
-  version from your Z2I address — the identity has to match the sender.
-- **Otherwise (international contact, or you are sending it yourself):** use
-  `outreach_drafts.md` — the English Z2I version. Both are complete; only `[NAME]` is
-  blank.
-- **Attach to both:** `zone_a.geojson` + the balloon photo.
-- **Airbus** → ask for Pléiades Neo, 30 cm: 1 archive scene before 12 Aug + 1–2 tasked
-  after, ≤15° off-nadir, PAN separate.
-- **Planet** → ask about Pelican, and SkySat + the archive baseline.
+- **Day +3** — no reply → one short, friendly nudge to each, re-attaching
+  `zone_a.geojson`.
+- **Day +7** — no reply → one final follow-up, then let it rest. Goodwill tasking
+  either moves or it does not, and chasing it further costs you the contact.
+
+If either says yes, ask for the delivery to include the **PAN band separately** from
+the pansharpened product — the matched-filter detector wants it.
 
 ## Step 6 · Place the hardware orders (30 min)
 
@@ -197,8 +199,8 @@ Zone B. Zone B requires *both* independent termination systems to have failed.
 | 2 | Ayuntamiento de Villadiego | village | | | |
 | 3 | UBU — Prof. J.M. González | drones | | | |
 | 4 | Aerobur | drones | | | |
-| 5 | Airbus (Pléiades Neo) | satellite | | | |
-| 5 | Planet (Pelican/SkySat) | satellite | | | |
+| 5 | Airbus (Pléiades Neo) | satellite | ✅ sent | — | nudge day +3 |
+| 5 | Planet (Pelican/SkySat) | satellite | ✅ sent 19 Aug | — | nudge day +3 |
 | 10 | Coto de caza — Villadiego | village | | | |
 | 12 | ENG Drone / VISUAIR | drones | | | |
 | 6 | Airframe order | build | | | |
