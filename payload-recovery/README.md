@@ -105,7 +105,7 @@ the recovery prize.
 | `cartel_villadiego.html` | Print-ready A4 Spanish reward notice for the village channel (fill in phone + name, print in colour). |
 | `state_assets_spain.md` | Spanish military and space assets: capability vs access, why PAZ cannot see the canopy, and the three routes worth taking (CNIG/PNOA 22 cm, INTA, fire-watch). |
 | `local_partners_burgos.md` | Local allies near Zone A: the UBU drone lab, Aerobur and others — means, motive, and two ready-to-send Spanish emails. |
-| `foam_wing_shopping.md` | The airframe-only cart (~€665): what to order today to get the aircraft flying, and what deliberately to defer. |
+| `foam_wing_shopping.md` | **Complete** buy list for the aircraft (~€2,082 must-buy + €145 tools), grouped and subtotalled — including the spot welder and mandatory insurance the €2,000 brief had missed. |
 | `aliexpress_shopping_list.md` | Two shopping lists (AliExpress vs Amazon.es) under the cheaper-wins rule, with live-scraped price anchors from both sites, spec gates, and the neither-list. |
 
 ## Workflow
