@@ -103,6 +103,7 @@ the recovery prize.
 | `zone_a.geojson` / `zone_a.kml` | The search areas as files — Zone A 50%/90%, tasking boxes, Zone B, launch and last-fix points. Attach to every outreach email. |
 | `zone_a_map.jpg` | Satellite map of Zone A (Esri World Imagery, z13) with the 50%/90% circles, 1 km rings, scale bar and last-contact point — the attachment to send anyone local. |
 | `cartel_villadiego.html` | Print-ready A4 Spanish reward notice for the village channel (fill in phone + name, print in colour). |
+| `state_assets_spain.md` | Spanish military and space assets: capability vs access, why PAZ cannot see the canopy, and the three routes worth taking (CNIG/PNOA 22 cm, INTA, fire-watch). |
 | `local_partners_burgos.md` | Local allies near Zone A: the UBU drone lab, Aerobur and others — means, motive, and two ready-to-send Spanish emails. |
 | `aliexpress_shopping_list.md` | Two shopping lists (AliExpress vs Amazon.es) under the cheaper-wins rule, with live-scraped price anchors from both sites, spec gates, and the neither-list. |
 

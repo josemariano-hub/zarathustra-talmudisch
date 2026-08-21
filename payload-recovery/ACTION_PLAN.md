@@ -230,6 +230,29 @@ Zone B. Zone B requires *both* independent termination systems to have failed.
 | 12 | ENG Drone / VISUAIR | drones | | | |
 | 6 | Airframe order | build | | | |
 
+## Step 9 · CNIG / PNOA enquiry — free 22 cm imagery ⭐ (10 min)
+
+Email **consulta@cnig.es** (cc `centrodedescargas@cnig.es`). Ready-to-send Spanish
+text in `state_assets_spain.md`. One question: **has the PNOA 2026 flight already
+covered the north of Burgos, and on what date?** The 2026 CyL flight is at **22 cm**
+— our canopy is ~10 px at that scale. If it flew after 12 August, the imagery already
+contains the answer, and it is free public data.
+
+## Step 10 · Fire-watch notice — free eyes for the rest of the season (10 min)
+
+Email the Junta de Castilla y León's fire operations / medio ambiente service in
+Burgos: the photo, the coordinates, and what to look for. The **puestos de vigilancia**
+overlooking that páramo are staffed all summer, and INFOCAL aircraft fly the province
+daily in August. **Tell them — do not ask them to task anything.**
+
+## Do NOT ask (settled)
+
+MQ-9 Reaper (Ala 23), UME, Guardia Civil drone units, and PAZ satellite tasking.
+The first three task only on national-defence or declared-emergency grounds and a
+lost commercial payload is neither; PAZ is radar and a nylon canopy has no radar
+cross-section worth the money. Reasoning in `state_assets_spain.md`.
+
+
 ---
 
 # CALL LIST — in priority order
