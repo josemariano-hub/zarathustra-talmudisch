@@ -30,15 +30,16 @@ cover every hectare of Zone A at walking pace. Lane 1 is where the money is.
 
 # DAY 0 — TODAY (about 2 hours total)
 
-## Step 1 · Fill in three blanks (5 min)
+## Step 1 · Poster — DROPPED (José's call, 20 Aug)
 
-Open `cartel_villadiego.html` and replace `[TELÉFONO]` and `[NOMBRE]` with a phone
-that accepts WhatsApp and the name to answer it. Decide the reward figure — €300 is
-the printed default; €200 is fine, €500 if you want it found this week.
+No printed poster. The village lane runs **verbally + digitally** instead: the phone
+call below, then email the ayuntamiento a photo and the map and let *them* post it.
+`cartel_villadiego.html` stays in the repo if the digital route stalls and somebody
+wants something to pin on a board.
 
-**Then print 30 copies in colour.** The orange is the whole point of the poster.
+## Step 2 · Call the Ayuntamiento de Villadiego — HIGHEST PRIORITY
 
-## Step 2 · Call the Ayuntamiento de Villadiego (10 min) — HIGHEST PRIORITY
+**947 36 17 00** · villadiego@diputaciondeburgos.net · Plaza Mayor 1, 09120
 
 Phone them, ask for the alcalde or the secretario. Script:
 
@@ -49,8 +50,10 @@ Phone them, ask for the alcalde or the secretario. Script:
 > Les mando un cartel en PDF para el tablón y para las redes del ayuntamiento, y hay
 > una recompensa de 300 € para quien lo encuentre.»
 
-Then email them the poster PDF. Ask specifically for: **the tablón de anuncios, the
-municipality's Facebook page, and the WhatsApp groups of the pedanías.**
+Then email **villadiego@diputaciondeburgos.net** with a photo of an identical orange
+canopy, the map, and two lines of text. Ask specifically for: **the tablón de
+anuncios, the municipality's Facebook page, and the WhatsApp groups of the
+pedanías.** They can print it themselves if they want something physical.
 
 **Why this is step 2 and not step 8:** the people driving over Zone A right now are
 the most likely finders in this entire plan, and this costs a phone call.
