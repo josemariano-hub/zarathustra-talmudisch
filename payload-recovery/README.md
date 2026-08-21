@@ -29,6 +29,28 @@ the recovery prize.
 > categorically. Digest and all implications: `flight_facts.md`. Outreach emails are
 > fully filled in and sendable today.
 
+> ## ⚠️ SUPERSEDED GEOMETRY — read before sending anything
+>
+> **The Zone A / Zone B circles below are obsolete.** José's own Monte Carlo
+> hindcast **v3 (3000 runs)** replaces them, and it differs in kind, not just in
+> numbers:
+>
+> - The posterior is **bimodal and elongated E–W**, not a circle: an **85% "cut"
+>   lobe to the east** (2.13 m canopy open, landed ~21:04–21:18Z) and a **15%
+>   "burst" lobe to the west** (possibly wrapped latex, ~21:25–21:40Z).
+> - **Search first = the mode of the cut cluster**, which sits east of the old
+>   Zone A centre — not at 42.66265 N, 3.85740 W.
+> - The 50%/90% areas carry **~factor-2 uncertainty** (sigma of a single control
+>   leg), and **90% is explicitly NOT an exhaustion limit**.
+>
+> Affected and not to be trusted until regenerated: `zone_a.geojson`,
+> `zone_a.kml`, `zone_a_map.jpg`, `zone_a_heatmap_SUPERSEDED.jpg`,
+> and every coordinate quoted in `ACTION_PLAN.md`, `flight_facts.md` and the
+> outreach drafts.
+>
+> **Needed to fix:** the v3 hindcast output (contour GeoJSON/KML, or the 3000-run
+> landing points, or at minimum the mode coordinates + the 50%/90% polygons).
+
 ## Contents
 
 | File | What it is |
