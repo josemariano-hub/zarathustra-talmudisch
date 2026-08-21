@@ -232,7 +232,7 @@ Zone B. Zone B requires *both* independent termination systems to have failed.
 
 ## Step 9 · CNIG / PNOA enquiry — free 22 cm imagery ⭐ (10 min)
 
-Email **consulta@cnig.es** (cc `centrodedescargas@cnig.es`). Ready-to-send Spanish
+Email **consulta@cnig.es** (cc `cddconsultas@cnig.es`). Ready-to-send Spanish
 text in `state_assets_spain.md`. One question: **has the PNOA 2026 flight already
 covered the north of Burgos, and on what date?** The 2026 CyL flight is at **22 cm**
 — our canopy is ~10 px at that scale. If it flew after 12 August, the imagery already
@@ -268,6 +268,8 @@ Scraped from the organisations' own sites, 20 Aug 2026. ⚠️ = verify on the w
 | 4 | **VISUAIR** | **619 053 048** / 645 313 818 | info@visuair.com | Competing quote, same brief as Aerobur |
 | 5 | **ENG Drone** ⚠️ | **639 932 899** | engdroneinfo@gmail.com | Cheapest quote; Antonio Pereda |
 | — | ITCL (Burgos tech centre) ⚠️ number unverified | — | info@itcl.es | Only after UBU engages — they turn a favour into a project |
+| 6 | **CNIG / IGN** — the free 22 cm PNOA lead ⭐ | **91 597 95 14** · 91 597 94 53 | consulta@cnig.es · cddconsultas@cnig.es | «el área de PNOA / teledetección» → has the 2026 flight covered north Burgos, and on what date? |
+| 7 | **INTA** — Torrejón de Ardoz | **91 520 12 00** | via inta.es | «Dirección de Sistemas Aeronáuticos / Sistemas No Tripulados» — joint exercise, not a favour |
 
 Aerobur's site also lists a `999999999` placeholder in its form — ignore it.
 Best calling window: **09:00–14:00**. August in Castilla; afternoons are thin.

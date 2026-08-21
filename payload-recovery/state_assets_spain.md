@@ -70,8 +70,10 @@ Two things worth knowing:
   was covered.
 - It is free, public data. There is no favour being asked.
 
-**Contact:** Centro Nacional de Información Geográfica, `consulta@cnig.es` /
-`centrodedescargas@cnig.es`, and the PNOA project via `pnoa.ign.es`.
+**Contact:** Centro Nacional de Información Geográfica, C/ General Ibáñez de Íbero 3,
+28003 Madrid. **Tel. +34 91 597 95 14** (general) / **+34 91 597 94 53** (CNIG) —
+ask for the **área de PNOA / teledetección**, not map sales. Email `consulta@cnig.es`,
+`cddconsultas@cnig.es` (Centro de Descargas). Project pages at `pnoa.ign.es`.
 
 > **Asunto:** Consulta PNOA 2026 — ¿fecha del vuelo sobre el norte de Burgos (Tubilla del Agua / Valle de Sedano)?
 >
@@ -108,8 +110,9 @@ success criterion, with the data and the write-up shared.
 Realistic expectation: slow, and more likely to produce a relationship than a sortie.
 Worth one email precisely because the relationship has value beyond this payload.
 
-**Contact:** via `inta.es`, Área de Sistemas No Tripulados / Dirección de Sistemas
-Aeronáuticos.
+**Contact:** INTA, Ctra. de Ajalvir km 4, 28850 Torrejón de Ardoz (Madrid).
+**Centralita +34 91 520 12 00** — ask for the **Dirección de Sistemas Aeronáuticos /
+Área de Sistemas No Tripulados** (the Milano / SIVA / Avizor people). Web `inta.es`.
 
 ### 3. Fire-season eyes — free, immediate, and August is the moment
 
