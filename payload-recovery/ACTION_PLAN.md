@@ -210,6 +210,25 @@ Zone B. Zone B requires *both* independent termination systems to have failed.
 
 ---
 
+# CALL LIST — in priority order
+
+Scraped from the organisations' own sites, 20 Aug 2026. ⚠️ = verify on the way in.
+
+| # | Who | Phone | Email | Ask for / say |
+| --- | --- | --- | --- | --- |
+| 1 | **Ayuntamiento de Villadiego** | **947 36 17 00** | villadiego@diputaciondeburgos.net | Alcalde or secretario. Tablón + Facebook + WhatsApp de las pedanías |
+| 1b | Villadiego — oficina de turismo (mobile, often answers faster in August) | **637 409 281** | — | Same message; they know who to tell |
+| 2 | **Aerobur** (Burgos, Agricultura 4.0) | **621 420 240** | info@aerobur.es | Day rate for 38 km²; *and* do you have recent imagery / can you ask your farmer clients |
+| 3 | **UBU — Escuela Politécnica Superior** | **947 25 87 00** | eps@ubu.es | «la Unidad de Investigación Conjunta en Tecnología de Drones» → Prof. José Manuel González |
+| 4 | **VISUAIR** | **619 053 048** / 645 313 818 | info@visuair.com | Competing quote, same brief as Aerobur |
+| 5 | **ENG Drone** ⚠️ | **639 932 899** | engdroneinfo@gmail.com | Cheapest quote; Antonio Pereda |
+| — | ITCL (Burgos tech centre) ⚠️ number unverified | — | info@itcl.es | Only after UBU engages — they turn a favour into a project |
+
+Aerobur's site also lists a `999999999` placeholder in its form — ignore it.
+Best calling window: **09:00–14:00**. August in Castilla; afternoons are thin.
+
+---
+
 ## Attachment cheat-sheet
 
 | File | Send it to |
