@@ -103,12 +103,36 @@ Exhaustive searches, not timeouts — the solver returned with the tree closed.
 | octahedron subdivided, n=2 (six 240° points) | 96 | 12 | no |
 | octahedron subdivided, n=3 | 216 | 27 | no |
 | octahedron subdivided, n=4 | 384 | 48 | no |
+| octahedron subdivided, n=5 | 600 | 75 | no |
+| octahedron subdivided, n=6 | 864 | 108 | no |
 
 The icosahedral cases die on the parity law above. The octahedral ones have the
-right disclination pattern and still fail at these subdivisions, so putting the
-six cone points at the corners of a regular octahedron is too rigid; the 6-hat
-sphere above places them irregularly. Whether some larger octahedral
-subdivision works is open.
+right disclination pattern — six 240° cone points, total charge 6 — and still
+fail out to 108 hats. Putting the six cone points at the corners of a *regular*
+octahedron is too rigid a constraint; the 6-hat sphere above carries the same
+charge with the cone points placed irregularly, and that one exists.
+
+## The open question: a kite-compatible torus
+
+The sphere above is kite-compatible; the 3-hat torus is not. A kite-compatible
+hat torus needs cone angles that are multiples of 120° summing to zero defect,
+so at minimum one 240° point (charge +1) and one 480° point (charge -1). At
+lattice vertices those are degrees 4 and 8, and each is individually fine — the
+cone table above says both are coverable. Whether they can coexist on a torus
+carrying a hat tiling is not settled here:
+
+* gluing search (`glue_search.py`, mod-120 closure constraint) found none for
+  N = 3..7. These are randomized restarts under a node cap, so they are search
+  failures, not proofs.
+* diagonal flips starting from the flat torus never reach an all-even degree
+  profile other than the flat one: a single flip gives 5,5,7,7, and the only
+  second flip restoring even degrees is the undo. 4000 random flip walks and a
+  greedy parity-descent search on m = 4 and 6 found nothing else.
+* a variable-width cylinder closed into a torus does produce cone tori, but the
+  curvature spreads into 5s and 7s rather than concentrating into a 4 and an 8.
+
+So the construction of an even-degree cone torus is the missing piece, not the
+tiling search on top of it.
 
 Positive control for the machinery: the same solver covers a disc of the plane
 (cone angle 360°) without difficulty, and reproduces the known impossibility of
