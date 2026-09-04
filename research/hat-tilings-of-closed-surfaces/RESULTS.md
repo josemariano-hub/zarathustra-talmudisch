@@ -1,9 +1,9 @@
 # Spheres and tori tileable by the hat monotile
 
 All statements below are derived from the geometry, then checked numerically by the
-scripts in `code/`. Nothing here is quoted from memory: the hat itself is
-re-derived from the kite lattice (`enumerate_hat.py`, `tileab.py`, `patch.py`),
-because no external source was reachable from this environment.
+scripts in `code/`. Nothing here is quoted from memory: the hat itself is re-derived
+from the kite lattice (`enumerate_hat.py`, `tileab.py`, `patch.py`) and only then
+compared against Kaplan's reference implementation.
 
 ## 0. Identifying the hat from first principles
 
@@ -30,8 +30,28 @@ perimeter               : 8a + 6b = 18.392 a
 As a 13-gon: 6 edges of √3, 6 of length 1, one of length 2 (the two `a` edges
 flanking the 180° vertex).
 
-Verification: a 28-hat patch tiles a disc of 150 kites with **every interior
-vertex at exactly 360°** (2, 3 or 4 hat corners meeting; mostly 2). See `patch.png`.
+Two independent checks.
+
+*Against the reference implementation.* `hat_outline` in `geometry.js` of
+[isohedral/hatviz](https://github.com/isohedral/hatviz) (Kaplan's P5 sketch for the
+paper) reads
+
+```js
+const hat_outline = [
+    hexPt(0, 0), hexPt(-1,-1), hexPt(0,-2), hexPt(2,-2),
+    hexPt(2,-1), hexPt(4,-2), hexPt(5,-1), hexPt(4, 0),
+    hexPt(3, 0), hexPt(2, 2), hexPt(0, 3), hexPt(0, 2),
+    hexPt(-1, 2) ];                       // hexPt(x,y) = (x + y/2, (√3/2)y)
+```
+
+Its boundary word, normalised to short edge = 1, is a cyclic rotation of the mirror
+image of the one above — the same tile, opposite chirality, because free-polyform
+enumeration canonicalises up to reflection. Area 13.856406 = 8√3 on both sides.
+A copy sits in `code/reference_geometry.js`.
+
+*Against a real tiling.* A 28-hat patch tiles a disc of 150 kites with **every
+interior vertex at exactly 360°** (2, 3 or 4 hat corners meeting; mostly 2).
+See `patch.png`.
 
 ## 1. Flat tori: none. Not one.
 
