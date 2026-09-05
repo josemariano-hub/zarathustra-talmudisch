@@ -246,15 +246,39 @@ including the minimal one — a single degree-4 vertex and a single degree-8, on
 surface on which the tiling looks locally like a plane hat tiling. Evidence:
 flat tori impossible (proved); 480° face centres impossible (exhaustive);
 odd-degree vertex cone points impossible (exhaustive); six even cone tori
-untileable (exhaustive, 12 to 48 hats). Not a proof.
+untileable (exhaustive; roughly 30 of them, 9 to 50 hats, every disclination
+profile reachable including the minimal single +120/-120 pair). Not a proof.
 
-The suggestive pattern is sign. The sphere that works carries only positive
-disclinations; a torus must carry negative ones to cancel them. Negative
-curvature is exactly where the hat keeps failing — a 480° face centre is
-outright impossible, and every torus built from 240°/480° vertex pairs has
-failed. That is a hypothesis about what the real obstruction is, not a result:
-a degree-8 vertex on its own is coverable, so negative curvature is not locally
-forbidden.
+**The sign hypothesis is refuted.** I had suggested the obstruction might be
+negative curvature: the sphere that worked was all-positive, a torus must carry
+negative charge, and 480° face centres are impossible. Sweeping even-degree
+sphere triangulations kills it — this one tiles:
+
+```
+sphere, 12 hats, degrees 4^7 6^10 8^1
+cone angles 240 x 7, 360 x 90, 480 x 1        one NEGATIVE disclination
+```
+
+So a hat tiling can carry a -120° disclination at a degree-8 vertex on a closed
+surface. Negative curvature is not the barrier.
+
+What the positives have in common is size, not sign:
+
+| surface | hats | tiles |
+|---|---|---|
+| sphere, irregular, 3 bigons + 3 degree-4 | 6 | yes |
+| sphere, regular octahedron, 4⁶6¹² | 12 | yes |
+| sphere, 4⁷6¹⁰8¹ | 12 | yes |
+| sphere, 4⁸6⁸8², 4⁹6⁶8³ | 12 | no |
+| sphere, every even profile tried at n=3 | 27 | no |
+| sphere, octahedra n=4,5,6,7 | 48–147 | no |
+| torus, roughly 30 kite-compatible cone tori | 9–50 | no |
+
+Every surface that tiles has 12 hats or fewer, and nothing at 27 hats or more
+has tiled, sphere or torus. That fits aperiodicity better than any curvature
+argument does: a small surface can close up because tiles wrap round and glue to
+themselves, while a large one has to contain a genuine patch of plane hat tiling
+and then close it, which the hierarchy resists.
 
 ## A counting condition
 
