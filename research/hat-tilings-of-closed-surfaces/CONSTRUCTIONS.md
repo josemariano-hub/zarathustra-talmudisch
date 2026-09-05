@@ -157,8 +157,9 @@ Exhaustive searches, not timeouts — the solver returned with the tree closed.
 The icosahedral cases die on the parity law above. Among the octahedral ones
 only the coarsest subdivision tiles; n = 3, 4, 5 do not, so the six 240° cone
 points being in the right places is necessary and nowhere near sufficient.
-(n = 6 and 7 are being re-run under the corrected test; the earlier "no" for
-n = 6, 7, 8 was produced by the faulty filter and should not be relied on.)
+n = 6 (108 hats, 329251 nodes) and n = 7 (147 hats, 1535903 nodes) were re-run
+under the corrected test and come back "no" again. n = 8 was only ever checked
+with the faulty filter and has not been redone.
 
 ## Where curvature is allowed to sit
 
@@ -233,6 +234,13 @@ the only torus here, and it is not kite-compatible.
 
 | m=8 | 4³,6⁵⁸,8³ | 240×3, 360×58, 480×3 | 48 | no | 11196 |
 | m=8 | 4²,6⁶⁰,8² | 240×2, 360×60, 480×2 | 48 | no | 32851 |
+
+Re-run under the corrected test the four m=4 and m=6 entries come back "no" with
+larger search trees (1008, 976, 15465, 9805 nodes), as do both bigon tori
+(13 hats, 327 nodes; 50 hats, 4405 nodes). Going *below* 12 hats needs flat tori
+from non-square sublattices; at V=12 (9 hats) four even profiles exist,
+including the minimal one — a single degree-4 vertex and a single degree-8, one
++120° and one -120° disclination — and all four are exhaustively untileable.
 
 **Conjecture.** The hat tiles no kite-compatible torus — no closed genus-1
 surface on which the tiling looks locally like a plane hat tiling. Evidence:
