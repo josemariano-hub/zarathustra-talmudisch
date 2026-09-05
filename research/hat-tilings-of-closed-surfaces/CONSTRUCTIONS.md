@@ -14,8 +14,21 @@ total defect     +720 deg   (Gauss-Bonnet requires +720)
 ```
 
 Six cone points of 240°, each a 120° disclination, and thirty-two vertices that
-are perfectly flat. Every cone angle is a multiple of 120°, so the tiling is
-kite-compatible: the tiles meet as they do in a plane hat tiling.
+are perfectly flat. Kite-compatibility is verified directly, not inferred from
+the angles: every point identified by the gluing keeps its V/M/G type, so the
+kite lattice runs continuously across every seam.
+
+The underlying equilateral complex is
+
+```
+V = 9   E = 24   F = 17   chi = 2
+faces      14 triangles + 3 bigons
+vertices   3 of degree 4, 6 of degree 6
+cone points  3 bigon centres at 240 deg  +  3 degree-4 vertices at 240 deg
+```
+
+All six disclinations carry **positive** charge, which is the whole of the 720°
+a sphere needs. Nothing negative appears anywhere on it.
 
 Net: `net_sphere6.png`. Six hats laid out edge-to-edge in the kite lattice —
 that patch is an ordinary piece of hat tiling — with the 37 remaining
@@ -127,22 +140,24 @@ M is always 360° on a manifold — an edge has exactly two faces — so edge
 midpoints are never cone points. That leaves V and G, and both are now closed
 off except in one direction.
 
-**G is dead.** A face that is not a triangle is a cone point at its centre: a
-quadrilateral gives 480°, a bigon 240°. Building a flat triangulated disc with a
-single quad in the middle and asking hats to cover the neighbourhood:
+**G carries curvature of one sign only.** A face that is not a triangle is a
+cone point at its centre: a quadrilateral gives 480° (charge -1), a bigon 240°
+(charge +1). A flat triangulated disc with a single quad in the middle:
 
 ```
 plain flat disc (control)         cover 72 kites -> YES   [89 nodes]
 one quad face, 480 deg cone point cover 46 kites -> NO    [39 nodes]
 ```
 
-So **the hat cannot cover a face-centre cone point at all.** All curvature has
-to sit at vertices.
+So a 480° face centre is uncoverable. A 240° bigon centre is not — the 6-hat
+sphere below contains three of them.
 
-**V needs even degree**, from the cone table earlier. So every hat-tiled closed
-surface carrying the kite lattice is an *even triangulation* — all vertex
-degrees even — with the disclinations at the odd-degree-free vertices of degree
-4, 8, 10, …
+**V carries both signs but needs even degree**, from the cone table earlier:
+240° (degree 4) and 480° (degree 8) are both coverable, 300° and 420° are not.
+
+So the surfaces available are polygonal complexes of equilateral faces in which
+every vertex has even degree, non-triangular faces are bigons or (at vertices)
+degree 8, and no face is a quadrilateral.
 
 ## The open question: a kite-compatible torus
 
@@ -181,11 +196,22 @@ All exhaustive. Together with the two dead ends above, and with every flat torus
 nothing kite-compatible has yet been tiled at genus 1. The 3-hat torus stands as
 the only torus here, and it is not kite-compatible.
 
+| m=8 | 4³,6⁵⁸,8³ | 240×3, 360×58, 480×3 | 48 | no | 11196 |
+| m=8 | 4²,6⁶⁰,8² | 240×2, 360×60, 480×2 | 48 | no | 32851 |
+
 **Conjecture.** The hat tiles no kite-compatible torus — no closed genus-1
 surface on which the tiling looks locally like a plane hat tiling. Evidence:
-flat tori impossible (proved); face-centre cone points impossible (exhaustive);
-odd-degree vertex cone points impossible (exhaustive); every even cone torus
-constructed so far untileable (exhaustive, 12 and 27 hats). Not a proof.
+flat tori impossible (proved); 480° face centres impossible (exhaustive);
+odd-degree vertex cone points impossible (exhaustive); six even cone tori
+untileable (exhaustive, 12 to 48 hats). Not a proof.
+
+The suggestive pattern is sign. The sphere that works carries only positive
+disclinations; a torus must carry negative ones to cancel them. Negative
+curvature is exactly where the hat keeps failing — a 480° face centre is
+outright impossible, and every torus built from 240°/480° vertex pairs has
+failed. That is a hypothesis about what the real obstruction is, not a result:
+a degree-8 vertex on its own is coverable, so negative curvature is not locally
+forbidden.
 
 ## A counting condition
 
