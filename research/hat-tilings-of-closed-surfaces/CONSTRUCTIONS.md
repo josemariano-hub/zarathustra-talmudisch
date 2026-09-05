@@ -1,5 +1,25 @@
 # Explicit hat tilings of a sphere and a torus
 
+> **A correctness note that changes several results below.** The first version of
+> the placement test required a placed hat to have *no* kite adjacency beyond the
+> hat's own nine internal edges. That is wrong on a small closed surface, where a
+> tile's boundary can legitimately be glued to itself. It was caught by a positive
+> control: the solver was handed the surface of the 6-hat sphere, on which six
+> hats demonstrably tile, and returned "no tiling" — the six known tiles were not
+> even among the placements it generated.
+>
+> The correct condition is that a placement is an embedding: its eight kites are
+> distinct, every internal adjacency of the hat is realised, and **at each surface
+> vertex the angle the placement subtends is at most that vertex's cone angle**.
+> The last clause is what stops a tile wrapping around a cone point, without
+> forbidding a tile that touches itself. With it the positive control passes
+> (84 placements, tiling found in 7 nodes) and `code/kcx.py` replaces the old
+> pipeline.
+>
+> Re-running everything: the cone-angle parity table, the flat tori, the
+> icosahedra, the 480° quadrilateral and every cone torus come back **unchanged**.
+> One result flips — the subdivided octahedron at n=2 **does** tile, with 12 hats.
+
 Two closed surfaces, each tiled by copies of the hat monotile, given as exact
 edge gluings in `GLUINGS.txt` and drawn as planar nets. Everything here is
 produced and checked by the code in `code/`; the hat itself is the one derived
@@ -40,6 +60,22 @@ guarantees a convex realization exists and is unique (all cone angles ≤ 2π);
 volume-maximising relaxation did not reach it, so the picture is a valid but
 non-convex embedding of the right surface. The convex realization has exactly
 6 corners and, being 6-vertex and triangulated, octahedral combinatorics.
+
+## The sphere — 12 hats on a regular octahedron
+
+```
+regular octahedron, each face cut into 4 equilateral triangles
+32 faces, 96 kites, 12 hats
+cone points   six vertices of the octahedron, 240 deg each, charge +1
+total defect  +720
+```
+
+This one needs no numerical embedding at all: the surface *is* the regular
+octahedron, so the 3D model is exact. `octa12_a.png`, `octa12_b.png`. Hats run
+across the octahedron's edges and fold over its corners.
+
+Only n=2 works. n=3 (27 hats), n=4 (48) and n=5 (75) are exhaustively untileable
+under the corrected test, so this is not a family that continues.
 
 ## The torus — 3 hats
 
@@ -113,17 +149,16 @@ Exhaustive searches, not timeouts — the solver returned with the tree closed.
 | flat torus, triangular lattice mod 6 | 216 | 27 | no |
 | icosahedron subdivided, n=2 (twelve 300° points) | 240 | 30 | no |
 | icosahedron subdivided, n=4 | 960 | 120 | no |
-| octahedron subdivided, n=2 (six 240° points) | 96 | 12 | no |
+| octahedron subdivided, n=2 (six 240° points) | 96 | 12 | **YES** |
 | octahedron subdivided, n=3 | 216 | 27 | no |
 | octahedron subdivided, n=4 | 384 | 48 | no |
 | octahedron subdivided, n=5 | 600 | 75 | no |
-| octahedron subdivided, n=6 | 864 | 108 | no |
 
-The icosahedral cases die on the parity law above. The octahedral ones have the
-right disclination pattern — six 240° cone points, total charge 6 — and still
-fail out to 108 hats. Putting the six cone points at the corners of a *regular*
-octahedron is too rigid a constraint; the 6-hat sphere above carries the same
-charge with the cone points placed irregularly, and that one exists.
+The icosahedral cases die on the parity law above. Among the octahedral ones
+only the coarsest subdivision tiles; n = 3, 4, 5 do not, so the six 240° cone
+points being in the right places is necessary and nowhere near sufficient.
+(n = 6 and 7 are being re-run under the corrected test; the earlier "no" for
+n = 6, 7, 8 was produced by the faulty filter and should not be relied on.)
 
 ## Where curvature is allowed to sit
 
