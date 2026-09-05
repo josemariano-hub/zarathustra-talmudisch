@@ -238,9 +238,13 @@ the only torus here, and it is not kite-compatible.
 Re-run under the corrected test the four m=4 and m=6 entries come back "no" with
 larger search trees (1008, 976, 15465, 9805 nodes), as do both bigon tori
 (13 hats, 327 nodes; 50 hats, 4405 nodes). Going *below* 12 hats needs flat tori
-from non-square sublattices; at V=12 (9 hats) four even profiles exist,
-including the minimal one — a single degree-4 vertex and a single degree-8, one
-+120° and one -120° disclination — and all four are exhaustively untileable.
+from non-square sublattices. At V=12 (9 hats), flip BFS from six such seeds
+explored about 460,000 triangulations within four flips and turned up exactly
+three even-degree profiles — 4¹6¹⁰8¹, 4²6⁸8², 4³6⁶8³, the first being the minimal
+disclination pair, a single +120° against a single -120°. All three are
+exhaustively untileable (351, 312, 328 nodes). Profiles containing a degree-10
+vertex are combinatorially possible at V=12 and were not reached at that depth,
+so this is a thorough sample of the 9-hat case, not a complete enumeration.
 
 **Conjecture.** The hat tiles no kite-compatible torus — no closed genus-1
 surface on which the tiling looks locally like a plane hat tiling. Evidence:
