@@ -112,6 +112,38 @@ fail out to 108 hats. Putting the six cone points at the corners of a *regular*
 octahedron is too rigid a constraint; the 6-hat sphere above carries the same
 charge with the cone points placed irregularly, and that one exists.
 
+## Where curvature is allowed to sit
+
+Split each face of a closed surface into kites (centroid to edge midpoints).
+Then all three kinds of kite-lattice point can in principle carry curvature:
+
+```
+vertex V         cone angle  60 * (number of faces meeting there)
+face centre G    cone angle 120 * (number of sides of the face)
+edge midpoint M  cone angle 180 * (number of faces on the edge)
+```
+
+M is always 360° on a manifold — an edge has exactly two faces — so edge
+midpoints are never cone points. That leaves V and G, and both are now closed
+off except in one direction.
+
+**G is dead.** A face that is not a triangle is a cone point at its centre: a
+quadrilateral gives 480°, a bigon 240°. Building a flat triangulated disc with a
+single quad in the middle and asking hats to cover the neighbourhood:
+
+```
+plain flat disc (control)         cover 72 kites -> YES   [89 nodes]
+one quad face, 480 deg cone point cover 46 kites -> NO    [39 nodes]
+```
+
+So **the hat cannot cover a face-centre cone point at all.** All curvature has
+to sit at vertices.
+
+**V needs even degree**, from the cone table earlier. So every hat-tiled closed
+surface carrying the kite lattice is an *even triangulation* — all vertex
+degrees even — with the disclinations at the odd-degree-free vertices of degree
+4, 8, 10, …
+
 ## The open question: a kite-compatible torus
 
 The sphere above is kite-compatible; the 3-hat torus is not. A kite-compatible
@@ -131,8 +163,41 @@ carrying a hat tiling is not settled here:
 * a variable-width cylinder closed into a torus does produce cone tori, but the
   curvature spreads into 5s and 7s rather than concentrating into a 4 and an 8.
 
-So the construction of an even-degree cone torus is the missing piece, not the
-tiling search on top of it.
+Even cone tori do exist, and long random flip walks are the wrong way to find
+them — they are *close* to the flat torus, not far. Exhaustive flip BFS from the
+9-vertex flat torus hits the first one at depth 4 (1 of 395 triangulations) and
+has 11 by depth 6. A beam search guided by the number of odd-degree vertices,
+with visited states excluded so it cannot fall back into the undo, produces them
+directly. Tiling those exhaustively:
+
+| base | degrees | cone angles | hats | tiling | nodes |
+|---|---|---|---|---|---|
+| m=4 | 4²,6¹²,8² | 240×2, 360×12, 480×2 | 12 | no | 241 |
+| m=4 | 4³,6¹⁰,8³ | 240×3, 360×10, 480×3 | 12 | no | 233 |
+| m=6 | 4³,6³⁰,8³ | 240×3, 360×30, 480×3 | 27 | no | 1961 |
+| m=6 | 4²,6³²,8² | 240×2, 360×32, 480×2 | 27 | no | 2971 |
+
+All exhaustive. Together with the two dead ends above, and with every flat torus,
+nothing kite-compatible has yet been tiled at genus 1. The 3-hat torus stands as
+the only torus here, and it is not kite-compatible.
+
+**Conjecture.** The hat tiles no kite-compatible torus — no closed genus-1
+surface on which the tiling looks locally like a plane hat tiling. Evidence:
+flat tori impossible (proved); face-centre cone points impossible (exhaustive);
+odd-degree vertex cone points impossible (exhaustive); every even cone torus
+constructed so far untileable (exhaustive, 12 and 27 hats). Not a proof.
+
+## A counting condition
+
+In a kite-compatible tiling the hat covers 5 faces with kite counts 3,2,1,1,1 —
+one triangle entirely, one two-thirds, three one-third. So with H hats on T
+triangles: 3T = 8H; each hat owns exactly one full triangle; the number of
+triangles split 2+1 equals H; and the number split 1+1+1 is 2H/3. Hence
+
+    T = 8H/3,   H = 0 (mod 3),   T = 0 (mod 8).
+
+Every surface tried above satisfies this, so it rules nothing out here, but it
+is a cheap first filter for any candidate.
 
 Positive control for the machinery: the same solver covers a disc of the plane
 (cone angle 360°) without difficulty, and reproduces the known impossibility of
